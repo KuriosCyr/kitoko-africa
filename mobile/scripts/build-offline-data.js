@@ -22,6 +22,7 @@ async function buildOfflineData(targetDir) {
   delete process.env.ADMIN_PASSWORD;
 
   const { start } = require(path.join(backendDir, "server"));
+  const sharp = require(path.join(backendDir, "node_modules", "sharp"));
   const { seed } = require(path.join(backendDir, "db", "seed"));
   seed({ log: () => {} });
   const server = start(0);
@@ -51,14 +52,21 @@ async function buildOfflineData(targetDir) {
       if (!match) return;
       const name = decodeURIComponent(match[1]);
       const source = path.join(publicDir, name);
-      if (!fs.existsSync(source)) return;
-      fs.copyFileSync(source, path.join(mediaDir, name));
+      if (!fs.existsSync(source) || media.has(name)) return;
+      copies.push(
+        // Version allégée pour l'APK (les photos en pleine qualité restent en ligne).
+        sharp(source).resize({ width: 820, height: 620, fit: "inside", withoutEnlargement: true })
+          .webp({ quality: 55 }).toFile(path.join(mediaDir, name))
+          .catch(() => fs.copyFileSync(source, path.join(mediaDir, name)))
+      );
       media.add(name);
     };
+    const copies = [];
     sites.forEach(site => addMedia(site.media_url));
     Object.entries(responses)
       .filter(([pathname]) => /^\/sites\/\d+$/.test(pathname))
       .forEach(([, detail]) => (detail.data.media || []).forEach(item => addMedia(item.url)));
+    await Promise.all(copies);
 
     const data = { generatedAt: new Date().toISOString(), responses, media: [...media] };
     fs.writeFileSync(path.join(targetDir, "offline", "data.json"), JSON.stringify(data));
