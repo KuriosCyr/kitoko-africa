@@ -32,52 +32,10 @@ const ALL_AFRICA_COUNTRIES = [
   ["Togo","768"],["Tunisie","788"],["Zambie","894"],["Zimbabwe","716"],["Afrique du Sud","710"]
 ];
 
-// Fiches des sites (featured : mis en avant sur l'accueil).
+// Fiches des autres pays, issues du premier prototype. Elles sont importées
+// en brouillon (non visibles du public) : le prototype se concentre sur le
+// Bénin et la Guinée (voir db/content/). Un administrateur peut les publier.
 const SITES = [
-  {id:1,country:"Bénin",cat:"historique",name:"Palais royaux d'Abomey",region:"Zou, Abomey",featured:true,ownerEmail:null,
-   description:"Ancienne capitale du royaume du Dahomey, l'ensemble des palais royaux témoigne de siècles de pouvoir et d'architecture en terre.",
-   histoire:"Fondée au XVIIe siècle, Abomey fut la capitale du royaume du Dahomey pendant près de trois cents ans. Selon la tradition, chacun des douze rois qui s'y sont succédé — d'Houégbadja à Agoli-Agbo — fit édifier son propre palais dans la même enceinte royale, si bien que le site est en réalité un ensemble de dix palais construits côte à côte au fil des règnes. Les murs et bas-reliefs en bas-relief moulé racontent, par des symboles, les hauts faits militaires et politiques de chaque souverain. Une grande partie du site fut incendiée en 1892 lors de la conquête coloniale française, avant d'être restaurée ; l'ensemble est inscrit depuis 1985 au patrimoine mondial de l'UNESCO.",
-   culture:"Lieu central de la mémoire du royaume du Dahomey, encore associé aujourd'hui à des cérémonies commémoratives et à la légitimité des familles royales.",
-   savoirs:"Construction en terre crue (banco), art du bas-relief narratif, techniques de teinture et de confection des tentures appliquées (appliqué du Dahomey).",
-   communities:"Musée historique d'Abomey, descendants des familles royales.",langues:"Fon, français",personnalites:"Roi Houégbadja, Roi Ghézo (1818-1858), Roi Béhanzin (1889-1894)",sources:"UNESCO — Centre du patrimoine mondial ; Musée historique d'Abomey — à compléter."},
-  {id:2,country:"Bénin",cat:"culturel",name:"Cité lacustre de Ganvié",region:"Atlantique, lac Nokoué",featured:true,ownerEmail:null,
-   description:"Village construit sur pilotis au milieu du lac Nokoué, surnommée la « Venise de l'Afrique », habité par le peuple Toffin.",
-   histoire:"Selon la tradition orale, Ganvié fut fondée au XVIIIe siècle par des populations tofin fuyant les razzias des guerriers du royaume du Dahomey, alors engagé dans la traite négrière. Les Fon, pour des raisons religieuses, s'interdisaient de s'aventurer sur l'eau : le lac Nokoué devint donc un refuge. Le nom « Ganvié » signifierait « nous avons survécu » ou « la communauté qui a survécu » en langue tofin — un souvenir direct de cette histoire de fuite et de résistance. Le village, aujourd'hui l'un des plus grands ensembles lacustres d'Afrique, compte plusieurs milliers d'habitants vivant entièrement sur pilotis.",
-   culture:"Vie quotidienne organisée autour de la pirogue : marché flottant, écoles, église et mosquée sur pilotis.",
-   savoirs:"Pêche traditionnelle, construction sur pilotis, pisciculture en enclos de branchages immergés (acadja), une technique ancienne toujours pratiquée.",
-   communities:"Communauté Toffin de Ganvié, associations de pêcheurs locaux.",langues:"Toffin, fon, français",personnalites:"—",sources:"Office de tourisme du Bénin — à compléter."},
-  {id:3,country:"Bénin",cat:"savoirs",name:"Forêt sacrée de Kpassè",region:"Atlantique, Ouidah",ownerEmail:null,
-   description:"Forêt sacrée au cœur de Ouidah, associée au fondateur mythique de la ville et aux pratiques du culte vodun.",
-   histoire:"Selon la tradition, le roi Kpassè, considéré comme le fondateur de Ouidah, se serait transformé en arbre iroko en ce lieu pour échapper à ses poursuivants ; la forêt qui porte son nom est depuis considérée comme sacrée par les pratiquants du vodun. Réduite au fil du temps par l'urbanisation, elle a été restaurée et replantée à partir des années 1990 avec des essences symboliques, chaque arbre représentant une divinité (vodun) du panthéon local. Elle se trouve à proximité de la Route des Esclaves, qui reliait autrefois Ouidah à la Porte du Non-Retour sur la côte atlantique.",
-   culture:"Site vodun majeur, lieu de cérémonies et de pèlerinage encore fréquenté aujourd'hui, notamment lors de la fête annuelle du Vodun (10 janvier).",
-   savoirs:"Connaissances botaniques et médicinales traditionnelles, transmission orale des récits fondateurs de la ville.",
-   communities:"Communauté vodun de Ouidah, gardiens traditionnels du site.",langues:"Fon, français",personnalites:"Roi Kpassè",sources:"Direction du patrimoine culturel du Bénin — à compléter."},
-  {id:37,country:"Bénin",cat:"historique",name:"Esplanade et Monument des Amazones",region:"Cotonou, 12e arrondissement",featured:true,ownerEmail:null,
-   description:"Immense statue en bronze de 30 mètres de haut, dressée en hommage aux Amazones du Dahomey, sur une esplanade face à l'océan Atlantique à Cotonou. L'un des sites les plus visités et photographiés du Bénin aujourd'hui.",
-   histoire:"Inaugurée le 30 juillet 2022 par le président béninois Patrice Talon, la statue représente une jeune guerrière armée d'un fusil et d'une épée, tête levée en signe de victoire. Réalisée en structure métallique recouverte de bronze par le sculpteur chinois Li Xiangqun, elle pèse environ 150 tonnes et serait la deuxième plus grande statue d'Afrique. Elle se dresse sur l'esplanade des Amazones, entre le boulevard de la Marina et l'océan, face à la place de l'Indépendance et au palais présidentiel. Le monument rend hommage aux Agojié (ou Minon), régiment militaire entièrement féminin du royaume du Dahomey, qui protégeaient notamment le roi Ghézo puis combattirent sous le règne du roi Béhanzin contre l'armée coloniale française à la fin du XIXe siècle. Ce corps d'élite reste l'un des épisodes les plus marquants de l'histoire militaire de l'Afrique précoloniale.",
-   culture:"Devenue la nouvelle image touristique de Cotonou, l'esplanade s'inscrit dans une politique de valorisation du patrimoine et de réappropriation de l'histoire nationale, aux côtés des statues de Bio Guéra et de l'obélisque aux Dévoués, inaugurées le même jour.",
-   savoirs:"Histoire de l'organisation militaire des Agojié, mémoire orale sur le rôle des femmes dans le royaume du Dahomey.",
-   communities:"Ville de Cotonou, guides touristiques locaux.",langues:"Fon, français",personnalites:"Roi Ghézo, Roi Béhanzin, sculpteur Li Xiangqun",sources:"Wikipédia — Monument Amazone ; Jeune Afrique, 26/08/2022 ; Afrik.com — à compléter par le pôle Documentation."},
-
-  {id:4,country:"Guinée",cat:"naturel",name:"Mont Nimba",region:"N'Zérékoré",featured:true,
-   description:"Massif montagneux et réserve naturelle intégrale, l'un des plus riches foyers de biodiversité d'Afrique de l'Ouest.",
-   histoire:"Classé réserve de biosphère puis patrimoine mondial de l'UNESCO pour sa biodiversité exceptionnelle.",
-   culture:"Montagne considérée comme sacrée par certaines communautés locales.",
-   savoirs:"Connaissances environnementales locales, conservation communautaire.",
-   communities:"Communautés riveraines du massif.",langues:"Kpèlè, français",personnalites:"—",sources:"UNESCO — à compléter."},
-  {id:5,country:"Guinée",cat:"naturel",name:"Îles de Los",region:"Conakry",
-   description:"Archipel au large de Conakry, plages et forêt côtière, marqué aussi par son passé lié à la traite atlantique.",
-   histoire:"Point de passage historique occupé successivement par plusieurs puissances européennes.",
-   culture:"Mémoire liée à la traite négrière, aujourd'hui site de mémoire et de détente.",
-   savoirs:"Pêche artisanale, savoirs de navigation côtière.",
-   communities:"Pêcheurs et habitants de l'archipel.",langues:"Soussou, français",personnalites:"—",sources:"Office guinéen du tourisme — à compléter."},
-  {id:6,country:"Guinée",cat:"savoirs",name:"Villages du Fouta Djallon",region:"Labé",
-   description:"Massif montagneux peuplé majoritairement par les Peuls, connu pour ses paysages et son artisanat textile.",
-   histoire:"Ancien centre de l'État théocratique peul du Fouta Djallon, fondé au XVIIIe siècle.",
-   culture:"Forte identité peule, transmission orale de la généalogie des lignages.",
-   savoirs:"Tissage traditionnel, élevage pastoral, pharmacopée peule.",
-   communities:"Communautés peules, artisans tisserands.",langues:"Pular, français",personnalites:"Alpha Yaya Diallo",sources:"Institut national de recherche de Guinée — à compléter."},
-
   {id:7,country:"Sénégal",cat:"historique",name:"Île de Gorée",region:"Dakar",featured:true,
    description:"Petite île au large de Dakar, lieu de mémoire majeur de la traite négrière transatlantique.",
    histoire:"La Maison des Esclaves y symbolise le départ forcé de millions d'Africains vers les Amériques.",

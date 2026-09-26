@@ -1,100 +1,90 @@
 const db = require("../config/database");
-const path = require("path");
-const fs = require("fs");
-const sharp = require("sharp");
-const { fileName, locateMediaFile, isSupportedVideo } = require("../services/media");
+const { fileName, locateMediaFile } = require("../services/media");
+const { prepareUploadedMedia, removeUploadedFile } = require("../services/media-processing");
 
 const MAX_TEXT_LENGTH = 20000;
+const RECIT_NATURES = ["temoignage", "tradition_orale", "recit_communautaire"];
 
 function text(value, maxLength = MAX_TEXT_LENGTH) {
 	return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
-function removeUploadedFile(file) {
-	if (file?.path) fs.rmSync(file.path, { force: true });
+function fail(req, res, status, message) {
+	removeUploadedFile(req.file);
+	return res.status(status).json({ success: false, message });
 }
 
-// Convertit les images en WebP (ce qui garantit aussi que c'est une vraie
-// image) et vérifie la signature des vidéos. Lève une erreur sinon.
-async function prepareUploadedMedia(file) {
-	if (file.mimetype.startsWith("video/")) {
-		if (!isSupportedVideo(file.path)) throw new Error("Vidéo non reconnue.");
-		return { type: "video", fileName: path.basename(file.path) };
-	}
-
-	const optimizedPath = path.join(path.dirname(file.path), `${path.basename(file.path, path.extname(file.path))}.webp`);
-	const temporaryPath = `${optimizedPath}.tmp`;
-	await sharp(file.path)
-		.rotate()
-		.resize({ width: 2400, height: 1600, fit: "inside", withoutEnlargement: true })
-		.webp({ quality: 82 })
-		.toFile(temporaryPath);
-	fs.rmSync(file.path, { force: true });
-	fs.renameSync(temporaryPath, optimizedPath);
-	file.path = optimizedPath;
-	return { type: "image", fileName: path.basename(optimizedPath) };
-}
-
+// Types de contribution (document de référence, § 14) :
+// new    : proposer un nouveau site (média obligatoire)
+// recit  : partager un récit ou un témoignage sur un site (audio, photo ou vidéo facultatif)
+// media  : proposer une photo, une vidéo ou un son pour un site
+// edit   : signaler ou corriger une information
 async function createContribution(req, res) {
-	const type = req.body?.type === "edit" ? "edit" : "new";
+	const type = ["new", "recit", "media", "edit"].includes(req.body?.type) ? req.body.type : "new";
 	const description = text(req.body?.description);
+	const creditName = text(req.body?.credit_name, 120);
+
+	let site = null;
+	if (type !== "new") {
+		site = db.prepare("SELECT id, name, country_id, category_id FROM sites WHERE id = ? AND status = 'published'").get(Number(req.body?.site_id));
+		if (!site) return fail(req, res, 404, "Site introuvable.");
+	}
 
 	if (type === "edit") {
 		removeUploadedFile(req.file);
-		const site = db.prepare("SELECT id, name, country_id, category_id FROM sites WHERE id = ? AND status = 'published'").get(Number(req.body?.site_id));
-		if (!site) {
-			return res.status(404).json({ success: false, message: "Site introuvable." });
-		}
-		if (!description) {
-			return res.status(400).json({ success: false, message: "Merci de décrire votre proposition." });
-		}
+		if (!description) return res.status(400).json({ success: false, message: "Merci de décrire votre proposition." });
 		const result = db.prepare(`
 			INSERT INTO contributions (user_id, type, site_id, name, country_id, category_id, description, status)
 			VALUES (?, 'edit', ?, ?, ?, ?, ?, 'pending')
 		`).run(req.user.id, site.id, site.name, site.country_id, site.category_id, description);
-		return res.status(201).json({ success: true, data: { id: result.lastInsertRowid, type: "edit", status: "pending" } });
+		return res.status(201).json({ success: true, data: { id: result.lastInsertRowid, type, status: "pending" } });
 	}
 
-	const name = text(req.body?.name, 200);
-	const country = text(req.body?.country, 200);
-	const category = text(req.body?.category, 50);
+	let values;
+	if (type === "new") {
+		const name = text(req.body?.name, 200);
+		const country = text(req.body?.country, 200);
+		const category = text(req.body?.category, 50);
+		if (!name || !country || !category || !description) return fail(req, res, 400, "Nom, pays, catégorie et description sont requis.");
+		if (!req.file) return fail(req, res, 400, "Une photo ou une vidéo du site est requise.");
 
-	if (!name || !country || !category || !description) {
-		removeUploadedFile(req.file);
-		return res.status(400).json({ success: false, message: "Nom, pays, catégorie et description sont requis." });
+		const countryRow = db.prepare("SELECT id FROM countries WHERE name = ? AND is_active = 1").get(country);
+		const categoryRow = db.prepare("SELECT id FROM categories WHERE slug = ?").get(category);
+		if (!countryRow || !categoryRow) return fail(req, res, 400, "Pays ou catégorie invalide.");
+		values = { name, countryId: countryRow.id, categoryId: categoryRow.id, region: text(req.body?.region, 200), nature: null };
+	} else if (type === "recit") {
+		const title = text(req.body?.name, 200);
+		if (!title || !description) return fail(req, res, 400, "Un titre et le texte du récit sont requis.");
+		const nature = RECIT_NATURES.includes(req.body?.nature) ? req.body.nature : "temoignage";
+		values = { name: title, countryId: site.country_id, categoryId: site.category_id, region: "", nature };
+	} else {
+		if (!req.file) return fail(req, res, 400, "Ajoutez une photo, une vidéo ou un son.");
+		values = { name: text(req.body?.name, 200) || `Média pour ${site.name}`, countryId: site.country_id, categoryId: site.category_id, region: "", nature: null };
 	}
 
-	if (!req.file) {
-		return res.status(400).json({ success: false, message: "Une photo ou une vidéo du site est requise." });
-	}
-
-	const countryRow = db.prepare("SELECT id FROM countries WHERE name = ? AND is_active = 1").get(country);
-	const categoryRow = db.prepare("SELECT id FROM categories WHERE slug = ?").get(category);
-
-	if (!countryRow || !categoryRow) {
-		removeUploadedFile(req.file);
-		return res.status(400).json({ success: false, message: "Pays ou catégorie invalide." });
-	}
-
-	let media;
-	try {
-		media = await prepareUploadedMedia(req.file);
-	} catch (error) {
-		removeUploadedFile(req.file);
-		return res.status(422).json({ success: false, message: "Impossible de traiter le média envoyé : utilisez une image ou une vidéo valide." });
+	let media = null;
+	if (req.file) {
+		try {
+			media = await prepareUploadedMedia(req.file);
+		} catch (error) {
+			return fail(req, res, 422, "Impossible de traiter le média envoyé : utilisez une image, une vidéo ou un son valide.");
+		}
+		if (type === "new" && media.type === "audio") return fail(req, res, 400, "Pour un nouveau site, joignez une photo ou une vidéo.");
 	}
 
 	// La contribution et son média sont enregistrés ensemble ou pas du tout.
 	const insert = db.transaction(() => {
 		const result = db.prepare(`
-			INSERT INTO contributions (user_id, type, name, country_id, category_id, region, credit_name, description, status)
-			VALUES (?, 'new', ?, ?, ?, ?, ?, ?, 'pending')
-		`).run(req.user.id, name, countryRow.id, categoryRow.id, text(req.body?.region, 200), text(req.body?.credit_name, 120), description);
+			INSERT INTO contributions (user_id, type, site_id, name, country_id, category_id, region, credit_name, nature, description, status)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')
+		`).run(req.user.id, type, site?.id ?? null, values.name, values.countryId, values.categoryId, values.region, creditName, values.nature, description);
 
-		db.prepare(`
-			INSERT INTO media (contribution_id, type, file_path, title)
-			VALUES (?, ?, ?, ?)
-		`).run(result.lastInsertRowid, media.type, media.fileName, text(req.file.originalname, 200));
+		if (media) {
+			db.prepare(`
+				INSERT INTO media (contribution_id, type, file_path, title, author)
+				VALUES (?, ?, ?, ?, ?)
+			`).run(result.lastInsertRowid, media.type, media.fileName, text(req.file.originalname, 200), creditName || req.user.name);
+		}
 		return result.lastInsertRowid;
 	});
 
@@ -108,17 +98,18 @@ async function createContribution(req, res) {
 
 	return res.status(201).json({
 		success: true,
-		data: { id: contributionId, type: "new", status: "pending", media: true }
+		data: { id: contributionId, type, status: "pending", media: Boolean(media) }
 	});
 }
 
 function listMyContributions(req, res) {
 	const contributions = db.prepare(`
-		SELECT c.id, c.type, c.name, c.description, c.status, c.created_at, c.region,
-		       c.site_id, countries.name AS country, categories.slug AS category,
+		SELECT c.id, c.type, c.name, c.description, c.status, c.created_at, c.region, c.nature,
+		       c.site_id, sites.name AS target_name, countries.name AS country, categories.slug AS category,
 		       (SELECT m.id FROM media m WHERE m.contribution_id = c.id ORDER BY m.id DESC LIMIT 1) AS media_id,
 		       (SELECT m.type FROM media m WHERE m.contribution_id = c.id ORDER BY m.id DESC LIMIT 1) AS media_type
 		FROM contributions c
+		LEFT JOIN sites ON sites.id = c.site_id
 		LEFT JOIN countries ON countries.id = c.country_id
 		LEFT JOIN categories ON categories.id = c.category_id
 		WHERE c.user_id = ?

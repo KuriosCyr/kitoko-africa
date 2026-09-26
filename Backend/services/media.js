@@ -45,19 +45,35 @@ function deleteMediaFile(filePath) {
   if (current) fs.rmSync(current, { force: true });
 }
 
-// Le type MIME annoncé par le navigateur n'est pas fiable : on vérifie la
-// signature réelle des vidéos (les images sont validées par sharp).
-function isSupportedVideo(filePath) {
-  const header = Buffer.alloc(12);
+function readHeader(filePath, length = 12) {
+  const header = Buffer.alloc(length);
   const fd = fs.openSync(filePath, "r");
   try {
-    fs.readSync(fd, header, 0, 12, 0);
+    fs.readSync(fd, header, 0, length, 0);
   } finally {
     fs.closeSync(fd);
   }
+  return header;
+}
+
+// Le type MIME annoncé par le navigateur n'est pas fiable : on vérifie la
+// signature réelle des vidéos et des sons (les images sont validées par sharp).
+function isSupportedVideo(filePath) {
+  const header = readHeader(filePath);
   const isMp4OrMov = header.toString("latin1", 4, 8) === "ftyp";
   const isWebmOrMkv = header.readUInt32BE(0) === 0x1a45dfa3;
   return isMp4OrMov || isWebmOrMkv;
+}
+
+function isSupportedAudio(filePath) {
+  const header = readHeader(filePath);
+  const isMp3 = header.toString("latin1", 0, 3) === "ID3" || (header[0] === 0xff && (header[1] & 0xe0) === 0xe0);
+  const isM4a = header.toString("latin1", 4, 8) === "ftyp";
+  const isOgg = header.toString("latin1", 0, 4) === "OggS";
+  const isWav = header.toString("latin1", 0, 4) === "RIFF" && header.toString("latin1", 8, 12) === "WAVE";
+  const isWebm = header.readUInt32BE(0) === 0x1a45dfa3;
+  const isAac = header[0] === 0xff && (header[1] & 0xf6) === 0xf0;
+  return isMp3 || isM4a || isOgg || isWav || isWebm || isAac;
 }
 
 module.exports = {
@@ -69,5 +85,6 @@ module.exports = {
   publishMediaFile,
   unpublishMediaFile,
   deleteMediaFile,
-  isSupportedVideo
+  isSupportedVideo,
+  isSupportedAudio
 };

@@ -26,5 +26,7 @@ module.exports = {
     .split(",")
     .map(origin => origin.trim())
     .filter(Boolean),
-  trustProxy: process.env.TRUST_PROXY || ""
+  trustProxy: process.env.TRUST_PROXY || "",
+  // Adresse publique du site, utilisée dans les QR codes (ex. https://kitokoafrika.org).
+  publicUrl: (process.env.PUBLIC_URL || "").trim().replace(/\/$/, "")
 };

@@ -12,6 +12,7 @@
     "dev": "npm --prefix Backend run dev",
     "test": "npm --prefix Backend test",
     "db:seed": "npm --prefix Backend run db:seed",
+    "db:update-content": "npm --prefix Backend run db:update-content",
     "db:backup": "npm --prefix Backend run db:backup"
   }
 }

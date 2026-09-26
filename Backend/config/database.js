@@ -25,5 +25,15 @@ function addColumnIfMissing(table, column, definition) {
 addColumnIfMissing("sites", "featured", "INTEGER NOT NULL DEFAULT 0");
 addColumnIfMissing("contributions", "region", "TEXT");
 addColumnIfMissing("contributions", "credit_name", "TEXT");
+addColumnIfMissing("contributions", "nature", "TEXT");
+addColumnIfMissing("sites", "slug", "TEXT");
+addColumnIfMissing("sites", "infos_pratiques", "TEXT");
+addColumnIfMissing("sites", "documented_by", "TEXT");
+addColumnIfMissing("sites", "verification_status", "TEXT NOT NULL DEFAULT 'a_verifier'");
+addColumnIfMissing("sites", "checkin_radius_m", "INTEGER NOT NULL DEFAULT 500");
+addColumnIfMissing("sites", "checkin_code", "TEXT");
+
+// Index dépendant de colonnes ajoutées par migration.
+db.exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_sites_slug ON sites(slug)");
 
 module.exports = db;

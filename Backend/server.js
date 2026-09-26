@@ -12,6 +12,9 @@ const authRoutes = require("./routes/auth.routes");
 const favoritesRoutes = require("./routes/favorites.routes");
 const contributionsRoutes = require("./routes/contributions.routes");
 const adminRoutes = require("./routes/admin.routes");
+const passportRoutes = require("./routes/passport.routes");
+const { getThemes, getCategories } = require("./controllers/sites.controller");
+const { backfillSiteIdentifiers } = require("./services/sites");
 
 const app = express();
 
@@ -53,6 +56,15 @@ app.use("/api/auth", authRoutes);
 app.use("/api/favorites", favoritesRoutes);
 app.use("/api/contributions", contributionsRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/passport", passportRoutes);
+app.get("/api/themes", getThemes);
+app.get("/api/categories", getCategories);
+
+// Lien imprimé dans les QR codes des sites : ouvre la fiche avec la
+// validation de visite mise en avant.
+app.get("/s/:slug", (req, res) => {
+  res.redirect(302, `/?site=${encodeURIComponent(req.params.slug)}&scan=1`);
+});
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: "Route introuvable." });
@@ -84,6 +96,7 @@ app.use((error, req, res, next) => {
 
 function start(port = config.port) {
   ensureAdminAccount();
+  backfillSiteIdentifiers();
   cleanupExpiredSessions();
   const sessionCleanupTimer = setInterval(cleanupExpiredSessions, 60 * 60 * 1000);
   sessionCleanupTimer.unref();

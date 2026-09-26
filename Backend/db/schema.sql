@@ -51,6 +51,12 @@ CREATE TABLE IF NOT EXISTS sites (
     longitude REAL,
     status TEXT NOT NULL DEFAULT 'published',
     featured INTEGER NOT NULL DEFAULT 0,
+    slug TEXT,
+    infos_pratiques TEXT,
+    documented_by TEXT,
+    verification_status TEXT NOT NULL DEFAULT 'a_verifier',
+    checkin_radius_m INTEGER NOT NULL DEFAULT 500,
+    checkin_code TEXT,
     owner_user_id INTEGER,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -105,6 +111,7 @@ CREATE TABLE IF NOT EXISTS contributions (
     category_id INTEGER,
     region TEXT,
     credit_name TEXT,
+    nature TEXT,
     description TEXT,
     status TEXT NOT NULL DEFAULT 'pending',
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -164,3 +171,85 @@ CREATE INDEX IF NOT EXISTS idx_media_site ON media(site_id);
 CREATE INDEX IF NOT EXISTS idx_media_contribution ON media(contribution_id);
 CREATE INDEX IF NOT EXISTS idx_contributions_user ON contributions(user_id);
 CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
+
+-- Thèmes transversaux (gastronomie, festivals, danse…) utilisés par le passeport.
+CREATE TABLE IF NOT EXISTS themes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    slug TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    icon TEXT
+);
+
+CREATE TABLE IF NOT EXISTS site_themes (
+    site_id INTEGER NOT NULL,
+    theme_id INTEGER NOT NULL,
+    PRIMARY KEY (site_id, theme_id),
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE,
+    FOREIGN KEY (theme_id) REFERENCES themes(id) ON DELETE CASCADE
+);
+
+-- Récits, traditions orales et témoignages rattachés à un site.
+-- nature : tradition_orale | temoignage | recit_communautaire | interpretation
+CREATE TABLE IF NOT EXISTS recits (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    site_id INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
+    nature TEXT NOT NULL DEFAULT 'tradition_orale',
+    author_name TEXT,
+    media_id INTEGER,
+    contribution_id INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE,
+    FOREIGN KEY (media_id) REFERENCES media(id) ON DELETE SET NULL,
+    FOREIGN KEY (contribution_id) REFERENCES contributions(id) ON DELETE SET NULL
+);
+
+-- Quiz pédagogiques du passeport (choices : tableau JSON de libellés).
+CREATE TABLE IF NOT EXISTS quiz_questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    site_id INTEGER NOT NULL,
+    question TEXT NOT NULL,
+    choices TEXT NOT NULL,
+    answer_index INTEGER NOT NULL,
+    explanation TEXT,
+    position INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS quiz_attempts (
+    user_id INTEGER NOT NULL,
+    question_id INTEGER NOT NULL,
+    is_correct INTEGER NOT NULL,
+    answered_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, question_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (question_id) REFERENCES quiz_questions(id) ON DELETE CASCADE
+);
+
+-- Tampons du passeport. kind : onsite (visite validée sur place) | online (découverte en ligne).
+-- method : gps | code | quiz. Aucune position n'est conservée.
+CREATE TABLE IF NOT EXISTS stamps (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    site_id INTEGER NOT NULL,
+    kind TEXT NOT NULL,
+    method TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (user_id, site_id, kind),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS user_badges (
+    user_id INTEGER NOT NULL,
+    badge TEXT NOT NULL,
+    earned_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, badge),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_recits_site ON recits(site_id);
+CREATE INDEX IF NOT EXISTS idx_quiz_site ON quiz_questions(site_id);
+CREATE INDEX IF NOT EXISTS idx_stamps_user ON stamps(user_id);
