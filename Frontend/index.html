@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kitoko Afrika</title>
+<meta name="description" content="Notre Afrique, nos histoires, nos savoirs. Découvrir, comprendre, transmettre et valoriser les patrimoines africains.">
+<meta name="theme-color" content="#1E1A15">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,13 +29,13 @@
       <div class="home-hero-content">
         <div class="home-logo-big" aria-label="Logo Kitoko Afrika"><span class="hero-wordmark">KITOKO</span><span class="hero-wordmark-sub">AFRIKA</span></div>
         <h1>Kitoko Afrika</h1>
-        <p class="tagline">La belle Afrique. Nos histoires, nos savoirs, racontés par nous-mêmes.</p>
+        <p class="tagline">« Notre Afrique, nos histoires, nos savoirs. »</p>
       </div>
     </div>
     <div class="stats-strip">
       <div class="stat-mini"><span class="num" id="hs-countries">0</span><span class="lbl">pays</span></div>
       <div class="stat-mini"><span class="num" id="hs-sites">0</span><span class="lbl">sites</span></div>
-      <div class="stat-mini"><span class="num" id="hs-cats">4</span><span class="lbl">catégories</span></div>
+      <div class="stat-mini"><span class="num" id="hs-cats">5</span><span class="lbl">catégories</span></div>
     </div>
     <div class="flag-marquee" aria-label="Pays représentés sur Kitoko Afrika">
       <div class="flag-marquee-track" id="flag-marquee-track"></div>
@@ -39,16 +44,22 @@
       <p class="section-title">Explorer</p>
       <div class="quick-grid">
         <div class="quick-tile" onclick="showScreen('screen-discover')"><span class="qicon">◎</span><span class="qtitle">Découvrir</span><span class="qsub" id="qs-discover">—</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-passport')"><span class="qicon">✦</span><span class="qtitle">Passeport</span><span class="qsub" id="qs-passport">Collectionnez les tampons</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-contribute')"><span class="qicon">+</span><span class="qtitle">Contribuer</span><span class="qsub">Site, récit, photo</span></div>
         <div class="quick-tile" onclick="showScreen('screen-favorites')"><span class="qicon">♥</span><span class="qtitle">Favoris</span><span class="qsub" id="qs-fav">0 sauvegardés</span></div>
-        <div class="quick-tile" onclick="showScreen('screen-contribute')"><span class="qicon">+</span><span class="qtitle">Contribuer</span><span class="qsub">Proposer un site</span></div>
-        <div class="quick-tile" onclick="showScreen('screen-profile')"><span class="qicon">○</span><span class="qtitle">Profil</span><span class="qsub">Compte et réglages</span></div>
       </div>
     </div>
     <div class="section-pad">
       <p class="section-title">Sites à la une</p>
       <div class="featured-scroll" id="featured-scroll"></div>
     </div>
-    <div class="home-explore-action"><button class="cta-btn" onclick="showScreen('screen-discover')">Explorer tous les pays</button></div>
+    <div class="section-pad">
+      <div class="passport-teaser" onclick="showScreen('screen-passport')" role="button" tabindex="0">
+        <div class="passport-teaser-stamp">✦</div>
+        <div><p class="pt-title">Le passeport Kitoko Afrika</p><p class="pt-text">Sur place, scannez le QR code d'un site, découvrez son histoire, répondez au quiz et obtenez votre tampon. De chez vous, les quiz vous font gagner des tampons « découverte ».</p></div>
+      </div>
+    </div>
+    <div class="home-explore-action"><button class="cta-btn" onclick="showScreen('screen-discover')">Explorer le Bénin et la Guinée</button></div>
   </div>
 
   <!-- DISCOVER -->
@@ -77,6 +88,11 @@
       </div>
     </div>
 
+    <div class="country-map-panel" id="country-map-panel" hidden>
+      <div class="country-map-head"><span id="country-map-flag"></span><h2 id="country-map-title">—</h2><span class="country-map-count" id="country-map-count"></span></div>
+      <svg class="country-map-svg" id="country-map" viewBox="0 0 100 80" role="img" aria-label="Carte du pays et de ses sites"></svg>
+      <p class="country-map-hint">Touchez un point pour ouvrir la fiche du site.</p>
+    </div>
     <div class="chips" id="chips"></div>
     <div class="search-wrap">
       <label class="sr-only" for="site-search">Rechercher un site</label>
@@ -90,32 +106,54 @@
   <div class="screen" id="screen-detail">
     <div class="statusbar"></div>
     <div class="detail-hero" id="detail-hero">
-      <button class="back-btn" onclick="goBackFromDetail()">‹</button>
-      <button class="fav-btn" id="fav-btn" onclick="toggleFav()">♥</button>
-      <div><h2 id="detail-name">—</h2><p class="loc" id="detail-loc">—</p></div>
+      <button class="back-btn" onclick="goBackFromDetail()" aria-label="Retour">‹</button>
+      <button class="fav-btn" id="fav-btn" onclick="toggleFav()" aria-label="Ajouter aux favoris">♥</button>
+      <div><p class="detail-kicker" id="detail-kicker"></p><h2 id="detail-name">—</h2><p class="loc" id="detail-loc">—</p></div>
     </div>
-    <div class="detail-tabs">
+    <div class="detail-tabs" role="tablist">
       <div class="dtab active" data-pane="apercu" onclick="setTab('apercu', this)">Aperçu</div>
       <div class="dtab" data-pane="histoire" onclick="setTab('histoire', this)">Histoire &amp; savoirs</div>
+      <div class="dtab" data-pane="recits" onclick="setTab('recits', this)">Récits <span class="dtab-count" id="recits-count"></span></div>
+      <div class="dtab dtab-passport" data-pane="passeport" onclick="setTab('passeport', this)">✦ Passeport</div>
       <div class="dtab" data-pane="sources" onclick="setTab('sources', this)">Sources</div>
     </div>
     <div class="detail-body" id="detail-body">
       <div class="reading-progress" aria-label="Progression de lecture"><span id="reading-progress-bar"></span></div>
+      <div id="detail-status" class="verification-banner" hidden></div>
       <div id="detail-media" class="detail-media" aria-live="polite"></div>
       <div class="dpane active" id="pane-apercu">
         <div class="dblock"><h3>Description</h3><p id="detail-description">—</p></div>
+        <div class="detail-actions">
+          <a class="action-btn" id="detail-directions" target="_blank" rel="noopener">➜ Itinéraire</a>
+          <button class="action-btn" type="button" onclick="shareCurrentSite()">↗ Partager</button>
+          <button class="action-btn" type="button" onclick="openPassportTab()">✦ Tampon</button>
+        </div>
+        <div class="theme-chips" id="detail-themes"></div>
         <div class="dblock"><h3>Communautés / structures associées</h3><p id="detail-communities">—</p></div>
+        <div class="dblock"><h3>Informations pratiques</h3><p id="detail-infos_pratiques">—</p></div>
+        <div class="dblock" id="detail-related-block" hidden><h3>Lieux associés à proximité</h3><div id="detail-related" class="related-list"></div></div>
       </div>
       <div class="dpane" id="pane-histoire">
-        <div class="dblock"><h3>Histoire du site</h3><p id="detail-histoire">—</p></div>
-        <div class="dblock"><h3>Importance culturelle</h3><p id="detail-culture">—</p></div>
+        <div class="dblock"><h3>Histoire et contexte</h3><p id="detail-histoire">—</p></div>
+        <div class="dblock"><h3>Importance culturelle et historique</h3><p id="detail-culture">—</p></div>
         <div class="dblock"><h3>Savoirs et pratiques associés</h3><p id="detail-savoirs">—</p></div>
+        <div class="dblock"><h3>Personnalités ou événements associés</h3><p id="detail-personnalites">—</p></div>
+      </div>
+      <div class="dpane" id="pane-recits">
+        <p class="pane-intro">Récits, mémoires et témoignages. Chaque récit indique sa nature : tradition orale, témoignage, récit communautaire ou interprétation.</p>
+        <div id="detail-recits" class="recit-list"></div>
+        <button class="ghost-btn" onclick="openContributionFor('recit')">Partager un récit ou un témoignage</button>
+        <button class="ghost-btn" onclick="openContributionFor('media')">Proposer une photo, une vidéo ou un son</button>
+      </div>
+      <div class="dpane" id="pane-passeport">
+        <div id="detail-passport"></div>
       </div>
       <div class="dpane" id="pane-sources">
         <div class="dblock"><h3>Langue(s) disponible(s)</h3><p id="detail-langues">—</p></div>
-        <div class="dblock"><h3>Personnalités associées</h3><p id="detail-personnalites">—</p></div>
-        <div class="dblock"><h3>Sources et références</h3><p id="detail-sources" class="source-line">—</p></div>
-        <button class="ghost-btn" onclick="openSuggestEdit()">Suggérer une modification</button>
+        <div class="dblock"><h3>Sources et références</h3><ul id="detail-sources" class="source-list"></ul></div>
+        <div class="dblock"><h3>Documentation</h3><p id="detail-documented">—</p></div>
+        <div class="dblock"><h3>Création et mise à jour</h3><p id="detail-dates">—</p></div>
+        <button class="ghost-btn" onclick="openSuggestEdit()">Signaler ou corriger une information</button>
       </div>
     </div>
   </div>
@@ -141,23 +179,31 @@
     </div>
     <div class="form-wrap" id="contribute-form">
       <div class="confirm-banner" id="confirm-banner">Merci ! Votre proposition a été envoyée pour vérification.</div>
-      <div class="field" id="f-name"><label>Nom du site *</label><input type="text" id="in-name" placeholder="Ex. Marché de Dantokpa"><div class="error-text">Merci d'indiquer un nom de site.</div></div>
+      <div class="contribution-types" role="radiogroup" aria-label="Type de contribution">
+        <button type="button" class="ctype active" data-type="new" onclick="setContributionType('new')"><span>📍</span>Un nouveau site</button>
+        <button type="button" class="ctype" data-type="recit" onclick="setContributionType('recit')"><span>🗣️</span>Un récit ou un témoignage</button>
+        <button type="button" class="ctype" data-type="media" onclick="setContributionType('media')"><span>📷</span>Une photo, une vidéo ou un son</button>
+        <button type="button" class="ctype" data-type="edit" onclick="setContributionType('edit')"><span>✎</span>Signaler ou corriger</button>
+      </div>
+      <div class="field" id="f-site" hidden><label>Site concerné *</label><select id="in-site"></select><div class="error-text">Merci de choisir un site.</div></div>
+      <div class="field" id="f-nature" hidden><label>Nature du récit</label><select id="in-nature"><option value="temoignage">Témoignage personnel</option><option value="tradition_orale">Tradition orale (récit transmis)</option><option value="recit_communautaire">Récit communautaire</option></select><span class="hint">Cela aide à distinguer les faits documentés des récits et traditions.</span></div>
+      <div class="field" id="f-name"><label id="f-name-label">Nom du site *</label><input type="text" id="in-name" placeholder="Ex. Marché de Dantokpa"><div class="error-text">Merci d'indiquer un nom de site.</div></div>
       <div class="field" id="f-country"><label>Pays *</label><select id="in-country"></select><div class="error-text">Merci de choisir un pays.</div></div>
       <div class="field" id="f-region"><label>Région / localité</label><input type="text" id="in-region" placeholder="Ex. Littoral, Cotonou"></div>
       <div class="field" id="f-cat"><label>Catégorie *</label><select id="in-cat"><option value="">Choisir une catégorie</option><option value="historique">Patrimoine historique</option><option value="culturel">Patrimoine culturel</option><option value="naturel">Patrimoine naturel</option><option value="savoirs">Lieu porteur de savoirs</option></select><div class="error-text">Merci de choisir une catégorie.</div></div>
       <div class="field" id="f-desc"><label>Description ou récit *</label><textarea id="in-desc" placeholder="Décrivez le site, son histoire, ou partagez un témoignage..."></textarea><div class="error-text">Merci d'ajouter une courte description.</div></div>
       <div class="field" id="f-media">
-        <label>Photo ou vidéo du site *</label>
-        <span class="hint">Format image ou vidéo — obligatoire pour toute proposition.</span>
+        <label id="f-media-label">Photo ou vidéo du site *</label>
+        <span class="hint" id="f-media-hint">Format image ou vidéo — obligatoire pour toute proposition.</span>
         <label class="file-drop" id="file-drop" for="in-media">
           <div class="fdicon">📷</div>
           <div class="fdtext" id="file-drop-text">Ajouter une photo ou une vidéo</div>
-          <div class="fdsub">JPG, PNG ou MP4</div>
+          <div class="fdsub" id="file-drop-sub">JPG, PNG ou MP4</div>
           <input type="file" id="in-media" accept="image/*,video/*" onchange="onMediaSelected()">
         </label>
         <div class="error-text">Merci d'ajouter une photo ou une vidéo du site.</div>
       </div>
-      <div class="field" id="f-contrib"><label>Votre nom</label><input type="text" id="in-contrib" placeholder="Facultatif"></div>
+      <div class="field" id="f-contrib"><label>Nom à créditer</label><input type="text" id="in-contrib" placeholder="Facultatif — sinon le nom de votre compte"><span class="hint">En envoyant un média ou un témoignage, vous confirmez en avoir les droits ou l'accord des personnes concernées.</span></div>
       <button class="submit-btn" id="contribute-submit" onclick="submitContribution()">Envoyer pour vérification</button>
       <p class="form-note">Les contenus proposés sont examinés avant publication afin d'éviter les erreurs et les informations inexactes.</p>
     </div>
@@ -199,7 +245,7 @@
       <div class="settings-list">
         <div class="setting-row"><span>Langue</span><span class="sv">Français</span></div>
         <div class="setting-row"><span>Notifications push</span><span class="sv">Bientôt disponible</span></div>
-        <div class="setting-row"><span>Mode hors connexion</span><span class="sv">Bientôt disponible</span></div>
+        <div class="setting-row"><span>Hors connexion</span><span class="sv">Fiches consultées disponibles</span></div>
         <div class="setting-row" onclick="showScreen('screen-about')"><span>À propos de Kitoko Afrika</span><span class="sv">›</span></div>
         <div class="setting-row" onclick="showScreen('screen-contact')"><span>Contact</span><span class="sv">›</span></div>
         <div class="setting-row admin-entry" onclick="showScreen('screen-admin')"><span>Espace modération</span><span class="sv">›</span></div>
@@ -207,6 +253,21 @@
       </div>
     </div>
     <div class="bottomnav" id="nav-profile"></div>
+  </div>
+
+  <!-- PASSPORT -->
+  <div class="screen" id="screen-passport">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Passeport</h1><p>Votre collection de découvertes.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div id="passport-locked" class="lockcard" style="display:none;">
+      <div class="glyph">✦</div>
+      <h3>Votre passeport de découverte</h3>
+      <p>Sur un site, scannez le QR code, découvrez son histoire et obtenez un tampon « visité sur place ». Depuis chez vous, répondez aux quiz des fiches pour obtenir un tampon « découvert en ligne ». Collectionnez pays, thèmes et badges.</p>
+      <button class="cta-btn" onclick="openAuth('signup')">Créer un compte</button>
+      <button class="ghost-btn" onclick="openAuth('login')">Se connecter</button>
+    </div>
+    <div id="passport-content" class="passport-body"></div>
+    <div class="bottomnav" id="nav-passport"></div>
   </div>
 
   <!-- AUTH -->
@@ -291,7 +352,18 @@
       <div class="field"><label>Nom du site</label><input type="text" id="sf-name"></div>
       <div class="field"><label>Pays</label><select id="sf-country"></select></div>
       <div class="field"><label>Région / localité</label><input type="text" id="sf-region"></div>
-      <div class="field"><label>Catégorie</label><select id="sf-cat"><option value="historique">Patrimoine historique</option><option value="culturel">Patrimoine culturel</option><option value="naturel">Patrimoine naturel</option><option value="savoirs">Lieu porteur de savoirs</option></select></div>
+      <div class="field"><label>Catégorie</label><select id="sf-cat"><option value="historique">Patrimoine historique</option><option value="culturel">Patrimoine culturel</option><option value="naturel">Patrimoine naturel</option><option value="savoirs">Savoirs et savoir-faire</option><option value="memoire">Mémoire et récits</option></select></div>
+      <div class="field-row">
+        <div class="field"><label>Publication</label><select id="sf-status"><option value="published">Publié</option><option value="draft">Brouillon (masqué)</option></select></div>
+        <div class="field"><label>Vérification</label><select id="sf-verification"><option value="a_verifier">À vérifier</option><option value="verifie">Vérifié</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Latitude</label><input type="text" inputmode="decimal" id="sf-latitude" placeholder="ex. 6.3244"></div>
+        <div class="field"><label>Longitude</label><input type="text" inputmode="decimal" id="sf-longitude" placeholder="ex. 2.0892"></div>
+        <div class="field"><label>Rayon (m)</label><input type="number" min="50" max="50000" id="sf-radius" placeholder="500"></div>
+      </div>
+      <p class="form-note">Relevez les coordonnées sur place (ex. appui long dans une application de cartes). Le rayon définit la zone où le tampon « sur place » est accordé.</p>
+      <div class="field"><label>Thèmes du passeport</label><div class="theme-checkboxes" id="sf-themes"></div></div>
       <div class="field"><label>Description</label><textarea id="sf-description"></textarea></div>
       <div class="field"><label>Histoire du site</label><textarea id="sf-histoire" style="min-height:120px;"></textarea></div>
       <div class="field"><label>Importance culturelle</label><textarea id="sf-culture"></textarea></div>
@@ -299,9 +371,12 @@
       <div class="field"><label>Communautés / structures associées</label><input type="text" id="sf-communities"></div>
       <div class="field"><label>Langue(s) disponible(s)</label><input type="text" id="sf-langues"></div>
       <div class="field"><label>Personnalités associées</label><input type="text" id="sf-personnalites"></div>
+      <div class="field"><label>Informations pratiques et accès</label><textarea id="sf-infos"></textarea></div>
       <div class="field"><label>Sources et références</label><textarea id="sf-sources" placeholder="Une source par ligne"></textarea></div>
+      <div class="field"><label>Structure ou personne ayant documenté la fiche</label><input type="text" id="sf-documented"></div>
       <div class="field"><label class="checkbox-label"><input type="checkbox" id="sf-featured"> Mettre en avant sur l'accueil</label></div>
       <button class="submit-btn" onclick="saveSiteForm()">Enregistrer</button>
+      <div id="sf-tools" class="site-tools"></div>
     </div>
   </div>
 
@@ -321,6 +396,7 @@
   <nav class="persistent-nav" aria-label="Navigation principale">
     <button class="persistent-nav-item" data-screen="screen-home" onclick="showScreen('screen-home')"><span>⌂</span><small>Accueil</small></button>
     <button class="persistent-nav-item" data-screen="screen-discover" onclick="showScreen('screen-discover')"><span>◎</span><small>Découvrir</small></button>
+    <button class="persistent-nav-item" data-screen="screen-passport" onclick="showScreen('screen-passport')"><span>✦</span><small>Passeport</small></button>
     <button class="persistent-nav-item" data-screen="screen-favorites" onclick="showScreen('screen-favorites')"><span>♥</span><small>Favoris</small></button>
     <button class="persistent-nav-item" data-screen="screen-contribute" onclick="showScreen('screen-contribute')"><span>＋</span><small>Contribuer</small></button>
     <button class="persistent-nav-item" data-screen="screen-profile" onclick="showScreen('screen-profile')"><span>○</span><small>Profil</small></button>
@@ -329,6 +405,7 @@
     <div class="menu-head"><span class="logo-word">Menu</span><button class="icon-btn on-light" onclick="closeMenu()">✕</button></div>
     <div class="menu-item" onclick="menuGo('screen-home')">Accueil</div>
     <div class="menu-item" onclick="menuGo('screen-discover')">Découvrir</div>
+    <div class="menu-item" onclick="menuGo('screen-passport')">Passeport</div>
     <div class="menu-item" onclick="menuGo('screen-favorites')">Favoris</div>
     <div class="menu-item" onclick="menuGo('screen-contribute')">Contribuer</div>
     <div class="menu-item" onclick="menuGo('screen-profile')">Profil</div>
@@ -339,8 +416,11 @@
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script src="vendor/d3-array.min.js"></script>
+<script src="vendor/d3-geo.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
 <script src="app.js"></script>
+<script src="passport.js"></script>
+<script src="site-admin.js"></script>
 </body>
 </html>

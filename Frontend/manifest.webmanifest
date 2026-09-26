@@ -1,0 +1,18 @@
+{
+  "name": "Kitoko Afrika",
+  "short_name": "Kitoko Afrika",
+  "description": "Notre Afrique, nos histoires, nos savoirs. Découvrir, comprendre, transmettre et valoriser les patrimoines africains.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF8F1",
+  "theme_color": "#1E1A15",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

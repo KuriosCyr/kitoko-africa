@@ -23,13 +23,19 @@ Copy-Item Backend/.env.example Backend/.env
 
 Ouvrir ensuite `Backend/.env` et renseigner au minimum `ADMIN_EMAIL` et `ADMIN_PASSWORD` : le compte administrateur est créé au premier démarrage. Il n'y a plus d'identifiants par défaut.
 
-Puis importer les données de démonstration (54 pays, 37 sites) :
+Puis importer les contenus (54 pays, 31 fiches Bénin et Guinée avec leurs quiz, 30 fiches d'autres pays en brouillon) :
 
 ```powershell
 npm run db:seed
 ```
 
-Relancer le seed est sans risque : il ajoute les éléments manquants sans écraser les fiches modifiées depuis l'administration.
+Relancer le seed est sans risque : il ajoute les éléments manquants sans écraser les fiches modifiées depuis l'administration. Pour réappliquer les contenus de `Backend/db/content/` (après une correction de texte, par exemple) :
+
+```powershell
+npm run db:update-content
+```
+
+Cette commande remet à jour les fiches du Bénin et de la Guinée (textes, thèmes, sources, quiz, récits d'origine) et repasse les autres pays en brouillon. Les comptes, favoris, tampons, contributions et médias ne sont jamais touchés.
 
 ## Démarrage
 
@@ -57,13 +63,28 @@ Les tests démarrent leur propre serveur sur une base temporaire : inutile de la
 | `SESSION_DAYS` | Durée de validité d'une connexion |
 | `CORS_ORIGINS` | Origines autorisées à appeler l'API depuis un autre domaine (ex. l'application mobile), séparées par des virgules |
 | `TRUST_PROXY` | `1` derrière un reverse proxy (Nginx, Caddy…) |
+| `PUBLIC_URL` | Adresse publique du site, imprimée dans les QR codes |
 | `DB_PATH`, `UPLOAD_DIR` | Emplacements de la base et des médias (par défaut `Backend/data` et `Backend/uploads`) |
+
+## Contenus
+
+Les fiches du prototype sont rédigées dans `Backend/db/content/benin.js` et `Backend/db/content/guinee.js`, les catégories et thèmes dans `Backend/db/content/themes.js`. La rédaction initiale a été assistée par IA : chaque fiche est publiée avec le statut « à vérifier », affiché aux visiteurs, jusqu'à sa validation par le Pôle Vérification (champ « Vérification » dans l'administration). **Les coordonnées GPS sont approximatives : elles doivent être relevées sur place avant d'imprimer les QR codes.**
+
+## Passeport
+
+- Chaque site a un lien court `/s/<slug>`, imprimé dans son QR code. L'affiche à poser sur place s'imprime depuis l'administration (fiche du site → « Imprimer l'affiche »).
+- **Tampon « visité sur place »** : géolocalisation dans le rayon du site, ou code de secours affiché sur l'affiche. La position n'est jamais enregistrée.
+- **Tampon « découvert en ligne »** : toutes les questions du quiz du site ont reçu une réponse (juste ou non, l'explication s'affiche).
+- Badges par pays (« Explorateur » sur place, « Connaisseur » en ligne), Afrique de l'Ouest, Afrique, catégories et quiz.
+- `PUBLIC_URL` (dans `.env`) définit l'adresse imprimée dans les QR codes.
 
 ## Médias
 
-Les photos et vidéos envoyées par les contributeurs restent **privées** (`uploads/private`) tant qu'un administrateur ne les a pas publiées. Seules l'auteur et l'équipe de modération peuvent les voir. À la publication, elles passent dans `uploads/public`, servi sous `/uploads`. Les images sont converties en WebP ; le contenu réel des fichiers est vérifié.
+Les photos, vidéos et sons envoyés par les contributeurs restent **privés** (`uploads/private`) tant qu'un administrateur ne les a pas publiés. Seuls l'auteur et l'équipe de modération peuvent les voir. À la publication, ils passent dans `uploads/public`, servi sous `/uploads`. Les images sont converties en WebP ; le contenu réel des fichiers est vérifié.
 
 ## Application mobile
+
+L'application est une PWA : sur téléphone, « Ajouter à l'écran d'accueil » l'installe comme une application, et les fiches déjà consultées restent disponibles hors connexion (HTTPS requis en production). La carte, d3 et les drapeaux du Bénin et de la Guinée sont embarqués (`Frontend/vendor/`), sans dépendre d'un CDN.
 
 Le frontend appelle l'API sur la même adresse que la page. Pour l'emballer dans une application (Capacitor, WebView…), définir l'adresse du serveur avant de charger `app.js` :
 

@@ -1,10 +1,18 @@
-const CAT_LABELS = { historique:"Historique", culturel:"Culturel", naturel:"Naturel", savoirs:"Savoirs" };
+const CAT_LABELS = { historique:"Historique", culturel:"Culturel", naturel:"Naturel", savoirs:"Savoirs", memoire:"Mémoire et récits" };
 const CAT_META = {
   historique: { icon:"🏛️", short:"Histoire", color:"clay" },
   culturel: { icon:"🎭", short:"Culture", color:"indigo" },
   naturel: { icon:"🌿", short:"Nature", color:"forest" },
-  savoirs: { icon:"🧺", short:"Savoirs", color:"gold" }
+  savoirs: { icon:"🧺", short:"Savoirs", color:"gold" },
+  memoire: { icon:"🕯️", short:"Mémoire", color:"plum" }
 };
+const RECIT_NATURES = {
+  tradition_orale: "Tradition orale",
+  temoignage: "Témoignage",
+  recit_communautaire: "Récit communautaire",
+  interpretation: "Interprétation"
+};
+let THEMES = [];
 
 // Toutes les données viennent de l'API (voir Backend/db/seed-data.js pour le contenu de démonstration).
 const COUNTRIES = [];            // pays ayant au moins un site publié
@@ -49,6 +57,7 @@ let navHistory = [];
 let pendingSubmissions = [];
 let adminSites = [];
 let dataLoadError = "";
+let stampedSites = new Set();
 let featuredAutoScrollFrame = null;
 let featuredAutoScrollPaused = false;
 let formMode = "add";
@@ -58,6 +67,7 @@ let adminTab = "pending";
 
 const NAV_ITEMS = [
   { id:"discover", label:"Découvrir", icon:"◎", screen:"screen-discover" },
+  { id:"passport", label:"Passeport", icon:"✦", screen:"screen-passport" },
   { id:"favorites", label:"Favoris", icon:"♥", screen:"screen-favorites" },
   { id:"contribute", label:"Contribuer", icon:"+", screen:"screen-contribute" },
   { id:"profile", label:"Profil", icon:"○", screen:"screen-profile" }
@@ -65,13 +75,23 @@ const NAV_ITEMS = [
 
 function catClass(cat){ return "cat-" + cat; }
 
-function flagImage(flag, className, alt = "Drapeau"){ 
+// Drapeaux du prototype intégrés (affichés même hors connexion) ; les autres
+// pays utilisent flagcdn.com.
+const EMBEDDED_FLAGS = {
+  bj: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#e8112d"/><rect width="3" height="1" fill="#fcd116"/><rect width="1.2" height="2" fill="#008751"/></svg>',
+  gn: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#ce1126"/><rect x="1" width="1" height="2" fill="#fcd116"/><rect x="2" width="1" height="2" fill="#009460"/></svg>'
+};
+
+function flagImage(flag, className, alt = "Drapeau"){
   if(!flag || !flag.trim()) return "";
   const code = Array.from(flag).map(char =>
     String.fromCharCode(char.codePointAt(0) - 0x1F1E6 + 97)
   ).join('');
   if(!/^[a-z]{2}$/.test(code)) return "";
-  return `<img class="${esc(className || "flag-image")}" src="https://flagcdn.com/w40/${code}.png" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+  const src = EMBEDDED_FLAGS[code]
+    ? `data:image/svg+xml,${encodeURIComponent(EMBEDDED_FLAGS[code])}`
+    : `https://flagcdn.com/w40/${code}.png`;
+  return `<img class="${esc(className || "flag-image")}" src="${src}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
 }
 
 function buildNav(containerId, activeId){
@@ -103,6 +123,7 @@ function showScreen(id, opts){
   if(id==="screen-profile") renderProfile();
   if(id==="screen-contribute") renderContribute();
   if(id==="screen-admin") renderAdmin();
+  if(id==="screen-passport") renderPassport();
 }
 
 function goBack(){
@@ -110,7 +131,7 @@ function goBack(){
   showScreen(prev || 'screen-home', {skipHistory:true});
 }
 
-function goBackFromDetail(){ goBack(); }
+function goBackFromDetail(){ setSiteUrl(null); goBack(); }
 
 function openMenu(){ document.getElementById('menu-overlay').classList.add('open'); document.getElementById('menu-drawer').classList.add('open'); }
 function closeMenu(){ document.getElementById('menu-overlay').classList.remove('open'); document.getElementById('menu-drawer').classList.remove('open'); }
@@ -196,10 +217,12 @@ function renderFlagMarquee(){
 async function loadKitokoData(){
   document.getElementById('device')?.classList.add('is-loading');
   try {
-    const [countriesResponse, sitesResponse] = await Promise.all([
+    const [countriesResponse, sitesResponse, themesResponse] = await Promise.all([
       fetch(`${API_BASE}/countries`),
-      fetch(`${API_BASE}/sites`)
+      fetch(`${API_BASE}/sites`),
+      fetch(`${API_BASE}/themes`)
     ]);
+    if(themesResponse.ok) THEMES = (await themesResponse.json()).data || [];
 
     const countriesJson = await countriesResponse.json();
     const sitesJson = await sitesResponse.json();
@@ -240,34 +263,82 @@ async function loadKitokoData(){
   }
 }
 
+let AFRICA_FEATURES = new Map();
+
 async function renderRealAfricaMap(){
   if(!window.d3 || !window.topojson) return;
 
   try {
-    const response = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json");
+    // Carte embarquée (Natural Earth 1:50m, pays africains) : fonctionne hors connexion.
+    const response = await fetch("vendor/africa-50m.json");
     const topology = await response.json();
-    const features = topojson.feature(topology, topology.objects.countries).features;
-    const africa = features.filter(feature=>{
-      const bounds = d3.geoBounds(feature);
-      return bounds[1][0] >= -20 && bounds[0][0] <= 55 && bounds[1][1] >= -36 && bounds[0][1] <= 38;
-    });
+    const africa = topojson.feature(topology, topology.objects.countries).features;
     const collection = { type:"FeatureCollection", features:africa };
     const projection = d3.geoNaturalEarth1().fitSize([100, 110], collection);
     const path = d3.geoPath(projection);
-    const countryFeatures = new Map(africa.map(feature=>[String(feature.id).padStart(3, "0"), feature]));
+    AFRICA_FEATURES = new Map(africa.map(feature=>[String(feature.id).padStart(3, "0"), feature]));
     const group = document.getElementById("real-africa-map");
     group.innerHTML = "";
     africa.forEach(feature=>{
       const countryPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      countryPath.setAttribute("class", "real-country");
+      const mapId = String(feature.id).padStart(3, "0");
+      countryPath.setAttribute("class", "real-country" + (AVAILABLE_COUNTRIES.has(mapId) ? " has-sites" : ""));
       countryPath.setAttribute("d", path(feature));
+      const country = ALL_AFRICA_COUNTRIES.find(item => item.mapId === mapId);
+      if(country && AVAILABLE_COUNTRIES.has(mapId)) countryPath.onclick = () => setCountry(country.name);
       group.appendChild(countryPath);
     });
-    positionCountryLabels(projection, countryFeatures);
+    positionCountryLabels(projection, AFRICA_FEATURES);
     document.querySelector(".map-stage").classList.add("ready");
+    renderCountryMap();
   } catch(error) {
-    console.warn("Carte détaillée indisponible, affichage de la carte de secours.");
+    console.warn("Carte détaillée indisponible.", error);
   }
+}
+
+// Carte du pays sélectionné avec ses sites (points cliquables).
+function renderCountryMap(){
+  const panel = document.getElementById('country-map-panel');
+  const svg = document.getElementById('country-map');
+  const country = COUNTRIES.find(item => item.name === currentCountry);
+  if(!panel || !svg || !country) return;
+  const sites = SITES.filter(site => site.country === country.name);
+  panel.hidden = false;
+  document.getElementById('country-map-title').textContent = country.name;
+  document.getElementById('country-map-flag').innerHTML = flagImage(country.flag, "country-map-flag-img", `Drapeau — ${country.name}`);
+  document.getElementById('country-map-count').textContent = `${sites.length} site${sites.length > 1 ? "s" : ""}`;
+
+  const feature = AFRICA_FEATURES.get(country.mapId);
+  svg.innerHTML = "";
+  if(!feature || !window.d3){ svg.style.display = "none"; return; }
+  svg.style.display = "";
+  const projection = d3.geoMercator().fitExtent([[6, 6], [94, 74]], feature);
+  const path = d3.geoPath(projection);
+  const ns = "http://www.w3.org/2000/svg";
+  const shape = document.createElementNS(ns, "path");
+  shape.setAttribute("class", "country-shape");
+  shape.setAttribute("d", path(feature));
+  svg.appendChild(shape);
+
+  sites.filter(site => site.latitude != null && site.longitude != null).forEach(site => {
+    const point = projection([site.longitude, site.latitude]);
+    if(!point) return;
+    const group = document.createElementNS(ns, "g");
+    group.setAttribute("class", `site-dot site-dot-${site.cat}`);
+    group.setAttribute("tabindex", "0");
+    group.setAttribute("role", "button");
+    group.setAttribute("aria-label", site.name);
+    const circle = document.createElementNS(ns, "circle");
+    circle.setAttribute("cx", point[0]);
+    circle.setAttribute("cy", point[1]);
+    circle.setAttribute("r", 1.8);
+    const title = document.createElementNS(ns, "title");
+    title.textContent = site.name;
+    group.append(circle, title);
+    group.onclick = () => openDetail(site.id);
+    group.onkeydown = event => { if(event.key === "Enter") openDetail(site.id); };
+    svg.appendChild(group);
+  });
 }
 
 function positionCountryLabels(projection, countryFeatures){
@@ -348,7 +419,7 @@ function updateMapSelection(){
 }
 
 function renderChips(){
-  const cats = ["toutes", "historique", "culturel", "naturel", "savoirs"];
+  const cats = ["toutes", "historique", "memoire", "culturel", "naturel", "savoirs"];
   const wrap = document.getElementById('chips');
   wrap.innerHTML = "";
   cats.forEach(c=>{
@@ -370,7 +441,7 @@ function siteCard(s){
   card.className = "card";
   const isFav = favorites.has(s.id);
   card.innerHTML = `
-    <div class="card-visual ${catClass(s.cat)}">${esc(CAT_LABELS[s.cat] || s.cat)}</div>
+    <div class="card-visual ${catClass(s.cat)}"${s.media_type === "image" && s.media_url ? ` style="background-image:linear-gradient(160deg,rgba(0,0,0,.15),rgba(0,0,0,.55)),url('${esc(mediaSrc(s.media_url))}')"` : ""}>${esc(CAT_LABELS[s.cat] || s.cat)}${stampedSites.has(s.id) ? '<span class="card-stamp" title="Tampon obtenu">✦</span>' : ""}</div>
     <div class="card-body"><p class="name">${esc(s.name)}</p><p class="place">${esc(s.region)}</p><p class="tag">${esc(s.country)}</p></div>
     <button class="card-fav">${isFav ? "♥" : "♡"}</button>`;
   card.querySelector('.card-body').onclick = ()=>openDetail(s.id);
@@ -389,7 +460,8 @@ function renderList(){
   const term = searchTerm.trim().toLowerCase();
   const globalSearch = term.length > 0;
   SITES.filter(s => {
-    const searchable = [s.name, s.country, s.region, s.cat, CAT_LABELS[s.cat]].filter(Boolean).join(" ").toLowerCase();
+    const themeNames = (s.themes || []).map(slug => THEMES.find(theme => theme.slug === slug)?.name);
+    const searchable = [s.name, s.country, s.region, s.cat, CAT_LABELS[s.cat], ...themeNames].filter(Boolean).join(" ").toLowerCase();
     const matchesCountry = globalSearch || s.country === currentCountry;
     const matchesCategory = globalSearch || currentCat === "toutes" || s.cat === currentCat;
     return matchesCountry && matchesCategory && (!term || searchable.includes(term));
@@ -497,7 +569,7 @@ function renderMyContributions(){
     const statusLabel = item.status === 'pending' ? 'En attente' : (item.status === 'approved' ? 'Publiée' : 'Rejetée');
     const statusClass = item.status === 'pending' ? 'badge-pending' : (item.status === 'approved' ? 'badge-approved' : 'badge-rejected');
     const category = item.category || item.cat;
-    const kind = item.type === 'edit' ? 'Suggestion de modification' : 'Nouveau site';
+    const kind = CONTRIBUTION_LABELS[item.type] || 'Contribution';
     row.innerHTML = `
       <div class="admin-head">
         <div><p class="an">${esc(item.name || 'Contribution')}</p><p class="ac">${esc([kind, item.country, category ? (CAT_LABELS[category] || category) : ''].filter(Boolean).join(' · '))}</p></div>
@@ -509,9 +581,82 @@ function renderMyContributions(){
   });
 }
 
+let contributionType = "new";
+const CONTRIBUTION_LABELS = { new: "Nouveau site", recit: "Récit ou témoignage", media: "Photo, vidéo ou son", edit: "Correction signalée" };
+
+const CONTRIBUTION_FORMS = {
+  new: {
+    fields: ["f-name", "f-country", "f-region", "f-cat", "f-desc", "f-media", "f-contrib"],
+    required: ["f-name", "f-country", "f-cat", "f-desc", "f-media"],
+    name: "Nom du site *", desc: "Description ou récit *",
+    media: "Photo ou vidéo du site *", mediaHint: "Obligatoire : elle aide l'équipe à vérifier le site.", accept: "image/*,video/*", formats: "JPG, PNG, MP4"
+  },
+  recit: {
+    fields: ["f-site", "f-nature", "f-name", "f-desc", "f-media", "f-contrib"],
+    required: ["f-site", "f-name", "f-desc"],
+    name: "Titre du récit *", desc: "Votre récit ou témoignage *",
+    media: "Enregistrement audio, photo ou vidéo (facultatif)", mediaHint: "Un enregistrement dans la langue d'origine est précieux.", accept: "audio/*,image/*,video/*", formats: "MP3, M4A, JPG, MP4"
+  },
+  media: {
+    fields: ["f-site", "f-name", "f-media", "f-contrib"],
+    required: ["f-site", "f-media"],
+    name: "Légende (facultatif)", desc: "",
+    media: "Photo, vidéo ou son *", mediaHint: "Le média rejoindra la galerie du site après vérification.", accept: "image/*,video/*,audio/*", formats: "JPG, PNG, MP4, MP3"
+  },
+  edit: {
+    fields: ["f-site", "f-desc"],
+    required: ["f-site", "f-desc"],
+    name: "", desc: "Ce qui doit être corrigé ou complété *"
+  }
+};
+const CONTRIBUTION_FIELDS = ["f-site", "f-nature", "f-name", "f-country", "f-region", "f-cat", "f-desc", "f-media", "f-contrib"];
+
 function renderContribute(){
   document.getElementById('contribute-locked').style.display = isLoggedIn ? "none" : "flex";
   document.getElementById('contribute-form').style.display = isLoggedIn ? "flex" : "none";
+  const select = document.getElementById('in-site');
+  if(select){
+    const selected = select.value;
+    select.innerHTML = '<option value="">Choisir un site</option>' + COUNTRIES.map(country => `
+      <optgroup label="${esc(country.name)}">${SITES.filter(site => site.country === country.name)
+        .map(site => `<option value="${site.id}">${esc(site.name)}</option>`).join("")}</optgroup>`).join("");
+    select.value = selected;
+  }
+  setContributionType(contributionType);
+}
+
+function setContributionType(type){
+  contributionType = CONTRIBUTION_FORMS[type] ? type : "new";
+  const config = CONTRIBUTION_FORMS[contributionType];
+  document.querySelectorAll('.ctype').forEach(button => {
+    button.classList.toggle('active', button.dataset.type === contributionType);
+    button.setAttribute('aria-checked', button.dataset.type === contributionType);
+  });
+  CONTRIBUTION_FIELDS.forEach(id => {
+    const field = document.getElementById(id);
+    if(!field) return;
+    field.hidden = !config.fields.includes(id);
+    field.classList.remove('invalid');
+    field.querySelector('.error-text')?.classList.remove('show');
+  });
+  if(config.name) document.getElementById('f-name-label').textContent = config.name;
+  if(config.desc) document.querySelector('#f-desc label').textContent = config.desc;
+  if(config.media){
+    document.getElementById('f-media-label').textContent = config.media;
+    document.getElementById('f-media-hint').textContent = config.mediaHint;
+    document.getElementById('file-drop-sub').textContent = config.formats;
+    document.getElementById('in-media').accept = config.accept;
+  }
+  document.getElementById('confirm-banner').classList.remove('show');
+}
+
+// Depuis une fiche : ouvre le formulaire pré-rempli pour ce site.
+function openContributionFor(type){
+  if(!requireLogin("Connectez-vous pour contribuer.")) return;
+  const siteId = currentSiteId;
+  contributionType = type;
+  showScreen('screen-contribute');
+  document.getElementById('in-site').value = String(siteId);
 }
 
 async function restoreAuthSession(){
@@ -611,9 +756,9 @@ async function loadProtectedMedia(container, mediaId, mediaType, label){
     });
     if(!response.ok) throw new Error("Média indisponible.");
     const url = URL.createObjectURL(await response.blob());
-    const element = document.createElement(mediaType === "video" ? "video" : "img");
+    const element = document.createElement(mediaType === "video" ? "video" : (mediaType === "audio" ? "audio" : "img"));
     element.src = url;
-    if(mediaType === "video"){ element.controls = true; element.preload = "metadata"; element.setAttribute("aria-label", label); }
+    if(mediaType === "video" || mediaType === "audio"){ element.controls = true; element.preload = "metadata"; element.setAttribute("aria-label", label); }
     else { element.alt = label; element.loading = "lazy"; }
     container.replaceChildren(element);
   } catch(error) {
@@ -661,25 +806,25 @@ async function renderAdmin(){
     const badgeClass = item.status==="pending" ? "badge-pending" : (item.status==="approved" ? "badge-approved" : "badge-rejected");
     const badgeText = item.status==="pending" ? "En attente" : (item.status==="approved" ? "Publié" : "Rejeté");
     const targetName = item.target_name || item.name || "site supprimé";
-    const typeText = item.type==="edit" ? `Modification proposée sur « ${targetName} »` : "Nouveau site";
+    const typeText = item.type === "new" ? "Nouveau site" : `${CONTRIBUTION_LABELS[item.type] || "Contribution"} — « ${targetName} »`;
     const meta = [typeText, item.country, item.cat ? (CAT_LABELS[item.cat]||item.cat) : "", item.region, item.contributor ? `par ${item.contributor}` : "", formatDate(item.created_at)].filter(Boolean).join(" · ");
     el.innerHTML = `
       <div class="admin-head">
-        <div><p class="an">${esc(item.type==="edit" ? targetName : item.name)}</p><p class="ac">${esc(meta)}</p></div>
+        <div><p class="an">${esc(item.name || targetName)}</p><p class="ac">${esc(meta)}${item.nature ? ` · ${esc(RECIT_NATURES[item.nature] || item.nature)}` : ""}</p></div>
         <span class="admin-badge ${badgeClass}">${badgeText}</span>
       </div>
       <p class="admin-excerpt">${esc(item.description || "Description indisponible")}</p>
-      ${item.type==="new" ? `<p class="admin-media">${item.media_id ? "Chargement du média…" : "Aucun média joint"}</p>` : ""}
+      ${item.type!=="edit" ? `<p class="admin-media">${item.media_id ? "Chargement du média…" : "Aucun média joint"}</p>` : ""}
       <div class="admin-actions"></div>
     `;
-    if(item.type==="new" && item.media_id){
+    if(item.type!=="edit" && item.media_id){
       loadProtectedMedia(el.querySelector('.admin-media'), item.media_id, item.media_type, `Média de ${item.name}`);
     }
     if(item.status==="pending"){
       const actions = el.querySelector('.admin-actions');
       const approveBtn = document.createElement('button');
       approveBtn.className = "admin-btn approve";
-      approveBtn.textContent = item.type==="edit" ? "Marquer comme intégrée" : "Approuver et publier";
+      approveBtn.textContent = item.type==="edit" ? "Marquer comme intégrée" : (item.type === "new" ? "Approuver et publier" : "Publier sur la fiche");
       approveBtn.onclick = ()=>{ moderateContribution(item, "approved"); };
       const rejectBtn = document.createElement('button');
       rejectBtn.className = "admin-btn reject"; rejectBtn.textContent = "Rejeter";
@@ -755,7 +900,8 @@ function renderAdminSites(){
     el.className = "admin-item";
     el.innerHTML = `
       <div class="admin-head">
-        <div><p class="an">${esc(s.name)}</p><p class="ac">${esc(s.country)} · ${esc(CAT_LABELS[s.cat]||s.cat)}${s.featured ? " · mis en avant" : ""} · ${s.owner_id ? "issu d'une contribution" : "contenu éditorial"}</p></div>
+        <div><p class="an">${esc(s.name)}</p><p class="ac">${esc(s.country)} · ${esc(CAT_LABELS[s.cat]||s.cat)}${s.featured ? " · mis en avant" : ""} · ${s.owner_id ? "issu d'une contribution" : "contenu éditorial"} · ${s.quiz_count} question${s.quiz_count > 1 ? "s" : ""}</p></div>
+        <div class="admin-badges">${s.status === "draft" ? '<span class="admin-badge badge-rejected">Brouillon</span>' : '<span class="admin-badge badge-approved">Publié</span>'}${s.verification_status === "verifie" ? "" : '<span class="admin-badge badge-pending">À vérifier</span>'}</div>
       </div>
       <div class="admin-actions"></div>
     `;
@@ -790,52 +936,61 @@ async function deleteSite(id){
   await loadAdminSites();
 }
 
-function openSiteForm(mode, siteId){
+const SITE_FORM_FIELDS = {
+  'sf-name': 'name', 'sf-region': 'region', 'sf-description': 'description', 'sf-histoire': 'histoire',
+  'sf-culture': 'culture', 'sf-savoirs': 'savoirs', 'sf-communities': 'communities', 'sf-langues': 'langues',
+  'sf-personnalites': 'personnalites', 'sf-infos': 'infos_pratiques', 'sf-documented': 'documented_by',
+  'sf-latitude': 'latitude', 'sf-longitude': 'longitude', 'sf-radius': 'checkin_radius_m'
+};
+
+async function openSiteForm(mode, siteId){
   formMode = mode;
   editingSiteId = siteId || null;
   document.getElementById('sf-title').textContent = mode==='add' ? "Ajouter un site" : "Modifier le site";
-  const countrySel = document.getElementById('sf-country');
-  countrySel.innerHTML = countryOptions(ALL_AFRICA_COUNTRIES);
+  document.getElementById('sf-country').innerHTML = countryOptions(ALL_AFRICA_COUNTRIES);
+  document.getElementById('sf-themes').innerHTML = THEMES.map(theme => `
+    <label class="checkbox-label"><input type="checkbox" value="${esc(theme.slug)}"> ${esc(theme.icon || "")} ${esc(theme.name)}</label>`).join("");
+  document.getElementById('sf-tools').innerHTML = "";
+
+  let site = null;
   if(mode==='edit'){
-    const s = adminSites.find(x=>x.id===siteId) || SITES.find(x=>x.id===siteId);
-    if(!s) return;
-    document.getElementById('sf-name').value = s.name;
-    countrySel.value = s.country;
-    document.getElementById('sf-region').value = s.region;
-    document.getElementById('sf-cat').value = s.cat;
-    document.getElementById('sf-description').value = s.description;
-    document.getElementById('sf-histoire').value = s.histoire;
-    document.getElementById('sf-culture').value = s.culture;
-    document.getElementById('sf-savoirs').value = s.savoirs;
-    document.getElementById('sf-communities').value = s.communities;
-    document.getElementById('sf-langues').value = s.langues;
-    document.getElementById('sf-personnalites').value = s.personnalites;
-    document.getElementById('sf-sources').value = (s.sources || "").split(" ; ").join("\n");
-    document.getElementById('sf-featured').checked = Boolean(s.featured);
-  } else {
-    ['sf-name','sf-region','sf-description','sf-histoire','sf-culture','sf-savoirs','sf-communities','sf-langues','sf-personnalites','sf-sources'].forEach(id=>document.getElementById(id).value = "");
-    document.getElementById('sf-cat').value = "historique";
-    document.getElementById('sf-featured').checked = false;
+    try {
+      const response = await fetch(`${API_BASE}/admin/sites/${siteId}`, { headers: { Authorization: `Bearer ${authToken}` } });
+      const result = await response.json();
+      if(!response.ok || !result.success) throw new Error(result.message);
+      site = { ...result.data, cat: result.data.category };
+    } catch(error) {
+      alert(error.message || "Impossible de charger la fiche.");
+      return;
+    }
   }
-  showScreen('screen-site-form');
+
+  Object.entries(SITE_FORM_FIELDS).forEach(([id, field]) => {
+    document.getElementById(id).value = site?.[field] ?? "";
+  });
+  document.getElementById('sf-country').value = site?.country || COUNTRIES[0]?.name || "";
+  document.getElementById('sf-cat').value = site?.cat || "historique";
+  document.getElementById('sf-status').value = site?.status || "published";
+  document.getElementById('sf-verification').value = site?.verification_status || "a_verifier";
+  document.getElementById('sf-sources').value = (site?.sources || "").split(" ; ").join("\n");
+  document.getElementById('sf-featured').checked = Boolean(site?.featured);
+  document.querySelectorAll('#sf-themes input').forEach(input => { input.checked = Boolean(site?.themes?.some(theme => (theme.slug || theme) === input.value)); });
+
+  if(document.querySelector('.screen.active')?.id !== 'screen-site-form') showScreen('screen-site-form');
+  if(site) renderSiteTools(site);
 }
 
 async function saveSiteForm(){
-  const data = {
-    name: document.getElementById('sf-name').value.trim(),
+  const data = Object.fromEntries(Object.entries(SITE_FORM_FIELDS).map(([id, field]) => [field, document.getElementById(id).value.trim()]));
+  Object.assign(data, {
     country: document.getElementById('sf-country').value,
-    region: document.getElementById('sf-region').value.trim(),
     cat: document.getElementById('sf-cat').value,
-    description: document.getElementById('sf-description').value.trim(),
-    histoire: document.getElementById('sf-histoire').value.trim(),
-    culture: document.getElementById('sf-culture').value.trim(),
-    savoirs: document.getElementById('sf-savoirs').value.trim(),
-    communities: document.getElementById('sf-communities').value.trim(),
-    langues: document.getElementById('sf-langues').value.trim(),
-    personnalites: document.getElementById('sf-personnalites').value.trim(),
+    status: document.getElementById('sf-status').value,
+    verification_status: document.getElementById('sf-verification').value,
     sources: document.getElementById('sf-sources').value.trim(),
-    featured: document.getElementById('sf-featured').checked
-  };
+    featured: document.getElementById('sf-featured').checked,
+    themes: [...document.querySelectorAll('#sf-themes input:checked')].map(input => input.value)
+  });
   if(!data.name || !data.country){ alert("Le nom et le pays sont obligatoires."); return; }
   if(!authToken || currentUser?.role !== "admin"){
     alert("Accès administrateur requis.");
@@ -860,8 +1015,11 @@ async function saveSiteForm(){
   buildMapAndCountryChips();
   renderList();
   renderHome();
-  await loadAdminSites();
-  goBack();
+  loadAdminSites();
+  // On reste sur la fiche : QR code, galerie, quiz et récits sont gérés juste en dessous.
+  const created = formMode === 'add';
+  await openSiteForm('edit', result.data.id);
+  alert(created ? "Site créé. Vous pouvez maintenant ajouter photos, quiz et récits, et imprimer son QR code." : "Fiche enregistrée.");
 }
 
 function renderMySites(){
@@ -936,29 +1094,151 @@ function setCountry(country){
   updateMapSelection();
   renderChips();
   renderList();
+  renderCountryMap();
 }
 
-function openDetail(id){
+let currentSiteDetail = null;
+
+// Ouvre une fiche : affichage immédiat avec les données de la liste, puis
+// chargement des éléments complets (galerie, récits, thèmes, lieux associés).
+async function openDetail(id, options = {}){
   const s = SITES.find(x=>x.id===id);
   if(!s) return;
   currentSiteId = id;
+  currentSiteDetail = null;
+  renderDetailBasics(s);
+  setTab(options.tab || 'apercu', document.querySelector(`.dtab[data-pane="${options.tab || 'apercu'}"]`));
+  requestAnimationFrame(updateReadingProgress);
+  if(document.querySelector('.screen.active')?.id !== 'screen-detail') showScreen('screen-detail');
+  if(options.updateUrl !== false) setSiteUrl(s.slug);
+
+  try {
+    const response = await fetch(`${API_BASE}/sites/${encodeURIComponent(id)}`);
+    const result = await response.json();
+    if(!response.ok || !result.success) throw new Error(result.message);
+    if(currentSiteId !== id) return;
+    currentSiteDetail = { ...result.data, cat: result.data.category };
+    renderDetailExtras(currentSiteDetail);
+    if(document.getElementById('pane-passeport').classList.contains('active')) renderDetailPassport();
+  } catch(error) {
+    console.warn("Détails du site indisponibles.", error);
+  }
+}
+
+// Reflète la fiche ouverte dans l'adresse (partage, retour arrière).
+function setSiteUrl(slug){
+  try {
+    const url = new URL(window.location.href);
+    if(slug) url.searchParams.set('site', slug); else url.searchParams.delete('site');
+    url.searchParams.delete('scan');
+    window.history.replaceState(null, "", url.pathname + url.search);
+  } catch(error) { /* navigation sans historique */ }
+}
+
+function renderDetailBasics(s){
   document.getElementById('detail-name').textContent = s.name;
   document.getElementById('detail-loc').textContent = [s.region, s.country].filter(Boolean).join(" · ");
-  document.getElementById('detail-hero').className = "detail-hero " + catClass(s.cat);
-  ['description','communities','histoire','culture','savoirs','langues','personnalites','sources'].forEach(field=>{
+  document.getElementById('detail-kicker').innerHTML = `${flagImage(s.country_flag, "detail-flag", `Drapeau — ${s.country}`)} ${esc(CAT_META[s.cat]?.icon || "")} ${esc(CAT_LABELS[s.cat] || s.cat)}`;
+  const hero = document.getElementById('detail-hero');
+  hero.className = "detail-hero " + catClass(s.cat);
+  hero.style.backgroundImage = s.media_type === "image" && s.media_url
+    ? `linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.65)),url("${mediaSrc(s.media_url)}")`
+    : "";
+  ['description','communities','histoire','culture','savoirs','langues','personnalites','infos_pratiques'].forEach(field=>{
     document.getElementById('detail-' + field).textContent = s[field] || "—";
   });
-  const media = document.getElementById('detail-media');
-  media.innerHTML = "";
-  if(s.media_url){
-    media.innerHTML = s.media_type === "video"
-      ? `<video controls preload="metadata" src="${esc(mediaSrc(s.media_url))}" aria-label="Média du site ${esc(s.name)}"></video>`
-      : `<img src="${esc(mediaSrc(s.media_url))}" alt="Image du site ${esc(s.name)}" loading="lazy">`;
+  const sources = document.getElementById('detail-sources');
+  sources.innerHTML = (s.sources || "").split(" ; ").filter(Boolean).map(source => `<li>${esc(source)}</li>`).join("") || "<li>—</li>";
+  document.getElementById('detail-documented').textContent = s.documented_by || "Équipe Kitoko Afrika";
+  document.getElementById('detail-dates').textContent = [
+    s.created_at ? `Créée le ${formatDate(s.created_at)}` : "",
+    s.updated_at ? `mise à jour le ${formatDate(s.updated_at)}` : ""
+  ].filter(Boolean).join(", ") || "—";
+
+  const status = document.getElementById('detail-status');
+  status.hidden = s.verification_status === "verifie";
+  status.innerHTML = s.verification_status === "verifie" ? "" : `<strong>Contenu en cours de vérification.</strong> Cette fiche n'a pas encore été validée par l'équipe de vérification. Une erreur ? <button type="button" class="link-btn" onclick="openSuggestEdit()">Signalez-la</button>.`;
+
+  const directions = document.getElementById('detail-directions');
+  if(s.latitude != null && s.longitude != null){
+    directions.href = `https://www.google.com/maps/dir/?api=1&destination=${s.latitude},${s.longitude}`;
+    directions.hidden = false;
+  } else {
+    directions.hidden = true;
   }
-  document.getElementById('fav-btn').classList.toggle('active', favorites.has(id));
-  setTab('apercu', document.querySelector('.dtab[data-pane="apercu"]'));
-  requestAnimationFrame(updateReadingProgress);
-  showScreen('screen-detail');
+
+  document.getElementById('detail-themes').innerHTML = (s.themes || []).map(slug => {
+    const theme = THEMES.find(item => item.slug === slug);
+    return theme ? `<span class="theme-chip">${esc(theme.icon || "")} ${esc(theme.name)}</span>` : "";
+  }).join("");
+  document.getElementById('detail-media').innerHTML = "";
+  document.getElementById('detail-recits').innerHTML = '<p class="pane-empty">Chargement…</p>';
+  document.getElementById('recits-count').textContent = "";
+  document.getElementById('detail-related-block').hidden = true;
+  document.getElementById('detail-passport').innerHTML = "";
+  document.getElementById('fav-btn').classList.toggle('active', favorites.has(s.id));
+}
+
+function mediaElement(item, label){
+  const src = esc(mediaSrc(item.url || item.media_url));
+  const type = item.type || item.media_type;
+  if(type === "video") return `<video controls preload="metadata" src="${src}" aria-label="${esc(label)}"></video>`;
+  if(type === "audio") return `<audio controls preload="none" src="${src}" aria-label="${esc(label)}"></audio>`;
+  return `<img src="${src}" alt="${esc(label)}" loading="lazy">`;
+}
+
+function renderDetailExtras(site){
+  const visuals = site.media.filter(item => item.type !== "audio");
+  const sounds = site.media.filter(item => item.type === "audio");
+  document.getElementById('detail-media').innerHTML = visuals.length || sounds.length ? `
+    ${visuals.length ? `<div class="gallery">${visuals.map(item => `
+      <figure class="gallery-item">${mediaElement(item, item.title || `Média — ${site.name}`)}
+        ${item.title || item.author ? `<figcaption>${esc(item.title || "")}${item.author ? ` · © ${esc(item.author)}` : ""}</figcaption>` : ""}
+      </figure>`).join("")}</div>` : ""}
+    ${sounds.map(item => `<div class="audio-item"><span>🎧 ${esc(item.title || "Écouter")}${item.author ? ` · ${esc(item.author)}` : ""}</span>${mediaElement(item, item.title || "Audio")}</div>`).join("")}
+  ` : "";
+
+  document.getElementById('recits-count').textContent = site.recits.length ? site.recits.length : "";
+  document.getElementById('detail-recits').innerHTML = site.recits.length
+    ? site.recits.map(recit => `
+      <article class="recit recit-${esc(recit.nature)}">
+        <span class="recit-nature">${esc(RECIT_NATURES[recit.nature] || recit.nature)}</span>
+        <h4>${esc(recit.title)}</h4>
+        <p>${esc(recit.body)}</p>
+        ${recit.media_url ? mediaElement(recit, recit.title) : ""}
+        ${recit.author_name ? `<p class="recit-author">— ${esc(recit.author_name)}</p>` : ""}
+      </article>`).join("")
+    : '<p class="pane-empty">Aucun récit pour l\'instant. Vous connaissez une histoire, une légende ou un souvenir lié à ce lieu ? Partagez-le.</p>';
+
+  const related = document.getElementById('detail-related');
+  document.getElementById('detail-related-block').hidden = !site.related.length;
+  related.innerHTML = "";
+  site.related.forEach(item => {
+    const button = document.createElement('button');
+    button.type = "button";
+    button.className = "related-item";
+    button.innerHTML = `<span class="related-dot ${catClass(item.category)}"></span><span>${esc(item.name)}</span><small>${esc(String(item.distance_km).replace('.', ','))} km</small>`;
+    button.onclick = () => openDetail(item.id);
+    related.appendChild(button);
+  });
+}
+
+async function shareCurrentSite(){
+  const site = SITES.find(item => item.id === currentSiteId);
+  if(!site) return;
+  const url = `${window.location.origin}/?site=${encodeURIComponent(site.slug)}`;
+  const data = { title: `${site.name} — Kitoko Afrika`, text: site.description || site.name, url };
+  try {
+    if(navigator.share) { await navigator.share(data); return; }
+    await navigator.clipboard.writeText(url);
+    alert("Lien copié : vous pouvez le coller dans un message.");
+  } catch(error) {
+    if(error?.name !== "AbortError") prompt("Copiez ce lien :", url);
+  }
+}
+
+function openPassportTab(){
+  setTab('passeport', document.querySelector('.dtab[data-pane="passeport"]'));
 }
 
 async function toggleFav(){
@@ -974,8 +1254,10 @@ async function toggleFav(){
 function setTab(pane, el){
   document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.dpane').forEach(p=>p.classList.remove('active'));
-  el.classList.add('active');
+  el?.classList.add('active');
+  el?.scrollIntoView?.({ block: "nearest", inline: "center" });
   document.getElementById('pane-'+pane).classList.add('active');
+  if(pane === 'passeport') renderDetailPassport();
 }
 
 function onMediaSelected(){
@@ -985,23 +1267,24 @@ function onMediaSelected(){
   if(input.files && input.files.length>0){
     const file = input.files[0];
     const maxSize = 20 * 1024 * 1024;
-    if(file.size > maxSize || (!file.type.startsWith('image/') && !file.type.startsWith('video/'))){
+    const allowed = (CONTRIBUTION_FORMS[contributionType].accept || "").split(",").some(prefix => file.type.startsWith(prefix.replace("*", "")));
+    if(file.size > maxSize || !allowed){
       input.value = "";
       mediaAttached = false;
-      alert("Choisissez une image ou une vidéo de 20 Mo maximum.");
+      alert("Choisissez un fichier du type demandé, de 20 Mo maximum.");
       return;
     }
     mediaAttached = true;
     drop.classList.add('filled');
-    text.textContent = input.files[0].name;
-    const oldPreview = document.getElementById('media-preview');
-    if(oldPreview) oldPreview.remove();
-    const preview = document.createElement(file.type.startsWith('video/') ? 'video' : 'img');
+    text.textContent = file.name;
+    document.getElementById('media-preview')?.remove();
+    const tag = file.type.startsWith('video/') ? 'video' : (file.type.startsWith('audio/') ? 'audio' : 'img');
+    const preview = document.createElement(tag);
     preview.id = 'media-preview';
     preview.className = 'media-preview';
     preview.src = URL.createObjectURL(file);
-    preview.alt = `Aperçu de ${file.name}`;
-    if(preview.tagName === 'VIDEO') { preview.controls = true; preview.muted = true; }
+    if(tag === 'img') preview.alt = `Aperçu de ${file.name}`;
+    else preview.controls = true;
     drop.after(preview);
     document.getElementById('f-media').classList.remove('invalid');
     document.getElementById('f-media').querySelector('.error-text').classList.remove('show');
@@ -1009,33 +1292,36 @@ function onMediaSelected(){
 }
 
 async function submitContribution(){
-  const fields = ["f-name","f-country","f-cat","f-desc"];
+  const config = CONTRIBUTION_FORMS[contributionType];
   let valid = true;
-  fields.forEach(id=>{
+  config.required.forEach(id=>{
     const wrap = document.getElementById(id);
-    const input = wrap.querySelector('input,select,textarea');
     const err = wrap.querySelector('.error-text');
-    if(!input.value.trim()){ wrap.classList.add('invalid'); err.classList.add('show'); valid = false; }
-    else { wrap.classList.remove('invalid'); err.classList.remove('show'); }
+    const filled = id === "f-media" ? mediaAttached : Boolean(wrap.querySelector('input,select,textarea').value.trim());
+    wrap.classList.toggle('invalid', !filled);
+    err?.classList.toggle('show', !filled);
+    if(!filled) valid = false;
   });
-  const mediaWrap = document.getElementById('f-media');
-  if(!mediaAttached){ mediaWrap.classList.add('invalid'); mediaWrap.querySelector('.error-text').classList.add('show'); valid = false; }
-  else { mediaWrap.classList.remove('invalid'); mediaWrap.querySelector('.error-text').classList.remove('show'); }
   if(!valid) return;
+  if(!requireLogin("Connectez-vous pour envoyer une contribution.")) return;
 
-  if(!authToken){
-    alert("Connectez-vous pour envoyer une contribution.");
-    return;
-  }
-
+  const value = id => document.getElementById(id).value.trim();
   const formData = new FormData();
-  formData.append("name", document.getElementById('in-name').value.trim());
-  formData.append("country", document.getElementById('in-country').value);
-  formData.append("category", document.getElementById('in-cat').value);
-  formData.append("description", document.getElementById('in-desc').value.trim());
-  formData.append("region", document.getElementById('in-region').value.trim());
-  formData.append("credit_name", document.getElementById('in-contrib').value.trim());
-  formData.append("media", document.getElementById('in-media').files[0]);
+  formData.append("type", contributionType);
+  if(contributionType === "new"){
+    formData.append("name", value('in-name'));
+    formData.append("country", value('in-country'));
+    formData.append("category", value('in-cat'));
+    formData.append("region", value('in-region'));
+  } else {
+    formData.append("site_id", value('in-site'));
+    formData.append("name", value('in-name'));
+  }
+  if(contributionType === "recit") formData.append("nature", value('in-nature'));
+  if(config.fields.includes("f-desc")) formData.append("description", value('in-desc'));
+  if(config.fields.includes("f-contrib")) formData.append("credit_name", value('in-contrib'));
+  const file = document.getElementById('in-media').files[0];
+  if(file && config.fields.includes("f-media")) formData.append("media", file);
 
   const submitButton = document.getElementById('contribute-submit');
   submitButton.disabled = true;
@@ -1055,15 +1341,15 @@ async function submitContribution(){
   }
 
   await loadUserContributions();
-  document.getElementById('confirm-banner').classList.add('show');
-  document.getElementById('media-preview')?.remove();
   ['in-name','in-region','in-desc','in-contrib'].forEach(id=>document.getElementById(id).value = "");
-  document.getElementById('in-country').value = "";
-  document.getElementById('in-cat').value = "";
+  ['in-country','in-cat','in-site'].forEach(id=>document.getElementById(id).value = "");
   document.getElementById('in-media').value = "";
+  document.getElementById('media-preview')?.remove();
   mediaAttached = false;
   document.getElementById('file-drop').classList.remove('filled');
-  document.getElementById('file-drop-text').textContent = "Ajouter une photo ou une vidéo";
+  document.getElementById('file-drop-text').textContent = "Ajouter un fichier";
+  document.getElementById('confirm-banner').classList.add('show');
+  document.getElementById('confirm-banner').scrollIntoView({ block: "center", behavior: "smooth" });
 }
 
 function openAuth(mode){ switchAuthTab(mode); showScreen('screen-auth'); }
@@ -1107,8 +1393,14 @@ async function submitAuth(){
     isLoggedIn = true;
     updateAdminVisibility();
     storeToken(authToken);
-    await Promise.all([loadFavorites(), loadUserContributions(), loadNotifications()]);
-    showScreen('screen-profile');
+    await Promise.all([loadFavorites(), loadUserContributions(), loadNotifications(), loadStampedSites()]);
+    // Retour à la fiche si la connexion a été demandée depuis celle-ci (ex. scan d'un QR code).
+    if(currentSiteId && navHistory[navHistory.length - 1] === 'screen-detail'){
+      showScreen('screen-detail');
+      renderDetailPassport();
+    } else {
+      showScreen('screen-profile');
+    }
   } catch(error) {
     alert(error.message);
   }
@@ -1133,6 +1425,9 @@ async function logout(){
   favorites = new Set();
   myContributions = [];
   notifications = [];
+  stampedSites = new Set();
+  passportData = null;
+  renderList();
   renderHome();
   renderFavorites();
   renderProfile();
@@ -1163,6 +1458,33 @@ async function bootstrap(){
   renderHome();
   renderRealAfricaMap();
   updateAdminVisibility();
+  await loadStampedSites();
+  openSiteFromUrl();
+  registerServiceWorker();
 }
 
-bootstrap();
+// Ouvre la fiche demandée dans l'adresse : lien partagé (?site=slug) ou
+// scan d'un QR code sur place (?site=slug&scan=1, qui ouvre l'onglet Passeport).
+function openSiteFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('site');
+  if(!slug) return;
+  const site = SITES.find(item => item.slug === slug || String(item.id) === slug);
+  if(!site){
+    alert("Ce site n'est pas (ou plus) disponible.");
+    setSiteUrl(null);
+    return;
+  }
+  const scanned = params.get('scan') === '1';
+  openDetail(site.id, { tab: scanned ? 'passeport' : 'apercu', updateUrl: false });
+  if(scanned) arrivedFromQr = true;
+}
+
+// Mode hors connexion : les pages et fiches déjà consultées restent disponibles.
+function registerServiceWorker(){
+  if(!('serviceWorker' in navigator)) return;
+  if(location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+  navigator.serviceWorker.register('sw.js').catch(error => console.warn("Mode hors connexion indisponible.", error));
+}
+
+document.addEventListener('DOMContentLoaded', bootstrap);
