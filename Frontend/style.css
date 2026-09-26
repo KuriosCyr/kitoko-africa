@@ -784,3 +784,10 @@
 
   .admin-search{width:100%;border:1px solid var(--sand-dim);border-radius:10px;padding:10px 12px;font:14px var(--font-body);background:#fff;}
   .admin-btn:disabled{opacity:.45;cursor:not-allowed;}
+
+  /* Bandeau des pays : prototype en couleur, les autres « bientôt » */
+  .flag-marquee-item.is-open{color:var(--ink);font-weight:700;}
+  .flag-marquee-item.is-open .marquee-flag{box-shadow:0 0 0 2px var(--sun, var(--gold));}
+  .flag-marquee-item.is-soon{opacity:.5;font-weight:500;}
+  .flag-marquee-item.is-soon .marquee-flag{filter:grayscale(1);}
+  .flag-marquee-item.is-open + .flag-marquee-item.is-soon{margin-left:14px;padding-left:24px;border-left:1px solid var(--sand-dim);}

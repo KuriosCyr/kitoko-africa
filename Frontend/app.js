@@ -123,7 +123,8 @@ function flagImage(flag, className, alt = "Drapeau"){
   const src = EMBEDDED_FLAGS[code]
     ? `data:image/svg+xml,${encodeURIComponent(EMBEDDED_FLAGS[code])}`
     : `https://flagcdn.com/w40/${code}.png`;
-  return `<img class="${esc(className || "flag-image")}" src="${src}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+  // Hors connexion, un drapeau externe qui ne charge pas est simplement masqué.
+  return `<img class="${esc(className || "flag-image")}" src="${src}" alt="${esc(alt)}" loading="lazy" decoding="async" onerror="this.style.display='none'">`;
 }
 
 function buildNav(containerId, activeId){
@@ -252,13 +253,38 @@ function updateReadingProgress(){
   bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
 }
 
+// Codes ISO des 54 pays africains (drapeaux du bandeau défilant).
+const AFRICA_FLAG_CODES = {
+  "Algérie":"dz","Angola":"ao","Bénin":"bj","Botswana":"bw","Burkina Faso":"bf","Burundi":"bi","Cabo Verde":"cv",
+  "Cameroun":"cm","Comores":"km","Congo":"cg","Côte d'Ivoire":"ci","Djibouti":"dj","Égypte":"eg","Érythrée":"er",
+  "Eswatini":"sz","Éthiopie":"et","Gabon":"ga","Gambie":"gm","Ghana":"gh","Guinée":"gn","Guinée-Bissau":"gw",
+  "Guinée équatoriale":"gq","Kenya":"ke","Lesotho":"ls","Libéria":"lr","Libye":"ly","Madagascar":"mg","Malawi":"mw",
+  "Mali":"ml","Maroc":"ma","Maurice":"mu","Mauritanie":"mr","Mozambique":"mz","Namibie":"na","Niger":"ne",
+  "Nigéria":"ng","Ouganda":"ug","République centrafricaine":"cf","République démocratique du Congo":"cd",
+  "Rwanda":"rw","São Tomé-et-Príncipe":"st","Sénégal":"sn","Seychelles":"sc","Sierra Leone":"sl","Somalie":"so",
+  "Soudan":"sd","Soudan du Sud":"ss","Tanzanie":"tz","Tchad":"td","Togo":"tg","Tunisie":"tn","Zambie":"zm",
+  "Zimbabwe":"zw","Afrique du Sud":"za"
+};
+
+function flagFromCode(code){
+  return code ? String.fromCodePoint(...[...code.toUpperCase()].map(char => 0x1F1E6 + char.charCodeAt(0) - 65)) : "";
+}
+
+// Bandeau des 54 pays : ceux du prototype en couleur et en tête, les autres
+// en grisé (« bientôt »), à l'image de l'ambition du projet.
 function renderFlagMarquee(){
   const track = document.getElementById('flag-marquee-track');
   if(!track) return;
-  const items = COUNTRIES.map(country => `
-    <span class="flag-marquee-item">${flagImage(country.flag, "marquee-flag")}<span>${esc(country.name)}</span></span>
-  `).join('');
+  const open = new Set(COUNTRIES.map(country => country.name));
+  const names = ALL_AFRICA_COUNTRIES.length ? ALL_AFRICA_COUNTRIES.map(country => country.name) : Object.keys(AFRICA_FLAG_CODES);
+  const ordered = [...names.filter(name => open.has(name)), ...names.filter(name => !open.has(name)).sort((a, b) => a.localeCompare(b, 'fr'))];
+  const items = ordered.map(name => {
+    const available = open.has(name);
+    const flag = flagFromCode(AFRICA_FLAG_CODES[name]);
+    return `<span class="flag-marquee-item${available ? " is-open" : " is-soon"}" title="${esc(available ? `${name} : à découvrir` : `${name} : bientôt`)}">${flagImage(flag, "marquee-flag", `Drapeau — ${name}`)}<span>${esc(name)}</span></span>`;
+  }).join('');
   track.innerHTML = items + items;
+  track.style.animationDuration = `${Math.max(32, ordered.length * 2.4)}s`;
 }
 
 async function loadKitokoData(){
