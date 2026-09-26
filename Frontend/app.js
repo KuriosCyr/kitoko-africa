@@ -144,7 +144,10 @@ function showScreen(id, opts){
   const current = document.querySelector('.screen.active');
   if(!opts.skipHistory && current && current.id !== id){ navHistory.push(current.id); }
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const screen = document.getElementById(id);
+  screen.classList.add('active');
+  // Chaque écran s'ouvre en haut (sinon la page garde la position de l'écran précédent).
+  if(!current || current.id !== id) scrollScreenToTop(screen);
   document.getElementById('home-return').classList.toggle('hidden', id === 'screen-home');
   document.querySelectorAll('.persistent-nav-item').forEach(item=>{
     item.classList.toggle('active', item.dataset.screen === id);
@@ -162,6 +165,13 @@ function showScreen(id, opts){
   if(id==="screen-partner-apply") preparePartnerForm();
   if(id==="screen-privacy") renderPrivacy();
   if(id!=="screen-scanner") stopScanner();
+}
+
+function scrollScreenToTop(screen){
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  screen?.querySelectorAll('.list,.detail-body,.form-wrap,.about-body,.contact-body,.admin-body').forEach(el => { el.scrollTop = 0; });
 }
 
 function goBack(){
@@ -1222,6 +1232,9 @@ async function openDetail(id, options = {}){
   setTab(options.tab || 'apercu', document.querySelector(`.dtab[data-pane="${options.tab || 'apercu'}"]`));
   requestAnimationFrame(updateReadingProgress);
   if(document.querySelector('.screen.active')?.id !== 'screen-detail') showScreen('screen-detail');
+  // Une fiche s'ouvre toujours en haut : photo, titre puis contenu.
+  scrollScreenToTop(document.getElementById('screen-detail'));
+  requestAnimationFrame(() => scrollScreenToTop(document.getElementById('screen-detail')));
   if(options.updateUrl !== false) setSiteUrl(s.slug);
 
   try {
