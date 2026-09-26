@@ -317,3 +317,33 @@ CREATE TABLE IF NOT EXISTS partner_stamps (
 
 CREATE INDEX IF NOT EXISTS idx_partners_site ON partners(site_id);
 CREATE INDEX IF NOT EXISTS idx_itinerary_stops_site ON itinerary_stops(site_id);
+
+-- Question du jour : une réponse par joueur et par jour (séries, classements).
+CREATE TABLE IF NOT EXISTS quiz_daily (
+    user_id INTEGER NOT NULL,
+    day TEXT NOT NULL,
+    question_id INTEGER,
+    correct INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, day),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Groupes de défi (amis, équipe, classe) : on rejoint un groupe avec son code.
+CREATE TABLE IF NOT EXISTS quiz_groups (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS quiz_group_members (
+    group_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    joined_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (group_id, user_id),
+    FOREIGN KEY (group_id) REFERENCES quiz_groups(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

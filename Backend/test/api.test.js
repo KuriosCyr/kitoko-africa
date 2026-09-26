@@ -684,3 +684,48 @@ test("les fiches enrichies exposent chronologie, points à voir et anecdotes", a
   assert.deepEqual(saved.data.data.chronologie, [{ date: "1724", event: "Prise d'Allada" }, { date: "", event: "Sans date" }]);
   assert.deepEqual(saved.data.data.saviez_vous, ["Une anecdote"]);
 });
+
+test("la question du jour : réserve publique, réponse unique par jour, série et groupes", async () => {
+  const pool = (await api("/api/quiz/pool")).data.data;
+  assert.ok(pool.length >= 100);
+  assert.ok(pool.every(question => Array.isArray(question.choices) && Number.isInteger(question.answer_index)));
+
+  const daily = require("../services/daily");
+  const day = new Date().toISOString().slice(0, 10);
+  const question = pool[daily.dailyIndex(day, pool.length)];
+  const user = await signup();
+  const wrong = await api("/api/quiz/daily", { token: user.token, json: { day, question_id: question.id + 99999, choice: 0 } });
+  assert.equal(wrong.status, 409);
+  const first = await api("/api/quiz/daily", { token: user.token, json: { day, question_id: question.id, choice: question.answer_index } });
+  assert.equal(first.status, 200);
+  assert.equal(first.data.data.correct, true);
+  assert.equal(first.data.data.stats.streak, 1);
+  const again = await api("/api/quiz/daily", { token: user.token, json: { day, question_id: question.id, choice: (question.answer_index + 1) % question.choices.length } });
+  assert.equal(again.data.data.already_answered, true);
+  assert.equal(again.data.data.correct, true);
+
+  const created = await api("/api/quiz/groups", { token: user.token, json: { name: "Classe de 4e B" } });
+  assert.equal(created.status, 201);
+  const code = created.data.data.group.code;
+  const friend = await signup();
+  const joined = await api("/api/quiz/groups/join", { token: friend.token, json: { code: code.toLowerCase() } });
+  assert.equal(joined.status, 200);
+  assert.equal(joined.data.data.group.members.length, 2);
+  assert.equal(joined.data.data.group.members[0].points, 1);
+  assert.equal((await api("/api/quiz/groups/join", { token: friend.token, json: { code: "ZZZZZZ" } })).status, 404);
+  const board = (await api("/api/quiz/leaderboard", { token: friend.token })).data.data;
+  assert.ok(board.some(row => row.points === 1));
+});
+
+test("la frise panafricaine ordonne les repères datés de toutes les fiches", async () => {
+  const daily = require("../services/daily");
+  assert.equal(daily.approximateYear("Vers 1235"), 1235);
+  assert.equal(daily.approximateYear("Fin du XIXe siècle"), 1885);
+  assert.equal(daily.approximateYear("IIIe siècle av. J.-C."), -250);
+  assert.equal(daily.approximateYear("Années 1960"), 1965);
+  assert.equal(daily.approximateYear("Chaque année, en août"), null);
+  const events = (await api("/api/timeline")).data.data;
+  assert.ok(events.length > 200);
+  assert.ok(events.every((event, index) => index === 0 || events[index - 1].year <= event.year));
+  assert.ok(new Set(events.map(event => event.country)).size >= 10);
+});

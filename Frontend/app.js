@@ -180,6 +180,13 @@ function showScreen(id, opts){
   if(id==="screen-partners") renderPartnerDirectory();
   if(id==="screen-partner-apply") preparePartnerForm();
   if(id==="screen-privacy") renderPrivacy();
+  if(id==="screen-nearby") renderNearby(null);
+  if(id==="screen-daily") renderDaily();
+  if(id==="screen-calendar") renderCalendar();
+  if(id==="screen-timeline") renderTimeline();
+  if(id==="screen-teachers") renderTeachers();
+  // La lecture à voix haute s'arrête quand on quitte la fiche.
+  if(id!=="screen-detail" && typeof ttsStop === "function" && tts.active) ttsStop();
   if(id!=="screen-scanner") stopScanner();
 }
 
@@ -221,6 +228,7 @@ function renderHome(){
   const coveredCountries = document.getElementById('stat-countries');
   if(coveredCountries) coveredCountries.textContent = COUNTRIES.length;
   document.getElementById('qs-fav').textContent = favorites.size + " sauvegardé" + (favorites.size>1?"s":"");
+  if(typeof renderHomeFestival === "function"){ renderHomeFestival(); renderHomeDaily(); }
   const feat = document.getElementById('featured-scroll');
   feat.innerHTML = "";
   SITES.filter(s=>s.featured).forEach(s=>{
@@ -1242,6 +1250,7 @@ let currentSiteDetail = null;
 async function openDetail(id, options = {}){
   const s = SITES.find(x=>x.id===id);
   if(!s) return;
+  if(typeof ttsStop === "function" && tts.active && tts.siteId !== id) ttsStop();
   currentSiteId = id;
   currentSiteDetail = null;
   renderDetailBasics(s);

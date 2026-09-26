@@ -14,6 +14,8 @@ const contributionsRoutes = require("./routes/contributions.routes");
 const adminRoutes = require("./routes/admin.routes");
 const passportRoutes = require("./routes/passport.routes");
 const partnersRoutes = require("./routes/partners.routes");
+const quizRoutes = require("./routes/quiz.routes");
+const { timeline } = require("./services/daily");
 const { getItineraries } = require("./controllers/itineraries.controller");
 const { getThemes, getCategories } = require("./controllers/sites.controller");
 const { backfillSiteIdentifiers } = require("./services/sites");
@@ -46,7 +48,8 @@ app.use(express.json({ limit: "2mb" }));
 
 const frontendDirectory = path.join(__dirname, "..", "Frontend");
 app.use(express.static(frontendDirectory));
-app.use("/uploads", express.static(publicDir, { dotfiles: "deny", index: false }));
+// Les photos sont publiques : l'application peut les dessiner dans les cartes souvenir.
+app.use("/uploads", (req, res, next) => { res.set("Access-Control-Allow-Origin", "*"); next(); }, express.static(publicDir, { dotfiles: "deny", index: false }));
 
 // Associations d'application (Android App Links, iOS Universal Links) :
 // actives dès que les identifiants des applications sont renseignés dans .env.
@@ -77,6 +80,8 @@ app.use("/api/partners", partnersRoutes);
 app.get("/api/itineraries", getItineraries);
 app.get("/api/themes", getThemes);
 app.get("/api/categories", getCategories);
+app.use("/api/quiz", quizRoutes);
+app.get("/api/timeline", (req, res) => res.json({ success: true, data: timeline() }));
 
 // Lien imprimé dans les QR codes des sites : ouvre la fiche avec la
 // validation de visite mise en avant.

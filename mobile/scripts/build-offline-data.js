@@ -38,7 +38,7 @@ async function buildOfflineData(targetDir) {
   }
 
   try {
-    for (const pathname of ["/countries", "/themes", "/categories", "/itineraries", "/partners/types", "/partners?"]) await save(pathname);
+    for (const pathname of ["/countries", "/themes", "/categories", "/itineraries", "/partners/types", "/partners?", "/quiz/pool", "/timeline"]) await save(pathname);
     const sites = (await save("/sites")).data;
     for (const site of sites) await save(`/sites/${site.id}`);
 

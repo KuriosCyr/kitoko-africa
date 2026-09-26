@@ -215,6 +215,7 @@ function backfillSiteIdentifiers() {
 
 module.exports = {
   setSiteExtras,
+  parseExtras,
   listSites,
   findSite,
   siteDetails,

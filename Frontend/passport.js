@@ -117,7 +117,7 @@ async function renderPassport(){
             <p class="badge-name">${esc(badge.name)}</p>
             <p class="badge-desc">${esc(badge.description)}</p>
             ${badge.earned
-              ? `<button type="button" class="badge-share" data-slug="${esc(badge.slug)}" onclick="shareBadge(this.dataset.slug)">Partager</button>`
+              ? `<button type="button" class="badge-share" data-slug="${esc(badge.slug)}" onclick="shareBadgeCard(this.dataset.slug)">Partager</button>`
               : `${progressBar(badge.progress, badge.target)}<span class="badge-progress">${badge.progress}/${badge.target}</span>`}
           </div>`).join("")}
       </div>
@@ -236,7 +236,10 @@ async function renderDetailPassport(){
       <button class="submit-btn" type="submit">Valider mes réponses</button>
     </form>` : '<p class="pane-empty">Le quiz de ce site sera bientôt disponible.</p>';
 
-  pane.innerHTML = `${scanBanner}<div class="stamp-statuses">${onsite}${online}</div>${quiz}`;
+  const souvenir = status.onsite || status.online
+    ? `<button class="cta-btn souvenir-btn" type="button" onclick="shareStampCard('${status.onsite ? "onsite" : "online"}')">${ico("image")} Créer ma carte souvenir</button>`
+    : "";
+  pane.innerHTML = `${scanBanner}<div class="stamp-statuses">${onsite}${online}</div>${souvenir}${quiz}`;
 }
 
 async function sendCheckIn(body){
