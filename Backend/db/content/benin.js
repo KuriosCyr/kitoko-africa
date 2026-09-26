@@ -15,30 +15,62 @@ module.exports = [
     longitude: 1.9910,
     radius: 400,
     themes: ["royaumes", "architecture", "artisanat", "resistances"],
-    description: "Ancienne capitale du royaume du Danxomè (Dahomey), l'ensemble des palais royaux d'Abomey témoigne de près de trois siècles de pouvoir, d'organisation politique et d'art de bâtir en terre.",
-    histoire: "Abomey devient la capitale du royaume du Danxomè au XVIIe siècle. Selon la tradition, chaque roi fit édifier son propre palais à côté de celui de son prédécesseur : le site réunit ainsi une dizaine de palais construits au fil des règnes, sur une quarantaine d'hectares. En 1892, pendant la guerre de conquête française, une grande partie des palais est incendiée — plusieurs sources indiquent que le roi Béhanzin ordonna lui-même l'incendie pour ne pas laisser la capitale aux troupes coloniales. Les palais sont inscrits au patrimoine mondial de l'UNESCO en 1985. En novembre 2021, la France restitue au Bénin 26 trésors royaux pillés en 1892 (trônes, statues royales, portes sculptées), un moment important pour la réappropriation de ce patrimoine.",
-    culture: "Les palais restent un lieu central de la mémoire du Danxomè. Les familles royales y perpétuent des cérémonies, et les bas-reliefs forment une véritable « bibliothèque » en argile : chaque roi y a fait représenter ses emblèmes, ses devises et ses hauts faits.",
-    savoirs: "Construction en terre (banco), art du bas-relief polychrome, tentures appliquées (appliqué du Danxomè), orfèvrerie et sculpture de cour, transmission orale des généalogies royales par les héraldistes.",
-    communities: "Musée historique d'Abomey, familles royales d'Abomey, artisans héritiers des corporations de cour (tisserands, forgerons, sculpteurs).",
+    description: "Pendant près de trois siècles, Abomey fut la capitale du Danxomè, l'un des royaumes les plus puissants et les mieux organisés d'Afrique de l'Ouest. Au cœur de la ville, une vaste enceinte de murs de terre rouge abrite les palais que les rois ont fait bâtir les uns à côté des autres, chacun marquant son règne par son propre palais.\n\nClassés au patrimoine mondial de l'UNESCO, les palais racontent, à travers leurs bas-reliefs, leurs trônes, leurs tentures et leurs récits, l'histoire d'un État africain souverain, de sa puissance militaire, de ses arts de cour et de sa résistance à la conquête coloniale.",
+    histoire: "### Les origines d'un royaume\nLa tradition fait remonter la dynastie à des princes venus d'Allada, au sud, au début du XVIIe siècle. Ils s'installent sur le plateau d'Abomey, où règnent alors des chefs locaux. Le roi Houégbadja, qui règne dans la seconde moitié du XVIIe siècle, est considéré comme le véritable fondateur du royaume et de sa capitale : c'est à lui que la tradition attribue la construction du premier grand palais.\n\n### Une capitale bâtie roi après roi\nUne règle marque l'histoire d'Abomey : chaque nouveau roi fait construire son propre palais, à côté de celui de son prédécesseur, sans détruire les anciens. L'enceinte royale s'agrandit ainsi au fil des règnes et finit par couvrir une quarantaine d'hectares, entourés de murs de terre. Les palais comprennent des cours successives, des salles de réception, des logements pour les épouses et les serviteurs, des greniers, des temples et les tombeaux des rois.\n\n### De l'intérieur des terres à la mer\nAu XVIIIe siècle, le roi Agadja étend le royaume vers la côte : il conquiert Allada (1724) puis le royaume Xwéda et son port, Ouidah (1727). Le Danxomè contrôle désormais l'accès à l'océan et au commerce atlantique, y compris la traite des captifs, qui marque profondément son histoire et celle de toute la région. Au XIXe siècle, les rois Ghézo (1818-1858) puis Glèlè (1858-1889) renforcent l'État, l'armée — dont le célèbre corps des Agojie — et développent l'économie de l'huile de palme.\n\n### Guerre, incendie et exil\nÀ la fin du XIXe siècle, la France veut imposer son autorité sur la côte. Le roi Béhanzin (1889-1894) résiste pendant deux guerres, en 1890 puis en 1892. Lorsque les troupes coloniales approchent d'Abomey en novembre 1892, une grande partie des palais est incendiée — plusieurs sources indiquent que Béhanzin lui-même ordonna l'incendie pour ne pas livrer la capitale. Il poursuit la lutte jusqu'à sa reddition en janvier 1894 ; il est ensuite exilé en Martinique, puis en Algérie, où il meurt en 1906. De nombreux objets royaux sont emportés en France comme butin de guerre.\n\n### Patrimoine mondial et restitutions\nUne partie des palais, dont ceux de Ghézo et de Glèlè, accueille le Musée historique d'Abomey. En 1985, les palais sont inscrits sur la liste du patrimoine mondial de l'UNESCO et, la même année, sur la liste du patrimoine en péril, après les dégâts d'une tornade ; d'importants travaux de conservation permettent de les en retirer en 2007. En novembre 2021, la France restitue au Bénin 26 œuvres du trésor royal d'Abomey — trônes, statues royales, portes sculptées —, présentées l'année suivante à Cotonou devant un très large public. Un moment fort de réappropriation de ce patrimoine par les Béninois.",
+    culture: "Les palais ne sont pas seulement un musée : ils restent un lieu vivant de la mémoire du Danxomè. Les familles royales y célèbrent encore des cérémonies en l'honneur des ancêtres, et la légitimité des collectivités familiales issues des rois s'y enracine.\n\nLes bas-reliefs forment une véritable bibliothèque d'argile. Chaque roi y a fait représenter ses emblèmes, ses « noms forts » et ses hauts faits : batailles, alliances, proverbes. Lire ces murs, c'est lire l'histoire politique du royaume telle qu'elle a été racontée par le royaume lui-même, et non par ses conquérants.\n\nPour les Béninois, Abomey est aussi un symbole de souveraineté et de résistance : la figure de Béhanzin, refusant de se soumettre, est au cœur de la mémoire nationale.",
+    savoirs: "### L'art de bâtir en terre\nLes murs sont faits de terre (banco) mélangée et montée en couches successives, puis enduits. Ce savoir-faire exige un entretien régulier, transmis de génération en génération : c'est lui qui a permis de conserver et de restaurer les palais.\n\n### Les bas-reliefs polychromes\nModelés dans la terre des murs, puis peints, les bas-reliefs représentent animaux, armes et scènes symboliques. Leur restauration, menée avec des artisans héritiers de ces techniques, est l'une des grandes réussites de la conservation du site.\n\n### Les tentures appliquées\nLes tentures en appliqué — motifs de tissu colorés cousus sur un fond uni — racontaient les règnes et les devises des rois. Des familles d'artisans d'Abomey perpétuent cet art, aujourd'hui décliné sur toutes sortes de supports.\n\n### Les arts de cour\nForgerons, sculpteurs, orfèvres et tisserands travaillaient pour la cour, organisés en corporations. Les récades (sceptres royaux), les trônes et les statues royales témoignent de ce raffinement.",
+    communities: "Musée historique d'Abomey, familles royales d'Abomey, artisans héritiers des corporations de cour (tisserands d'appliqués, forgerons, sculpteurs).",
     langues: "Fon, français",
-    personnalites: "Roi Houégbadja, roi Agadja, roi Ghézo (1818-1858), roi Glèlè (1858-1889), roi Béhanzin (1889-1894), les Agojie (guerrières du royaume).",
-    infos_pratiques: "Visite guidée du Musée historique d'Abomey sur place. Horaires et tarifs à confirmer auprès du musée. Prévoir 1 h 30 à 2 h. Abomey est à environ 2 h 30 de route de Cotonou.",
+    personnalites: "Roi Houégbadja (fondateur de la capitale) ; roi Agadja (conquête d'Allada et de Ouidah) ; roi Ghézo (1818-1858) ; roi Glèlè (1858-1889) ; roi Béhanzin (1889-1894), figure de la résistance à la conquête coloniale ; les Agojie, guerrières du royaume.",
+    infos_pratiques: "Visite guidée du Musée historique d'Abomey sur place (horaires et tarifs à confirmer auprès du musée). Prévoir 1 h 30 à 2 h pour le musée et les bas-reliefs, davantage pour découvrir la ville. Abomey est à environ 2 h 30 de route de Cotonou. Photographies parfois limitées à l'intérieur : se renseigner à l'accueil.",
+    chronologie: [
+      ["Début du XVIIe siècle", "Selon la tradition, des princes venus d'Allada s'installent sur le plateau d'Abomey."],
+      ["Seconde moitié du XVIIe siècle", "Règne de Houégbadja, considéré comme le fondateur du royaume et de la capitale."],
+      ["1724", "Le roi Agadja conquiert le royaume d'Allada."],
+      ["1727", "Conquête de Ouidah : le Danxomè accède à la mer et au commerce atlantique."],
+      ["1818-1858", "Règne de Ghézo : réformes de l'État et de l'armée."],
+      ["1858-1889", "Règne de Glèlè."],
+      ["1890 et 1892", "Guerres contre la France sous le règne de Béhanzin."],
+      ["Novembre 1892", "Incendie d'une grande partie des palais à l'arrivée des troupes coloniales."],
+      ["Janvier 1894", "Reddition de Béhanzin, exilé en Martinique puis en Algérie."],
+      ["1985", "Inscription au patrimoine mondial de l'UNESCO (et sur la liste en péril jusqu'en 2007)."],
+      ["Novembre 2021", "Restitution par la France de 26 œuvres du trésor royal d'Abomey."]
+    ],
+    a_voir: [
+      ["Les bas-reliefs", "Sur les murs des palais, des dizaines de bas-reliefs peints racontent les emblèmes et les hauts faits des rois : prendre le temps de les faire expliquer par un guide."],
+      ["Le Musée historique", "Installé dans les palais de Ghézo et de Glèlè : trônes, récades, armes, tentures et objets de la vie de cour."],
+      ["Les tombeaux royaux", "Les cases funéraires des rois, lieux de mémoire toujours respectés."],
+      ["Les ateliers d'appliqués", "En ville, des artisans perpétuent l'art des tentures appliquées : un bon moyen de soutenir l'économie locale."],
+      ["La place Goho", "À l'entrée de la ville, la statue de Béhanzin rappelle le roi résistant."]
+    ],
+    saviez_vous: [
+      "Un roi a été effacé de la liste officielle : Adandozan, renversé en 1818 par Ghézo. Pendant longtemps, son nom n'était pas prononcé dans les récits de la cour.",
+      "Chaque roi choisissait un « nom fort », une sorte de devise imagée. Celui de Béhanzin évoque le requin qui trouble la barre, face aux ennemis venus de la mer."
+    ],
     sources: [
       "UNESCO — Centre du patrimoine mondial, « Palais royaux d'Abomey » (inscription 1985)",
       "Maurice Ahanhanzo Glèlè, Le Danxomè. Du pouvoir aja à la nation fon, 1974",
-      "Musée historique d'Abomey"
+      "Musée historique d'Abomey",
+      "Restitution de 26 œuvres du trésor royal d'Abomey (novembre 2021)"
     ],
     recits: [
       {
         title: "Les emblèmes des rois",
         nature: "tradition_orale",
         body: "La tradition rapporte que chaque roi, à son intronisation, choisissait un « nom fort » et un emblème qui résumaient sa devise. Houégbadja est associé au poisson qui a échappé à la nasse, Ghézo au buffle, Glèlè au lion et Béhanzin au requin, qui trouble les eaux et défie ceux qui viennent de la mer. Ces symboles se retrouvent sur les bas-reliefs, les tentures et les récades (sceptres) royales."
+      },
+      {
+        title: "Danxomè, « dans le ventre de Dan »",
+        nature: "tradition_orale",
+        body: "Une tradition célèbre explique le nom du royaume. Un chef local, Dan, se serait moqué des ambitions du nouveau venu en lui demandant s'il comptait bâtir sa maison sur son ventre. Vaincu, Dan aurait été enseveli sous les fondations du palais, qui prit le nom de Danxomè : « dans le ventre de Dan ». Comme tous les récits de fondation, il existe plusieurs versions de cette histoire, transmises par les familles et les héraldistes de la cour."
       }
     ],
     quiz: [
       { question: "En quelle année les palais royaux d'Abomey ont-ils été inscrits au patrimoine mondial de l'UNESCO ?", choices: ["1960", "1985", "2005"], answer: 1, explanation: "Les palais royaux d'Abomey sont inscrits sur la liste du patrimoine mondial depuis 1985." },
       { question: "Quel animal est l'emblème du roi Béhanzin ?", choices: ["Le requin", "L'éléphant", "L'aigle"], answer: 0, explanation: "Béhanzin est associé au requin, symbole de résistance face à ceux qui venaient de la mer." },
-      { question: "En quelle année la France a-t-elle restitué au Bénin 26 trésors royaux d'Abomey ?", choices: ["1960", "1992", "2021"], answer: 2, explanation: "La restitution a eu lieu en novembre 2021, près de 130 ans après le pillage de 1892." }
+      { question: "En quelle année la France a-t-elle restitué au Bénin 26 trésors royaux d'Abomey ?", choices: ["1960", "1992", "2021"], answer: 2, explanation: "La restitution a eu lieu en novembre 2021, près de 130 ans après le pillage de 1892." },
+      { question: "Quel roi a donné au Danxomè l'accès à la mer en conquérant Ouidah ?", choices: ["Agadja", "Glèlè", "Béhanzin"], answer: 0, explanation: "Le roi Agadja conquiert Allada en 1724 puis Ouidah en 1727." },
+      { question: "Quelle règle explique qu'il y ait plusieurs palais à Abomey ?", choices: ["Chaque roi faisait bâtir son propre palais", "Chaque province avait son palais", "Les palais étaient reconstruits chaque siècle"], answer: 0, explanation: "Chaque nouveau roi faisait construire son palais à côté de celui de son prédécesseur, sans détruire les anciens." }
     ]
   },
   {
@@ -47,35 +79,59 @@ module.exports = [
     country: "Bénin",
     cat: "culturel",
     name: "Cité lacustre de Ganvié",
-    region: "Atlantique, lac Nokoué",
+    region: "Atlantique, Sô-Ava, lac Nokoué",
     featured: true,
     latitude: 6.4660,
     longitude: 2.4180,
     radius: 1500,
     themes: ["eaux", "memoire-traite", "marches", "gastronomie"],
-    description: "Construite sur pilotis au milieu du lac Nokoué, Ganvié est l'une des plus grandes cités lacustres d'Afrique. Elle est habitée par les Toffinu, qui vivent de la pêche et du commerce sur l'eau.",
-    histoire: "Selon la tradition, les Toffinu se sont installés sur le lac Nokoué aux XVIIe et XVIIIe siècles pour échapper aux razzias du royaume du Danxomè, qui capturait des populations pour les vendre aux négriers. L'eau les protégeait : une interdiction religieuse empêchait les guerriers du Danxomè de s'aventurer sur le lac. Le nom « Ganvié » signifierait « la communauté a trouvé la paix » ou « nous sommes sauvés ». La cité compte aujourd'hui plusieurs dizaines de milliers d'habitants.",
-    culture: "Toute la vie s'organise sur l'eau : maisons, écoles, lieux de culte et marché flottant, où les femmes vendent poissons, fruits et produits du quotidien depuis leurs pirogues. Ganvié est un symbole de résistance et d'adaptation.",
-    savoirs: "Construction de maisons sur pilotis en bois et en bambou, navigation en pirogue, pêche traditionnelle en « acadja » (enclos de branchages plantés dans le lac où les poissons se reproduisent), fumage du poisson.",
-    communities: "Communauté toffin de Ganvié, piroguiers et guides locaux.",
+    description: "Au nord de Cotonou, au milieu du lac Nokoué, des milliers de maisons sur pilotis forment l'une des plus grandes cités lacustres d'Afrique : Ganvié. On y circule en pirogue, on y fait son marché sur l'eau, on y va à l'école, à l'église ou à la mosquée sans jamais toucher la terre ferme.\n\nSurnommée la « Venise de l'Afrique », Ganvié est d'abord une histoire de refuge et d'adaptation : celle du peuple toffin, qui a fait de l'eau son rempart, puis son monde.",
+    histoire: "### Un refuge sur l'eau\nSelon la tradition, les ancêtres des Toffinu vivaient sur la terre ferme, au nord du lac. Aux XVIIe et XVIIIe siècles, les razzias menées par le royaume du Danxomè pour capturer des populations et les vendre aux négriers européens menacent la région. Pour y échapper, les Toffinu se réfugient sur le lac Nokoué. L'eau les protège : une interdiction religieuse empêchait les guerriers du Danxomè de s'aventurer sur le lac.\n\n### Un nom qui dit la paix retrouvée\nLe nom de Ganvié est généralement traduit par « la communauté a trouvé la paix » ou « nous sommes sauvés ». Il résume l'histoire de sa fondation : une communauté qui a survécu à la traite en inventant une nouvelle manière de vivre.\n\n### De la pêche à la ville sur pilotis\nAu fil des générations, le village s'étend. Les habitants développent des techniques de pêche adaptées au lac, notamment les acadjas, et un commerce actif avec les marchés des rives. Ganvié devient une véritable ville d'eau, qui compte aujourd'hui plusieurs dizaines de milliers d'habitants, avec ses quartiers, ses écoles, ses lieux de culte et son marché flottant.\n\n### Aujourd'hui\nGanvié fait partie de la commune de Sô-Ava. Elle figure sur la liste indicative du Bénin pour le patrimoine mondial de l'UNESCO. La cité fait face à de grands défis : pollution et envasement du lac, prolifération de la jacinthe d'eau, pression du tourisme, accès à l'eau potable et à l'assainissement. Des projets d'aménagement cherchent à améliorer les conditions de vie tout en préservant l'identité du lieu.",
+    culture: "Ganvié est un symbole de résistance : ici, la mémoire de la traite ne se raconte pas seulement dans les musées, elle s'inscrit dans le paysage. Chaque maison sur pilotis rappelle que des familles ont choisi l'eau pour rester libres.\n\nLa vie sociale est entièrement organisée autour du lac. Les femmes tiennent une place centrale dans le commerce : depuis leurs pirogues chargées de poissons, de fruits, d'épices ou de charbon, elles animent le marché flottant et relient la cité aux marchés des rives. Les enfants apprennent très tôt à manier la pagaie.\n\nLes Toffinu entretiennent aussi des lieux de culte liés à l'eau et à leurs ancêtres, qui rappellent le lien spirituel entre la communauté et le lac.",
+    savoirs: "### Construire sur l'eau\nLes maisons reposent sur des pilotis de bois plantés dans le fond du lac, avec des planchers et des murs en bois ou en bambou, et des toits autrefois en paille. Elles doivent résister au vent, aux crues et à l'humidité : un savoir-faire transmis entre charpentiers.\n\n### Les acadjas\nL'acadja est un enclos de branchages planté dans le lac. Les poissons s'y abritent, s'y nourrissent et s'y reproduisent ; on les récolte ensuite. Cette technique de pisciculture traditionnelle, très ingénieuse, doit être bien gérée pour ne pas épuiser le lac.\n\n### La pirogue et la pêche\nFabrication et entretien des pirogues, maniement de la pagaie et de la perche, filets, nasses : toute la vie dépend de ces savoirs. Le fumage du poisson, souvent assuré par les femmes, permet de le conserver et de le vendre sur les marchés.",
+    communities: "Communauté toffin de Ganvié, piroguiers et guides locaux, commerçantes du marché flottant, commune de Sô-Ava.",
     langues: "Toffin, fon, français",
     personnalites: "—",
-    infos_pratiques: "Accès en pirogue ou en bateau depuis l'embarcadère d'Abomey-Calavi (environ 30 à 45 minutes). Tarifs des pirogues à négocier ou à réserver auprès d'un guide agréé. Demander l'autorisation avant de photographier les habitants.",
+    infos_pratiques: "Accès en pirogue à moteur ou à pagaie depuis l'embarcadère d'Abomey-Calavi (environ 30 à 45 minutes). Réserver auprès d'un guide agréé et convenir du tarif avant de partir. Prévoir une protection contre le soleil. Demander l'autorisation avant de photographier les habitants : Ganvié est un lieu de vie, pas un décor.",
+    chronologie: [
+      ["XVIIe - XVIIIe siècles", "Pour fuir les razzias liées à la traite, les ancêtres des Toffinu s'installent sur le lac Nokoué."],
+      ["XIXe - XXe siècles", "Le village grandit et devient une véritable ville sur pilotis, vivant de la pêche et du commerce."],
+      ["Années 1990", "Inscription sur la liste indicative du Bénin pour le patrimoine mondial de l'UNESCO."],
+      ["Aujourd'hui", "Plusieurs dizaines de milliers d'habitants ; enjeux de pollution, d'envasement et d'aménagement."]
+    ],
+    a_voir: [
+      ["Le marché flottant", "Le matin, les commerçantes vendent depuis leurs pirogues : poissons, fruits, épices, produits du quotidien."],
+      ["Les acadjas", "Ces enclos de branchages plantés dans le lac révèlent l'ingéniosité de la pêche toffin."],
+      ["Les maisons sur pilotis", "Observer la diversité des constructions, des plus anciennes aux plus récentes."],
+      ["Les ateliers de pirogues", "Rencontrer les artisans qui fabriquent et réparent les embarcations."]
+    ],
+    saviez_vous: [
+      "À Ganvié, on se rend à l'école, au marché ou à la prière en pirogue : l'eau remplace les rues.",
+      "La jacinthe d'eau, une plante invasive, envahit parfois le lac : certaines initiatives locales la transforment en compost ou en objets artisanaux."
+    ],
     sources: [
       "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)",
-      "Liste indicative du Bénin à l'UNESCO — Cité lacustre de Ganvié"
+      "UNESCO — Liste indicative du Bénin, Cité lacustre de Ganvié",
+      "Commune de Sô-Ava"
     ],
     recits: [
       {
         title: "Pourquoi sur l'eau ?",
         nature: "tradition_orale",
         body: "On raconte que les ancêtres des Toffinu, poursuivis par les guerriers du Danxomè, trouvèrent refuge sur les eaux du lac Nokoué. Les guerriers, liés par un interdit religieux, ne pouvaient pas entrer dans l'eau. Les réfugiés y bâtirent leurs maisons et donnèrent au lieu un nom qui célèbre la paix retrouvée. Cette histoire rappelle que la traite a transformé les paysages et les modes de vie jusqu'à l'intérieur des terres."
+      },
+      {
+        title: "La pagaie avant la marche",
+        nature: "recit_communautaire",
+        body: "À Ganvié, on aime dire que les enfants savent tenir une pagaie presque avant de savoir marcher. Dès le plus jeune âge, ils se déplacent seuls en petite pirogue pour aller à l'école ou rendre visite à leurs voisins : une autonomie qui étonne souvent les visiteurs."
       }
     ],
     quiz: [
       { question: "Sur quel lac la cité de Ganvié est-elle construite ?", choices: ["Le lac Ahémé", "Le lac Nokoué", "Le lac Tchad"], answer: 1, explanation: "Ganvié est bâtie sur pilotis au milieu du lac Nokoué, au nord de Cotonou." },
       { question: "Qu'est-ce qu'un « acadja » ?", choices: ["Une pirogue de cérémonie", "Un enclos de branchages pour la pêche", "Un marché de nuit"], answer: 1, explanation: "L'acadja est un enclos de branchages planté dans le lac : les poissons s'y abritent et s'y reproduisent." },
-      { question: "Pourquoi les Toffinu se sont-ils installés sur l'eau, selon la tradition ?", choices: ["Pour fuir les razzias du Danxomè", "Pour se rapprocher des marchés européens", "À cause d'une sécheresse"], answer: 0, explanation: "L'eau les protégeait des razzias : un interdit empêchait les guerriers du Danxomè d'entrer dans le lac." }
+      { question: "Pourquoi les Toffinu se sont-ils installés sur l'eau, selon la tradition ?", choices: ["Pour fuir les razzias du Danxomè", "Pour se rapprocher des marchés européens", "À cause d'une sécheresse"], answer: 0, explanation: "L'eau les protégeait des razzias : un interdit empêchait les guerriers du Danxomè d'entrer dans le lac." },
+      { question: "Comment traduit-on généralement le nom « Ganvié » ?", choices: ["La ville des pêcheurs", "La communauté a trouvé la paix", "L'eau qui brille"], answer: 1, explanation: "Ganvié est souvent traduit par « la communauté a trouvé la paix » ou « nous sommes sauvés »." },
+      { question: "Quel comportement adopter en visitant Ganvié ?", choices: ["Photographier librement les habitants", "Demander l'autorisation avant de photographier", "Lancer des bonbons aux enfants"], answer: 1, explanation: "Ganvié est un lieu de vie : on demande toujours l'accord des personnes avant de les photographier." }
     ]
   },
   {
@@ -156,17 +212,38 @@ module.exports = [
     longitude: 2.0892,
     radius: 300,
     themes: ["memoire-traite", "spiritualites"],
-    description: "Sur la plage de Ouidah, la Porte du Non-Retour marque le point final de la Route des Esclaves. Elle rend hommage aux millions d'Africaines et d'Africains déportés à travers l'Atlantique.",
-    histoire: "Ouidah fut, du XVIIe au XIXe siècle, l'un des principaux ports de la traite négrière sur la côte ouest-africaine. Les captifs étaient conduits depuis la ville jusqu'à la plage, puis embarqués vers les Amériques. En 1994, l'UNESCO lance à Ouidah le projet « La Route de l'esclave ». La Porte du Non-Retour est inaugurée en 1995 : ses bas-reliefs montrent des colonnes de captifs enchaînés marchant vers la mer.",
-    culture: "C'est l'un des lieux de mémoire les plus forts du continent. Des descendants d'Africains déportés, venus des Amériques et des Caraïbes, y viennent se recueillir. Le lieu invite à penser la traite du point de vue de ceux qui l'ont subie.",
-    savoirs: "Transmission de la mémoire de la traite par les récits familiaux, les cérémonies vodun et le travail des historiens béninois.",
-    communities: "Ville de Ouidah, associations mémorielles, descendants de la diaspora.",
-    langues: "Fon, français, anglais, portugais",
+    description: "Sur la plage de Ouidah, face à l'océan, une grande arche marque le point final de la Route des Esclaves. La Porte du Non-Retour rend hommage aux millions d'Africaines et d'Africains arrachés à leur terre et déportés à travers l'Atlantique.\n\nC'est l'un des lieux de mémoire les plus forts du continent : un endroit où l'on vient comprendre, se recueillir, et où les descendants de la diaspora viennent renouer avec la terre de leurs ancêtres.",
+    histoire: "### Ouidah, port de la traite\nDu XVIIe au XIXe siècle, Ouidah est l'un des principaux ports de la traite négrière sur la côte ouest-africaine. Les puissances européennes — Portugais, Français, Anglais, puis d'autres — y installent des forts et des comptoirs. Selon les estimations des historiens, près d'un million de captifs auraient été embarqués depuis Ouidah vers les Amériques, en particulier vers le Brésil et les Caraïbes.\n\n### De la ville à l'océan\nLes captifs, souvent issus de guerres et de razzias menées à l'intérieur des terres, étaient vendus sur la place des enchères, au cœur de la ville. Ils étaient ensuite conduits à pied jusqu'à la plage, à environ quatre kilomètres, le long de ce que l'on appelle aujourd'hui la Route des Esclaves. Comme il n'y avait pas de port, les navires restaient au large : les captifs étaient emmenés en pirogue à travers la barre, les puissants rouleaux de la côte, avant d'être entassés dans les cales.\n\n### Un monument pour la mémoire\nAu début des années 1990, le Bénin fait de Ouidah un lieu central de la mémoire de la traite. En 1994, l'UNESCO y lance le projet international « La Route de l'esclave », pour étudier cette histoire et en transmettre la mémoire. La Porte du Non-Retour est inaugurée en 1995. Ses bas-reliefs montrent des colonnes de captifs enchaînés marchant vers la mer.\n\n### Un lieu vivant\nLa Porte est aujourd'hui un lieu de visites scolaires, de cérémonies et de retrouvailles avec la diaspora. Chaque année, autour du 10 janvier, elle se trouve au cœur des célébrations du Vodun, qui rassemblent des milliers de personnes sur la plage. Illuminée la nuit, elle est devenue l'une des images emblématiques du Bénin.",
+    culture: "Le nom de « Porte du Non-Retour » exprime la rupture définitive vécue par les déportés : pour la plupart, la plage de Ouidah fut la dernière image de l'Afrique.\n\nMais le lieu dit aussi le retour. Des descendants d'Africains déportés, venus du Brésil, des Caraïbes, des États-Unis ou d'ailleurs, viennent s'y recueillir, parfois lors de cérémonies de réconciliation avec la terre de leurs ancêtres. Ouidah garde d'ailleurs les traces de ces allers-retours : des familles afro-brésiliennes, les Agudas, s'y sont installées au XIXe siècle.\n\nLe lieu invite enfin à regarder cette histoire en face, du point de vue de celles et ceux qui l'ont subie, et à réfléchir à la responsabilité des différents acteurs de la traite, européens comme africains.",
+    savoirs: "La mémoire de la traite se transmet à Ouidah de plusieurs manières : par les récits familiaux, par les cérémonies vodun qui honorent les ancêtres, par le travail des guides de la ville et par les recherches des historiens béninois.\n\nLes bas-reliefs de la Porte et les monuments de la Route des Esclaves ont été conçus comme des supports de transmission : ils racontent, par l'image, une histoire que les archives écrites ont longtemps présentée du seul point de vue des négriers.",
+    communities: "Ville de Ouidah, guides de la Route des Esclaves, dignitaires vodun, associations mémorielles, descendants de la diaspora.",
+    langues: "Fon, xwéla, français, anglais, portugais",
     personnalites: "—",
-    infos_pratiques: "Accès libre, sur la plage, à environ 4 km du centre de Ouidah (la Route des Esclaves y mène). Lieu de recueillement : adopter une attitude respectueuse.",
+    infos_pratiques: "Accès libre, sur la plage, à environ 4 km du centre de Ouidah. Idéalement, arriver à pied ou à vélo par la Route des Esclaves, avec un guide. Le lieu est beau de jour comme de nuit, lorsqu'il est illuminé. C'est un lieu de recueillement : adopter une attitude respectueuse, notamment lors des cérémonies. Baignade dangereuse (forts courants).",
+    chronologie: [
+      ["XVIIe siècle", "Les Européens installent des comptoirs à Ouidah, alors capitale du royaume Xwéda."],
+      ["1721", "Construction du fort portugais São João Baptista de Ajudá."],
+      ["1727", "Le Danxomè conquiert Ouidah, qui devient son port."],
+      ["XVIIIe - XIXe siècles", "Ouidah est l'un des principaux ports de la traite atlantique."],
+      ["Milieu du XIXe siècle", "Fin progressive de la traite atlantique ; retour de familles afro-brésiliennes (Agudas)."],
+      ["1994", "L'UNESCO lance à Ouidah le projet « La Route de l'esclave »."],
+      ["1995", "Inauguration de la Porte du Non-Retour."],
+      ["Chaque 10 janvier", "Célébrations du Vodun sur la plage, près de la Porte."]
+    ],
+    a_voir: [
+      ["Les bas-reliefs de l'arche", "De près, observer les colonnes de captifs enchaînés : une œuvre à regarder lentement."],
+      ["La plage", "Imaginer les pirogues franchissant la barre vers les navires restés au large."],
+      ["La Route des Esclaves", "Les 4 km qui mènent du centre de Ouidah à la plage, jalonnés de monuments."],
+      ["La Porte illuminée", "À la nuit tombée, l'arche éclairée offre une atmosphère de recueillement particulière."]
+    ],
+    saviez_vous: [
+      "Ouidah n'avait pas de port : les navires négriers restaient au large, et les captifs étaient conduits jusqu'à eux en pirogue, à travers les rouleaux de la barre.",
+      "C'est à Ouidah, en 1994, que l'UNESCO a lancé le projet international « La Route de l'esclave », devenu depuis « Routes des personnes mises en esclavage »."
+    ],
     sources: [
       "UNESCO — Projet « La Route de l'esclave » (lancé à Ouidah en 1994)",
-      "Musée d'histoire de Ouidah"
+      "Musée d'histoire de Ouidah",
+      "Base de données Slave Voyages (estimations des départs depuis Ouidah)"
     ],
     recits: [
       {
@@ -177,7 +254,10 @@ module.exports = [
     ],
     quiz: [
       { question: "Quel projet l'UNESCO a-t-il lancé à Ouidah en 1994 ?", choices: ["La Route de la soie", "La Route de l'esclave", "Les Villes créatives"], answer: 1, explanation: "Le projet « La Route de l'esclave » a été lancé à Ouidah en 1994 pour étudier et transmettre l'histoire de la traite." },
-      { question: "En quelle année la Porte du Non-Retour a-t-elle été inaugurée ?", choices: ["1895", "1960", "1995"], answer: 2, explanation: "Le monument a été inauguré en 1995, un an après le lancement du projet de l'UNESCO." }
+      { question: "En quelle année la Porte du Non-Retour a-t-elle été inaugurée ?", choices: ["1895", "1960", "1995"], answer: 2, explanation: "Le monument a été inauguré en 1995, un an après le lancement du projet de l'UNESCO." },
+      { question: "Pourquoi les captifs étaient-ils conduits en pirogue jusqu'aux navires ?", choices: ["Ouidah n'avait pas de port", "Les navires étaient trop grands pour la lagune", "C'était une tradition religieuse"], answer: 0, explanation: "Sans port, les navires restaient au large ; les pirogues franchissaient la barre pour les atteindre." },
+      { question: "Environ combien de captifs auraient été embarqués depuis Ouidah, selon les historiens ?", choices: ["Quelques milliers", "Près d'un million", "Plus de dix millions"], answer: 1, explanation: "Les estimations des historiens avancent près d'un million de personnes déportées depuis Ouidah." },
+      { question: "Qui sont les Agudas ?", choices: ["Des familles afro-brésiliennes installées sur la côte", "Des gardiens de la Porte", "Des rois de Ouidah"], answer: 0, explanation: "Les Agudas descendent d'Africains revenus du Brésil au XIXe siècle ; ils ont marqué Ouidah et la côte." }
     ]
   },
   {

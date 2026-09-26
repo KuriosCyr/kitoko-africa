@@ -114,7 +114,8 @@ app.use((error, req, res, next) => {
 
 function start(port = config.port) {
   if (config.autoSeed) {
-    require("./db/seed").seed({ log: message => console.log(message) });
+    // Démo : les contenus du dépôt font foi (update) à chaque démarrage.
+    require("./db/seed").seed({ log: message => console.log(message), update: true });
   }
   ensureAdminAccount();
   backfillSiteIdentifiers();

@@ -370,14 +370,14 @@ test("quiz : les réponses ne sont pas envoyées avant de répondre, le tampon e
   const user = await signup();
   const status = await api("/api/passport/sites/palais-royaux-abomey", { token: user.token });
   const questions = status.data.data.questions;
-  assert.equal(questions.length, 3);
+  assert.equal(questions.length, 5);
   assert.ok(questions.every(question => !("answer_index" in question)));
 
   const partial = await api("/api/passport/sites/palais-royaux-abomey/quiz", { token: user.token, json: { answers: { [questions[0].id]: 1 } } });
   assert.equal(partial.data.data.completed, false);
   assert.equal(partial.data.data.results[0].correct, true);
 
-  const rest = await api("/api/passport/sites/palais-royaux-abomey/quiz", { token: user.token, json: { answers: { [questions[1].id]: 2, [questions[2].id]: 2 } } });
+  const rest = await api("/api/passport/sites/palais-royaux-abomey/quiz", { token: user.token, json: { answers: { [questions[1].id]: 2, [questions[2].id]: 2, [questions[3].id]: 1, [questions[4].id]: 1 } } });
   assert.equal(rest.data.data.completed, true);
   assert.equal(rest.data.data.stamp_created, true);
   assert.equal(rest.data.data.results[0].correct, false, "une mauvaise réponse est corrigée…");
@@ -650,4 +650,20 @@ test("un administrateur peut nommer un autre administrateur, puis lui retirer ce
   assert.equal((await api(`/api/admin/users/${member.user.id}/role`, { token: member.token, method: "PATCH", json: { role: "user" } })).status, 400);
   assert.equal((await api(`/api/admin/users/${member.user.id}/role`, { token: admin.token, method: "PATCH", json: { role: "user" } })).status, 200);
   assert.equal((await api("/api/admin/contributions", { token: member.token })).status, 403);
+});
+
+test("les fiches enrichies exposent chronologie, points à voir et anecdotes", async () => {
+  const site = (await api("/api/sites/palais-royaux-abomey")).data.data;
+  assert.ok(site.chronologie.length >= 5 && site.chronologie.every(item => item.date && item.event));
+  assert.ok(site.a_voir.length >= 3 && site.a_voir.every(item => item.title && item.text));
+  assert.ok(site.saviez_vous.length >= 1);
+  assert.match(site.histoire, /### /, "l'histoire est découpée en intertitres");
+  const admin = await adminLogin();
+  const saved = await api(`/api/admin/sites/${site.id}`, {
+    token: admin.token, method: "PATCH",
+    json: { ...site, cat: site.category, themes: site.themes.map(theme => theme.slug), chronologie_text: "1724 | Prise d'Allada\nSans date", a_voir_text: "Bas-reliefs | À voir", saviez_vous_text: "Une anecdote" }
+  });
+  assert.equal(saved.status, 200);
+  assert.deepEqual(saved.data.data.chronologie, [{ date: "1724", event: "Prise d'Allada" }, { date: "", event: "Sans date" }]);
+  assert.deepEqual(saved.data.data.saviez_vous, ["Une anecdote"]);
 });

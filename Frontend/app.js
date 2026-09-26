@@ -1080,6 +1080,9 @@ async function openSiteForm(mode, siteId){
   document.getElementById('sf-verification').value = site?.verification_status || "verifie";
   document.getElementById('sf-sources').value = (site?.sources || "").split(" ; ").join("\n");
   document.getElementById('sf-featured').checked = Boolean(site?.featured);
+  document.getElementById('sf-chronologie').value = (site?.chronologie || []).map(item => `${item.date} | ${item.event}`).join("\n");
+  document.getElementById('sf-a-voir').value = (site?.a_voir || []).map(item => item.title ? `${item.title} | ${item.text}` : item.text).join("\n");
+  document.getElementById('sf-saviez').value = (site?.saviez_vous || []).join("\n");
   document.querySelectorAll('#sf-themes input').forEach(input => { input.checked = Boolean(site?.themes?.some(theme => (theme.slug || theme) === input.value)); });
 
   if(document.querySelector('.screen.active')?.id !== 'screen-site-form') showScreen('screen-site-form');
@@ -1095,6 +1098,9 @@ async function saveSiteForm(){
     verification_status: document.getElementById('sf-verification').value,
     sources: document.getElementById('sf-sources').value.trim(),
     featured: document.getElementById('sf-featured').checked,
+    chronologie_text: document.getElementById('sf-chronologie').value,
+    a_voir_text: document.getElementById('sf-a-voir').value,
+    saviez_vous_text: document.getElementById('sf-saviez').value,
     themes: [...document.querySelectorAll('#sf-themes input:checked')].map(input => input.value)
   });
   if(!data.name || !data.country){ alert("Le nom et le pays sont obligatoires."); return; }
@@ -1250,9 +1256,13 @@ function renderDetailBasics(s){
   hero.style.backgroundImage = s.media_type === "image" && s.media_url
     ? `linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.65)),url("${mediaSrc(s.media_url)}")`
     : "";
-  ['description','communities','histoire','culture','savoirs','langues','personnalites','infos_pratiques'].forEach(field=>{
+  ['communities','langues','personnalites','infos_pratiques'].forEach(field=>{
     document.getElementById('detail-' + field).textContent = s[field] || "—";
   });
+  ['description','histoire','culture','savoirs'].forEach(field=>{
+    document.getElementById('detail-' + field).innerHTML = richText(s[field]);
+  });
+  renderSiteExtras(s);
   const sources = document.getElementById('detail-sources');
   sources.innerHTML = (s.sources || "").split(" ; ").filter(Boolean).map(source => `<li>${esc(source)}</li>`).join("") || "<li>—</li>";
   document.getElementById('detail-documented').textContent = s.documented_by || "Équipe Kitoko Afrika";
@@ -1283,6 +1293,31 @@ function renderDetailBasics(s){
   document.getElementById('detail-related-block').hidden = true;
   document.getElementById('detail-passport').innerHTML = "";
   document.getElementById('fav-btn').classList.toggle('active', favorites.has(s.id));
+}
+
+// Texte long : paragraphes séparés par une ligne vide, « ### » pour un intertitre.
+function richText(text){
+  if(!text) return "<p>—</p>";
+  return String(text).split(/\n\s*\n/).map(block => {
+    const trimmed = block.trim();
+    if(trimmed.startsWith("### ")) {
+      const [title, ...rest] = trimmed.split("\n");
+      return `<h4>${esc(title.slice(4))}</h4>${rest.length ? `<p>${esc(rest.join(" "))}</p>` : ""}`;
+    }
+    return `<p>${esc(trimmed).replace(/\n/g, "<br>")}</p>`;
+  }).join("");
+}
+
+function renderSiteExtras(site){
+  const chrono = site.chronologie || [];
+  document.getElementById('detail-chrono-block').hidden = !chrono.length;
+  document.getElementById('detail-chrono').innerHTML = chrono.map(item => `<li><span class="timeline-date">${esc(item.date)}</span><span class="timeline-event">${esc(item.event)}</span></li>`).join("");
+  const places = site.a_voir || [];
+  document.getElementById('detail-a-voir-block').hidden = !places.length;
+  document.getElementById('detail-a-voir').innerHTML = places.map(item => `<li>${item.title ? `<strong>${esc(item.title)}</strong>` : ""}<span>${esc(item.text)}</span></li>`).join("");
+  const facts = site.saviez_vous || [];
+  document.getElementById('detail-saviez-block').hidden = !facts.length;
+  document.getElementById('detail-saviez').innerHTML = facts.map(fact => `<p>${esc(fact)}</p>`).join("");
 }
 
 function mediaElement(item, label){

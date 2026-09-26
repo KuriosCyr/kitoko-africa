@@ -303,16 +303,33 @@ module.exports = [
     longitude: -9.1000,
     radius: 1500,
     themes: ["musiques-danses", "langues", "royaumes"],
-    description: "À Niagassola est conservé le Sosso-Bala, un balafon sacré que la tradition fait remonter au XIIIe siècle. Il est gardé par la famille Kouyaté, lignée de griots liée à l'histoire de l'empire du Mali.",
-    histoire: "Selon l'épopée mandingue, le balafon appartenait à Soumaoro Kanté, roi du Sosso. Après la bataille de Kirina (vers 1235), où Soundiata Keïta vainquit Soumaoro, l'instrument passa au griot Balla Fasséké Kouyaté. Ses descendants le gardent depuis. L'UNESCO a proclamé « l'espace culturel du Sosso-Bala » chef-d'œuvre du patrimoine oral et immatériel de l'humanité en 2001.",
-    culture: "Le Sosso-Bala n'est joué qu'en de rares occasions, sous l'autorité du Balatigui (gardien du balafon). Il symbolise la fonction des griots : conserver la mémoire, les généalogies et les paroles fondatrices de la société mandingue.",
-    savoirs: "Art du balafon, récitation de l'épopée de Soundiata, généalogies, savoirs des griots (djéli).",
-    communities: "Famille Kouyaté de Niagassola, griots du Manding.",
+    description: "Dans le village de Niagassola, en Haute-Guinée, près de la frontière malienne, est conservé l'un des instruments de musique les plus célèbres d'Afrique : le Sosso-Bala, un balafon sacré que la tradition fait remonter au XIIIe siècle et au roi Soumaoro Kanté.\n\nGardé depuis des siècles par la famille Kouyaté, lignée de griots liée à la fondation de l'empire du Mali, il incarne toute une culture : celle de la parole, de la mémoire et de la musique mandingues. L'UNESCO l'a reconnu comme l'un des premiers chefs-d'œuvre du patrimoine oral et immatériel de l'humanité.",
+    histoire: "### Le balafon d'un roi\nAu début du XIIIe siècle, Soumaoro Kanté règne sur le royaume du Sosso, puissant État de la région. Roi-forgeron réputé pour ses pouvoirs, il possède, selon l'épopée, un balafon magique qu'il garde jalousement et dont lui seul peut jouer.\n\n### Soundiata et Balla Fasséké\nFace à Soumaoro se dresse Soundiata Keïta, prince du Manding. Son griot, Balla Fasséké Kouyaté, est envoyé auprès de Soumaoro. Selon l'épopée, il pénètre dans la chambre secrète du roi et joue du balafon avec un tel talent que Soumaoro, séduit, le garde à son service. Vers 1235, à la bataille de Kirina, Soundiata remporte la victoire sur Soumaoro. L'empire du Mali est fondé, et le balafon revient à Balla Fasséké.\n\n### Huit siècles de garde\nDepuis, les descendants de Balla Fasséké, les Kouyaté, gardent le Sosso-Bala. La tradition veut que l'instrument ait été conservé à Niagassola, sous l'autorité d'un gardien, le Balatigui. Le balafon n'est pas un objet de musée : il est entretenu, protégé et joué selon des règles précises, lors d'occasions exceptionnelles.\n\n### Une reconnaissance mondiale\nEn 2001, l'UNESCO proclame « l'espace culturel du Sosso-Bala » chef-d'œuvre du patrimoine oral et immatériel de l'humanité, parmi les tout premiers éléments distingués dans le monde. Il est inscrit en 2008 sur la liste représentative du patrimoine culturel immatériel. Cette reconnaissance s'accompagne d'un plan de sauvegarde : transmission du savoir musical, formation de jeunes joueurs et protection de l'instrument.",
+    culture: "Le Sosso-Bala est le symbole de la fonction des griots (djéli) dans la société mandingue. Les griots sont les gardiens de la parole : ils conservent les généalogies, racontent l'histoire des familles et des royaumes, conseillent, négocient, célèbrent. Sans eux, l'histoire de l'empire du Mali ne nous serait pas parvenue telle que nous la connaissons.\n\nL'épopée de Soundiata, transmise de génération en génération par les griots, est l'un des grands récits fondateurs de l'Afrique de l'Ouest. Elle est racontée dans toute la région mandingue, en Guinée, au Mali, au Sénégal, en Gambie et au-delà.\n\nPour les habitants de Niagassola, le balafon est à la fois un objet sacré, une fierté et une responsabilité : il relie la communauté à ses ancêtres et à l'histoire de tout un empire.",
+    savoirs: "### Le balafon\nLe balafon est un xylophone africain : des lames de bois sont posées sur un cadre, et sous chaque lame est suspendue une calebasse qui amplifie le son. Sa fabrication demande de choisir les bois, d'accorder les lames une à une et d'ajuster les calebasses. Le Sosso-Bala, très ancien, fait l'objet de soins particuliers.\n\n### La parole des griots\nLa djéliya, l'art des griots, associe musique, chant, récitation et maîtrise de la langue. Elle s'apprend longuement, au sein des familles de griots, par l'écoute et la répétition. Les récits se transmettent de maître à élève, avec leurs variantes selon les lignées.\n\n### La transmission\nLe plan de sauvegarde lié à la reconnaissance de l'UNESCO a notamment porté sur la formation de jeunes musiciens au jeu du balafon et sur la transmission des récits associés.",
+    communities: "Famille Kouyaté de Niagassola, Balatigui (gardien du balafon), griots du Manding, habitants de Niagassola.",
     langues: "Malinké (maninkakan), français",
-    personnalites: "Soundiata Keïta, Soumaoro Kanté, Balla Fasséké Kouyaté.",
-    infos_pratiques: "L'instrument n'est pas exposé en permanence : toute visite se prépare avec la famille gardienne et les autorités locales.",
+    personnalites: "Soundiata Keïta, fondateur de l'empire du Mali ; Soumaoro Kanté, roi du Sosso ; Balla Fasséké Kouyaté, griot de Soundiata ; Djibril Tamsir Niane, historien guinéen qui a fait connaître l'épopée au monde entier.",
+    infos_pratiques: "Le balafon n'est pas exposé en permanence et n'est joué qu'en de rares occasions. Toute visite se prépare à l'avance avec la famille gardienne et les autorités locales, en passant par une personne-ressource. Niagassola se trouve dans la préfecture de Siguiri, en Haute-Guinée : prévoir un long trajet par la route.",
+    chronologie: [
+      ["Début du XIIIe siècle", "Soumaoro Kanté règne sur le royaume du Sosso."],
+      ["Vers 1235", "Bataille de Kirina : Soundiata Keïta l'emporte ; fondation de l'empire du Mali. Le balafon passe à Balla Fasséké Kouyaté."],
+      ["Depuis", "Les Kouyaté gardent le Sosso-Bala, à Niagassola selon la tradition."],
+      ["1960", "Djibril Tamsir Niane publie « Soundjata ou l'épopée mandingue »."],
+      ["2001", "L'UNESCO proclame l'espace culturel du Sosso-Bala chef-d'œuvre du patrimoine oral et immatériel."],
+      ["2008", "Inscription sur la liste représentative du patrimoine culturel immatériel de l'humanité."]
+    ],
+    a_voir: [
+      ["Le village de Niagassola", "Le cadre de vie de la famille gardienne, au cœur du pays mandingue."],
+      ["Le lieu de conservation du balafon", "Uniquement avec l'accord de la famille Kouyaté et selon les règles fixées par le Balatigui."],
+      ["Les musiciens", "Écouter les balafonistes et les griots de la région, qui perpétuent la tradition."]
+    ],
+    saviez_vous: [
+      "Le Sosso-Bala fait partie des tout premiers éléments distingués par l'UNESCO en 2001 comme chefs-d'œuvre du patrimoine oral et immatériel de l'humanité.",
+      "Une explication populaire rattache le nom « Kouyaté » à une phrase de Soundiata à son griot, signifiant qu'il existe « un secret » entre eux : un lien de confiance que la famille a gardé au fil des siècles."
+    ],
     sources: [
-      "UNESCO — L'espace culturel du Sosso-Bala (proclamation 2001)",
+      "UNESCO — L'espace culturel du Sosso-Bala (proclamation 2001, liste représentative 2008)",
       "Djibril Tamsir Niane, Soundjata ou l'épopée mandingue, Présence africaine, 1960"
     ],
     recits: [
@@ -320,12 +337,19 @@ module.exports = [
         title: "Le balafon de Soumaoro",
         nature: "tradition_orale",
         body: "L'épopée raconte que Balla Fasséké, griot envoyé auprès de Soumaoro, entra en secret dans la chambre où le roi gardait son balafon magique et se mit à en jouer. Soumaoro, charmé par son talent, le garda à son service. Après la victoire de Soundiata à Kirina, le balafon revint au griot et à ses descendants, les Kouyaté, qui le gardent encore à Niagassola."
+      },
+      {
+        title: "Les griots, mémoire du Manding",
+        nature: "tradition_orale",
+        body: "Dans la tradition mandingue, on dit que « le griot est le sac à paroles » de la société : il garde en mémoire les noms, les exploits et les alliances des familles. Chaque récit de l'épopée de Soundiata commence souvent par rappeler la chaîne des maîtres qui l'ont transmis, pour garantir la fidélité de la parole."
       }
     ],
     quiz: [
       { question: "Quelle famille garde le Sosso-Bala ?", choices: ["Les Kouyaté", "Les Keïta", "Les Diallo"], answer: 0, explanation: "Les Kouyaté, descendants du griot Balla Fasséké, gardent le balafon à Niagassola." },
       { question: "Quelle bataille, vers 1235, marque la victoire de Soundiata Keïta sur Soumaoro Kanté ?", choices: ["Kirina", "Tondibi", "Adoua"], answer: 0, explanation: "La bataille de Kirina ouvre la fondation de l'empire du Mali. Tondibi (1591) marque la chute de l'empire songhaï ; Adoua (1896), une victoire éthiopienne sur l'Italie." },
-      { question: "Quel livre a fait connaître l'épopée de Soundiata au grand public ?", choices: ["Soundjata ou l'épopée mandingue, de Djibril Tamsir Niane", "L'Aventure ambiguë, de Cheikh Hamidou Kane", "Le Monde s'effondre, de Chinua Achebe"], answer: 0, explanation: "Publié en 1960, le livre de l'historien guinéen Djibril Tamsir Niane transcrit le récit du griot Mamadou Kouyaté." }
+      { question: "Quel livre a fait connaître l'épopée de Soundiata au grand public ?", choices: ["Soundjata ou l'épopée mandingue, de Djibril Tamsir Niane", "L'Aventure ambiguë, de Cheikh Hamidou Kane", "Le Monde s'effondre, de Chinua Achebe"], answer: 0, explanation: "Publié en 1960, le livre de l'historien guinéen Djibril Tamsir Niane transcrit le récit du griot Mamadou Kouyaté." },
+      { question: "Qu'est-ce qu'un balafon ?", choices: ["Un tambour en peau de chèvre", "Un xylophone à lames de bois et calebasses", "Une harpe à cordes"], answer: 1, explanation: "Le balafon est un xylophone : des lames de bois posées sur un cadre, avec des calebasses qui amplifient le son." },
+      { question: "En quelle année l'UNESCO a-t-il proclamé l'espace culturel du Sosso-Bala chef-d'œuvre du patrimoine oral et immatériel ?", choices: ["1960", "2001", "2020"], answer: 1, explanation: "La proclamation date de 2001 ; l'élément a été inscrit sur la liste représentative en 2008." }
     ]
   },
   {

@@ -28,6 +28,8 @@ addColumnIfMissing("contributions", "credit_name", "TEXT");
 addColumnIfMissing("contributions", "nature", "TEXT");
 addColumnIfMissing("sites", "slug", "TEXT");
 addColumnIfMissing("sites", "infos_pratiques", "TEXT");
+// Rubriques complémentaires (JSON) : repères chronologiques, à voir sur place, le saviez-vous.
+addColumnIfMissing("sites", "extras", "TEXT");
 addColumnIfMissing("sites", "documented_by", "TEXT");
 addColumnIfMissing("sites", "verification_status", "TEXT NOT NULL DEFAULT 'verifie'");
 addColumnIfMissing("sites", "checkin_radius_m", "INTEGER NOT NULL DEFAULT 500");

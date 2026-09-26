@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS sites (
     featured INTEGER NOT NULL DEFAULT 0,
     slug TEXT,
     infos_pratiques TEXT,
+    extras TEXT,
     documented_by TEXT,
     verification_status TEXT NOT NULL DEFAULT 'verifie',
     checkin_radius_m INTEGER NOT NULL DEFAULT 500,

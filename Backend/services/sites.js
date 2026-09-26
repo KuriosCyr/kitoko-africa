@@ -19,6 +19,7 @@ const SITE_SELECT = `
     s.langues,
     s.personnalites,
     s.infos_pratiques,
+    s.extras,
     s.documented_by,
     s.latitude,
     s.longitude,
@@ -48,11 +49,30 @@ const SITE_SELECT = `
   JOIN categories cat ON cat.id = s.category_id
 `;
 
+// Rubriques complémentaires, stockées ensemble en JSON.
+function parseExtras(value) {
+  let extras = {};
+  try { extras = value ? JSON.parse(value) : {}; } catch (error) { extras = {}; }
+  return {
+    chronologie: Array.isArray(extras.chronologie) ? extras.chronologie : [],
+    a_voir: Array.isArray(extras.a_voir) ? extras.a_voir : [],
+    saviez_vous: Array.isArray(extras.saviez_vous) ? extras.saviez_vous : []
+  };
+}
+
+function setSiteExtras(siteId, { chronologie = [], a_voir = [], saviez_vous = [] } = {}) {
+  const clean = list => (Array.isArray(list) ? list : []).filter(Boolean).slice(0, 40);
+  db.prepare("UPDATE sites SET extras = ? WHERE id = ?").run(JSON.stringify({
+    chronologie: clean(chronologie), a_voir: clean(a_voir), saviez_vous: clean(saviez_vous)
+  }), siteId);
+}
+
 function serializeSite(row) {
   if (!row) return row;
-  const { media_path: mediaPath, theme_slugs: themeSlugs, ...site } = row;
+  const { media_path: mediaPath, theme_slugs: themeSlugs, extras, ...site } = row;
   return {
     ...site,
+    ...parseExtras(extras),
     featured: Boolean(site.featured),
     sources: site.sources || "",
     themes: themeSlugs ? themeSlugs.split(",") : [],
@@ -194,6 +214,7 @@ function backfillSiteIdentifiers() {
 }
 
 module.exports = {
+  setSiteExtras,
   listSites,
   findSite,
   siteDetails,

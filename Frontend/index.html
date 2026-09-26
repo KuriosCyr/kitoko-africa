@@ -185,7 +185,8 @@
       <div id="detail-status" class="verification-banner" hidden></div>
       <div id="detail-media" class="detail-media" aria-live="polite"></div>
       <div class="dpane active" id="pane-apercu">
-        <div class="dblock"><h3>Description</h3><p id="detail-description">—</p></div>
+        <div class="dblock"><h3>Description</h3><div class="rich" id="detail-description">—</div></div>
+        <aside class="did-you-know" id="detail-saviez-block" hidden><h3>Le saviez-vous ?</h3><div id="detail-saviez"></div></aside>
         <div class="detail-actions">
           <a class="action-btn" id="detail-directions" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#navigation"></use></svg> Itinéraire</a>
           <button class="action-btn" type="button" onclick="shareCurrentSite()"><svg class="ico" aria-hidden="true"><use href="#share-2"></use></svg> Partager</button>
@@ -193,15 +194,17 @@
           <button class="action-btn" type="button" id="detail-trip-btn" onclick="toggleMyTrip(currentSiteId)"><svg class="ico" aria-hidden="true"><use href="#plus"></use></svg> Mon itinéraire</button>
         </div>
         <div class="theme-chips" id="detail-themes"></div>
+        <div class="dblock" id="detail-a-voir-block" hidden><h3>À voir sur place</h3><ul class="a-voir-list" id="detail-a-voir"></ul></div>
         <div class="dblock"><h3>Communautés / structures associées</h3><p id="detail-communities">—</p></div>
         <div class="dblock"><h3>Informations pratiques</h3><p id="detail-infos_pratiques">—</p></div>
         <div class="dblock" id="detail-partners-block" hidden><h3>Acteurs locaux</h3><p class="pane-intro">Guides, artisans, tables et hébergements partenaires. Faites tamponner votre passeport chez eux.</p><div id="detail-partners" class="partner-list"></div></div>
         <div class="dblock" id="detail-related-block" hidden><h3>Lieux associés à proximité</h3><div id="detail-related" class="related-list"></div></div>
       </div>
       <div class="dpane" id="pane-histoire">
-        <div class="dblock"><h3>Histoire et contexte</h3><p id="detail-histoire">—</p></div>
-        <div class="dblock"><h3>Importance culturelle et historique</h3><p id="detail-culture">—</p></div>
-        <div class="dblock"><h3>Savoirs et pratiques associés</h3><p id="detail-savoirs">—</p></div>
+        <div class="dblock"><h3>Histoire et contexte</h3><div class="rich" id="detail-histoire">—</div></div>
+        <div class="dblock" id="detail-chrono-block" hidden><h3>Repères chronologiques</h3><ol class="timeline" id="detail-chrono"></ol></div>
+        <div class="dblock"><h3>Importance culturelle et historique</h3><div class="rich" id="detail-culture">—</div></div>
+        <div class="dblock"><h3>Savoirs et pratiques associés</h3><div class="rich" id="detail-savoirs">—</div></div>
         <div class="dblock"><h3>Personnalités ou événements associés</h3><p id="detail-personnalites">—</p></div>
       </div>
       <div class="dpane" id="pane-recits">
@@ -561,6 +564,10 @@
       <div class="field"><label>Langue(s) disponible(s)</label><input type="text" id="sf-langues"></div>
       <div class="field"><label>Personnalités associées</label><input type="text" id="sf-personnalites"></div>
       <div class="field"><label>Informations pratiques et accès</label><textarea id="sf-infos"></textarea></div>
+      <p class="form-note">Textes longs : laissez une ligne vide entre les paragraphes ; une ligne commençant par « ### » devient un intertitre.</p>
+      <div class="field"><label>Repères chronologiques</label><textarea id="sf-chronologie" placeholder="Une date par ligne : 1727 | Conquête de Ouidah par le Danxomè"></textarea></div>
+      <div class="field"><label>À voir sur place</label><textarea id="sf-a-voir" placeholder="Un lieu par ligne : Les bas-reliefs | Description…"></textarea></div>
+      <div class="field"><label>Le saviez-vous ?</label><textarea id="sf-saviez" placeholder="Une anecdote par ligne"></textarea></div>
       <div class="field"><label>Sources et références</label><textarea id="sf-sources" placeholder="Une source par ligne"></textarea></div>
       <div class="field"><label>Structure ou personne ayant documenté la fiche</label><input type="text" id="sf-documented"></div>
       <div class="field"><label class="checkbox-label"><input type="checkbox" id="sf-featured"> Mettre en avant sur l'accueil</label></div>

@@ -1,5 +1,5 @@
 const db = require("../config/database");
-const { setSiteSources, setSiteThemes, uniqueSlug, newCheckinCode, backfillSiteIdentifiers } = require("../services/sites");
+const { setSiteSources, setSiteThemes, setSiteExtras, uniqueSlug, newCheckinCode, backfillSiteIdentifiers } = require("../services/sites");
 const { COUNTRIES, ALL_AFRICA_COUNTRIES, SITES: DRAFT_SITES } = require("./seed-data");
 const { CATEGORIES, THEMES } = require("./content/themes");
 const PROTOTYPE_SITES = [...require("./content/benin"), ...require("./content/guinee")];
@@ -109,6 +109,11 @@ function seed({ log = console.log, update = false } = {}) {
 
       setSiteSources(site.id, site.sources.join("\n"));
       setSiteThemes(site.id, site.themes);
+      setSiteExtras(site.id, {
+        chronologie: (site.chronologie || []).map(([date, event]) => ({ date, event })),
+        a_voir: (site.a_voir || []).map(([title, text]) => ({ title, text })),
+        saviez_vous: site.saviez_vous || []
+      });
       stats.photos += seedSitePhotos(site.id, site.slug);
 
       // Quiz et récits d'origine (les récits issus de contributions sont conservés).

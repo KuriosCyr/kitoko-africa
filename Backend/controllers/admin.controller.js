@@ -2,7 +2,7 @@ const QRCode = require("qrcode");
 const db = require("../config/database");
 const { publicUrl } = require("../config/env");
 const {
-  listSites: listAllSites, findSite, siteDetails, setSiteSources, setSiteThemes, uniqueSlug, newCheckinCode
+  listSites: listAllSites, findSite, siteDetails, setSiteSources, setSiteThemes, setSiteExtras, uniqueSlug, newCheckinCode
 } = require("../services/sites");
 const { publishMediaFile, unpublishMediaFile, deleteMediaFile } = require("../services/media");
 const { prepareUploadedMedia, removeUploadedFile } = require("../services/media-processing");
@@ -15,6 +15,20 @@ function text(value, maxLength = 20000) {
 }
 
 // Les administrateurs voient aussi les brouillons et le code de visite de secours.
+// Rubriques saisies une entrée par ligne : « date | événement », « titre | texte ».
+function readExtras(input) {
+  const lines = value => String(value || "").split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  const pairs = (value, first, second) => lines(value).map(line => {
+    const [head, ...rest] = line.split("|");
+    return rest.length ? { [first]: head.trim().slice(0, 120), [second]: rest.join("|").trim().slice(0, 1000) } : { [first]: "", [second]: head.trim().slice(0, 1000) };
+  });
+  return {
+    chronologie: pairs(input.chronologie_text, "date", "event"),
+    a_voir: pairs(input.a_voir_text, "title", "text"),
+    saviez_vous: lines(input.saviez_vous_text).map(line => line.slice(0, 1000))
+  };
+}
+
 function listSites(req, res) {
   const extras = new Map(db.prepare("SELECT id, checkin_code, checkin_radius_m FROM sites").all().map(row => [row.id, row]));
   const sites = listAllSites({ publishedOnly: false }).map(site => ({ ...site, ...extras.get(site.id) }));
@@ -71,6 +85,7 @@ function readSiteInput(body) {
     radius: Number.isInteger(radius) && radius >= 50 && radius <= 50000 ? radius : 500,
     sources: text(input.sources),
     themes: Array.isArray(input.themes) ? input.themes.map(String) : [],
+    extras: readExtras(input),
     ...fields
   };
 }
@@ -92,6 +107,7 @@ const saveNewSite = db.transaction((site, ownerId) => {
   );
   setSiteSources(result.lastInsertRowid, site.sources);
   setSiteThemes(result.lastInsertRowid, site.themes);
+  setSiteExtras(result.lastInsertRowid, site.extras);
   return result.lastInsertRowid;
 });
 
@@ -112,6 +128,7 @@ const saveExistingSite = db.transaction((siteId, site) => {
   );
   setSiteSources(siteId, site.sources);
   setSiteThemes(siteId, site.themes);
+  setSiteExtras(siteId, site.extras);
 });
 
 function createSite(req, res) {
