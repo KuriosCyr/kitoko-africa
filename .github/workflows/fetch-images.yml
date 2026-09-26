@@ -1,0 +1,39 @@
+name: Photos Wikimedia
+
+# Télécharge les photos libres de droits des sites (avec leurs crédits) et
+# les enregistre dans le dépôt. Se relance quand la liste des recherches change.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - Backend/db/content/images-manifest.json
+      - tools/fetch-images.js
+      - .github/workflows/fetch-images.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-images-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Installer sharp
+        run: npm ci --prefix Backend --omit=dev
+      - name: Télécharger les photos
+        run: node tools/fetch-images.js
+      - name: Enregistrer dans le dépôt
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Backend/db/content/images Backend/db/content/images.json
+          if git diff --cached --quiet; then echo "Aucun changement"; exit 0; fi
+          git commit -m "Photos Wikimedia des sites (automatique)"
+          git push
