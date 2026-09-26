@@ -317,7 +317,8 @@
         <div class="setting-row"><span>Hors connexion</span><span class="sv">Fiches consultées disponibles</span></div>
         <div class="setting-row" onclick="showScreen('screen-about')"><span>À propos de Kitoko Afrika</span><span class="sv">›</span></div>
         <div class="setting-row" onclick="showScreen('screen-privacy')"><span>Confidentialité et conditions</span><span class="sv">›</span></div>
-        <div class="setting-row" onclick="showScreen('screen-partner-apply')"><span>Devenir partenaire</span><span class="sv">›</span></div>
+        <div class="setting-row visitor-entry" onclick="showScreen('screen-partner-apply')"><span>Devenir partenaire</span><span class="sv">›</span></div>
+        <div class="setting-row admin-entry" onclick="openAdminTab('partners')"><span>Gérer les partenaires</span><span class="sv">›</span></div>
         <div class="setting-row" onclick="showScreen('screen-contact')"><span>Contact</span><span class="sv">›</span></div>
         <div class="setting-row admin-entry" onclick="showScreen('screen-admin')"><span>Espace modération</span><span class="sv">›</span></div>
         <div class="setting-row logout-row" onclick="logout()"><span>Se déconnecter</span><span class="sv">›</span></div>
@@ -370,7 +371,12 @@
     </div>
     <div class="itinerary-body">
       <div id="partner-directory" class="partner-list"></div>
-      <div class="partner-cta">
+      <div class="partner-cta admin-entry">
+        <p><strong>Espace administrateur.</strong> Ajoutez directement un guide, un artisan, une table ou un hébergement, ou examinez les candidatures en attente.</p>
+        <button class="cta-btn" onclick="openPartnerForm()">Ajouter un partenaire</button>
+        <button class="ghost-btn on-dark" onclick="openAdminTab('partners')">Voir les candidatures</button>
+      </div>
+      <div class="partner-cta visitor-entry">
         <p><strong>Vous êtes guide, artisan, restaurateur, hébergeur, producteur ou porteur d'une activité communautaire ?</strong> Rejoignez le réseau Kitoko Afrika et accueillez les voyageurs du passeport.</p>
         <button class="cta-btn" onclick="showScreen('screen-partner-apply')">Devenir partenaire</button>
       </div>

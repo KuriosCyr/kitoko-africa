@@ -791,3 +791,5 @@
   .flag-marquee-item.is-soon{opacity:.5;font-weight:500;}
   .flag-marquee-item.is-soon .marquee-flag{filter:grayscale(1);}
   .flag-marquee-item.is-open + .flag-marquee-item.is-soon{margin-left:14px;padding-left:24px;border-left:1px solid var(--sand-dim);}
+
+  .ghost-btn.on-dark{color:var(--sand);border-color:rgba(255,255,255,.35);background:transparent;}

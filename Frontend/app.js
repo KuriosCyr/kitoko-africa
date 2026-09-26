@@ -175,9 +175,17 @@ function openMenu(){ document.getElementById('menu-overlay').classList.add('open
 function closeMenu(){ document.getElementById('menu-overlay').classList.remove('open'); document.getElementById('menu-drawer').classList.remove('open'); }
 function menuGo(id){ showScreen(id); }
 
+// Les administrateurs gèrent directement (espace modération) ce que les
+// visiteurs proposent (candidature partenaire…) : chacun voit ses propres accès.
 function updateAdminVisibility(){
   const visible = Boolean(authToken && currentUser?.role === "admin");
   document.querySelectorAll('.admin-entry').forEach(item => { item.hidden = !visible; });
+  document.querySelectorAll('.visitor-entry').forEach(item => { item.hidden = visible; });
+}
+
+function openAdminTab(tab){
+  showScreen('screen-admin');
+  switchAdminTab(tab);
 }
 
 function renderHome(){
