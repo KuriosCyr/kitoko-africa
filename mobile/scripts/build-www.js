@@ -17,13 +17,28 @@ if (!/^https:\/\//.test(apiOrigin)) {
   if (!(process.env.ALLOW_HTTP === "1" && /^http:\/\//.test(apiOrigin))) process.exit(1);
 }
 
+// Version de l'APK et dépôt où sont publiées les nouvelles versions
+// (l'application prévient quand une version plus récente existe).
+const appVersion = (process.env.APP_VERSION_NAME || "").trim();
+const updateRepo = (process.env.KITOKO_UPDATE_REPO || process.env.GITHUB_REPOSITORY || "").trim();
+
 const source = path.join(__dirname, "..", "..", "Frontend");
 const target = path.join(__dirname, "..", "www");
 fs.rmSync(target, { recursive: true, force: true });
 fs.cpSync(source, target, { recursive: true });
 
 fs.writeFileSync(path.join(target, "config.js"), `// Généré par mobile/scripts/build-www.js — ne pas modifier.
-window.KITOKO_CONFIG = ${JSON.stringify({ apiOrigin, publicUrl, nativeApp: true }, null, 2)};
+window.KITOKO_CONFIG = ${JSON.stringify({ apiOrigin, publicUrl, nativeApp: true, appVersion, updateRepo }, null, 2)};
 `);
 
-console.log(`✅ www/ prêt (API : ${apiOrigin}, liens publics : ${publicUrl})`);
+// Contenus et photos embarqués pour l'utilisation hors connexion.
+require("./build-offline-data").buildOfflineData(target)
+  .then(({ sites, media }) => {
+    console.log(`✅ Hors connexion : ${sites} fiches et ${media} photos embarquées`);
+    console.log(`✅ www/ prêt (API : ${apiOrigin}, liens publics : ${publicUrl})`);
+    process.exit(0);
+  })
+  .catch(error => {
+    console.error("❌ Instantané hors connexion impossible (lancer d'abord : cd Backend && npm ci)", error);
+    process.exit(1);
+  });

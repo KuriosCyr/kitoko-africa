@@ -65,7 +65,11 @@ function esc(value){
   return String(value ?? "").replace(/[&<>"']/g, char => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]));
 }
 
-function mediaSrc(url){ return url ? API_ORIGIN + url : ""; }
+// Photos livrées avec l'application mobile : affichées même sans réseau.
+function mediaSrc(url){
+  if(!url) return "";
+  return window.KitokoOffline?.localMedia(url) || API_ORIGIN + url;
+}
 
 
 let currentCountry = "Bénin";
@@ -1233,8 +1237,10 @@ async function openDetail(id, options = {}){
   requestAnimationFrame(updateReadingProgress);
   if(document.querySelector('.screen.active')?.id !== 'screen-detail') showScreen('screen-detail');
   // Une fiche s'ouvre toujours en haut : photo, titre puis contenu.
-  scrollScreenToTop(document.getElementById('screen-detail'));
-  requestAnimationFrame(() => scrollScreenToTop(document.getElementById('screen-detail')));
+  if(!options.keepScroll){
+    scrollScreenToTop(document.getElementById('screen-detail'));
+    requestAnimationFrame(() => scrollScreenToTop(document.getElementById('screen-detail')));
+  }
   if(options.updateUrl !== false) setSiteUrl(s.slug);
 
   try {
@@ -1579,6 +1585,7 @@ async function logout(){
       console.warn("Déconnexion API impossible, suppression locale uniquement.", error);
     }
   }
+  window.KitokoOffline?.clearUserData();
   storeToken(null);
   authToken = null;
   isLoggedIn = false;
@@ -1608,6 +1615,10 @@ async function bootstrap(){
   ['admin-status-filter','admin-country-filter','admin-from-filter','admin-to-filter'].forEach(id => document.getElementById(id)?.addEventListener('change', loadFilteredAdminContributions));
   document.getElementById('detail-body')?.addEventListener('scroll', updateReadingProgress, { passive: true });
   window.addEventListener('scroll', updateReadingProgress, { passive: true });
+  if(window.KitokoOffline){
+    await window.KitokoOffline.ready;
+    window.KitokoOffline.onReconnect(refreshAfterReconnect);
+  }
   await loadKitokoData();
   buildAdminCountryFilter();
   await restoreAuthSession();
@@ -1624,6 +1635,27 @@ async function bootstrap(){
   await loadStampedSites();
   openSiteFromUrl();
   registerServiceWorker();
+  checkAppUpdate();
+}
+
+// Retour du réseau : on recharge les données et l'écran affiché, sans avoir
+// à fermer l'application.
+async function refreshAfterReconnect(){
+  await loadKitokoData();
+  await restoreAuthSession();
+  buildMapAndCountryChips();
+  renderChips();
+  renderList();
+  renderHome();
+  updateAdminVisibility();
+  await loadStampedSites();
+  const active = document.querySelector('.screen.active')?.id;
+  if(active === 'screen-detail' && currentSiteId){
+    const tab = document.querySelector('.dtab.active')?.dataset.pane || 'apercu';
+    openDetail(currentSiteId, { tab, updateUrl: false, keepScroll: true });
+  } else if(active && active !== 'screen-home'){
+    showScreen(active, { skipHistory: true });
+  }
 }
 
 // Ouvre la fiche demandée dans l'adresse : lien partagé (?site=slug) ou
@@ -1641,6 +1673,43 @@ function openSiteFromUrl(){
   const scanned = params.get('scan') === '1';
   openDetail(site.id, { tab: scanned ? 'passeport' : 'apercu', updateUrl: false });
   if(scanned) arrivedFromQr = true;
+}
+
+// Application Android : prévient quand une version plus récente de l'APK est
+// publiée, avec un bouton pour la télécharger (plus besoin de renvoyer le fichier).
+async function checkAppUpdate(){
+  const { nativeApp, appVersion, updateRepo } = window.KITOKO_CONFIG || {};
+  if(!nativeApp || !appVersion || !updateRepo || sessionStorage.getItem('kitoko_update_dismissed')) return;
+  try {
+    const response = await fetch(`https://api.github.com/repos/${updateRepo}/releases/tags/apk-demo`);
+    if(!response.ok) return;
+    const release = await response.json();
+    const latest = /version (\d+(?:\.\d+)+)/.exec(release.body || "")?.[1];
+    const asset = (release.assets || []).find(item => /\.apk$/.test(item.name));
+    if(!latest || !asset || compareVersions(latest, appVersion) <= 0) return;
+    const note = document.createElement('div');
+    note.className = 'update-note';
+    note.setAttribute('role', 'status');
+    note.innerHTML = `<span>Nouvelle version de l'application disponible (${esc(latest)}).</span>
+      <a class="update-note-btn" href="${esc(asset.browser_download_url)}" target="_blank" rel="noopener">Mettre à jour</a>
+      <button type="button" class="update-note-close" aria-label="Plus tard">${ico("x")}</button>`;
+    // Dans l'application, une navigation vers une autre adresse s'ouvre dans le navigateur du téléphone.
+    note.querySelector('.update-note-btn').onclick = event => { event.preventDefault(); window.location.href = asset.browser_download_url; };
+    note.querySelector('.update-note-close').onclick = () => {
+      try { sessionStorage.setItem('kitoko_update_dismissed', '1'); } catch(error) { /* rien */ }
+      note.remove();
+    };
+    document.body.appendChild(note);
+  } catch(error) { /* hors connexion : on vérifiera au prochain lancement */ }
+}
+
+function compareVersions(a, b){
+  const pa = a.split('.').map(Number), pb = b.split('.').map(Number);
+  for(let i = 0; i < Math.max(pa.length, pb.length); i++){
+    const diff = (pa[i] || 0) - (pb[i] || 0);
+    if(diff) return diff;
+  }
+  return 0;
 }
 
 // Mode hors connexion : les pages et fiches déjà consultées restent disponibles.

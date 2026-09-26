@@ -78,3 +78,9 @@ L'APK appelle par défaut `https://kitoko-afrika.onrender.com`. **Si Render a do
 - Hébergement avec disque permanent (Render payant, un VPS…) : retirer `AUTO_SEED` et `DEMO_MODE`, sauvegardes (`npm run db:backup`).
 - Nom de domaine (ex. `kitokoafrika.org`) et `PUBLIC_URL`.
 - Publication Play Store / App Store : voir [`publication-stores.md`](publication-stores.md).
+
+## Application Android : hors connexion et mises à jour
+
+- **Hors connexion** : l'APK embarque toutes les fiches publiées et leurs photos (instantané de `Backend/db/content`, fabriqué par `mobile/scripts/build-offline-data.js`). Sans réseau, tout reste consultable ; les pages déjà visitées (passeport, favoris…) sont aussi gardées sur le téléphone. Au retour du réseau, les données se rechargent toutes seules.
+- **Ce qui marche sans réseau** : lecture des fiches, photos, itinéraires, carte. **Ce qui demande le réseau** : connexion, tampons du passeport, quiz, contributions.
+- **Mises à jour** : une modification des contenus ou du serveur arrive dans l'application sans nouvel APK. Une modification de l'application elle-même (écrans, style, fonctions) produit automatiquement un nouvel APK ; l'application installée affiche alors « Nouvelle version disponible → Mettre à jour », sans qu'il soit nécessaire de renvoyer le fichier.

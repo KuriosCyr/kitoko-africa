@@ -5,7 +5,7 @@
 // - Les photos et médias publiés sont gardés en cache après consultation.
 // Les requêtes d'écriture (tampons, contributions…) ne sont jamais mises en cache.
 
-const VERSION = "kitoko-v6";
+const VERSION = "kitoko-v7";
 const APP_CACHE = `${VERSION}-app`;
 const DATA_CACHE = `${VERSION}-data`;
 const MEDIA_CACHE = `${VERSION}-media`;
@@ -24,6 +24,7 @@ const APP_SHELL = [
   "passport.js",
   "site-admin.js",
   "explore.js",
+  "offline.js",
   "config.js",
   "confidentialite.html",
   "manifest.webmanifest",

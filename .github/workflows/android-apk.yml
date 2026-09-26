@@ -11,6 +11,7 @@ on:
   push:
     paths:
       - Frontend/**
+      - Backend/db/content/**
       - mobile/**
       - .github/workflows/android-apk.yml
 
@@ -37,6 +38,9 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+      - name: Préparer les contenus hors connexion
+        working-directory: Backend
+        run: npm ci --omit=dev
       - name: Préparer l'application web
         working-directory: mobile
         run: |
