@@ -1,3 +1,5 @@
+const db = require("../config/database");
+const { demoMode } = require("../config/env");
 const { findSite } = require("../services/sites");
 const passport = require("../services/passport");
 
@@ -14,7 +16,10 @@ function getPassport(req, res) {
 function getSitePassport(req, res) {
   const site = loadSite(req, res);
   if (!site) return;
-  res.json({ success: true, data: { ...passport.siteStatus(req.user.id, site.id), questions: passport.publicQuestions(site.id) } });
+  const data = { ...passport.siteStatus(req.user.id, site.id), questions: passport.publicQuestions(site.id) };
+  // En démonstration, le code du site est affiché pour tester la visite sur place à distance.
+  if (demoMode) data.demo_code = db.prepare("SELECT checkin_code FROM sites WHERE id = ?").get(site.id).checkin_code;
+  res.json({ success: true, data });
 }
 
 function checkIn(req, res) {

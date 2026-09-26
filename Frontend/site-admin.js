@@ -56,7 +56,7 @@ function renderSiteTools(site){
       ${site.quiz.map((question, index) => `
         <div class="tool-question">
           <p><strong>${index + 1}. ${esc(question.question)}</strong></p>
-          <ul>${question.choices.map((choice, choiceIndex) => `<li class="${choiceIndex === question.answer_index ? "is-answer" : ""}">${esc(choice)}${choiceIndex === question.answer_index ? " ✓" : ""}</li>`).join("")}</ul>
+          <ul>${question.choices.map((choice, choiceIndex) => `<li class="${choiceIndex === question.answer_index ? "is-answer" : ""}">${esc(choice)}${choiceIndex === question.answer_index ? " (bonne réponse)" : ""}</li>`).join("")}</ul>
           ${question.explanation ? `<p class="form-note">${esc(question.explanation)}</p>` : ""}
           <button class="admin-btn reject" type="button" onclick="deleteQuizQuestion(${question.id}, ${site.id})">Supprimer</button>
         </div>`).join("") || '<p class="pane-empty">Aucune question : le tampon « en ligne » n\'est pas disponible pour ce site.</p>'}

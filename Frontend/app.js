@@ -1,11 +1,39 @@
 const CAT_LABELS = { historique:"Historique", culturel:"Culturel", naturel:"Naturel", savoirs:"Savoirs", memoire:"Mémoire et récits" };
 const CAT_META = {
-  historique: { icon:"🏛️", short:"Histoire", color:"clay" },
-  culturel: { icon:"🎭", short:"Culture", color:"indigo" },
-  naturel: { icon:"🌿", short:"Nature", color:"forest" },
-  savoirs: { icon:"🧺", short:"Savoirs", color:"gold" },
-  memoire: { icon:"🕯️", short:"Mémoire", color:"plum" }
+  historique: { icon:"landmark", short:"Histoire", color:"clay" },
+  culturel: { icon:"drama", short:"Culture", color:"indigo" },
+  naturel: { icon:"trees", short:"Nature", color:"forest" },
+  savoirs: { icon:"book-open", short:"Savoirs", color:"gold" },
+  memoire: { icon:"flame", short:"Mémoire", color:"plum" }
 };
+
+// Icônes (sprite Lucide intégré dans index.html) : identiques sur tous les téléphones,
+// contrairement aux émojis.
+function ico(name, className = ""){
+  return `<svg class="ico${className ? " " + className : ""}" aria-hidden="true"><use href="#${name}"></use></svg>`;
+}
+const THEME_ICONS = {
+  "memoire-traite": "link", royaumes: "crown", resistances: "shield", spiritualites: "sparkles",
+  architecture: "castle", artisanat: "palette", gastronomie: "utensils", "musiques-danses": "drum",
+  festivals: "party-popper", langues: "languages", "faune-flore": "paw-print", eaux: "waves", marches: "shopping-basket"
+};
+const PARTNER_ICONS = { guide: "compass", artisan: "palette", restaurant: "utensils", hebergement: "bed-double", producteur: "wheat", activite: "users" };
+const ITINERARY_ICONS = {
+  "ouidah-route-de-la-memoire": "link", "royaumes-du-sud-benin": "crown", "lacs-et-marches-du-sud-benin": "waves",
+  "atacora-nature-et-architecture": "paw-print", "conakry-memoire-et-vie": "landmark",
+  "fouta-djallon-cascades-et-plateaux": "mountain", "sur-les-traces-du-manding": "drum"
+};
+function themeIcon(slug){ return ico(THEME_ICONS[slug] || "sparkle"); }
+function catIcon(cat){ return ico(CAT_META[cat]?.icon || "sparkle"); }
+function badgeIcon(badge){
+  const slug = badge.slug || "";
+  const byCategory = { "gardien-memoire": "flame", historien: "landmark", "curieux-cultures": "drama", "ami-nature": "trees", "passeur-savoirs": "book-open" };
+  if(byCategory[slug]) return ico(byCategory[slug]);
+  if(slug.startsWith("explorateur-")) return ico("compass");
+  if(slug.startsWith("connaisseur-")) return ico("book-open");
+  if(slug.startsWith("circuit-")) return ico(ITINERARY_ICONS[slug.slice(8)] || "route");
+  return ico({ "premier-tampon": "sparkle", "decouvreur-ouest-africain": "earth", "ambassadeur-africain": "crown", "esprit-curieux": "lightbulb", "soutien-economie-locale": "handshake" }[slug] || "stamp");
+}
 const RECIT_NATURES = {
   tradition_orale: "Tradition orale",
   temoignage: "Témoignage",
@@ -70,11 +98,11 @@ let suggestTargetId = null;
 let adminTab = "pending";
 
 const NAV_ITEMS = [
-  { id:"discover", label:"Découvrir", icon:"◎", screen:"screen-discover" },
-  { id:"passport", label:"Passeport", icon:"✦", screen:"screen-passport" },
-  { id:"favorites", label:"Favoris", icon:"♥", screen:"screen-favorites" },
+  { id:"discover", label:"Découvrir", icon:"compass", screen:"screen-discover" },
+  { id:"passport", label:"Passeport", icon:"stamp", screen:"screen-passport" },
+  { id:"favorites", label:"Favoris", icon:"heart", screen:"screen-favorites" },
   { id:"contribute", label:"Contribuer", icon:"+", screen:"screen-contribute" },
-  { id:"profile", label:"Profil", icon:"○", screen:"screen-profile" }
+  { id:"profile", label:"Profil", icon:"user", screen:"screen-profile" }
 ];
 
 function catClass(cat){ return "cat-" + cat; }
@@ -104,7 +132,7 @@ function buildNav(containerId, activeId){
   NAV_ITEMS.forEach(item=>{
     const btn = document.createElement('button');
     btn.className = "navitem" + (item.id===activeId ? " active" : "");
-    btn.innerHTML = `<span class="navicon">${item.icon}</span>${item.label}<span class="navdot"></span>`;
+    btn.innerHTML = `<span class="navicon">${ico(item.icon)}</span>${item.label}<span class="navdot"></span>`;
     btn.onclick = ()=>showScreen(item.screen);
     el.appendChild(btn);
   });
@@ -435,10 +463,10 @@ function renderChips(){
     const el = document.createElement('div');
     el.className = "chip" + (c===currentCat ? " active" : "");
     if(c === "toutes"){
-      el.innerHTML = `<span class="cat-icon">✦</span><span>Toutes</span>`;
+      el.innerHTML = `<span class="cat-icon">${ico("sparkle")}</span><span>Toutes</span>`;
     } else {
       const meta = CAT_META[c];
-      el.innerHTML = `<span class="cat-icon">${meta.icon}</span><span>${CAT_LABELS[c]}</span>`;
+      el.innerHTML = `<span class="cat-icon">${ico(meta.icon)}</span><span>${CAT_LABELS[c]}</span>`;
     }
     el.onclick = ()=>{ currentCat = c; renderChips(); renderList(); };
     wrap.appendChild(el);
@@ -450,9 +478,9 @@ function siteCard(s){
   card.className = "card";
   const isFav = favorites.has(s.id);
   card.innerHTML = `
-    <div class="card-visual ${catClass(s.cat)}"${s.media_type === "image" && s.media_url ? ` style="background-image:linear-gradient(160deg,rgba(0,0,0,.15),rgba(0,0,0,.55)),url('${esc(mediaSrc(s.media_url))}')"` : ""}>${esc(CAT_LABELS[s.cat] || s.cat)}${stampedSites.has(s.id) ? '<span class="card-stamp" title="Tampon obtenu">✦</span>' : ""}</div>
+    <div class="card-visual ${catClass(s.cat)}"${s.media_type === "image" && s.media_url ? ` style="background-image:linear-gradient(160deg,rgba(0,0,0,.15),rgba(0,0,0,.55)),url('${esc(mediaSrc(s.media_url))}')"` : ""}>${esc(CAT_LABELS[s.cat] || s.cat)}${stampedSites.has(s.id) ? `<span class="card-stamp" title="Tampon obtenu">${ico("stamp")}</span>` : ""}</div>
     <div class="card-body"><p class="name">${esc(s.name)}</p><p class="place">${esc(s.region)}</p><p class="tag">${esc(s.country)}</p></div>
-    <button class="card-fav">${isFav ? "♥" : "♡"}</button>`;
+    <button class="card-fav${isFav ? " is-fav" : ""}" aria-label="${isFav ? "Retirer des favoris" : "Ajouter aux favoris"}">${ico("heart")}</button>`;
   card.querySelector('.card-body').onclick = ()=>openDetail(s.id);
   card.querySelector('.card-visual').onclick = ()=>openDetail(s.id);
   card.querySelector('.card-fav').onclick = async (e)=>{
@@ -476,9 +504,9 @@ function renderList(){
     return matchesCountry && matchesCategory && (!term || searchable.includes(term));
   }).forEach(s=> list.appendChild(siteCard(s)));
   if(dataLoadError){
-    list.innerHTML = `<div class="empty"><div class="glyph">⚠</div><h3>Données indisponibles</h3><p>${esc(dataLoadError)}</p></div>`;
+    list.innerHTML = `<div class="empty"><div class="glyph">${ico("triangle-alert")}</div><h3>Données indisponibles</h3><p>${esc(dataLoadError)}</p></div>`;
   } else if(!list.children.length){
-    list.innerHTML = `<div class="empty"><div class="glyph">◎</div><h3>Aucun site trouvé</h3><p>Essayez un autre pays, une autre catégorie ou une autre recherche.</p></div>`;
+    list.innerHTML = `<div class="empty"><div class="glyph">${ico("search")}</div><h3>Aucun site trouvé</h3><p>Essayez un autre pays, une autre catégorie ou une autre recherche.</p></div>`;
   }
 }
 
@@ -486,12 +514,12 @@ function renderFavorites(){
   const list = document.getElementById('fav-list');
   list.innerHTML = "";
   if(!authToken || !isLoggedIn){
-    list.innerHTML = `<div class="empty"><div class="glyph">♡</div><h3>Connexion requise</h3><p>Connectez-vous pour enregistrer et retrouver vos favoris.</p></div>`;
+    list.innerHTML = `<div class="empty"><div class="glyph">${ico("heart")}</div><h3>Connexion requise</h3><p>Connectez-vous pour enregistrer et retrouver vos favoris.</p></div>`;
     return;
   }
   const items = SITES.filter(s => favorites.has(s.id));
   if(items.length===0){
-    list.innerHTML = `<div class="empty"><div class="glyph">♡</div><h3>Aucun favori pour l'instant</h3><p>Touchez le cœur sur un site pour le retrouver ici.</p></div>`;
+    list.innerHTML = `<div class="empty"><div class="glyph">${ico("heart")}</div><h3>Aucun favori pour l'instant</h3><p>Touchez le cœur sur un site pour le retrouver ici.</p></div>`;
     return;
   }
   items.forEach(s=> list.appendChild(siteCard(s)));
@@ -784,7 +812,7 @@ async function renderAdmin(){
     adminSites = [];
     switchAdminTab('pending');
     document.getElementById('admin-list').innerHTML = `
-      <div class="empty"><div class="glyph">🔒</div><h3>Accès administrateur requis</h3><p>Connectez-vous avec un compte de modération pour consulter cet espace.</p><button class="cta-btn" onclick="openAuth('login')">Se connecter</button></div>
+      <div class="empty"><div class="glyph">${ico("lock")}</div><h3>Accès administrateur requis</h3><p>Connectez-vous avec un compte de modération pour consulter cet espace.</p><button class="cta-btn" onclick="openAuth('login')">Se connecter</button></div>
     `;
     return;
   }
@@ -810,7 +838,7 @@ async function renderAdmin(){
   const wrap = document.getElementById('admin-list');
   wrap.innerHTML = "";
   if(!pendingSubmissions.length){
-    wrap.innerHTML = `<div class="empty"><div class="glyph">✓</div><h3>Aucune contribution</h3><p>Rien ne correspond à ces filtres pour le moment.</p></div>`;
+    wrap.innerHTML = `<div class="empty"><div class="glyph">${ico("check")}</div><h3>Aucune contribution</h3><p>Rien ne correspond à ces filtres pour le moment.</p></div>`;
   }
   pendingSubmissions.forEach(item=>{
     const el = document.createElement('div');
@@ -961,7 +989,7 @@ async function openSiteForm(mode, siteId){
   document.getElementById('sf-title').textContent = mode==='add' ? "Ajouter un site" : "Modifier le site";
   document.getElementById('sf-country').innerHTML = countryOptions(ALL_AFRICA_COUNTRIES);
   document.getElementById('sf-themes').innerHTML = THEMES.map(theme => `
-    <label class="checkbox-label"><input type="checkbox" value="${esc(theme.slug)}"> ${esc(theme.icon || "")} ${esc(theme.name)}</label>`).join("");
+    <label class="checkbox-label"><input type="checkbox" value="${esc(theme.slug)}"> ${themeIcon(theme.slug)} ${esc(theme.name)}</label>`).join("");
   document.getElementById('sf-tools').innerHTML = "";
 
   let site = null;
@@ -1150,7 +1178,7 @@ function setSiteUrl(slug){
 function renderDetailBasics(s){
   document.getElementById('detail-name').textContent = s.name;
   document.getElementById('detail-loc').textContent = [s.region, s.country].filter(Boolean).join(" · ");
-  document.getElementById('detail-kicker').innerHTML = `${flagImage(s.country_flag, "detail-flag", `Drapeau — ${s.country}`)} ${esc(CAT_META[s.cat]?.icon || "")} ${esc(CAT_LABELS[s.cat] || s.cat)}`;
+  document.getElementById('detail-kicker').innerHTML = `${flagImage(s.country_flag, "detail-flag", `Drapeau — ${s.country}`)} ${catIcon(s.cat)} ${esc(CAT_LABELS[s.cat] || s.cat)}`;
   const hero = document.getElementById('detail-hero');
   hero.className = "detail-hero " + catClass(s.cat);
   hero.style.backgroundImage = s.media_type === "image" && s.media_url
@@ -1181,7 +1209,7 @@ function renderDetailBasics(s){
 
   document.getElementById('detail-themes').innerHTML = (s.themes || []).map(slug => {
     const theme = THEMES.find(item => item.slug === slug);
-    return theme ? `<span class="theme-chip">${esc(theme.icon || "")} ${esc(theme.name)}</span>` : "";
+    return theme ? `<span class="theme-chip">${themeIcon(slug)} ${esc(theme.name)}</span>` : "";
   }).join("");
   document.getElementById('detail-media').innerHTML = "";
   document.getElementById('detail-recits').innerHTML = '<p class="pane-empty">Chargement…</p>';
@@ -1207,7 +1235,7 @@ function renderDetailExtras(site){
       <figure class="gallery-item">${mediaElement(item, item.title || `Média — ${site.name}`)}
         ${item.title || item.author ? `<figcaption>${esc(item.title || "")}${item.author ? ` · © ${esc(item.author)}` : ""}</figcaption>` : ""}
       </figure>`).join("")}</div>` : ""}
-    ${sounds.map(item => `<div class="audio-item"><span>🎧 ${esc(item.title || "Écouter")}${item.author ? ` · ${esc(item.author)}` : ""}</span>${mediaElement(item, item.title || "Audio")}</div>`).join("")}
+    ${sounds.map(item => `<div class="audio-item"><span>${ico("headphones")} ${esc(item.title || "Écouter")}${item.author ? ` · ${esc(item.author)}` : ""}</span>${mediaElement(item, item.title || "Audio")}</div>`).join("")}
   ` : "";
 
   document.getElementById('recits-count').textContent = site.recits.length ? site.recits.length : "";

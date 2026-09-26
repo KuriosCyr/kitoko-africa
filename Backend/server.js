@@ -63,7 +63,7 @@ app.get("/.well-known/apple-app-site-association", (req, res) => {
 });
 
 app.get("/api/health", (req, res) => {
-  res.json({ success: true, message: "Kitoko Afrika API fonctionne", version: "1.1.0" });
+  res.json({ success: true, message: "Kitoko Afrika API fonctionne", version: "1.2.0", demo: config.demoMode });
 });
 
 app.use("/api/sites", siteRoutes);
@@ -113,6 +113,9 @@ app.use((error, req, res, next) => {
 });
 
 function start(port = config.port) {
+  if (config.autoSeed) {
+    require("./db/seed").seed({ log: message => console.log(message) });
+  }
   ensureAdminAccount();
   backfillSiteIdentifiers();
   cleanupExpiredSessions();

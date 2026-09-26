@@ -43,7 +43,7 @@ function updateTripButton(){
   const button = document.getElementById('detail-trip-btn');
   if(!button) return;
   const inTrip = readMyTrip().includes(currentSiteId);
-  button.textContent = inTrip ? "✓ Dans mon itinéraire" : "＋ Mon itinéraire";
+  button.innerHTML = inTrip ? `${ico("check")} Dans mon itinéraire` : `${ico("plus")} Mon itinéraire`;
   button.classList.toggle('is-active', inTrip);
 }
 
@@ -91,7 +91,7 @@ function renderMyTrip(){
   if(!container) return;
   const stops = readMyTrip().map(id => SITES.find(site => site.id === id)).filter(Boolean);
   if(!stops.length){
-    container.innerHTML = `<div class="my-trip-empty"><strong>Mon itinéraire</strong><p>Composez votre parcours : sur chaque fiche, touchez « ＋ Mon itinéraire ». Les étapes s'afficheront ici, dans l'ordre de votre choix.</p></div>`;
+    container.innerHTML = `<div class="my-trip-empty"><strong>Mon itinéraire</strong><p>Composez votre parcours : sur chaque fiche, touchez « Mon itinéraire ». Les étapes s'afficheront ici, dans l'ordre de votre choix.</p></div>`;
     return;
   }
   container.innerHTML = `
@@ -101,9 +101,9 @@ function renderMyTrip(){
         <span class="stop-number">${index + 1}</span>
         <button type="button" class="stop-name" onclick="openDetail(${stop.id})">${esc(stop.name)}<small>${esc([stop.region, stop.country].filter(Boolean).join(" · "))}</small></button>
         <span class="stop-tools">
-          <button type="button" aria-label="Monter" onclick="moveTripStop(${index}, -1)" ${index === 0 ? "disabled" : ""}>↑</button>
-          <button type="button" aria-label="Descendre" onclick="moveTripStop(${index}, 1)" ${index === stops.length - 1 ? "disabled" : ""}>↓</button>
-          <button type="button" aria-label="Retirer" onclick="removeTripStop(${index})">✕</button>
+          <button type="button" aria-label="Monter" onclick="moveTripStop(${index}, -1)" ${index === 0 ? "disabled" : ""}>${ico("arrow-up")}</button>
+          <button type="button" aria-label="Descendre" onclick="moveTripStop(${index}, 1)" ${index === stops.length - 1 ? "disabled" : ""}>${ico("arrow-down")}</button>
+          <button type="button" aria-label="Retirer" onclick="removeTripStop(${index})">${ico("x")}</button>
         </span>
       </li>`).join("")}</ol>
     ${stops.length > 1 ? `<a class="cta-btn cta-link" href="${esc(mapsRouteUrl(stops))}" target="_blank" rel="noopener">Ouvrir le trajet dans Maps</a>` : ""}`;
@@ -127,12 +127,12 @@ async function renderItineraries(){
     const progress = circuitProgressFor(itinerary);
     return `
       <button type="button" class="itinerary-card" onclick="openItinerary('${esc(itinerary.slug)}')">
-        <span class="itinerary-icon">${esc(itinerary.icon || "🗺️")}</span>
+        <span class="itinerary-icon">${ico(ITINERARY_ICONS[itinerary.slug] || "route")}</span>
         <span class="itinerary-text">
           <span class="itinerary-country">${flagImage(itinerary.country_flag, "itinerary-flag", itinerary.country)} ${esc(itinerary.country || "")}</span>
           <strong>${esc(itinerary.title)}</strong>
           <span class="itinerary-meta">${itinerary.stops.length} étapes · ${esc(itinerary.duration || "")}${itinerary.distance_km ? ` · ≈ ${itinerary.distance_km} km` : ""}</span>
-          ${isLoggedIn && progress.done ? `<span class="itinerary-progress">✦ ${progress.done}/${progress.total} tamponnés</span>` : ""}
+          ${isLoggedIn && progress.done ? `<span class="itinerary-progress">${ico("stamp")} ${progress.done}/${progress.total} tamponnés</span>` : ""}
         </span>
       </button>`;
   }).join("");
@@ -157,7 +157,7 @@ async function openItinerary(slug){
     ${isLoggedIn ? `<div class="route-progress">${progressBar(progress.done, progress.total)}<span>${progress.done}/${progress.total} étapes tamponnées — complétez le circuit pour obtenir son badge.</span></div>` : ""}
     <ol class="stop-list stop-list-circuit">${itinerary.stops.map((stop, index) => `
       <li class="stop ${stampedSites.has(stop.id) ? "is-stamped" : ""}">
-        <span class="stop-number">${stampedSites.has(stop.id) ? "✦" : index + 1}</span>
+        <span class="stop-number">${stampedSites.has(stop.id) ? ico("stamp") : index + 1}</span>
         <button type="button" class="stop-name" onclick="openDetail(${stop.id})">${esc(stop.name)}<small>${esc(stop.region || "")}</small>${stop.note ? `<span class="stop-note">${esc(stop.note)}</span>` : ""}</button>
       </li>`).join("")}</ol>
     <a class="cta-btn cta-link" href="${esc(mapsRouteUrl(itinerary.stops))}" target="_blank" rel="noopener">Ouvrir le trajet dans Maps</a>
@@ -228,7 +228,7 @@ async function loadPartnerTypes(){
 
 function partnerTypeLabel(type){
   const found = PARTNER_TYPES.find(item => item.key === type);
-  return found ? `${found.icon} ${found.label}` : type;
+  return found ? `${ico(PARTNER_ICONS[type] || "handshake")} ${esc(found.label)}` : esc(type);
 }
 
 function phoneLink(value){ return String(value || "").replace(/[^\d+]/g, ""); }
@@ -238,18 +238,18 @@ function partnerCard(partner){
   return `
     <article class="partner-card">
       <div class="partner-head">
-        <span class="partner-type">${esc(partnerTypeLabel(partner.type))}</span>
+        <span class="partner-type">${partnerTypeLabel(partner.type)}</span>
         <h4>${esc(partner.name)}</h4>
         <p class="partner-place">${esc([partner.locality, partner.country].filter(Boolean).join(" · "))}${partner.site_name ? ` · près de <button type="button" class="link-btn" onclick="openDetail(${Number(partner.site_id)})">${esc(partner.site_name)}</button>` : ""}</p>
       </div>
       ${partner.description ? `<p class="partner-desc">${esc(partner.description)}</p>` : ""}
-      ${partner.offer ? `<p class="partner-offer">✦ Passeport : ${esc(partner.offer)}</p>` : ""}
-      ${partner.languages ? `<p class="partner-langs">🗣️ ${esc(partner.languages)}</p>` : ""}
+      ${partner.offer ? `<p class="partner-offer">${ico("stamp")} Passeport : ${esc(partner.offer)}</p>` : ""}
+      ${partner.languages ? `<p class="partner-langs">${ico("languages")} ${esc(partner.languages)}</p>` : ""}
       <div class="partner-contacts">
-        ${partner.phone ? `<a class="action-btn" href="tel:${esc(phoneLink(partner.phone))}">📞 Appeler</a>` : ""}
-        ${whatsapp ? `<a class="action-btn" href="https://wa.me/${esc(whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
-        ${partner.email ? `<a class="action-btn" href="mailto:${esc(partner.email)}">✉ E-mail</a>` : ""}
-        ${partner.website ? `<a class="action-btn" href="${esc(partner.website)}" target="_blank" rel="noopener">Site web</a>` : ""}
+        ${partner.phone ? `<a class="action-btn" href="tel:${esc(phoneLink(partner.phone))}">${ico("phone")} Appeler</a>` : ""}
+        ${whatsapp ? `<a class="action-btn" href="https://wa.me/${esc(whatsapp)}" target="_blank" rel="noopener">${ico("message-circle")} WhatsApp</a>` : ""}
+        ${partner.email ? `<a class="action-btn" href="mailto:${esc(partner.email)}">${ico("mail")} E-mail</a>` : ""}
+        ${partner.website ? `<a class="action-btn" href="${esc(partner.website)}" target="_blank" rel="noopener">${ico("earth")} Site web</a>` : ""}
       </div>
       <details class="checkin-code">
         <summary>Faire tamponner mon passeport</summary>
@@ -271,7 +271,7 @@ async function renderPartnerDirectory(){
   const typeSelect = document.getElementById('partner-type-filter');
   if(!countrySelect.dataset.ready){
     countrySelect.innerHTML = '<option value="">Tous les pays</option>' + countryOptions(COUNTRIES);
-    typeSelect.innerHTML = '<option value="">Toutes les activités</option>' + types.map(type => `<option value="${esc(type.key)}">${esc(type.icon)} ${esc(type.label)}</option>`).join("");
+    typeSelect.innerHTML = '<option value="">Toutes les activités</option>' + types.map(type => `<option value="${esc(type.key)}">${esc(type.label)}</option>`).join("");
     countrySelect.onchange = typeSelect.onchange = renderPartnerDirectory;
     countrySelect.dataset.ready = "1";
   }
@@ -282,7 +282,7 @@ async function renderPartnerDirectory(){
   try {
     const partners = (await fetchJson(`/partners?${params}`)).data;
     directory.innerHTML = partners.length ? partners.map(partnerCard).join("") : `
-      <div class="empty"><div class="glyph">🤝</div><h3>Le réseau se construit</h3><p>Les premiers guides, artisans, tables et hébergements partenaires apparaîtront ici après validation par l'équipe.</p></div>`;
+      <div class="empty"><div class="glyph">${ico("handshake")}</div><h3>Le réseau se construit</h3><p>Les premiers guides, artisans, tables et hébergements partenaires apparaîtront ici après validation par l'équipe.</p></div>`;
   } catch(error) {
     directory.innerHTML = '<p class="pane-empty">Annuaire indisponible hors connexion.</p>';
   }
@@ -315,7 +315,7 @@ async function preparePartnerForm(){
   document.getElementById('pa-status-field').hidden = !adminMode;
   document.getElementById('partner-submit').textContent = adminMode ? "Enregistrer" : "Envoyer ma candidature";
   const types = await loadPartnerTypes();
-  document.getElementById('pa-type').innerHTML = types.map(type => `<option value="${esc(type.key)}">${esc(type.icon)} ${esc(type.label)}</option>`).join("");
+  document.getElementById('pa-type').innerHTML = types.map(type => `<option value="${esc(type.key)}">${esc(type.label)}</option>`).join("");
   document.getElementById('pa-country').innerHTML = countryOptions(COUNTRIES.length ? COUNTRIES : ALL_AFRICA_COUNTRIES);
   document.getElementById('pa-site').innerHTML = '<option value="">Aucun en particulier</option>' + SITES.map(site => `<option value="${site.id}">${esc(site.name)} (${esc(site.country)})</option>`).join("");
 }
@@ -383,7 +383,7 @@ async function loadAdminPartners(){
       item.className = "admin-item";
       item.innerHTML = `
         <div class="admin-head">
-          <div><p class="an">${esc(partner.name)}</p><p class="ac">${esc(partnerTypeLabel(partner.type))} · ${esc([partner.locality, partner.country].filter(Boolean).join(", "))}${partner.applicant ? ` · candidature de ${esc(partner.applicant)}` : ""}</p></div>
+          <div><p class="an">${esc(partner.name)}</p><p class="ac">${partnerTypeLabel(partner.type)} · ${esc([partner.locality, partner.country].filter(Boolean).join(", "))}${partner.applicant ? ` · candidature de ${esc(partner.applicant)}` : ""}</p></div>
           ${badges[partner.status] || ""}
         </div>
         ${partner.description ? `<p class="admin-excerpt">${esc(partner.description)}</p>` : ""}
@@ -596,4 +596,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if(document.querySelector('.screen.active')?.id === 'screen-home') appPlugin.exitApp();
     else goBack();
   });
+});
+
+// ---------------------------------------------------------------------------
+// Version de démonstration (serveur lancé avec DEMO_MODE=1)
+// ---------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const health = await (await fetch(`${API_BASE}/health`)).json();
+    if(!health.demo) return;
+    const banner = document.createElement('div');
+    banner.className = "demo-banner";
+    banner.innerHTML = "<strong>Version de démonstration.</strong> Créez un compte pour essayer le passeport : sur chaque fiche, un code de démonstration permet de valider une visite sans vous déplacer. Les comptes peuvent être réinitialisés.";
+    document.getElementById('screen-home')?.prepend(banner);
+  } catch(error) { /* hors connexion */ }
 });

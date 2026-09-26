@@ -12,7 +12,9 @@ const manifest = JSON.parse(fs.readFileSync(path.join(CONTENT, "images-manifest.
 const PER_SITE = Number(process.env.PER_SITE || 3);
 const API = "https://commons.wikimedia.org/w/api.php";
 const HEADERS = { "User-Agent": "KitokoAfrika/1.0 (https://github.com/kurioscyr/kitoko-africa; contact@kitokoafrika.org)" };
-const SKIP_TITLE = /\b(map|carte|flag|drapeau|logo|coat|blason|stamp|timbre|locator|diagram|plan|svg)\b/i;
+const SKIP_TITLE = /\b(map|carte|chart|flag|drapeau|logo|coat|blason|stamp|timbre|locator|diagram|plan|svg|satellite|MNHN|chantier)\b/i;
+// Cartes postales et photos de l'époque coloniale : écartées (esprit décolonial du projet).
+const SKIP_COLONIAL = /(Guinée française|Afrique occidentale française|Dahomey \(colonie\)|carte postale|postcard|Fortier)/i;
 const OK_LICENSE = /^(cc[ -]by(-sa)?[ -]?[0-9.]*( igo)?|cc0|public domain|pd|cc-by-sa-.*|cc-by-.*)$/i;
 
 const stripHtml = html => String(html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
@@ -43,7 +45,7 @@ async function main() {
         if (chosen.length >= PER_SITE) break;
         const info = page.imageinfo?.[0];
         if (!info || exclude.has(page.title) || chosen.some(item => item.title === page.title)) continue;
-        if (!/image\/(jpeg|png)/.test(info.mime) || info.width < 900 || SKIP_TITLE.test(page.title)) continue;
+        if (!/image\/(jpeg|png)/.test(info.mime) || info.width < 900 || SKIP_TITLE.test(page.title) || SKIP_COLONIAL.test(page.title)) continue;
         const meta = info.extmetadata || {};
         const license = stripHtml(meta.LicenseShortName?.value);
         if (!OK_LICENSE.test(license)) continue;
@@ -67,7 +69,7 @@ async function main() {
         const response = await fetch(image.url, { headers: HEADERS });
         if (!response.ok) throw new Error(`téléchargement ${response.status}`);
         const buffer = Buffer.from(await response.arrayBuffer());
-        await sharp(buffer).rotate().resize({ width: 1280, height: 960, fit: "inside", withoutEnlargement: true }).webp({ quality: 78 }).toFile(path.join(OUT_DIR, file));
+        await sharp(buffer).rotate().resize({ width: 1100, height: 830, fit: "inside", withoutEnlargement: true }).webp({ quality: 70 }).toFile(path.join(OUT_DIR, file));
         credits[site.slug].push({ file, ...image });
       } catch (error) {
         console.warn(`  ${site.slug}: ${image.title} — ${error.message}`);

@@ -72,7 +72,7 @@ async function renderPassport(){
         <div><strong>${data.totals.visited}</strong><span>visité${data.totals.visited > 1 ? "s" : ""} sur place</span></div>
         <div><strong>${earnedCount}</strong><span>badge${earnedCount > 1 ? "s" : ""}</span></div>
       </div>
-      <button type="button" class="scan-button" onclick="openScanner()">📷 Scanner le QR code d'un site</button>
+      <button type="button" class="scan-button" onclick="openScanner()">${ico("scan-line")} Scanner le QR code d'un site</button>
       <p class="passport-legend"><span class="legend-onsite"></span> sur place <span class="legend-online"></span> découvert en ligne</p>
     </div>
 
@@ -101,7 +101,7 @@ async function renderPassport(){
       <div class="theme-progress-grid">
         ${data.themes.map(theme => `
           <div class="theme-progress ${theme.discovered ? "has-progress" : ""}">
-            <span class="theme-progress-icon">${esc(theme.icon || "✦")}</span>
+            <span class="theme-progress-icon">${themeIcon(theme.key)}</span>
             <span class="theme-progress-name">${esc(theme.label)}</span>
             <span class="theme-progress-count">${theme.discovered}/${theme.total}</span>
           </div>`).join("")}
@@ -113,7 +113,7 @@ async function renderPassport(){
       <div class="badge-grid">
         ${badges.map(badge => `
           <div class="badge ${badge.earned ? "is-earned" : ""} badge-${esc(badge.family)}">
-            <span class="badge-icon">${esc(badge.icon)}</span>
+            <span class="badge-icon">${badgeIcon(badge)}</span>
             <p class="badge-name">${esc(badge.name)}</p>
             <p class="badge-desc">${esc(badge.description)}</p>
             ${badge.earned
@@ -121,14 +121,14 @@ async function renderPassport(){
               : `${progressBar(badge.progress, badge.target)}<span class="badge-progress">${badge.progress}/${badge.target}</span>`}
           </div>`).join("")}
       </div>
-      <p class="form-note">🧭 Les badges « Explorateur » demandent des visites sur place ; les badges « Connaisseur » s'obtiennent aussi en ligne, grâce aux quiz.</p>
+      <p class="form-note">Les badges « Explorateur » demandent des visites sur place ; les badges « Connaisseur » s'obtiennent aussi en ligne, grâce aux quiz.</p>
     </section>
 
     <section class="passport-section">
       <h3>Mes tampons</h3>
       ${data.stamps.length ? `<div class="stamp-grid">${data.stamps.map(stamp => `
         <button type="button" class="stamp stamp-${esc(stamp.kind)}" onclick="openDetail(${Number(stamp.site_id)})">
-          <span class="stamp-ring">${flagImage(stamp.country_flag, "stamp-flag", stamp.country)}<span class="stamp-cat">${esc(CAT_META[stamp.category]?.icon || "✦")}</span></span>
+          <span class="stamp-ring">${flagImage(stamp.country_flag, "stamp-flag", stamp.country)}<span class="stamp-cat">${catIcon(stamp.category)}</span></span>
           <span class="stamp-name">${esc(stamp.site_name)}</span>
           <span class="stamp-meta">${stamp.kind === "onsite" ? "Visité sur place" : "Découvert en ligne"} · ${esc(formatDate(stamp.created_at))}</span>
         </button>`).join("")}</div>`
@@ -138,7 +138,7 @@ async function renderPassport(){
     <section class="passport-section">
       <h3>Économie locale</h3>
       ${data.partner_stamps.length ? `<div class="partner-stamps">${data.partner_stamps.map(stamp => `
-        <div class="partner-stamp"><span>🤝</span><div><strong>${esc(stamp.name)}</strong><small>${esc(stamp.country)} · ${esc(formatDate(stamp.created_at))}</small></div></div>`).join("")}</div>`
+        <div class="partner-stamp"><span>${ico("handshake")}</span><div><strong>${esc(stamp.name)}</strong><small>${esc(stamp.country)} · ${esc(formatDate(stamp.created_at))}</small></div></div>`).join("")}</div>`
         : '<p class="pane-empty">Faites tamponner votre passeport chez les guides, artisans, tables et hébergements partenaires.</p>'}
       <button class="ghost-btn" type="button" onclick="showScreen('screen-partners')">Voir les acteurs locaux</button>
     </section>
@@ -159,7 +159,7 @@ async function renderPassport(){
 async function shareBadge(slug){
   const badge = passportData?.badges.find(item => item.slug === slug);
   if(!badge) return;
-  const text = `J'ai obtenu le badge « ${badge.name} » ${badge.icon} sur Kitoko Afrika — Notre Afrique, nos histoires, nos savoirs.`;
+  const text = `J'ai obtenu le badge « ${badge.name} » sur Kitoko Afrika — Notre Afrique, nos histoires, nos savoirs.`;
   try {
     if(navigator.share) { await navigator.share({ title: "Kitoko Afrika", text, url: publicOrigin() }); return; }
     await navigator.clipboard.writeText(`${text} ${publicOrigin()}`);
@@ -179,12 +179,12 @@ async function renderDetailPassport(){
   const site = SITES.find(item => item.id === siteId);
   if(!pane || !site) return;
 
-  const scanBanner = arrivedFromQr ? `<div class="scan-banner">📍 Bienvenue sur le site ! Validez votre visite pour obtenir votre tampon.</div>` : "";
+  const scanBanner = arrivedFromQr ? `<div class="scan-banner">${ico("map-pin")} Bienvenue sur le site ! Validez votre visite pour obtenir votre tampon.</div>` : "";
 
   if(!authToken || !isLoggedIn){
     pane.innerHTML = `${scanBanner}
       <div class="passport-pane-intro">
-        <div class="stamp-preview">✦</div>
+        <div class="stamp-preview">${ico("stamp")}</div>
         <p>Connectez-vous pour tamponner votre passeport : visite validée sur place, ou quiz depuis n'importe où.</p>
         <button class="cta-btn" onclick="openAuth('signup')">Créer un compte</button>
         <button class="ghost-btn" onclick="openAuth('login')">Se connecter</button>
@@ -206,20 +206,21 @@ async function renderDetailPassport(){
   if(currentSiteId !== siteId) return;
 
   const onsite = status.onsite
-    ? `<div class="stamp-status is-done"><span class="stamp-status-icon">✦</span><div><strong>Visité sur place</strong><span>Tamponné le ${esc(formatDate(status.onsite.created_at))}</span></div></div>`
-    : `<div class="stamp-status"><span class="stamp-status-icon">○</span><div><strong>Visité sur place</strong><span>Vous êtes sur le site ? Validez votre visite.</span></div></div>
+    ? `<div class="stamp-status is-done"><span class="stamp-status-icon">${ico("stamp")}</span><div><strong>Visité sur place</strong><span>Tamponné le ${esc(formatDate(status.onsite.created_at))}</span></div></div>`
+    : `<div class="stamp-status"><span class="stamp-status-icon">${ico("stamp")}</span><div><strong>Visité sur place</strong><span>Vous êtes sur le site ? Validez votre visite.</span></div></div>
        <div class="checkin-actions">
-         <button class="submit-btn" type="button" id="checkin-gps" onclick="checkInWithGps()">📍 Valider ma visite (géolocalisation)</button>
+         <button class="submit-btn" type="button" id="checkin-gps" onclick="checkInWithGps()">${ico("map-pin")} Valider ma visite (géolocalisation)</button>
          <details class="checkin-code">
            <summary>Pas de GPS ? Utiliser le code affiché sur place</summary>
            <div class="code-row"><input type="text" id="checkin-code" maxlength="12" autocomplete="off" autocapitalize="characters" placeholder="Code du site"><button class="admin-btn approve" type="button" onclick="checkInWithCode()">Valider</button></div>
          </details>
          <p class="form-note">Votre position sert uniquement à vérifier que vous êtes sur le site : elle n'est pas enregistrée.</p>
+         ${status.demo_code ? `<p class="demo-code">Version de démonstration : pour tester sans vous déplacer, utilisez le code <strong class="mono">${esc(status.demo_code)}</strong>.</p>` : ""}
        </div>`;
 
   const online = status.online
-    ? `<div class="stamp-status is-done is-online"><span class="stamp-status-icon">✦</span><div><strong>Découvert en ligne</strong><span>Quiz complété le ${esc(formatDate(status.online.created_at))}</span></div></div>`
-    : `<div class="stamp-status"><span class="stamp-status-icon">○</span><div><strong>Découvert en ligne</strong><span>Répondez au quiz pour obtenir ce tampon, où que vous soyez.</span></div></div>`;
+    ? `<div class="stamp-status is-done is-online"><span class="stamp-status-icon">${ico("stamp")}</span><div><strong>Découvert en ligne</strong><span>Quiz complété le ${esc(formatDate(status.online.created_at))}</span></div></div>`
+    : `<div class="stamp-status"><span class="stamp-status-icon">${ico("stamp")}</span><div><strong>Découvert en ligne</strong><span>Répondez au quiz pour obtenir ce tampon, où que vous soyez.</span></div></div>`;
 
   const quiz = status.questions.length ? `
     <form class="quiz" id="site-quiz" onsubmit="event.preventDefault(); submitQuiz();">
@@ -270,7 +271,7 @@ function checkInWithGps(){
     } catch(error) {
       alert(error.message);
       button.disabled = false;
-      button.textContent = "📍 Réessayer";
+      button.innerHTML = `${ico("map-pin")} Réessayer`;
     }
   }, error => {
     const messages = {
@@ -280,7 +281,7 @@ function checkInWithGps(){
     };
     alert(messages[error.code] || "Localisation impossible.");
     button.disabled = false;
-    button.textContent = "📍 Réessayer";
+    button.innerHTML = `${ico("map-pin")} Réessayer`;
     document.querySelector('.checkin-code')?.setAttribute('open', '');
   }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 30000 });
 }
@@ -353,7 +354,7 @@ function celebrate(message, badges = []){
   const toast = document.createElement('div');
   toast.className = "celebration";
   toast.setAttribute('role', 'status');
-  toast.innerHTML = `<span class="celebration-stamp">✦</span><div><p>${esc(message)}</p>${badges.map(badge => `<p class="celebration-badge">${esc(badge.icon)} Nouveau badge : <strong>${esc(badge.name)}</strong></p>`).join("")}</div>`;
+  toast.innerHTML = `<span class="celebration-stamp">${ico("stamp")}</span><div><p>${esc(message)}</p>${badges.map(badge => `<p class="celebration-badge">${badgeIcon(badge)} Nouveau badge : <strong>${esc(badge.name)}</strong></p>`).join("")}</div>`;
   document.body.appendChild(toast);
   setTimeout(() => toast.classList.add('show'), 20);
   setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, badges.length ? 6000 : 4000);

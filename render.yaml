@@ -1,0 +1,30 @@
+# Déploiement gratuit sur Render (https://render.com) : « New → Blueprint »,
+# choisir ce dépôt, renseigner ADMIN_EMAIL, valider. Voir docs/deploiement-gratuit.md.
+services:
+  - type: web
+    name: kitoko-afrika
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      # Version de démonstration : contenus réimportés à chaque démarrage,
+      # bandeau « démo » et code de visite affiché pour tester le passeport à distance.
+      - key: DEMO_MODE
+        value: "1"
+      - key: AUTO_SEED
+        value: "1"
+      - key: CORS_ORIGINS
+        value: https://localhost,capacitor://localhost
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        generateValue: true

@@ -1,36 +1,297 @@
 {
   "_comment": "Recherches Wikimedia Commons par site (outil : tools/fetch-images.js). 'exclude' retire des fichiers jugés hors sujet après vérification.",
   "sites": [
-    { "slug": "palais-royaux-abomey", "queries": ["Palais royaux d'Abomey", "Royal Palaces of Abomey"] },
-    { "slug": "ganvie", "queries": ["Ganvié", "Ganvie lake village"] },
-    { "slug": "foret-sacree-kpasse", "queries": ["Forêt sacrée de Kpassè", "Kpasse sacred forest Ouidah"] },
-    { "slug": "monument-amazones-cotonou", "queries": ["Monument Amazone Cotonou", "Statue Amazone Cotonou"] },
-    { "slug": "porte-du-non-retour", "queries": ["Porte du Non-Retour Ouidah", "Door of No Return Ouidah"] },
-    { "slug": "route-des-esclaves-ouidah", "queries": ["Route des esclaves Ouidah", "Arbre de l'oubli Ouidah", "Mémorial Zoungbodji"] },
-    { "slug": "fort-portugais-ouidah", "queries": ["Musée d'histoire de Ouidah", "Fort portugais Ouidah"] },
-    { "slug": "temple-des-pythons-ouidah", "queries": ["Temple des pythons Ouidah", "Python temple Ouidah"] },
-    { "slug": "fete-du-vodun-ouidah", "queries": ["Fête du Vodoun Ouidah", "Vodun Days Ouidah", "Zangbeto"] },
-    { "slug": "parc-national-pendjari", "queries": ["Parc national de la Pendjari", "Pendjari National Park"] },
-    { "slug": "tata-somba-boukoumbe", "queries": ["Tata somba", "Takienta Boukoumbé"] },
-    { "slug": "musee-honme-porto-novo", "queries": ["Musée Honmè Porto-Novo", "Palais royal Porto-Novo"] },
-    { "slug": "grande-mosquee-porto-novo", "queries": ["Grande mosquée de Porto-Novo", "Great Mosque Porto-Novo"] },
-    { "slug": "chutes-de-kota", "queries": ["Chutes de Kota", "Kota falls Benin"] },
-    { "slug": "lac-aheme-possotome", "queries": ["Lac Ahémé", "Possotomè"] },
-    { "slug": "marche-dantokpa", "queries": ["Marché Dantokpa", "Dantokpa market Cotonou"] },
-    { "slug": "gaani-nikki", "queries": ["Gaani Nikki", "Fête de la Gaani"] },
-    { "slug": "mont-nimba", "queries": ["Mont Nimba Guinée", "Mount Nimba"] },
-    { "slug": "iles-de-los", "queries": ["Îles de Los", "Iles de Los Guinée", "Île de Roume"] },
-    { "slug": "fouta-djallon", "queries": ["Fouta Djallon", "Labé Guinée village"] },
-    { "slug": "timbo", "queries": ["Timbo Guinée", "Timbo Fouta Djallon"] },
-    { "slug": "voile-de-la-mariee-kindia", "queries": ["Voile de la mariée Kindia", "Bridal veil falls Kindia"] },
-    { "slug": "chutes-de-kinkon", "queries": ["Chutes de Kinkon", "Kinkon falls Pita"] },
-    { "slug": "chutes-de-ditinn", "queries": ["Chutes de Ditinn", "Ditinn falls Dalaba"] },
-    { "slug": "musee-national-guinee", "queries": ["Musée national de Guinée Conakry", "Musée national Sandervalia"] },
-    { "slug": "grande-mosquee-mausolee-camayenne", "queries": ["Grande mosquée Fayçal Conakry", "Grand Mosque Conakry"] },
-    { "slug": "mosquee-dinguiraye", "queries": ["Mosquée de Dinguiraye", "Dinguiraye mosque"] },
-    { "slug": "sosso-bala-niagassola", "queries": ["Sosso-Bala", "Niagassola"] },
-    { "slug": "parc-national-haut-niger", "queries": ["Parc national du Haut-Niger", "Niger river Faranah"] },
-    { "slug": "fort-de-boke", "queries": ["Fort de Boké", "Musée de Boké"] },
-    { "slug": "marche-madina-conakry", "queries": ["Marché Madina Conakry", "Madina market Conakry"] }
+    {
+      "slug": "palais-royaux-abomey",
+      "queries": [
+        "Palais royaux d'Abomey",
+        "Royal Palaces of Abomey"
+      ]
+    },
+    {
+      "slug": "ganvie",
+      "queries": [
+        "Ganvié",
+        "Ganvie lake village"
+      ]
+    },
+    {
+      "slug": "foret-sacree-kpasse",
+      "queries": [
+        "Forêt sacrée de Kpassè",
+        "Kpasse sacred forest Ouidah",
+        "Kpassè Ouidah"
+      ],
+      "exclude": [
+        "File:Les champions blancs à la Forêt Sacrée de Kpassè.jpg"
+      ]
+    },
+    {
+      "slug": "monument-amazones-cotonou",
+      "queries": [
+        "Monument Amazone Cotonou",
+        "Statue Amazone Cotonou"
+      ]
+    },
+    {
+      "slug": "porte-du-non-retour",
+      "queries": [
+        "Porte du Non-Retour Ouidah",
+        "Door of No Return Ouidah",
+        "Door of No Return Benin",
+        "Porte du non retour Ouidah plage"
+      ],
+      "exclude": [
+        "File:Vue de nuit la porte du non retour a Ouidah 03.jpg",
+        "File:Vue de nuit la porte du non retour a Ouidah.jpg"
+      ]
+    },
+    {
+      "slug": "route-des-esclaves-ouidah",
+      "queries": [
+        "Route des esclaves Ouidah",
+        "Arbre de l'oubli Ouidah",
+        "Mémorial Zoungbodji",
+        "Arbre du retour Ouidah",
+        "Zoungbodji"
+      ],
+      "exclude": [
+        "File:Chantier Route des esclaves à Ouidah au Bénin.jpg",
+        "File:Chantier de la route des esclaves à Ouidah 2.jpg",
+        "File:Route des esclaves à Ouidah au Bénin.jpg"
+      ]
+    },
+    {
+      "slug": "fort-portugais-ouidah",
+      "queries": [
+        "Musée d'histoire de Ouidah",
+        "Fort portugais Ouidah"
+      ]
+    },
+    {
+      "slug": "temple-des-pythons-ouidah",
+      "queries": [
+        "Temple des pythons Ouidah",
+        "Python temple Ouidah"
+      ]
+    },
+    {
+      "slug": "fete-du-vodun-ouidah",
+      "queries": [
+        "Fête du Vodoun Ouidah",
+        "Vodun Days Ouidah",
+        "Zangbeto"
+      ]
+    },
+    {
+      "slug": "parc-national-pendjari",
+      "queries": [
+        "Parc national de la Pendjari",
+        "Pendjari National Park",
+        "Pendjari lion",
+        "Pendjari elephant",
+        "Pendjari antelope"
+      ],
+      "exclude": [
+        "File:Parc national de la Pendjari-Circuits.jpg"
+      ]
+    },
+    {
+      "slug": "tata-somba-boukoumbe",
+      "queries": [
+        "Tata somba",
+        "Takienta Boukoumbé"
+      ],
+      "exclude": [
+        "File:Tata somba,2021.jpg"
+      ]
+    },
+    {
+      "slug": "musee-honme-porto-novo",
+      "queries": [
+        "Musée Honmè Porto-Novo",
+        "Palais royal Porto-Novo"
+      ]
+    },
+    {
+      "slug": "grande-mosquee-porto-novo",
+      "queries": [
+        "Grande mosquée de Porto-Novo",
+        "Great Mosque Porto-Novo"
+      ]
+    },
+    {
+      "slug": "chutes-de-kota",
+      "queries": [
+        "Chutes de Kota",
+        "Kota falls Benin",
+        "Natitingou chute"
+      ],
+      "exclude": [
+        "File:Au cœur des chutes de KOTA de Natitingou 12.jpg"
+      ]
+    },
+    {
+      "slug": "lac-aheme-possotome",
+      "queries": [
+        "Lac Ahémé",
+        "Possotomè",
+        "Possotomè lac"
+      ],
+      "exclude": [
+        "File:Pirogue sur le lac Ahémé à Possotomé.jpg"
+      ]
+    },
+    {
+      "slug": "marche-dantokpa",
+      "queries": [
+        "Marché Dantokpa",
+        "Dantokpa market Cotonou",
+        "Dantokpa"
+      ],
+      "exclude": [
+        "File:Marché Dantokpa 1.jpg"
+      ]
+    },
+    {
+      "slug": "gaani-nikki",
+      "queries": [
+        "Gaani Nikki",
+        "Fête de la Gaani"
+      ]
+    },
+    {
+      "slug": "mont-nimba",
+      "queries": [
+        "Mont Nimba Guinée",
+        "Mount Nimba",
+        "Nimba mountains Guinea",
+        "Monts Nimba Lola"
+      ],
+      "exclude": [
+        "File:Liberonautes nimba (MNHN-IU-2017-8079) 001.jpeg",
+        "File:Liberonautes nimba (MNHN-IU-2017-8079) 002.jpeg"
+      ]
+    },
+    {
+      "slug": "iles-de-los",
+      "queries": [
+        "Îles de Los",
+        "Iles de Los Guinée",
+        "Île de Roume",
+        "Île de Kassa",
+        "Île de Roume plage",
+        "Kassa island Guinea"
+      ],
+      "exclude": [
+        "File:Admiralty Chart No 600 Cacheo River to Iles de Los, Published 1899.jpg",
+        "File:Admiralty Chart No 601 Iles de Los to Sherbro Island, Published 1881.jpg",
+        "File:Los Islands, Guinea.jpg"
+      ]
+    },
+    {
+      "slug": "fouta-djallon",
+      "queries": [
+        "Fouta Djallon",
+        "Labé Guinée village"
+      ]
+    },
+    {
+      "slug": "timbo",
+      "queries": [
+        "Timbo Guinée",
+        "Timbo Fouta Djallon",
+        "Mosquée de Timbo",
+        "Timbo Mamou Guinée"
+      ],
+      "exclude": [
+        "File:Almamy de Timba et ses femmes (Guinée).jpg",
+        "File:Guinée française-Attelage de boeufs-Timbo.jpg",
+        "File:Jeunes filles de la région de Timbo (Guinée).jpg"
+      ]
+    },
+    {
+      "slug": "voile-de-la-mariee-kindia",
+      "queries": [
+        "Voile de la mariée Kindia",
+        "Bridal veil falls Kindia"
+      ]
+    },
+    {
+      "slug": "chutes-de-kinkon",
+      "queries": [
+        "Chutes de Kinkon",
+        "Kinkon falls Pita"
+      ]
+    },
+    {
+      "slug": "chutes-de-ditinn",
+      "queries": [
+        "Chutes de Ditinn",
+        "Ditinn falls Dalaba"
+      ]
+    },
+    {
+      "slug": "musee-national-guinee",
+      "queries": [
+        "Musée national de Guinée Conakry",
+        "Musée national Sandervalia"
+      ]
+    },
+    {
+      "slug": "grande-mosquee-mausolee-camayenne",
+      "queries": [
+        "Grande mosquée Fayçal Conakry",
+        "Grand Mosque Conakry"
+      ],
+      "exclude": [
+        "File:Grande Mosquée Fayçal de Conakry 2.jpg"
+      ]
+    },
+    {
+      "slug": "mosquee-dinguiraye",
+      "queries": [
+        "Mosquée de Dinguiraye",
+        "Dinguiraye mosque",
+        "Dinguiraye",
+        "Mosquée Dinguiraye Guinée",
+        "Dinguiraye mosque Guinea"
+      ]
+    },
+    {
+      "slug": "sosso-bala-niagassola",
+      "queries": [
+        "Sosso-Bala",
+        "Niagassola"
+      ],
+      "exclude": [
+        "File:Balafon (Aly Keita) Unterfahrt 2010-03-11-001.jpg"
+      ]
+    },
+    {
+      "slug": "parc-national-haut-niger",
+      "queries": [
+        "Parc national du Haut-Niger",
+        "Niger river Faranah"
+      ]
+    },
+    {
+      "slug": "fort-de-boke",
+      "queries": [
+        "Fort de Boké",
+        "Musée de Boké"
+      ]
+    },
+    {
+      "slug": "marche-madina-conakry",
+      "queries": [
+        "Marché Madina Conakry",
+        "Madina market Conakry",
+        "Marché de Madina"
+      ],
+      "exclude": [
+        "File:Madina marché 6.jpg"
+      ]
+    }
   ]
 }
