@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitoko Afrika</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="device" id="device">
+
+  <!-- HOME -->
+  <div class="screen active" id="screen-home">
+    <div class="culture-pattern">
+      <div class="statusbar" style="background:transparent;"></div>
+      <div class="home-topbar">
+        <button class="icon-btn" onclick="goBack()">‹</button>
+        <div class="logo-row"><div class="brand-lockup" aria-label="Logo Kitoko Afrika"><span class="brand-name">KITOKO</span><span class="brand-sub">AFRIKA</span></div></div>
+        <button class="icon-btn" onclick="openMenu()">☰</button>
+      </div>
+      <div class="home-hero-content">
+        <div class="home-logo-big" aria-label="Logo Kitoko Afrika"><span class="hero-wordmark">KITOKO</span><span class="hero-wordmark-sub">AFRIKA</span></div>
+        <h1>Kitoko Afrika</h1>
+        <p class="tagline">La belle Afrique. Nos histoires, nos savoirs, racontés par nous-mêmes.</p>
+      </div>
+    </div>
+    <div class="stats-strip">
+      <div class="stat-mini"><span class="num" id="hs-countries">0</span><span class="lbl">pays</span></div>
+      <div class="stat-mini"><span class="num" id="hs-sites">0</span><span class="lbl">sites</span></div>
+      <div class="stat-mini"><span class="num" id="hs-cats">4</span><span class="lbl">catégories</span></div>
+    </div>
+    <div class="flag-marquee" aria-label="Pays représentés sur Kitoko Afrika">
+      <div class="flag-marquee-track" id="flag-marquee-track"></div>
+    </div>
+    <div class="section-pad">
+      <p class="section-title">Explorer</p>
+      <div class="quick-grid">
+        <div class="quick-tile" onclick="showScreen('screen-discover')"><span class="qicon">◎</span><span class="qtitle">Découvrir</span><span class="qsub" id="qs-discover">—</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-favorites')"><span class="qicon">♥</span><span class="qtitle">Favoris</span><span class="qsub" id="qs-fav">0 sauvegardés</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-contribute')"><span class="qicon">+</span><span class="qtitle">Contribuer</span><span class="qsub">Proposer un site</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-profile')"><span class="qicon">○</span><span class="qtitle">Profil</span><span class="qsub">Compte et réglages</span></div>
+      </div>
+    </div>
+    <div class="section-pad">
+      <p class="section-title">Sites à la une</p>
+      <div class="featured-scroll" id="featured-scroll"></div>
+    </div>
+    <div class="home-explore-action"><button class="cta-btn" onclick="showScreen('screen-discover')">Explorer tous les pays</button></div>
+  </div>
+
+  <!-- DISCOVER -->
+  <div class="screen" id="screen-discover">
+    <div class="statusbar"></div>
+    <div class="topbar">
+      <div class="topbar-head">
+        <button class="icon-btn" onclick="goBack()">‹</button>
+        <div class="logo-row"><div class="brand-lockup" aria-label="Logo Kitoko Afrika"><span class="brand-name">KITOKO</span><span class="brand-sub">AFRIKA</span></div><span class="screen-word">Découvrir</span></div>
+        <button class="icon-btn" onclick="openMenu()">☰</button>
+      </div>
+      <p class="sub">Choisissez un pays sur la carte ou dans la liste.</p>
+    </div>
+
+    <div class="map-panel">
+      <div class="map-box">
+        <div class="map-caption"><span>Afrique, terres de mémoire</span><span class="map-swipe">Glissez pour explorer <b>→</b></span></div>
+        <div class="map-stage">
+          <svg class="map-svg" viewBox="0 0 100 110" id="africa-map" role="img" aria-label="Carte de l'Afrique">
+            <g id="real-africa-map"></g>
+            <g id="map-country-labels"></g>
+          </svg>
+        </div>
+        <div id="country-status" class="country-status" role="status" aria-live="polite"></div>
+        <div class="country-scroll" id="country-scroll"></div>
+      </div>
+    </div>
+
+    <div class="chips" id="chips"></div>
+    <div class="search-wrap">
+      <label class="sr-only" for="site-search">Rechercher un site</label>
+      <input id="site-search" type="search" placeholder="Rechercher par nom, pays, région ou catégorie" autocomplete="off">
+    </div>
+    <div class="list" id="site-list"></div>
+    <div class="bottomnav" id="nav-discover"></div>
+  </div>
+
+  <!-- DETAIL -->
+  <div class="screen" id="screen-detail">
+    <div class="statusbar"></div>
+    <div class="detail-hero" id="detail-hero">
+      <button class="back-btn" onclick="goBackFromDetail()">‹</button>
+      <button class="fav-btn" id="fav-btn" onclick="toggleFav()">♥</button>
+      <div><h2 id="detail-name">—</h2><p class="loc" id="detail-loc">—</p></div>
+    </div>
+    <div class="detail-tabs">
+      <div class="dtab active" data-pane="apercu" onclick="setTab('apercu', this)">Aperçu</div>
+      <div class="dtab" data-pane="histoire" onclick="setTab('histoire', this)">Histoire &amp; savoirs</div>
+      <div class="dtab" data-pane="sources" onclick="setTab('sources', this)">Sources</div>
+    </div>
+    <div class="detail-body" id="detail-body">
+      <div class="reading-progress" aria-label="Progression de lecture"><span id="reading-progress-bar"></span></div>
+      <div id="detail-media" class="detail-media" aria-live="polite"></div>
+      <div class="dpane active" id="pane-apercu">
+        <div class="dblock"><h3>Description</h3><p id="detail-description">—</p></div>
+        <div class="audio-mock"><div class="play-btn">▶</div><div class="audio-track"><p class="tt">Témoignage local (audio)</p><p class="ts">Langue locale</p><div class="audio-bar"><span></span></div></div></div>
+        <div class="dblock"><h3>Communautés / structures associées</h3><p id="detail-communities">—</p></div>
+      </div>
+      <div class="dpane" id="pane-histoire">
+        <div class="dblock"><h3>Histoire du site</h3><p id="detail-histoire">—</p></div>
+        <div class="dblock"><h3>Importance culturelle</h3><p id="detail-culture">—</p></div>
+        <div class="dblock"><h3>Savoirs et pratiques associés</h3><p id="detail-savoirs">—</p></div>
+      </div>
+      <div class="dpane" id="pane-sources">
+        <div class="dblock"><h3>Langue(s) disponible(s)</h3><p id="detail-langues">—</p></div>
+        <div class="dblock"><h3>Personnalités associées</h3><p id="detail-personnalites">—</p></div>
+        <div class="dblock"><h3>Sources et références</h3><p id="detail-sources" class="source-line">—</p></div>
+        <button class="ghost-btn" onclick="openSuggestEdit()">Suggérer une modification</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAVORITES -->
+  <div class="screen" id="screen-favorites">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Favoris</h1><p>Les sites que vous avez mis de côté.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div class="list" id="fav-list"></div>
+    <div class="bottomnav" id="nav-favorites"></div>
+  </div>
+
+  <!-- CONTRIBUTE -->
+  <div class="screen" id="screen-contribute">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Contribuer</h1><p>Proposez un site, un récit ou un témoignage.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div id="contribute-locked" class="lockcard" style="display:none;">
+      <div class="glyph">🔒</div>
+      <h3>Connectez-vous pour contribuer</h3>
+      <p>Un compte permet de suivre vos propositions et d'assurer la vérification des contenus.</p>
+      <button class="cta-btn" onclick="openAuth('signup')">Créer un compte</button>
+      <button class="ghost-btn" onclick="openAuth('login')">Se connecter</button>
+    </div>
+    <div class="form-wrap" id="contribute-form">
+      <div class="confirm-banner" id="confirm-banner">Merci ! Votre proposition a été envoyée pour vérification.</div>
+      <div class="field" id="f-name"><label>Nom du site *</label><input type="text" id="in-name" placeholder="Ex. Marché de Dantokpa"><div class="error-text">Merci d'indiquer un nom de site.</div></div>
+      <div class="field" id="f-country"><label>Pays *</label><select id="in-country"></select><div class="error-text">Merci de choisir un pays.</div></div>
+      <div class="field" id="f-region"><label>Région / localité</label><input type="text" id="in-region" placeholder="Ex. Littoral, Cotonou"></div>
+      <div class="field" id="f-cat"><label>Catégorie *</label><select id="in-cat"><option value="">Choisir une catégorie</option><option value="historique">Patrimoine historique</option><option value="culturel">Patrimoine culturel</option><option value="naturel">Patrimoine naturel</option><option value="savoirs">Lieu porteur de savoirs</option></select><div class="error-text">Merci de choisir une catégorie.</div></div>
+      <div class="field" id="f-desc"><label>Description ou récit *</label><textarea id="in-desc" placeholder="Décrivez le site, son histoire, ou partagez un témoignage..."></textarea><div class="error-text">Merci d'ajouter une courte description.</div></div>
+      <div class="field" id="f-media">
+        <label>Photo ou vidéo du site *</label>
+        <span class="hint">Format image ou vidéo — obligatoire pour toute proposition.</span>
+        <label class="file-drop" id="file-drop" for="in-media">
+          <div class="fdicon">📷</div>
+          <div class="fdtext" id="file-drop-text">Ajouter une photo ou une vidéo</div>
+          <div class="fdsub">JPG, PNG ou MP4</div>
+          <input type="file" id="in-media" accept="image/*,video/*" onchange="onMediaSelected()">
+        </label>
+        <div class="error-text">Merci d'ajouter une photo ou une vidéo du site.</div>
+      </div>
+      <div class="field" id="f-contrib"><label>Votre nom</label><input type="text" id="in-contrib" placeholder="Facultatif"></div>
+      <button class="submit-btn" onclick="submitContribution()">Envoyer pour vérification</button>
+      <p class="form-note">Les contenus proposés sont examinés avant publication afin d'éviter les erreurs et les informations inexactes.</p>
+    </div>
+    <div class="bottomnav" id="nav-contribute"></div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="screen" id="screen-profile">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Profil</h1><p>Votre espace sur Kitoko Afrika.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div id="profile-locked" class="lockcard" style="display:none;">
+      <div class="glyph">👤</div>
+      <h3>Vous n'êtes pas connecté</h3>
+      <p>Créez un compte pour retrouver vos favoris, vos contributions et vos réglages.</p>
+      <button class="cta-btn" onclick="openAuth('signup')">Créer un compte</button>
+      <button class="ghost-btn" onclick="openAuth('login')">Se connecter</button>
+    </div>
+    <div id="profile-unlocked" style="display:none;flex-direction:column;flex:1;">
+      <div class="profile-top"><div class="avatar" id="pf-avatar">—</div><div><p class="pname" id="pf-name">—</p><p class="prole" id="pf-email">—</p></div></div>
+      <div id="notification-banner" class="notification-banner" role="status" aria-live="polite" hidden></div>
+      <div class="section-pad notification-panel">
+        <div class="section-title-row"><p class="section-title">Notifications</p><span id="notification-count" class="notification-count" hidden>0</span></div>
+        <div id="notification-list" class="notification-list"></div>
+        <button id="mark-notifications-read" class="ghost-btn notification-read-btn" type="button" onclick="markNotificationsRead()" hidden>Marquer comme lues</button>
+      </div>
+      <div class="stat-row">
+        <div class="stat-card"><div class="num" id="stat-fav">0</div><div class="lbl">Favoris</div></div>
+        <div class="stat-card"><div class="num" id="stat-contrib">0</div><div class="lbl">Contributions</div></div>
+        <div class="stat-card"><div class="num" id="stat-countries">12</div><div class="lbl">Pays couverts</div></div>
+      </div>
+      <div class="section-pad" style="padding-top:6px;">
+        <p class="section-title">Mes contributions</p>
+        <div id="my-contributions-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
+      <div class="section-pad" style="padding-top:6px;">
+        <p class="section-title">Mes sites publiés</p>
+        <div id="my-sites-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
+      <div class="settings-list">
+        <div class="setting-row"><span>Langue</span><span class="sv">Français</span></div>
+        <div class="setting-row"><span>Notifications</span><div class="switch on" id="notif-switch" onclick="toggleNotif()"><div class="knob"></div></div></div>
+        <div class="setting-row"><span>Mode hors connexion</span><div class="switch" id="offline-switch" onclick="toggleOffline()"><div class="knob"></div></div></div>
+        <div class="setting-row" onclick="showScreen('screen-about')"><span>À propos de Kitoko Afrika</span><span class="sv">›</span></div>
+        <div class="setting-row" onclick="showScreen('screen-contact')"><span>Contact</span><span class="sv">›</span></div>
+        <div class="setting-row admin-entry" onclick="showScreen('screen-admin')"><span>Espace modération (démo)</span><span class="sv">›</span></div>
+        <div class="setting-row logout-row" onclick="logout()"><span>Se déconnecter</span><span class="sv">›</span></div>
+      </div>
+    </div>
+    <div class="bottomnav" id="nav-profile"></div>
+  </div>
+
+  <!-- AUTH -->
+  <div class="screen" id="screen-auth">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1 id="auth-title">Créer un compte</h1><p>Pour contribuer et retrouver vos favoris.</p></div><span style="width:32px"></span></div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Inscription</div>
+      <div class="auth-tab" id="tab-login" onclick="switchAuthTab('login')">Connexion</div>
+    </div>
+    <div class="form-wrap">
+      <div class="field" id="af-name"><label>Nom</label><input type="text" id="auth-name" placeholder="Votre nom"><div class="error-text">Merci d'indiquer votre nom.</div></div>
+      <div class="field" id="af-email"><label>E-mail</label><input type="text" id="auth-email" placeholder="vous@exemple.com"><div class="error-text">Merci d'indiquer un e-mail.</div></div>
+      <div class="field" id="af-pass"><label>Mot de passe</label><input type="password" id="auth-pass" placeholder="••••••••"><div class="error-text">Merci d'indiquer un mot de passe.</div></div>
+      <button class="submit-btn" onclick="submitAuth()" id="auth-submit">Créer mon compte</button>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="screen" id="screen-about">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>À propos</h1><p>Kitoko Afrika — la belle Afrique.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div class="about-body">
+      <div><h3>Notre mission</h3><p>Faire découvrir l'Afrique à travers ses patrimoines, ses histoires, ses mémoires, ses cultures et ses savoirs — en donnant une place centrale aux voix et aux regards africains.</p></div>
+      <div><h3>Décoloniser la manière de raconter l'Afrique</h3><ul>
+        <li>Valoriser les sources et voix africaines</li>
+        <li>Donner une vraie place aux communautés locales et à la tradition orale</li>
+        <li>Valoriser les langues africaines</li>
+        <li>Contextualiser les récits issus de la période coloniale</li>
+        <li>Éviter l'exotisation des cultures africaines</li>
+        <li>Respecter les savoirs sacrés, confidentiels ou sensibles</li>
+      </ul></div>
+      <div><h3>Porté par</h3><p>Groupe Vie Communautaire et Tourisme Décolonial.</p></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="screen" id="screen-contact">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Contact</h1><p>Une question, une suggestion ?</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div class="contact-body">
+      <div>
+        <div class="contact-card"><div class="cicon">✉</div><div><p class="ct">contact@kitokoafrika.org</p><p class="cs">Adresse à confirmer</p></div></div>
+        <div class="contact-card"><div class="cicon">☎</div><div><p class="ct">Numéro à venir</p><p class="cs">Bénin</p></div></div>
+      </div>
+      <div class="field"><label>Votre message</label><textarea placeholder="Écrivez-nous..."></textarea></div>
+      <button class="submit-btn" onclick="this.textContent='Message envoyé'">Envoyer</button>
+    </div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="screen" id="screen-admin">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Modération</h1><p>Accès administrateur (démo).</p></div><span style="width:32px"></span></div>
+    <div class="auth-tabs">
+      <div class="auth-tab active" id="admin-tab-pending" onclick="switchAdminTab('pending')">En attente</div>
+      <div class="auth-tab" id="admin-tab-sites" onclick="switchAdminTab('sites')">Sites publiés</div>
+    </div>
+    <div class="admin-filters" aria-label="Filtres de modération">
+      <label class="sr-only" for="admin-status-filter">Statut</label>
+      <select id="admin-status-filter"><option value="">Tous les statuts</option><option value="pending">En attente</option><option value="approved">Publiées</option><option value="rejected">Rejetées</option></select>
+      <label class="sr-only" for="admin-country-filter">Pays</label>
+      <select id="admin-country-filter"><option value="">Tous les pays</option></select>
+      <label class="sr-only" for="admin-from-filter">Depuis</label>
+      <input id="admin-from-filter" type="date">
+      <label class="sr-only" for="admin-to-filter">Jusqu'à</label>
+      <input id="admin-to-filter" type="date">
+    </div>
+    <div class="admin-body" id="admin-pending-pane"><div id="admin-list"></div></div>
+    <div class="admin-body" id="admin-sites-pane" style="display:none;">
+      <button class="submit-btn" style="margin-bottom:2px;" onclick="openSiteForm('add')">+ Ajouter un site</button>
+      <div id="admin-sites-list" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;"></div>
+    </div>
+  </div>
+
+  <!-- SITE FORM (admin add/edit, ou modification par un contributeur de sa propre fiche) -->
+  <div class="screen" id="screen-site-form">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1 id="sf-title">Ajouter un site</h1><p>Tous les champs de la fiche type.</p></div><span style="width:32px"></span></div>
+    <div class="form-wrap">
+      <div class="field"><label>Nom du site</label><input type="text" id="sf-name"></div>
+      <div class="field"><label>Pays</label><select id="sf-country"></select></div>
+      <div class="field"><label>Région / localité</label><input type="text" id="sf-region"></div>
+      <div class="field"><label>Catégorie</label><select id="sf-cat"><option value="historique">Patrimoine historique</option><option value="culturel">Patrimoine culturel</option><option value="naturel">Patrimoine naturel</option><option value="savoirs">Lieu porteur de savoirs</option></select></div>
+      <div class="field"><label>Description</label><textarea id="sf-description"></textarea></div>
+      <div class="field"><label>Histoire du site</label><textarea id="sf-histoire" style="min-height:120px;"></textarea></div>
+      <div class="field"><label>Importance culturelle</label><textarea id="sf-culture"></textarea></div>
+      <div class="field"><label>Savoirs et pratiques associés</label><textarea id="sf-savoirs"></textarea></div>
+      <div class="field"><label>Communautés / structures associées</label><input type="text" id="sf-communities"></div>
+      <div class="field"><label>Langue(s) disponible(s)</label><input type="text" id="sf-langues"></div>
+      <div class="field"><label>Personnalités associées</label><input type="text" id="sf-personnalites"></div>
+      <div class="field"><label>Sources et références</label><input type="text" id="sf-sources"></div>
+      <button class="submit-btn" onclick="saveSiteForm()">Enregistrer</button>
+    </div>
+  </div>
+
+  <!-- SUGGEST EDIT -->
+  <div class="screen" id="screen-suggest-edit">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Suggérer une modification</h1><p id="se-target">—</p></div><span style="width:32px"></span></div>
+    <div class="form-wrap">
+      <div class="field"><label>Votre proposition *</label><textarea id="se-text" style="min-height:140px;" placeholder="Indiquez ce qui doit être corrigé ou complété, et votre texte proposé..."></textarea><div class="error-text" id="se-error">Merci de décrire votre proposition.</div></div>
+      <button class="submit-btn" onclick="submitSuggestEdit()">Envoyer la suggestion</button>
+      <p class="form-note">Un administrateur examine votre suggestion avant de l'intégrer à la fiche.</p>
+    </div>
+  </div>
+
+  <div class="menu-overlay" id="menu-overlay" onclick="closeMenu()"></div>
+  <button class="home-return hidden" id="home-return" onclick="showScreen('screen-home', {skipHistory:true})">⌂ <span>Accueil</span></button>
+  <nav class="persistent-nav" aria-label="Navigation principale">
+    <button class="persistent-nav-item" data-screen="screen-home" onclick="showScreen('screen-home')"><span>⌂</span><small>Accueil</small></button>
+    <button class="persistent-nav-item" data-screen="screen-discover" onclick="showScreen('screen-discover')"><span>◎</span><small>Découvrir</small></button>
+    <button class="persistent-nav-item" data-screen="screen-favorites" onclick="showScreen('screen-favorites')"><span>♥</span><small>Favoris</small></button>
+    <button class="persistent-nav-item" data-screen="screen-contribute" onclick="showScreen('screen-contribute')"><span>＋</span><small>Contribuer</small></button>
+    <button class="persistent-nav-item" data-screen="screen-profile" onclick="showScreen('screen-profile')"><span>○</span><small>Profil</small></button>
+  </nav>
+  <div class="menu-drawer" id="menu-drawer">
+    <div class="menu-head"><span class="logo-word">Menu</span><button class="icon-btn on-light" onclick="closeMenu()">✕</button></div>
+    <div class="menu-item" onclick="menuGo('screen-home')">Accueil</div>
+    <div class="menu-item" onclick="menuGo('screen-discover')">Découvrir</div>
+    <div class="menu-item" onclick="menuGo('screen-favorites')">Favoris</div>
+    <div class="menu-item" onclick="menuGo('screen-contribute')">Contribuer</div>
+    <div class="menu-item" onclick="menuGo('screen-profile')">Profil</div>
+    <div class="menu-item" onclick="menuGo('screen-about')">À propos</div>
+    <div class="menu-item" onclick="menuGo('screen-contact')">Contact</div>
+    <div class="menu-item menu-admin admin-entry" onclick="menuGo('screen-admin')">Espace modération (démo)</div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+<script src="app.js"></script>
+</body>
+</html>
