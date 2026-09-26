@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 <body>
 <div class="device" id="device">
@@ -46,6 +47,8 @@
         <div class="quick-tile" onclick="showScreen('screen-discover')"><span class="qicon">◎</span><span class="qtitle">Découvrir</span><span class="qsub" id="qs-discover">—</span></div>
         <div class="quick-tile" onclick="showScreen('screen-passport')"><span class="qicon">✦</span><span class="qtitle">Passeport</span><span class="qsub" id="qs-passport">Collectionnez les tampons</span></div>
         <div class="quick-tile" onclick="showScreen('screen-contribute')"><span class="qicon">+</span><span class="qtitle">Contribuer</span><span class="qsub">Site, récit, photo</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-itineraries')"><span class="qicon">🗺️</span><span class="qtitle">Itinéraires</span><span class="qsub">Circuits prêts à suivre</span></div>
+        <div class="quick-tile" onclick="showScreen('screen-partners')"><span class="qicon">🤝</span><span class="qtitle">Acteurs locaux</span><span class="qsub">Guides, artisans, tables</span></div>
         <div class="quick-tile" onclick="showScreen('screen-favorites')"><span class="qicon">♥</span><span class="qtitle">Favoris</span><span class="qsub" id="qs-fav">0 sauvegardés</span></div>
       </div>
     </div>
@@ -127,10 +130,12 @@
           <a class="action-btn" id="detail-directions" target="_blank" rel="noopener">➜ Itinéraire</a>
           <button class="action-btn" type="button" onclick="shareCurrentSite()">↗ Partager</button>
           <button class="action-btn" type="button" onclick="openPassportTab()">✦ Tampon</button>
+          <button class="action-btn" type="button" id="detail-trip-btn" onclick="toggleMyTrip(currentSiteId)">＋ Mon itinéraire</button>
         </div>
         <div class="theme-chips" id="detail-themes"></div>
         <div class="dblock"><h3>Communautés / structures associées</h3><p id="detail-communities">—</p></div>
         <div class="dblock"><h3>Informations pratiques</h3><p id="detail-infos_pratiques">—</p></div>
+        <div class="dblock" id="detail-partners-block" hidden><h3>Acteurs locaux</h3><p class="pane-intro">Guides, artisans, tables et hébergements partenaires. Faites tamponner votre passeport chez eux.</p><div id="detail-partners" class="partner-list"></div></div>
         <div class="dblock" id="detail-related-block" hidden><h3>Lieux associés à proximité</h3><div id="detail-related" class="related-list"></div></div>
       </div>
       <div class="dpane" id="pane-histoire">
@@ -238,6 +243,10 @@
         <p class="section-title">Mes contributions</p>
         <div id="my-contributions-list" style="display:flex;flex-direction:column;gap:8px;"></div>
       </div>
+      <div class="section-pad" style="padding-top:6px;" id="my-partners-section" hidden>
+        <p class="section-title">Mes activités partenaires</p>
+        <div id="my-partners-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
       <div class="section-pad" style="padding-top:6px;">
         <p class="section-title">Mes sites publiés</p>
         <div id="my-sites-list" style="display:flex;flex-direction:column;gap:8px;"></div>
@@ -247,9 +256,12 @@
         <div class="setting-row"><span>Notifications push</span><span class="sv">Bientôt disponible</span></div>
         <div class="setting-row"><span>Hors connexion</span><span class="sv">Fiches consultées disponibles</span></div>
         <div class="setting-row" onclick="showScreen('screen-about')"><span>À propos de Kitoko Afrika</span><span class="sv">›</span></div>
+        <div class="setting-row" onclick="showScreen('screen-privacy')"><span>Confidentialité et conditions</span><span class="sv">›</span></div>
+        <div class="setting-row" onclick="showScreen('screen-partner-apply')"><span>Devenir partenaire</span><span class="sv">›</span></div>
         <div class="setting-row" onclick="showScreen('screen-contact')"><span>Contact</span><span class="sv">›</span></div>
         <div class="setting-row admin-entry" onclick="showScreen('screen-admin')"><span>Espace modération</span><span class="sv">›</span></div>
         <div class="setting-row logout-row" onclick="logout()"><span>Se déconnecter</span><span class="sv">›</span></div>
+        <div class="setting-row danger-row" onclick="deleteMyAccount()"><span>Supprimer mon compte</span><span class="sv">›</span></div>
       </div>
     </div>
     <div class="bottomnav" id="nav-profile"></div>
@@ -268,6 +280,105 @@
     </div>
     <div id="passport-content" class="passport-body"></div>
     <div class="bottomnav" id="nav-passport"></div>
+  </div>
+
+  <!-- ITINERARIES -->
+  <div class="screen" id="screen-itineraries">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Itinéraires</h1><p>Circuits prêts à suivre et votre propre parcours.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div class="itinerary-body">
+      <section class="my-trip" id="my-trip"></section>
+      <p class="section-title">Circuits proposés</p>
+      <div id="itinerary-list" class="itinerary-list"></div>
+    </div>
+  </div>
+
+  <!-- ITINERARY DETAIL -->
+  <div class="screen" id="screen-itinerary">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1 id="itinerary-title">—</h1><p id="itinerary-meta">—</p></div><span style="width:32px"></span></div>
+    <div class="itinerary-body" id="itinerary-detail"></div>
+  </div>
+
+  <!-- PARTNERS -->
+  <div class="screen" id="screen-partners">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Acteurs locaux</h1><p>Le passeport économique : soutenir ceux qui font vivre les territoires.</p></div><button class="icon-btn" onclick="openMenu()">☰</button></div>
+    <div class="partner-filters">
+      <select id="partner-country-filter" aria-label="Pays"><option value="">Tous les pays</option></select>
+      <select id="partner-type-filter" aria-label="Activité"><option value="">Toutes les activités</option></select>
+    </div>
+    <div class="itinerary-body">
+      <div id="partner-directory" class="partner-list"></div>
+      <div class="partner-cta">
+        <p><strong>Vous êtes guide, artisan, restaurateur, hébergeur, producteur ou porteur d'une activité communautaire ?</strong> Rejoignez le réseau Kitoko Afrika et accueillez les voyageurs du passeport.</p>
+        <button class="cta-btn" onclick="showScreen('screen-partner-apply')">Devenir partenaire</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTNER APPLY -->
+  <div class="screen" id="screen-partner-apply">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1 id="partner-form-title">Devenir partenaire</h1><p>Votre activité sera visible après validation.</p></div><span style="width:32px"></span></div>
+    <div id="partner-apply-locked" class="lockcard" style="display:none;">
+      <div class="glyph">🤝</div>
+      <h3>Connectez-vous pour déposer votre candidature</h3>
+      <p>Un compte permet de suivre votre demande et de recevoir votre code passeport.</p>
+      <button class="cta-btn" onclick="openAuth('signup')">Créer un compte</button>
+      <button class="ghost-btn" onclick="openAuth('login')">Se connecter</button>
+    </div>
+    <form class="form-wrap" id="partner-form" onsubmit="event.preventDefault(); submitPartnerForm();">
+      <div class="field"><label for="pa-name">Nom de l'activité *</label><input id="pa-name" required maxlength="150"></div>
+      <div class="field-row">
+        <div class="field"><label for="pa-type">Activité *</label><select id="pa-type" required></select></div>
+        <div class="field"><label for="pa-country">Pays *</label><select id="pa-country" required></select></div>
+      </div>
+      <div class="field"><label for="pa-locality">Ville ou localité</label><input id="pa-locality" maxlength="150" placeholder="Ex. Ouidah"></div>
+      <div class="field"><label for="pa-site">Site le plus proche</label><select id="pa-site"></select></div>
+      <div class="field"><label for="pa-description">Présentation</label><textarea id="pa-description" maxlength="1500" placeholder="Ce que vous proposez, votre histoire, vos savoir-faire…"></textarea></div>
+      <div class="field"><label for="pa-offer">Offre pour les voyageurs du passeport</label><input id="pa-offer" maxlength="300" placeholder="Facultatif — ex. visite commentée de l'atelier"></div>
+      <div class="field-row">
+        <div class="field"><label for="pa-phone">Téléphone</label><input id="pa-phone" type="tel" maxlength="40"></div>
+        <div class="field"><label for="pa-whatsapp">WhatsApp</label><input id="pa-whatsapp" type="tel" maxlength="40"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="pa-email">E-mail</label><input id="pa-email" type="email" maxlength="150"></div>
+        <div class="field"><label for="pa-website">Site web / page</label><input id="pa-website" maxlength="300"></div>
+      </div>
+      <div class="field"><label for="pa-languages">Langues parlées</label><input id="pa-languages" maxlength="200" placeholder="Ex. fon, français, anglais"></div>
+      <div class="field" id="pa-status-field" hidden><label for="pa-status">Statut</label><select id="pa-status"><option value="published">Publié</option><option value="pending">En attente</option><option value="rejected">Refusé</option></select></div>
+      <div class="charter">
+        <p><strong>Charte des partenaires Kitoko Afrika</strong></p>
+        <ul>
+          <li>Accueillir chaque visiteur avec respect, sans discrimination.</li>
+          <li>Pratiquer des prix clairs, annoncés avant la prestation.</li>
+          <li>Transmettre une image juste des cultures locales, sans exotisme ni folklore de façade.</li>
+          <li>Respecter les communautés, les lieux sacrés et l'environnement.</li>
+          <li>Tamponner le passeport uniquement pour une visite ou un achat réels.</li>
+        </ul>
+        <label class="checkbox-label"><input type="checkbox" id="pa-charter"> J'accepte la charte et confirme l'exactitude de ces informations.</label>
+      </div>
+      <button class="submit-btn" type="submit" id="partner-submit">Envoyer ma candidature</button>
+    </form>
+  </div>
+
+  <!-- QR SCANNER -->
+  <div class="screen" id="screen-scanner">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="closeScanner()">‹</button><div class="stxt"><h1>Scanner</h1><p>Visez le QR code affiché sur le site.</p></div><span style="width:32px"></span></div>
+    <div class="scanner-body">
+      <div class="scanner-frame"><video id="scanner-video" playsinline muted></video><span class="scanner-target"></span></div>
+      <p class="scanner-status" id="scanner-status">Autorisez l'accès à la caméra.</p>
+      <p class="form-note">Vous pouvez aussi scanner avec l'appareil photo de votre téléphone : le lien ouvre directement la fiche.</p>
+    </div>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="screen" id="screen-privacy">
+    <div class="statusbar"></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Confidentialité</h1><p>Vos données et les conditions d'utilisation.</p></div><span style="width:32px"></span></div>
+    <div class="about-body legal" id="privacy-content"><p>Chargement…</p></div>
   </div>
 
   <!-- AUTH -->
@@ -325,7 +436,8 @@
     <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Modération</h1><p>Accès administrateur.</p></div><span style="width:32px"></span></div>
     <div class="auth-tabs">
       <div class="auth-tab active" id="admin-tab-pending" onclick="switchAdminTab('pending')">En attente</div>
-      <div class="auth-tab" id="admin-tab-sites" onclick="switchAdminTab('sites')">Sites publiés</div>
+      <div class="auth-tab" id="admin-tab-sites" onclick="switchAdminTab('sites')">Sites</div>
+      <div class="auth-tab" id="admin-tab-partners" onclick="switchAdminTab('partners')">Partenaires</div>
     </div>
     <div class="admin-filters" aria-label="Filtres de modération">
       <label class="sr-only" for="admin-status-filter">Statut</label>
@@ -338,6 +450,10 @@
       <input id="admin-to-filter" type="date">
     </div>
     <div class="admin-body" id="admin-pending-pane"><div id="admin-list"></div></div>
+    <div class="admin-body" id="admin-partners-pane" style="display:none;">
+      <button class="submit-btn" style="margin-bottom:2px;" onclick="openPartnerForm()">+ Ajouter un partenaire</button>
+      <div id="admin-partners-list" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;"></div>
+    </div>
     <div class="admin-body" id="admin-sites-pane" style="display:none;">
       <button class="submit-btn" style="margin-bottom:2px;" onclick="openSiteForm('add')">+ Ajouter un site</button>
       <div id="admin-sites-list" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;"></div>
@@ -406,11 +522,14 @@
     <div class="menu-item" onclick="menuGo('screen-home')">Accueil</div>
     <div class="menu-item" onclick="menuGo('screen-discover')">Découvrir</div>
     <div class="menu-item" onclick="menuGo('screen-passport')">Passeport</div>
+    <div class="menu-item" onclick="menuGo('screen-itineraries')">Itinéraires</div>
+    <div class="menu-item" onclick="menuGo('screen-partners')">Acteurs locaux</div>
     <div class="menu-item" onclick="menuGo('screen-favorites')">Favoris</div>
     <div class="menu-item" onclick="menuGo('screen-contribute')">Contribuer</div>
     <div class="menu-item" onclick="menuGo('screen-profile')">Profil</div>
     <div class="menu-item" onclick="menuGo('screen-about')">À propos</div>
     <div class="menu-item" onclick="menuGo('screen-contact')">Contact</div>
+    <div class="menu-item" onclick="menuGo('screen-privacy')">Confidentialité</div>
     <div class="menu-item menu-admin admin-entry" onclick="menuGo('screen-admin')">Espace modération</div>
   </div>
 
@@ -422,5 +541,6 @@
 <script src="app.js"></script>
 <script src="passport.js"></script>
 <script src="site-admin.js"></script>
+<script src="explore.js"></script>
 </body>
 </html>

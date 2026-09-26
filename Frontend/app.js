@@ -25,6 +25,10 @@ const SITES = [];
 // avant de charger app.js.
 const API_ORIGIN = (window.KITOKO_CONFIG && window.KITOKO_CONFIG.apiOrigin || "").replace(/\/$/, "");
 const API_BASE = `${API_ORIGIN}/api`;
+// Adresse publique utilisée dans les liens partagés (différente dans l'application mobile).
+function publicOrigin(){
+  return (window.KITOKO_CONFIG && window.KITOKO_CONFIG.publicUrl || API_ORIGIN || window.location.origin).replace(/\/$/, "");
+}
 
 // Échappe le texte avant de l'insérer dans du HTML : indispensable pour tout
 // contenu venant des utilisateurs (contributions, noms…), sinon du code
@@ -124,6 +128,11 @@ function showScreen(id, opts){
   if(id==="screen-contribute") renderContribute();
   if(id==="screen-admin") renderAdmin();
   if(id==="screen-passport") renderPassport();
+  if(id==="screen-itineraries") renderItineraries();
+  if(id==="screen-partners") renderPartnerDirectory();
+  if(id==="screen-partner-apply") preparePartnerForm();
+  if(id==="screen-privacy") renderPrivacy();
+  if(id!=="screen-scanner") stopScanner();
 }
 
 function goBack(){
@@ -498,6 +507,7 @@ function renderProfile(){
     document.getElementById('stat-fav').textContent = favorites.size;
     document.getElementById('stat-contrib').textContent = myContributions.length;
     renderNotifications();
+    renderMyPartners();
     renderMySites();
     renderMyContributions();
   }
@@ -740,11 +750,13 @@ async function setFavorite(siteId, shouldAdd){
 
 function switchAdminTab(tab){
   adminTab = tab;
-  document.getElementById('admin-tab-pending').classList.toggle('active', tab==='pending');
-  document.getElementById('admin-tab-sites').classList.toggle('active', tab==='sites');
-  document.getElementById('admin-pending-pane').style.display = tab==='pending' ? 'flex' : 'none';
-  document.getElementById('admin-sites-pane').style.display = tab==='sites' ? 'flex' : 'none';
+  ['pending', 'sites', 'partners'].forEach(name => {
+    document.getElementById(`admin-tab-${name}`).classList.toggle('active', tab === name);
+    document.getElementById(`admin-${name}-pane`).style.display = tab === name ? 'flex' : 'none';
+  });
+  document.querySelector('.admin-filters').hidden = tab !== 'pending';
   if(tab==='sites') loadAdminSites();
+  if(tab==='partners') loadAdminPartners();
 }
 
 // Les médias des contributions non publiées sont privés : on les récupère
@@ -1210,6 +1222,9 @@ function renderDetailExtras(site){
       </article>`).join("")
     : '<p class="pane-empty">Aucun récit pour l\'instant. Vous connaissez une histoire, une légende ou un souvenir lié à ce lieu ? Partagez-le.</p>';
 
+  renderSitePartners(site.partners || []);
+  updateTripButton();
+
   const related = document.getElementById('detail-related');
   document.getElementById('detail-related-block').hidden = !site.related.length;
   related.innerHTML = "";
@@ -1226,7 +1241,7 @@ function renderDetailExtras(site){
 async function shareCurrentSite(){
   const site = SITES.find(item => item.id === currentSiteId);
   if(!site) return;
-  const url = `${window.location.origin}/?site=${encodeURIComponent(site.slug)}`;
+  const url = `${publicOrigin()}/s/${encodeURIComponent(site.slug)}`;
   const data = { title: `${site.name} — Kitoko Afrika`, text: site.description || site.name, url };
   try {
     if(navigator.share) { await navigator.share(data); return; }

@@ -5,7 +5,7 @@
 // - Les photos et médias publiés sont gardés en cache après consultation.
 // Les requêtes d'écriture (tampons, contributions…) ne sont jamais mises en cache.
 
-const VERSION = "kitoko-v2";
+const VERSION = "kitoko-v3";
 const APP_CACHE = `${VERSION}-app`;
 const DATA_CACHE = `${VERSION}-data`;
 const MEDIA_CACHE = `${VERSION}-media`;
@@ -17,6 +17,9 @@ const APP_SHELL = [
   "app.js",
   "passport.js",
   "site-admin.js",
+  "explore.js",
+  "config.js",
+  "confidentialite.html",
   "manifest.webmanifest",
   "icons/icon.svg",
   "icons/icon-192.png",
@@ -67,7 +70,7 @@ self.addEventListener("fetch", event => {
 
   // Données personnelles (passeport, profil, administration) : jamais en cache.
   if(url.origin === self.location.origin && url.pathname.startsWith("/api/")){
-    const publicData = /^\/api\/(sites|countries|themes|categories)(\/|$)/.test(url.pathname) && !request.headers.has("Authorization");
+    const publicData = /^\/api\/(sites|countries|themes|categories|itineraries|partners)(\/|$)/.test(url.pathname) && !request.headers.has("Authorization");
     if(publicData) event.respondWith(networkFirst(request, DATA_CACHE));
     return;
   }

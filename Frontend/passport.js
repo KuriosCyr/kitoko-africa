@@ -72,6 +72,7 @@ async function renderPassport(){
         <div><strong>${data.totals.visited}</strong><span>visité${data.totals.visited > 1 ? "s" : ""} sur place</span></div>
         <div><strong>${earnedCount}</strong><span>badge${earnedCount > 1 ? "s" : ""}</span></div>
       </div>
+      <button type="button" class="scan-button" onclick="openScanner()">📷 Scanner le QR code d'un site</button>
       <p class="passport-legend"><span class="legend-onsite"></span> sur place <span class="legend-online"></span> découvert en ligne</p>
     </div>
 
@@ -134,6 +135,14 @@ async function renderPassport(){
         : '<p class="pane-empty">Aucun tampon pour l\'instant. Ouvrez une fiche et rendez-vous dans son onglet « Passeport ».</p>'}
     </section>
 
+    <section class="passport-section">
+      <h3>Économie locale</h3>
+      ${data.partner_stamps.length ? `<div class="partner-stamps">${data.partner_stamps.map(stamp => `
+        <div class="partner-stamp"><span>🤝</span><div><strong>${esc(stamp.name)}</strong><small>${esc(stamp.country)} · ${esc(formatDate(stamp.created_at))}</small></div></div>`).join("")}</div>`
+        : '<p class="pane-empty">Faites tamponner votre passeport chez les guides, artisans, tables et hébergements partenaires.</p>'}
+      <button class="ghost-btn" type="button" onclick="showScreen('screen-partners')">Voir les acteurs locaux</button>
+    </section>
+
     <section class="passport-section passport-howto">
       <h3>Comment ça marche ?</h3>
       <ol>
@@ -152,8 +161,8 @@ async function shareBadge(slug){
   if(!badge) return;
   const text = `J'ai obtenu le badge « ${badge.name} » ${badge.icon} sur Kitoko Afrika — Notre Afrique, nos histoires, nos savoirs.`;
   try {
-    if(navigator.share) { await navigator.share({ title: "Kitoko Afrika", text, url: window.location.origin }); return; }
-    await navigator.clipboard.writeText(`${text} ${window.location.origin}`);
+    if(navigator.share) { await navigator.share({ title: "Kitoko Afrika", text, url: publicOrigin() }); return; }
+    await navigator.clipboard.writeText(`${text} ${publicOrigin()}`);
     alert("Texte copié : collez-le pour le partager.");
   } catch(error) {
     if(error?.name !== "AbortError") prompt("Copiez ce texte :", text);
