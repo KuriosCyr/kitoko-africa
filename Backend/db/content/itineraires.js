@@ -178,5 +178,72 @@ module.exports = [
       { slug: "chateau-elmina", note: "Au Ghana, le plus ancien fort européen d'Afrique subsaharienne." },
       { slug: "chateau-cape-coast", note: "Terminer par les cachots de Cape Coast et un temps de recueillement." }
     ]
+  },
+  {
+    slug: "dakar-goree-lac-rose",
+    title: "Dakar, Gorée et le lac Rose",
+    country: "Sénégal",
+    icon: "⛓️",
+    duration: "2 jours",
+    summary: "Autour de Dakar : la mémoire de la traite à Gorée, les récolteurs de sel du lac Rose, puis la ville sainte de Touba.",
+    stops: [
+      { slug: "ile-de-goree", note: "Chaloupe du matin, Maison des Esclaves et promenade dans les ruelles." },
+      { slug: "lac-rose", note: "L'après-midi ou le lendemain, quand la couleur rose est la plus visible." },
+      { slug: "touba-grand-magal", note: "En option, une journée à Touba, en tenue très correcte." }
+    ]
+  },
+  {
+    slug: "nord-senegal-fleuve",
+    title: "Le Sénégal du fleuve",
+    country: "Sénégal",
+    icon: "🌊",
+    duration: "2 à 3 jours",
+    summary: "Saint-Louis, ancienne capitale de l'AOF, puis les oiseaux du Djoudj ; et, sur la route du retour, les cercles de pierres de Sine Ngayène.",
+    stops: [
+      { slug: "ile-saint-louis", note: "Le pont Faidherbe, les rues de l'île et Guet Ndar." },
+      { slug: "parc-djoudj", note: "De novembre à avril, en pirogue au plus près des pélicans." },
+      { slug: "cercles-megalithiques-sine-ngayene", note: "Plus au sud, près de Kaolack : les pierres levées." }
+    ]
+  },
+  {
+    slug: "cote-divoire-du-sud",
+    title: "De Grand-Bassam à Yamoussoukro",
+    country: "Côte d'Ivoire",
+    icon: "👑",
+    duration: "2 à 3 jours",
+    summary: "La première capitale coloniale, la capitale politique et, en pays gouro, la danse du Zaouli.",
+    stops: [
+      { slug: "grand-bassam", note: "Le quartier historique, le musée du costume et le monument de la marche des femmes." },
+      { slug: "basilique-yamoussoukro", note: "La basilique et le lac aux crocodiles." },
+      { slug: "danse-zaouli", note: "Plus à l'ouest, si une sortie du Zaouli est annoncée." }
+    ]
+  },
+  {
+    slug: "nord-ivoirien-savane",
+    title: "Savanes et mosquées du nord ivoirien",
+    country: "Côte d'Ivoire",
+    icon: "🦁",
+    duration: "4 à 5 jours",
+    summary: "Les grandes savanes de la Comoé et les mosquées en terre de Kong, sur les anciennes routes du commerce dioula.",
+    stops: [
+      { slug: "parc-national-comoe", note: "Avec l'Office ivoirien des parcs et réserves, en saison sèche." },
+      { slug: "mosquees-soudanaises-kong", note: "La vieille ville de Kong et ses mosquées inscrites à l'UNESCO." }
+    ]
+  },
+  {
+    slug: "empires-du-sahel",
+    title: "Sur les traces des empires du Sahel",
+    country: "Mali",
+    icon: "🥁",
+    duration: "À découvrir dans l'application",
+    summary: "Du Manding de Soundiata aux empires du Mali et songhaï. Tant que la sécurité ne permet pas le voyage, ce circuit se parcourt dans l'application, avec les fiches, les quiz et les tampons en ligne.",
+    stops: [
+      { slug: "musee-national-mali", note: "À Bamako, une introduction aux civilisations du Mali." },
+      { slug: "kamablon-kangaba", note: "Le berceau du Manding et la mémoire de Soundiata." },
+      { slug: "grande-mosquee-djenne", note: "Le plus grand édifice en terre crue du monde." },
+      { slug: "falaise-bandiagara", note: "Le pays dogon et ses villages accrochés à la falaise." },
+      { slug: "tombouctou", note: "La cité des 333 saints et ses manuscrits." },
+      { slug: "tombeau-askia-gao", note: "La capitale de l'empire songhaï." }
+    ]
   }
 ];

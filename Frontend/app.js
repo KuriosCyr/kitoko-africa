@@ -23,7 +23,9 @@ const ITINERARY_ICONS = {
   "atacora-nature-et-architecture": "paw-print", "conakry-memoire-et-vie": "landmark",
   "fouta-djallon-cascades-et-plateaux": "mountain", "sur-les-traces-du-manding": "drum",
   "cote-des-forts-ghana": "castle", "royaumes-et-independance-ghana": "crown", "sud-togo-lac-et-traditions": "waves",
-  "togo-montagnes-et-nord": "mountain", "pays-yoruba-nigeria": "drum", "memoire-golfe-de-guinee": "link"
+  "togo-montagnes-et-nord": "mountain", "pays-yoruba-nigeria": "drum", "memoire-golfe-de-guinee": "link",
+  "dakar-goree-lac-rose": "link", "nord-senegal-fleuve": "waves", "cote-divoire-du-sud": "landmark",
+  "nord-ivoirien-savane": "paw-print", "empires-du-sahel": "crown"
 };
 function themeIcon(slug){ return ico(THEME_ICONS[slug] || "sparkle"); }
 function catIcon(cat){ return ico(CAT_META[cat]?.icon || "sparkle"); }

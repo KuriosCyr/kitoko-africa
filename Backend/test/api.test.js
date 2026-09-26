@@ -132,10 +132,17 @@ test("le lien court d'un QR code redirige vers la fiche", async () => {
 });
 
 test("les fiches en brouillon ne sont pas publiques", async () => {
-  assert.equal((await api("/api/sites/7")).status, 404);
   const admin = await adminLogin();
+  const draft = await api("/api/admin/sites", {
+    token: admin.token,
+    json: { name: "Fiche en préparation", country: "Cameroun", cat: "historique", status: "draft" }
+  });
+  assert.equal(draft.status, 201);
+  const id = draft.data.data.id;
+  assert.equal((await api(`/api/sites/${id}`)).status, 404);
   const all = await api("/api/admin/sites", { token: admin.token });
-  assert.ok(all.data.data.some(site => site.id === 7 && site.status === "draft"));
+  assert.ok(all.data.data.some(site => site.id === id && site.status === "draft"));
+  assert.equal((await api(`/api/admin/sites/${id}`, { token: admin.token, method: "DELETE" })).status, 200);
 });
 
 test("un site inexistant renvoie 404", async () => {

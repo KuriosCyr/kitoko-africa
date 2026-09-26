@@ -342,17 +342,29 @@
     {
       "slug": "mont-agou-kpalime",
       "queries": [
-        "Mont Agou",
         "Kpalimé",
-        "Kpalime Togo"
+        "Kpalime Togo",
+        "Plateau de Dayes",
+        "Mont Agou Togo"
+      ],
+      "exclude": [
+        "File:Image plante Agou 09.jpg",
+        "File:Image plante Agou 11.jpg",
+        "File:Image plante Agou 20.jpg"
       ]
     },
     {
       "slug": "epe-ekpe-glidji",
       "queries": [
-        "Epe Ekpe",
         "Glidji",
-        "Aného"
+        "Aného",
+        "Aneho Togo",
+        "Epe Ekpe Glidji Togo"
+      ],
+      "exclude": [
+        "File:Ekpe Festival in Abia State, Nigeria.jpg",
+        "File:Ekpe Udoh.jpg",
+        "File:Ekpe cultural festival outing 09.jpg"
       ]
     },
     {
@@ -381,10 +393,16 @@
     {
       "slug": "kumasi-palais-manhyia",
       "queries": [
-        "Manhyia Palace",
-        "Manhyia Palace Museum",
-        "Kente weaving Bonwire",
-        "Kumasi"
+        "Kente weaving",
+        "Bonwire kente",
+        "Kejetia market Kumasi",
+        "Asante traditional buildings",
+        "Manhyia Palace Museum"
+      ],
+      "exclude": [
+        "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 1.jpg",
+        "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 4.jpg",
+        "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 5.jpg"
       ]
     },
     {
@@ -453,6 +471,144 @@
       "queries": [
         "Argungu Fishing Festival",
         "Argungu"
+      ]
+    },
+    {
+      "slug": "ile-de-goree",
+      "queries": [
+        "Île de Gorée",
+        "Goree Island",
+        "Maison des Esclaves Gorée"
+      ]
+    },
+    {
+      "slug": "lac-rose",
+      "queries": [
+        "Lac Rose Sénégal",
+        "Lake Retba",
+        "Lac Retba"
+      ]
+    },
+    {
+      "slug": "ile-saint-louis",
+      "queries": [
+        "Saint-Louis Sénégal",
+        "Pont Faidherbe",
+        "Saint-Louis Senegal island"
+      ]
+    },
+    {
+      "slug": "parc-djoudj",
+      "queries": [
+        "Djoudj",
+        "Djoudj National Bird Sanctuary",
+        "Parc national des oiseaux du Djoudj"
+      ]
+    },
+    {
+      "slug": "cercles-megalithiques-sine-ngayene",
+      "queries": [
+        "Sine Ngayène",
+        "Senegambian stone circles",
+        "Wanar stone circles"
+      ]
+    },
+    {
+      "slug": "touba-grand-magal",
+      "queries": [
+        "Grande mosquée de Touba",
+        "Touba mosque",
+        "Grand Magal Touba"
+      ]
+    },
+    {
+      "slug": "basilique-yamoussoukro",
+      "queries": [
+        "Basilique Notre-Dame de la Paix Yamoussoukro",
+        "Basilica of Our Lady of Peace Yamoussoukro"
+      ]
+    },
+    {
+      "slug": "parc-national-tai",
+      "queries": [
+        "Parc national de Taï",
+        "Taï National Park"
+      ]
+    },
+    {
+      "slug": "grand-bassam",
+      "queries": [
+        "Grand-Bassam",
+        "Musée national du costume Grand-Bassam",
+        "Grand Bassam"
+      ]
+    },
+    {
+      "slug": "parc-national-comoe",
+      "queries": [
+        "Parc national de la Comoé",
+        "Comoé National Park"
+      ]
+    },
+    {
+      "slug": "mosquees-soudanaises-kong",
+      "queries": [
+        "Mosquée de Kong",
+        "Kong mosque Côte d'Ivoire",
+        "Mosquée de Kaouara"
+      ]
+    },
+    {
+      "slug": "danse-zaouli",
+      "queries": [
+        "Zaouli",
+        "Zaouli dance",
+        "Masque Zaouli"
+      ]
+    },
+    {
+      "slug": "tombouctou",
+      "queries": [
+        "Djinguereber Mosque",
+        "Sankore Mosque",
+        "Timbuktu"
+      ]
+    },
+    {
+      "slug": "falaise-bandiagara",
+      "queries": [
+        "Bandiagara Escarpment",
+        "Dogon village",
+        "Falaise de Bandiagara"
+      ]
+    },
+    {
+      "slug": "grande-mosquee-djenne",
+      "queries": [
+        "Great Mosque of Djenné",
+        "Grande mosquée de Djenné"
+      ]
+    },
+    {
+      "slug": "tombeau-askia-gao",
+      "queries": [
+        "Tomb of Askia",
+        "Tombeau des Askia",
+        "Askia Tomb Gao"
+      ]
+    },
+    {
+      "slug": "kamablon-kangaba",
+      "queries": [
+        "Kamablon",
+        "Kangaba"
+      ]
+    },
+    {
+      "slug": "musee-national-mali",
+      "queries": [
+        "Musée national du Mali",
+        "National Museum of Mali Bamako"
       ]
     }
   ]
