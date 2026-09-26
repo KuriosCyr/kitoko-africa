@@ -159,19 +159,36 @@ module.exports = [
     longitude: 2.4262,
     radius: 300,
     themes: ["resistances", "royaumes"],
-    description: "Une statue monumentale d'une trentaine de mètres rend hommage aux Agojie, les guerrières du royaume du Danxomè, que les Européens ont appelées « Amazones ».",
-    histoire: "Les Agojie (aussi appelées Minon, « nos mères ») formaient un corps militaire féminin du royaume du Danxomè, actif du XVIIIe à la fin du XIXe siècle. Elles combattirent notamment les troupes françaises lors des guerres de 1890 et 1892. Le monument, inauguré en 2022 sur l'esplanade qui porte leur nom, représente une guerrière debout, arme à la main.",
-    culture: "Le monument est devenu un symbole de fierté et un lieu de rassemblement à Cotonou. Il invite à redécouvrir l'histoire des Agojie à partir des sources et des mémoires béninoises, au-delà des représentations coloniales et cinématographiques.",
-    savoirs: "Transmission de l'histoire militaire et politique du Danxomè ; récits et chants liés aux Agojie conservés par les familles et les héraldistes.",
-    communities: "Ville de Cotonou, historiens et associations mémorielles.",
+    description: "Sur l'esplanade qui porte leur nom, à Cotonou, une statue monumentale d'une trentaine de mètres rend hommage aux Agojie, les guerrières du royaume du Danxomè, que les voyageurs européens ont appelées « Amazones ».\n\nInauguré en 2022, le monument est devenu en peu de temps l'un des symboles de la ville : un lieu de promenade et de photos, mais surtout une invitation à redécouvrir une page singulière de l'histoire africaine, racontée du point de vue béninois.",
+    histoire: "### Un corps de guerrières\nLes Agojie formaient un corps militaire féminin au service des rois du Danxomè, le royaume dont la capitale était Abomey. En fon, on les appelait aussi Minon, « nos mères ». Selon la tradition, leurs origines remonteraient au début du XVIIIe siècle, parfois associées à la reine Hangbè ou à des chasseuses d'éléphants (gbeto). Le corps se structure sous les rois Agadja et Tegbessou, puis se renforce nettement sous le roi Ghézo, au XIXe siècle.\n\n### Organisation et entraînement\nRecrutées jeunes, les Agojie vivaient au palais, soumises à une discipline stricte. Elles étaient organisées en unités spécialisées — fusilières, archères, faucheuses armées de grands coutelas, chasseuses — et s'entraînaient intensément. Les estimations de leurs effectifs varient selon les sources et les époques : de quelques centaines à plusieurs milliers.\n\n### Face à la conquête coloniale\nLes Agojie combattirent dans les guerres du Danxomè contre ses voisins, puis face aux troupes françaises. En 1890, puis lors de la campagne de 1892, elles furent en première ligne pour défendre le royaume du roi Béhanzin. Malgré leur courage, reconnu par les officiers adverses eux-mêmes, elles subirent de très lourdes pertes face à un armement plus moderne. Le corps disparaît avec la fin de l'indépendance du royaume, en 1894.\n\n### Un monument pour la mémoire\nLe monument de l'Esplanade des Amazones a été inauguré en juillet 2022. Il représente une guerrière debout, arme à la main, dans une attitude de vigilance. Il s'inscrit dans une politique de valorisation du patrimoine qui a vu, la même année, le retour au Bénin de trésors royaux d'Abomey restitués par la France.",
+    culture: "Le monument est aujourd'hui un lieu de rassemblement et de fierté. Familles, étudiants et touristes viennent s'y photographier, en particulier en fin de journée, lorsque l'esplanade s'anime.\n\nLes Agojie occupent une place à part dans l'imaginaire. Elles ont été décrites par des voyageurs européens avec un mélange de fascination et de préjugés, puis popularisées par le cinéma, notamment avec le film The Woman King (2022). Le monument invite à aller au-delà de ces images, en s'appuyant sur les travaux des historiens et sur la mémoire conservée à Abomey.\n\nPour beaucoup de Béninoises et de Béninois, les Agojie sont aussi une référence contemporaine : un symbole de courage et de place des femmes dans l'histoire du pays.",
+    savoirs: "### Mémoire orale\nL'histoire des Agojie se transmet par les récits des familles d'Abomey, par les chants et par les héraldistes royaux qui récitent les louanges des rois et de leurs campagnes.\n\n### Sources écrites\nLes récits de voyageurs et de militaires européens du XVIIIe et du XIXe siècles apportent des descriptions précieuses, mais partielles et marquées par leur regard. Les historiens les confrontent aux traditions orales pour mieux comprendre ce que fut réellement ce corps.",
+    communities: "Ville de Cotonou, familles et dignitaires d'Abomey, historiens et associations mémorielles.",
     langues: "Fon, français",
-    personnalites: "Les Agojie ; roi Ghézo (qui aurait renforcé le corps), roi Béhanzin.",
-    infos_pratiques: "Accès libre, en plein air. Particulièrement animé en fin de journée.",
-    sources: ["Présidence de la République du Bénin — inauguration du monument (2022)", "Maurice Ahanhanzo Glèlè, Le Danxomè, 1974"],
+    personnalites: "Les Agojie ; la reine Hangbè (associée par certaines traditions aux origines du corps) ; le roi Ghézo, qui aurait renforcé le corps ; le roi Béhanzin, défenseur du royaume face à la conquête française.",
+    infos_pratiques: "Accès libre, en plein air, sur l'Esplanade des Amazones, à Cotonou. Moment idéal : en fin d'après-midi, quand la chaleur baisse et que l'esplanade s'anime. Pour aller plus loin, compléter la visite par celle des palais royaux d'Abomey.",
+    chronologie: [
+      ["Début du XVIIIe siècle", "Selon la tradition, premières origines du corps des guerrières, parfois associées à la reine Hangbè."],
+      ["1818 - 1858", "Règne du roi Ghézo, qui renforce le corps des Agojie."],
+      ["1890", "Premiers affrontements entre le Danxomè et les troupes françaises, notamment autour de Cotonou."],
+      ["1892", "Campagne française contre le royaume de Béhanzin ; les Agojie sont en première ligne."],
+      ["1894", "Reddition de Béhanzin ; fin de l'indépendance du royaume et du corps des Agojie."],
+      ["2022", "Inauguration du monument des Amazones à Cotonou."]
+    ],
+    a_voir: [
+      ["La statue", "Une guerrière d'une trentaine de mètres, arme à la main : observer les détails de sa tenue et de sa posture."],
+      ["L'esplanade", "Un espace de promenade très fréquenté en fin de journée."],
+      ["Le prolongement à Abomey", "Les palais royaux, où se conserve la mémoire des rois que les Agojie servaient."]
+    ],
+    saviez_vous: ["En fon, les Agojie étaient aussi appelées Minon, ce qui signifie « nos mères ».", "Le nom d'« Amazones » leur a été donné par des Européens, en référence aux guerrières de la mythologie grecque."],
+    sources: ["Présidence de la République du Bénin — inauguration du monument (2022)", "Maurice Ahanhanzo Glèlè, Le Danxomè, 1974", "Stanley B. Alpern, Amazons of Black Sparta: The Women Warriors of Dahomey, 1998"],
     recits: [],
     quiz: [
-      { question: "Comment appelait-on les guerrières du Danxomè en fon ?", choices: ["Les Agojie (ou Minon)", "Les Kandakes", "Les Sofas"], answer: 0, explanation: "Les Agojie, ou Minon (« nos mères »). Les Kandakes étaient des reines de Koush ; les sofas, des soldats de l'armée de Samory Touré." },
-      { question: "Quelle est la hauteur approximative de la statue ?", choices: ["5 mètres", "30 mètres", "100 mètres"], answer: 1, explanation: "La statue mesure une trentaine de mètres, ce qui en fait l'un des plus grands monuments du pays." }
+      { question: "Comment appelait-on les guerrières du Danxomè en fon ?", choices: ["Les Agojie (ou Minon)", "Les Gbeto", "Les Agudas"], answer: 0, explanation: "On les appelait Agojie, ou Minon, « nos mères ». Les Européens les ont surnommées « Amazones »." },
+      { question: "Quelle est la hauteur approximative de la statue de Cotonou ?", choices: ["Environ 5 mètres", "Environ 30 mètres", "Environ 100 mètres"], answer: 1, explanation: "La statue mesure une trentaine de mètres." },
+      { question: "Sous quel roi le corps des Agojie aurait-il été nettement renforcé au XIXe siècle ?", choices: ["Ghézo", "Toffa", "Sina Boko"], answer: 0, explanation: "Le roi Ghézo (1818-1858) est associé au renforcement du corps." },
+      { question: "Contre quelle armée les Agojie ont-elles combattu en 1890 et 1892 ?", choices: ["L'armée portugaise", "L'armée française", "L'armée britannique"], answer: 1, explanation: "Elles ont défendu le royaume de Béhanzin face aux troupes françaises." },
+      { question: "En quelle année le monument a-t-il été inauguré ?", choices: ["1960", "1994", "2022"], answer: 2, explanation: "Le monument a été inauguré en 2022, l'année du retour des trésors royaux d'Abomey." }
     ]
   },
   {
@@ -416,20 +433,36 @@ module.exports = [
     longitude: 1.55,
     radius: 40000,
     themes: ["faune-flore", "eaux"],
-    description: "Dans le nord-ouest du Bénin, la Pendjari est l'un des derniers grands refuges de la faune sauvage en Afrique de l'Ouest : lions, éléphants, buffles, hippopotames et antilopes.",
-    histoire: "La Pendjari fait partie du complexe transfrontalier W-Arly-Pendjari (WAP), partagé entre le Bénin, le Burkina Faso et le Niger, inscrit au patrimoine mondial de l'UNESCO en 2017. Depuis 2017, le parc est géré par l'État béninois en partenariat avec l'organisation African Parks.",
-    culture: "Les communautés riveraines, notamment waaba, berba et gourmantché, ont des liens anciens avec ces terres. La gestion du parc cherche à concilier conservation et vie des villages voisins.",
-    savoirs: "Connaissance de la faune et des plantes par les communautés riveraines ; savoirs des pisteurs et écogardes.",
-    communities: "Villages riverains de la Pendjari, écogardes, African Parks.",
+    description: "Dans le nord-ouest du Bénin, adossé à la chaîne de l'Atacora et bordé par la rivière Pendjari, le parc national de la Pendjari est l'un des derniers grands refuges de la faune sauvage en Afrique de l'Ouest : lions, éléphants, buffles, hippopotames, antilopes et plus de 300 espèces d'oiseaux.\n\nSavanes, galeries forestières, mares et falaises y composent des paysages spectaculaires. Avec les parcs voisins du Burkina Faso et du Niger, il forme un ensemble protégé exceptionnel, inscrit au patrimoine mondial de l'UNESCO.",
+    histoire: "### D'une réserve à un parc national\nLa zone de la Pendjari est d'abord classée comme réserve de faune au milieu du XXe siècle, à l'époque coloniale, puis érigée en parc national après l'indépendance. En 1986, elle est reconnue par l'UNESCO comme réserve de biosphère : un statut qui associe la protection de la nature et la vie des populations riveraines.\n\n### Le complexe W-Arly-Pendjari\nLa Pendjari fait partie d'un ensemble transfrontalier d'aires protégées, le complexe W-Arly-Pendjari (WAP), partagé entre le Bénin, le Burkina Faso et le Niger. C'est l'un des plus vastes ensembles de savanes protégées d'Afrique de l'Ouest. Le parc du W du Niger était inscrit au patrimoine mondial depuis 1996 ; en 2017, l'inscription est étendue à l'ensemble du complexe, dont la Pendjari.\n\n### Une nouvelle gestion\nDepuis 2017, le parc est géré par l'État béninois en partenariat avec l'organisation African Parks. Les efforts portent sur la lutte contre le braconnage, le suivi scientifique de la faune et le développement d'activités avec les villages voisins. Le contexte sécuritaire de la région a conduit à renforcer fortement la protection du parc et à encadrer strictement les visites.",
+    culture: "Les communautés riveraines — notamment waaba, berba, gourmantché et otammari — ont des liens anciens avec ces terres, qu'elles ont parcourues pour la chasse, la cueillette, la pêche et les rites. Certains lieux, comme des mares ou des bosquets, ont une dimension sacrée.\n\nLa création du parc a profondément modifié ces usages. Aujourd'hui, la gestion cherche à concilier conservation et vie des villages : emplois d'écogardes et de guides, apiculture, retombées du tourisme, zones d'usage contrôlé autour du parc.\n\nLa Pendjari est aussi un symbole national : une fierté pour le Bénin, qui abrite l'une des dernières populations importantes de lions d'Afrique de l'Ouest.",
+    savoirs: "### La connaissance du milieu\nLes pisteurs et les habitants des villages riverains savent lire les traces des animaux, reconnaître les plantes utiles et interpréter les signes des saisons : feux de brousse, montée des eaux, floraisons.\n\n### Le suivi scientifique\nLes équipes du parc réalisent des comptages aériens et au sol, suivent certaines espèces (comme les lions et les éléphants) et surveillent l'état des mares, essentielles en saison sèche.\n\n### Le métier d'écogarde\nLes écogardes patrouillent pour protéger la faune contre le braconnage. Leur formation associe techniques de terrain, connaissance des animaux et relation avec les communautés.",
+    communities: "Villages riverains de la Pendjari (Tanguiéta, Matéri, Batia…), écogardes, guides, African Parks.",
     langues: "Waama, berba, gourmantché, bariba, français",
     personnalites: "—",
-    infos_pratiques: "Visite uniquement dans le cadre prévu par la direction du parc (entrées, guides et règles de sécurité à vérifier avant le départ). Saison sèche (décembre à mai) plus favorable à l'observation des animaux.",
-    sources: ["UNESCO — Complexe W-Arly-Pendjari (extension 2017)", "African Parks — Parc national de la Pendjari"],
+    infos_pratiques: "Visite uniquement dans le cadre prévu par la direction du parc : entrées, guides obligatoires, itinéraires et règles de sécurité à vérifier avant le départ, ainsi que les conseils aux voyageurs en vigueur. La saison sèche (décembre à mai) est la plus favorable à l'observation des animaux, rassemblés autour des mares. Ne jamais descendre du véhicule hors des zones autorisées, ne pas nourrir les animaux, respecter les distances.",
+    chronologie: [
+      ["Milieu du XXe siècle", "Classement de la zone comme réserve de faune."],
+      ["Après l'indépendance", "La Pendjari devient parc national."],
+      ["1986", "Reconnaissance comme réserve de biosphère par l'UNESCO."],
+      ["1996", "Le parc du W du Niger est inscrit au patrimoine mondial."],
+      ["2017", "Extension de l'inscription au complexe W-Arly-Pendjari ; début du partenariat avec African Parks."]
+    ],
+    a_voir: [
+      ["Les mares", "En saison sèche, les mares (comme la mare Bali ou la mare Yangouali) concentrent la vie sauvage : éléphants, buffles, antilopes, hippopotames."],
+      ["La rivière Pendjari", "Elle marque la frontière avec le Burkina Faso ; ses berges boisées abritent de nombreux oiseaux."],
+      ["La chaîne de l'Atacora", "Falaises et collines qui dominent la savane."],
+      ["Les chutes de Tanougou", "À proximité du parc, près de Tanguiéta, une cascade appréciée."]
+    ],
+    saviez_vous: ["Le complexe W-Arly-Pendjari abrite l'essentiel des derniers lions et des derniers grands troupeaux d'éléphants d'Afrique de l'Ouest.", "Le « W » du parc voisin vient des méandres du fleuve Niger, qui dessinent cette lettre sur la carte."],
+    sources: ["UNESCO — Complexe W-Arly-Pendjari (extension 2017)", "UNESCO — Réserve de biosphère de la Pendjari (1986)", "African Parks — Parc national de la Pendjari"],
     recits: [],
     quiz: [
-      { question: "Avec quels pays le Bénin partage-t-il le complexe W-Arly-Pendjari ?", choices: ["Togo et Ghana", "Burkina Faso et Niger", "Nigéria et Cameroun"], answer: 1, explanation: "Le complexe WAP s'étend sur le Bénin, le Burkina Faso et le Niger." },
-      { question: "Quel grand félin trouve à la Pendjari l'un de ses derniers refuges en Afrique de l'Ouest ?", choices: ["Le lion", "Le tigre", "Le jaguar"], answer: 0, explanation: "Le lion d'Afrique de l'Ouest est menacé ; le complexe WAP abrite l'essentiel de sa population." },
-      { question: "Comment se comporter lors d'un safari responsable ?", choices: ["Nourrir les animaux pour les attirer", "Rester dans le véhicule et garder ses distances", "Sortir du véhicule pour de meilleures photos"], answer: 1, explanation: "On reste dans le véhicule, à distance, sans nourrir les animaux : c'est leur sécurité et la vôtre." }
+      { question: "Avec quels pays le Bénin partage-t-il le complexe W-Arly-Pendjari ?", choices: ["Le Togo et le Ghana", "Le Burkina Faso et le Niger", "Le Nigéria et le Cameroun"], answer: 1, explanation: "Le complexe WAP s'étend sur le Bénin, le Burkina Faso et le Niger." },
+      { question: "Quel grand félin trouve à la Pendjari l'un de ses derniers refuges en Afrique de l'Ouest ?", choices: ["Le tigre", "Le lion", "Le jaguar"], answer: 1, explanation: "Le lion d'Afrique de l'Ouest est très menacé ; le complexe WAP en abrite l'essentiel." },
+      { question: "Comment se comporter lors d'un safari responsable ?", choices: ["Nourrir les animaux pour les attirer", "Rester dans le véhicule et respecter les distances", "S'approcher à pied pour de meilleures photos"], answer: 1, explanation: "On reste dans le véhicule, on garde ses distances et on suit les consignes des guides." },
+      { question: "Quelle saison est la plus favorable à l'observation des animaux ?", choices: ["La saison sèche", "La saison des pluies", "C'est pareil toute l'année"], answer: 0, explanation: "En saison sèche, les animaux se rassemblent autour des mares et la végétation est moins dense." },
+      { question: "Quel statut l'UNESCO a-t-il accordé à la Pendjari dès 1986 ?", choices: ["Réserve de biosphère", "Ville créative", "Chef-d'œuvre du patrimoine oral"], answer: 0, explanation: "La Pendjari est réserve de biosphère depuis 1986, avant l'inscription du complexe WAP au patrimoine mondial en 2017." }
     ]
   },
   {
@@ -444,19 +477,35 @@ module.exports = [
     longitude: 1.11,
     radius: 5000,
     themes: ["architecture", "artisanat", "langues"],
-    description: "Dans la région de Boukoumbé, les Otammari (Batammariba) construisent les « takienta » ou tata somba : de petites maisons-forteresses en terre à étage, véritables chefs-d'œuvre d'architecture.",
-    histoire: "Ce type d'habitat s'est développé dans les montagnes de l'Atacora, de part et d'autre de la frontière entre le Bénin et le Togo. Côté togolais, le paysage du Koutammakou, pays des Batammariba, est inscrit au patrimoine mondial de l'UNESCO depuis 2004.",
-    culture: "Chaque takienta abrite une famille. Le rez-de-chaussée accueille les animaux et la cuisine ; l'étage, en terrasse, sert à sécher les récoltes et porte des greniers coiffés de chaume. L'habitat traduit une vision du monde : la maison est aussi un être vivant, liée aux ancêtres.",
-    savoirs: "Construction en terre crue modelée à la main, crépissage, charpentes en bois et toitures de paille ; transmission des techniques entre générations.",
-    communities: "Communautés otammari de Boukoumbé et des villages voisins.",
+    description: "Dans les collines de Boukoumbé, au nord-ouest du Bénin, les Otammari (Batammariba) construisent les takienta, que l'on appelle couramment tata somba : de petites maisons-forteresses en terre, à étage, coiffées de greniers de paille.\n\nChaque takienta est à la fois un abri, un grenier, une étable et un lieu sacré. Ces maisons, dispersées dans la campagne, composent l'un des paysages culturels les plus remarquables d'Afrique de l'Ouest.",
+    histoire: "### Le pays des Batammariba\nLes Batammariba vivent dans la chaîne de l'Atacora, de part et d'autre de la frontière entre le Bénin et le Togo. Leur nom est souvent traduit par « ceux qui façonnent la terre » ou « les bons maçons ». Le mot « somba », utilisé à l'époque coloniale, désignait plus largement les peuples de cette région.\n\n### Une architecture de défense\nSelon les historiens, cette architecture se serait affirmée entre le XVIIe et le XIXe siècle, à une époque d'insécurité liée aux razzias et aux guerres. Ses murs épais, son unique entrée basse et son étage accessible par une échelle taillée dans un tronc en faisaient une véritable petite forteresse familiale.\n\n### Une reconnaissance internationale\nCôté togolais, le paysage du Koutammakou, pays des Batammariba, est inscrit au patrimoine mondial de l'UNESCO depuis 2004. Côté béninois, les takienta de Boukoumbé et de la région de Natitingou font l'objet d'actions de sauvegarde. Beaucoup de familles vivent encore dans des tata, même si les maisons en matériaux modernes se multiplient.",
+    culture: "Pour les Batammariba, la maison est bien plus qu'un bâtiment : elle est considérée comme un être vivant, liée au corps humain et aux ancêtres. Devant l'entrée se dressent souvent de petits autels en terre, en forme de cônes, dédiés aux ancêtres de la famille.\n\nLe rez-de-chaussée accueille la nuit les animaux, la cuisine et des espaces de stockage. L'étage, en terrasse, sert à sécher les récoltes et à dormir en saison chaude ; il porte des greniers ronds coiffés de chaume, où l'on conserve les céréales, et des chambres.\n\nLa construction d'une takienta est un événement social : elle mobilise la famille et les voisins, et s'accompagne de rites. La vie des Batammariba est aussi marquée par de grandes cérémonies d'initiation, qui font passer les jeunes à l'âge adulte.",
+    savoirs: "### Bâtir en terre\nLa takienta est faite de terre crue, mélangée à de l'eau et parfois à de la paille, modelée à la main en couches successives. Les murs sont montés pendant la saison sèche, par les hommes, puis crépis et décorés, souvent par les femmes.\n\n### Charpentes et toitures\nLes terrasses reposent sur des poutres en bois recouvertes de branchages et de terre damée. Les greniers sont coiffés de toits coniques en paille, renouvelés régulièrement.\n\n### Entretenir\nUne maison en terre vit : elle doit être entretenue après chaque saison des pluies. Ce savoir-faire se transmet dans les familles, par la pratique.",
+    communities: "Communautés otammari (batammariba) de Boukoumbé, Koussoukoingou et des villages voisins.",
     langues: "Ditammari, français",
     personnalites: "—",
-    infos_pratiques: "Visite de tata avec un guide local et l'accord des familles qui y vivent. Une contribution est souvent demandée : se renseigner auprès du guide.",
-    sources: ["UNESCO — Koutammakou, le pays des Batammariba (Togo, 2004)", "Direction du patrimoine culturel du Bénin"],
+    infos_pratiques: "Les tata sont des habitations : la visite se fait avec un guide local et l'accord des familles. Une contribution est souvent demandée : se renseigner auprès du guide. Demander avant de photographier les personnes. Boukoumbé est à environ 40 km de Natitingou ; la route traverse de beaux paysages de l'Atacora, notamment près de Koussoukoingou.",
+    chronologie: [
+      ["XVIIe - XIXe siècles", "Selon les historiens, affirmation de l'architecture des takienta dans l'Atacora."],
+      ["Époque coloniale", "Le terme « somba » se diffuse pour désigner les peuples de la région."],
+      ["2004", "Le Koutammakou (Togo), pays des Batammariba, est inscrit au patrimoine mondial."],
+      ["Aujourd'hui", "Des familles vivent encore dans des tata ; des actions de sauvegarde sont menées côté béninois."]
+    ],
+    a_voir: [
+      ["Une takienta habitée", "Découvrir, avec un guide et la famille, le rez-de-chaussée, l'échelle et la terrasse."],
+      ["Les greniers de l'étage", "Leurs toits coniques en paille donnent aux tata leur silhouette de château."],
+      ["Les autels devant l'entrée", "Petits cônes de terre dédiés aux ancêtres : à regarder sans toucher."],
+      ["Les paysages de Koussoukoingou", "Collines et points de vue sur la route de Boukoumbé."]
+    ],
+    saviez_vous: ["Le nom « Batammariba » est souvent traduit par « ceux qui façonnent la terre » : les bâtisseurs sont au cœur de l'identité de ce peuple.", "Dans la pensée des Batammariba, la maison est comparée à un corps humain, avec sa bouche (l'entrée) et son ventre (le rez-de-chaussée)."],
+    sources: ["UNESCO — Koutammakou, le pays des Batammariba (Togo, 2004)", "Suzanne Preston Blier, The Anatomy of Architecture: Ontology and Metaphor in Batammaliba Architectural Expression, 1987", "Direction du patrimoine culturel du Bénin"],
     recits: [],
     quiz: [
-      { question: "Quel peuple construit les takienta (tata somba) ?", choices: ["Les Otammari", "Les Toffinu", "Les Yoruba"], answer: 0, explanation: "Les Otammari (Batammariba) de l'Atacora construisent ces maisons-forteresses." },
-      { question: "À quoi sert la terrasse à l'étage d'une takienta ?", choices: ["À sécher les récoltes et abriter les greniers", "À élever des chevaux", "À recevoir les marchés"], answer: 0, explanation: "L'étage en terrasse sert au séchage des récoltes et porte les greniers." }
+      { question: "Quel peuple construit les takienta (tata somba) ?", choices: ["Les Batammariba (Otammari)", "Les Baatonu", "Les Fon"], answer: 0, explanation: "Les takienta sont l'œuvre des Batammariba, appelés aussi Otammari au Bénin." },
+      { question: "À quoi sert la terrasse à l'étage d'une takienta ?", choices: ["À garer les pirogues", "À sécher les récoltes et à dormir en saison chaude", "À accueillir le marché du village"], answer: 1, explanation: "La terrasse sert au séchage des récoltes ; elle porte aussi les greniers et des chambres." },
+      { question: "En quel matériau les takienta sont-elles principalement construites ?", choices: ["En pierre taillée", "En terre crue", "En bambou"], answer: 1, explanation: "Elles sont faites de terre crue modelée à la main, avec des charpentes en bois et des toits de paille." },
+      { question: "Quel paysage des Batammariba est inscrit au patrimoine mondial depuis 2004, côté togolais ?", choices: ["Le Koutammakou", "Le Fouta-Djallon", "Le Mont Nimba"], answer: 0, explanation: "Le Koutammakou, au Togo, est inscrit depuis 2004." },
+      { question: "Que trouve-t-on souvent devant l'entrée d'une takienta ?", choices: ["Des autels en terre dédiés aux ancêtres", "Un puits", "Une statue en bronze"], answer: 0, explanation: "De petits autels coniques en terre honorent les ancêtres de la famille." }
     ]
   },
   {
@@ -471,19 +520,37 @@ module.exports = [
     longitude: 2.615,
     radius: 300,
     themes: ["royaumes", "architecture"],
-    description: "Ancien palais des rois de Porto-Novo, le palais Honmè est aujourd'hui un musée qui fait découvrir l'organisation de la cour et la vie du royaume.",
-    histoire: "Porto-Novo, aussi appelée Hogbonou ou Adjatchè, fut la capitale d'un royaume fondé par des princes venus d'Allada. Au XIXe siècle, le roi Toffa y régnait ; il signa avec la France un traité de protectorat. Porto-Novo est aujourd'hui la capitale politique du Bénin. Le mot « Honmè » signifie « à l'intérieur du palais ».",
-    culture: "La visite fait découvrir les appartements royaux, les espaces des épouses, les cours de cérémonie et les objets de la royauté. Le palais témoigne de la place des royaumes dans l'histoire du Bénin contemporain.",
-    savoirs: "Architecture de cour, organisation de l'espace royal, protocoles et rites de la royauté.",
-    communities: "Famille royale de Porto-Novo, musée Honmè.",
+    description: "Au cœur de Porto-Novo, capitale politique du Bénin, le palais Honmè fut la résidence des rois de la ville. Devenu musée, il fait découvrir l'organisation d'une cour royale : les appartements du roi, les espaces des épouses, les cours de cérémonie et les objets de la royauté.\n\nSon nom signifie « à l'intérieur du palais ». Le visiter, c'est entrer dans l'histoire d'un royaume qui a su négocier sa place entre ses puissants voisins et les puissances européennes.",
+    histoire: "### Hogbonou, la ville des princes d'Allada\nSelon la tradition, le royaume de Porto-Novo est fondé à la fin du XVIIe siècle par des princes venus d'Allada, conduits par Te Agbanlin. La ville porte plusieurs noms : Hogbonou, Adjatchè (nom yoruba) et Porto-Novo, « nouveau port », nom donné par les navigateurs portugais.\n\n### Un royaume entre deux puissances\nAu XIXe siècle, Porto-Novo est pris entre le royaume du Danxomè, à l'ouest, et les puissances yoruba et britanniques, à l'est. Pour préserver l'autonomie de son royaume, le roi Toffa Ier (qui règne de 1874 à 1908) choisit de s'allier à la France et signe avec elle un traité de protectorat. Ce choix pèsera dans la conquête du Danxomè par la France.\n\n### De la capitale coloniale à la capitale du Bénin\nPorto-Novo devient la capitale de la colonie du Dahomey, puis, à l'indépendance, celle de la République. Elle est aujourd'hui la capitale officielle du Bénin, tandis que le gouvernement siège en grande partie à Cotonou. Le palais Honmè, résidence royale, a été transformé en musée pour conserver et partager la mémoire du royaume.",
+    culture: "Le parcours du musée fait traverser les différentes cours du palais : cours de réception, espaces réservés au roi, quartiers des reines, lieux de culte. Il montre comment l'espace était organisé pour exprimer la hiérarchie, le protocole et le sacré.\n\nPorto-Novo est une ville de rencontres : Gun, Yoruba (Nago), Agudas afro-brésiliens y cohabitent depuis longtemps. Cette diversité se lit dans l'architecture, les cultes, les langues et la cuisine de la ville.\n\nLa royauté de Porto-Novo existe toujours et joue un rôle coutumier et culturel, notamment lors des grandes cérémonies.",
+    savoirs: "### L'organisation d'une cour\nLe palais permet de comprendre les protocoles royaux : qui peut entrer où, comment on s'adresse au roi, quelles sont les fonctions des dignitaires et des épouses.\n\n### Les objets de la royauté\nTrônes, récades (sceptres), parasols, costumes et objets rituels racontent le pouvoir et sa symbolique.\n\n### L'architecture\nConstructions en terre, cours successives, murs d'enceinte : un savoir-faire de bâtisseurs adapté au climat et aux usages de la cour.",
+    communities: "Famille royale de Porto-Novo, musée Honmè, habitants de Porto-Novo.",
     langues: "Goun, yoruba, français",
-    personnalites: "Roi Toffa Ier",
-    infos_pratiques: "Musée ouvert au public, visite guidée. Horaires et tarifs à confirmer sur place.",
-    sources: ["Musée Honmè, Porto-Novo", "Direction du patrimoine culturel du Bénin"],
+    personnalites: "Te Agbanlin, fondateur du royaume selon la tradition ; roi Toffa Ier (règne 1874-1908).",
+    infos_pratiques: "Musée ouvert au public, visite guidée. Horaires et tarifs à confirmer sur place. À combiner avec les autres lieux de Porto-Novo : la Grande Mosquée, le musée ethnographique Alexandre Sènou Adandé (célèbre pour ses masques gèlèdè), le musée Da Silva et le jardin des plantes et de la nature.",
+    chronologie: [
+      ["Fin du XVIIe siècle", "Selon la tradition, fondation du royaume par des princes venus d'Allada."],
+      ["XVIIIe siècle", "Les navigateurs portugais donnent à la ville le nom de Porto-Novo."],
+      ["1874 - 1908", "Règne du roi Toffa Ier."],
+      ["Années 1880", "Traité de protectorat entre Toffa et la France."],
+      ["1960", "Porto-Novo devient la capitale de la République indépendante."],
+      ["Aujourd'hui", "Le palais Honmè est un musée ouvert au public."]
+    ],
+    a_voir: [
+      ["Les cours du palais", "Passer d'une cour à l'autre pour comprendre la hiérarchie des espaces."],
+      ["Les quartiers des reines", "Une partie essentielle de la vie de la cour."],
+      ["Les objets royaux", "Récades, trônes et parasols, symboles du pouvoir."],
+      ["La statue de Toffa", "Sur une place de la ville, un hommage au roi du XIXe siècle."]
+    ],
+    saviez_vous: ["Porto-Novo a trois noms : Hogbonou en gun, Adjatchè en yoruba et Porto-Novo, « nouveau port », donné par les Portugais.", "Porto-Novo est la capitale officielle du Bénin, mais de nombreuses institutions siègent à Cotonou."],
+    sources: ["Musée Honmè, Porto-Novo", "Direction du patrimoine culturel du Bénin", "Robert Cornevin, Histoire du Dahomey, 1962"],
     recits: [],
     quiz: [
-      { question: "Quels autres noms porte la ville de Porto-Novo ?", choices: ["Hogbonou et Adjatchè", "Abomey et Allada", "Djougou et Parakou"], answer: 0, explanation: "Porto-Novo est aussi appelée Hogbonou (en goun) et Adjatchè (en yoruba)." },
-      { question: "Que signifie « Honmè » ?", choices: ["Au bord de l'eau", "À l'intérieur du palais", "La grande place"], answer: 1, explanation: "Honmè signifie « à l'intérieur du palais »." }
+      { question: "Quels autres noms porte la ville de Porto-Novo ?", choices: ["Hogbonou et Adjatchè", "Abomey et Allada", "Ouidah et Glexwe"], answer: 0, explanation: "Porto-Novo s'appelle aussi Hogbonou (gun) et Adjatchè (yoruba)." },
+      { question: "Que signifie « Honmè » ?", choices: ["« Maison du marché »", "« À l'intérieur du palais »", "« Porte de la mer »"], answer: 1, explanation: "Honmè signifie « à l'intérieur du palais »." },
+      { question: "Avec quelle puissance le roi Toffa Ier a-t-il signé un traité de protectorat ?", choices: ["La France", "Le Portugal", "L'Angleterre"], answer: 0, explanation: "Toffa s'allia à la France pour préserver son royaume face à ses voisins." },
+      { question: "D'où venaient, selon la tradition, les princes fondateurs du royaume de Porto-Novo ?", choices: ["D'Allada", "De Tombouctou", "De Nikki"], answer: 0, explanation: "La tradition rattache la fondation du royaume à des princes venus d'Allada." },
+      { question: "Quel est le statut de Porto-Novo aujourd'hui ?", choices: ["Capitale officielle du Bénin", "Plus grand port du pays", "Capitale économique du Nigéria"], answer: 0, explanation: "Porto-Novo est la capitale officielle ; Cotonou est la capitale économique." }
     ]
   },
   {
@@ -498,18 +565,34 @@ module.exports = [
     longitude: 2.628,
     radius: 400,
     themes: ["architecture", "spiritualites", "memoire-traite"],
-    description: "Avec sa façade colorée, la Grande Mosquée de Porto-Novo est un exemple remarquable d'architecture afro-brésilienne, inspirée des églises baroques de Bahia.",
-    histoire: "Elle a été construite au début du XXe siècle par des Agudas, Africains musulmans revenus du Brésil après l'abolition de l'esclavage. Ils ont rapporté les techniques et le style architectural des églises de Salvador de Bahia, ce qui explique cette façade étonnante pour une mosquée.",
-    culture: "Le bâtiment raconte les allers-retours entre l'Afrique et les Amériques : une histoire de déportation, mais aussi de retour et de création culturelle.",
-    savoirs: "Architecture afro-brésilienne : façades à pilastres, frontons et décors peints.",
+    description: "Avec sa façade colorée, ses pilastres, ses frontons et ses clochetons, la Grande Mosquée de Porto-Novo surprend le visiteur : on croirait voir une église baroque du Brésil. C'est l'un des exemples les plus spectaculaires d'architecture afro-brésilienne en Afrique de l'Ouest.\n\nCe bâtiment raconte une histoire à double sens : celle des Africains déportés vers les Amériques, et celle de leurs descendants revenus sur la côte, porteurs de savoir-faire et de styles venus de l'autre rive de l'Atlantique.",
+    histoire: "### Le retour des Agudas\nAu XIXe siècle, des milliers d'Africains libérés ou affranchis quittent le Brésil pour revenir sur la côte ouest-africaine. On les appelle les Agudas (ou « Brésiliens »). Parmi eux se trouvent de nombreux musulmans : après la révolte des Malês, à Salvador de Bahia en 1835, une partie des Africains musulmans a été expulsée du Brésil. Ils s'installent notamment à Ouidah, Porto-Novo et Lagos.\n\n### Des bâtisseurs venus de Bahia\nLes Agudas ont souvent exercé au Brésil des métiers du bâtiment : maçons, charpentiers, menuisiers. Ils rapportent les techniques et le style des églises et des maisons de Salvador de Bahia. À Porto-Novo, ils construisent des maisons à étage, des églises… et une grande mosquée.\n\n### La construction de la mosquée\nLa Grande Mosquée est édifiée au début du XXe siècle, selon les sources entre les années 1910 et les années 1930. Sa façade reprend les codes du baroque brésilien — frontons, pilastres, décors en relief, couleurs vives — mis au service d'un lieu de culte musulman. Elle reste aujourd'hui un lieu de prière actif et l'un des monuments les plus photographiés du pays.",
+    culture: "La mosquée est le cœur religieux d'une importante communauté musulmane à Porto-Novo. Le vendredi et lors des grandes fêtes, comme la Tabaski ou la fin du Ramadan, elle rassemble de nombreux fidèles.\n\nElle témoigne aussi d'une identité afro-brésilienne encore vivante sur la côte du Bénin : noms de famille portugais (Da Silva, De Souza, Paraíso…), plats, fêtes et traditions, comme la « Burrinha », mascarade d'origine brésilienne.\n\nEnfin, elle illustre la cohabitation religieuse caractéristique de Porto-Novo, où mosquées, églises et temples vodun se côtoient.",
+    savoirs: "### L'architecture afro-brésilienne\nFaçades symétriques, pilastres, frontons triangulaires ou en volutes, corniches moulurées, décors peints en couleurs vives : un vocabulaire baroque et colonial portugais, réinterprété par des artisans africains.\n\n### Les métiers du bâtiment\nMaçonnerie, menuiserie et ferronnerie ont été transmises par les Agudas à leurs apprentis locaux, contribuant à transformer le paysage urbain de la côte.",
     communities: "Communauté musulmane de Porto-Novo, descendants agudas.",
     langues: "Goun, yoruba, français",
     personnalites: "—",
-    infos_pratiques: "Lieu de culte : visite de l'extérieur, ou de l'intérieur avec autorisation et en dehors des heures de prière. Tenue correcte exigée.",
-    sources: ["Direction du patrimoine culturel du Bénin"],
+    infos_pratiques: "Lieu de culte : visite de l'extérieur, ou de l'intérieur avec autorisation et en dehors des heures de prière. Tenue correcte exigée (épaules et jambes couvertes ; foulard pour les femmes). Demander l'autorisation avant de photographier les fidèles. À combiner avec le musée Da Silva, consacré à l'histoire afro-brésilienne, et le palais Honmè.",
+    chronologie: [
+      ["1835", "Révolte des Malês à Salvador de Bahia ; des Africains musulmans sont expulsés du Brésil."],
+      ["XIXe siècle", "Retour de milliers d'Agudas sur la côte ouest-africaine."],
+      ["Début du XXe siècle", "Construction de la Grande Mosquée de Porto-Novo par la communauté musulmane, avec des bâtisseurs de tradition afro-brésilienne."],
+      ["Aujourd'hui", "Lieu de prière actif et monument emblématique de Porto-Novo."]
+    ],
+    a_voir: [
+      ["La façade", "Frontons, pilastres et couleurs : comparer avec des photos d'églises de Salvador de Bahia."],
+      ["Les maisons afro-brésiliennes du quartier", "Maisons à étage aux balcons et aux façades décorées."],
+      ["Le musée Da Silva", "Pour comprendre l'histoire des Agudas à Porto-Novo."]
+    ],
+    saviez_vous: ["La révolte des Malês, en 1835 à Bahia, fut menée en grande partie par des Africains musulmans ; la répression conduisit à l'expulsion de certains d'entre eux vers l'Afrique.", "Des familles béninoises portent encore des noms d'origine portugaise, comme Da Silva, De Souza ou Paraíso, héritage des Agudas."],
+    sources: ["Direction du patrimoine culturel du Bénin", "Milton Guran, Agudás : os « brasileiros » do Benim, 1999", "João José Reis, Rebelião escrava no Brasil : a história do levante dos Malês em 1835, 1986"],
     recits: [],
     quiz: [
-      { question: "De quel pays les bâtisseurs de la Grande Mosquée de Porto-Novo avaient-ils rapporté leur style ?", choices: ["Du Brésil", "Du Maroc", "De l'Inde"], answer: 0, explanation: "Les Agudas, revenus du Brésil, se sont inspirés des églises baroques de Salvador de Bahia." }
+      { question: "De quel pays les bâtisseurs de la Grande Mosquée de Porto-Novo avaient-ils rapporté leur style ?", choices: ["Le Brésil", "L'Égypte", "Le Maroc"], answer: 0, explanation: "Les Agudas, revenus du Brésil, ont rapporté le style des églises baroques de Bahia." },
+      { question: "Comment appelle-t-on les descendants d'Africains revenus du Brésil sur la côte du Bénin ?", choices: ["Les Agudas", "Les Agojie", "Les Wasangari"], answer: 0, explanation: "On les appelle les Agudas, ou « Brésiliens »." },
+      { question: "Quel événement de 1835 à Bahia a conduit à l'expulsion d'Africains musulmans du Brésil ?", choices: ["La révolte des Malês", "L'abolition de l'esclavage", "L'indépendance du Brésil"], answer: 0, explanation: "La révolte des Malês fut suivie d'une répression et d'expulsions. L'abolition au Brésil date de 1888." },
+      { question: "Quel élément architectural caractérise la façade de la mosquée ?", choices: ["Des coupoles en verre", "Des frontons et pilastres de style baroque", "Des murs en banco hérissés de pieux"], answer: 1, explanation: "Frontons, pilastres et couleurs vives rappellent les églises baroques brésiliennes." },
+      { question: "Quelle attitude adopter pour visiter la mosquée ?", choices: ["Entrer librement pendant la prière", "Demander l'autorisation, en dehors des heures de prière, en tenue correcte", "Photographier les fidèles sans demander"], answer: 1, explanation: "C'est un lieu de culte : on demande l'autorisation et on respecte les fidèles." }
     ]
   },
   {
@@ -524,19 +607,32 @@ module.exports = [
     longitude: 1.452,
     radius: 1500,
     themes: ["eaux", "faune-flore"],
-    description: "Près de Natitingou, les chutes de Kota tombent dans un bassin naturel au milieu de la végétation de l'Atacora. Un lieu de fraîcheur et de baignade apprécié.",
-    histoire: "Les chutes se trouvent dans la chaîne de l'Atacora, qui traverse le nord-ouest du Bénin. Le site est devenu un lieu de détente et d'écotourisme géré avec les communautés locales.",
-    culture: "Les cours d'eau et les rochers de l'Atacora sont parfois associés à des esprits et à des interdits locaux : se renseigner auprès des habitants.",
-    savoirs: "Connaissance des plantes et des cycles de l'eau par les communautés voisines.",
-    communities: "Villages voisins de Kota.",
+    description: "Près de Natitingou, dans le nord-ouest du Bénin, les chutes de Kota dévalent les rochers de l'Atacora pour tomber dans un bassin naturel entouré de verdure. Un lieu de fraîcheur, de baignade et de pique-nique très apprécié des habitants comme des visiteurs.\n\nLe site offre une porte d'entrée idéale vers les paysages de l'Atacora : collines, falaises, forêts-galeries et villages de l'arrière-pays.",
+    histoire: "### La chaîne de l'Atacora\nLes chutes se trouvent dans la chaîne de l'Atacora, un ensemble de collines et de reliefs anciens qui traverse le nord-ouest du Bénin et se prolonge au Togo et au Ghana. Ces reliefs donnent naissance à de nombreux cours d'eau et à plusieurs cascades, comme celles de Kota et de Tanougou.\n\n### Un lieu d'écotourisme\nLongtemps fréquenté surtout par les habitants des environs, le site est devenu un lieu de détente et d'écotourisme, aménagé avec les communautés locales. Les droits d'entrée contribuent à l'entretien du site et à des emplois locaux.\n\n### Natitingou, capitale de l'Atacora\nLa ville voisine de Natitingou est le principal centre de la région. Elle est la base de départ pour découvrir les tata somba de Boukoumbé, le parc de la Pendjari et les nombreux sites naturels de l'Atacora.",
+    culture: "Dans l'Atacora, les cours d'eau, les rochers et les bosquets sont souvent associés à des esprits et à des interdits locaux. Certains lieux sont sacrés et ne doivent pas être approchés sans l'accord des habitants.\n\nLes chutes sont aussi un lieu de sociabilité : sorties en famille, rencontres entre jeunes, excursions scolaires. Le week-end et pendant les vacances, le site s'anime.\n\nLes communautés de la région — Otammari, Waaba, Berba et d'autres — ont chacune leurs traditions, leurs fêtes et leurs rites d'initiation, qui donnent à l'Atacora une grande richesse culturelle.",
+    savoirs: "### Connaître l'eau\nLes communautés voisines connaissent les cycles des cours d'eau : crues de la saison des pluies, étiage de la saison sèche, points d'eau permanents. Ce savoir guide l'agriculture et la vie quotidienne.\n\n### Les plantes\nLes forêts-galeries qui bordent les cours d'eau abritent des plantes utilisées en pharmacopée et dans l'artisanat. Leur connaissance se transmet dans les familles.",
+    communities: "Villages voisins de Kota, communauté de Natitingou.",
     langues: "Ditammari, waama, français",
     personnalites: "—",
-    infos_pratiques: "Accès par piste depuis Natitingou. Débit plus impressionnant en saison des pluies. Ne rien laisser sur place.",
-    sources: ["Office du tourisme du Bénin — Atacora"],
+    infos_pratiques: "Accès par piste depuis Natitingou (quelques kilomètres). Débit plus impressionnant en saison des pluies (juillet à octobre), mais l'accès peut être plus difficile. Baignade à vos risques : attention aux rochers glissants. Ne rien laisser sur place, ne pas utiliser de savon dans le bassin. Se renseigner sur les éventuels droits d'entrée.",
+    chronologie: [
+      ["Temps géologiques", "Formation des reliefs anciens de la chaîne de l'Atacora."],
+      ["Aujourd'hui", "Le site est aménagé pour l'écotourisme avec les communautés locales."]
+    ],
+    a_voir: [
+      ["La cascade et son bassin", "Le cœur du site, pour se rafraîchir."],
+      ["Les rochers de l'Atacora", "Des formations rocheuses qui bordent les chutes."],
+      ["La forêt-galerie", "Une végétation dense le long du cours d'eau, riche en oiseaux."]
+    ],
+    saviez_vous: ["La chaîne de l'Atacora se prolonge au Togo et au Ghana, où elle prend d'autres noms, comme les monts Togo.", "Natitingou est la base idéale pour visiter à la fois les chutes de Kota, les tata somba de Boukoumbé et le parc de la Pendjari."],
+    sources: ["Office du tourisme du Bénin — Atacora", "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"],
     recits: [],
     quiz: [
-      { question: "Dans quelle chaîne de montagnes se trouvent les chutes de Kota ?", choices: ["L'Atlas", "L'Atacora", "Le Fouta-Djallon"], answer: 1, explanation: "Les chutes de Kota se trouvent dans la chaîne de l'Atacora, près de Natitingou." },
-      { question: "Quel geste adopter sur un site naturel ?", choices: ["Graver son nom sur les rochers", "Emporter ses déchets", "Cueillir des plantes en souvenir"], answer: 1, explanation: "On repart avec ses déchets et on laisse le site intact pour les autres visiteurs et pour la nature." }
+      { question: "Dans quelle chaîne de montagnes se trouvent les chutes de Kota ?", choices: ["L'Atlas", "L'Atacora", "Le Fouta-Djallon"], answer: 1, explanation: "Les chutes de Kota se trouvent dans la chaîne de l'Atacora, au nord-ouest du Bénin." },
+      { question: "Quel geste adopter sur un site naturel ?", choices: ["Laisser ses déchets sur place", "Repartir avec ses déchets et respecter les lieux", "Cueillir les plantes rares"], answer: 1, explanation: "On ne laisse aucune trace de son passage." },
+      { question: "Près de quelle ville se trouvent les chutes de Kota ?", choices: ["Natitingou", "Porto-Novo", "Ouidah"], answer: 0, explanation: "Les chutes sont à proximité de Natitingou, principale ville de l'Atacora." },
+      { question: "À quelle période les chutes ont-elles le plus fort débit ?", choices: ["En saison des pluies", "En saison sèche", "Le débit ne change jamais"], answer: 0, explanation: "Les pluies, de juillet à octobre environ, gonflent les cours d'eau." },
+      { question: "Pourquoi ne faut-il pas utiliser de savon dans le bassin ?", choices: ["C'est interdit par la loi internationale", "Pour ne pas polluer l'eau utilisée par la faune et les habitants", "Parce que l'eau est salée"], answer: 1, explanation: "Les produits chimiques polluent l'eau et nuisent à la vie du cours d'eau." }
     ]
   },
   {
@@ -551,18 +647,35 @@ module.exports = [
     longitude: 1.97,
     radius: 5000,
     themes: ["eaux", "gastronomie", "marches"],
-    description: "Au bord du lac Ahémé, le village de Possotomè est connu pour sa source d'eau minérale et pour la vie des pêcheurs, qui pratiquent encore des techniques traditionnelles.",
-    histoire: "Le lac Ahémé, relié à la mer par le chenal de l'Aho, est depuis longtemps une zone de pêche et d'échanges. Possotomè est devenue célèbre pour son eau minérale, commercialisée dans tout le pays.",
-    culture: "La vie du lac rythme celle des villages : pêche, fumage et vente du poisson, fabrication des pirogues. Les communautés du lac entretiennent aussi des lieux de culte liés à l'eau.",
-    savoirs: "Pêche en acadja, fabrication de filets et de nasses, fumage du poisson, connaissance des saisons du lac.",
-    communities: "Pêcheurs et transformatrices de poisson des villages du lac.",
+    description: "Dans le sud-ouest du Bénin, le lac Ahémé s'étire sur une trentaine de kilomètres entre collines et palmeraies. Sur sa rive, le village de Possotomè est connu dans tout le pays pour sa source d'eau minérale chaude, et pour la vie des pêcheurs qui perpétuent des techniques traditionnelles.\n\nBalades en pirogue, rencontres avec les pêcheurs, découverte des acadjas et des villages lacustres : le lac offre une immersion paisible dans le quotidien des communautés de l'eau.",
+    histoire: "### Un lac relié à la mer\nLe lac Ahémé est alimenté principalement par le fleuve Couffo et relié à la mer par le chenal de l'Aho, qui rejoint le système lagunaire de la côte. Ses eaux sont ainsi plus ou moins salées selon les saisons, ce qui influence les poissons et les pratiques de pêche.\n\n### Des peuples de l'eau\nLes rives du lac sont habitées notamment par les Pédah et les Ayizo, dont l'histoire est liée à la pêche et aux échanges par pirogue. Le lac a longtemps été une voie de circulation entre l'intérieur et la côte.\n\n### L'eau de Possotomè\nLa source chaude de Possotomè est connue depuis longtemps des habitants. Son eau minérale est aujourd'hui mise en bouteille et commercialisée dans tout le Bénin, au point que « Possotomè » est devenu synonyme d'eau minérale pour beaucoup de Béninois.\n\n### Un milieu fragile\nLe lac fait partie d'une zone humide reconnue d'importance internationale au titre de la convention de Ramsar. Il est menacé par l'ensablement, la surpêche et l'usage de filets à mailles trop fines. Des initiatives locales cherchent à mieux gérer ses ressources.",
+    culture: "La vie du lac rythme celle des villages : sorties de pêche à l'aube, retour des pirogues, fumage et vente du poisson par les femmes, fabrication et réparation des embarcations et des filets.\n\nLes communautés du lac entretiennent des lieux de culte liés à l'eau et au vodun. Certaines divinités sont associées au lac lui-même ; des interdits et des cérémonies encadrent parfois les activités de pêche.\n\nLe lac est aussi un lieu d'accueil : de petites structures d'écotourisme proposent hébergement, repas de poisson frais et découvertes guidées.",
+    savoirs: "### Les acadjas\nL'acadja est un parc à poissons fait de branchages plantés dans l'eau. Les branches attirent les poissons, qui y trouvent nourriture et abri ; on les récolte ensuite en encerclant l'acadja avec des filets. C'est une technique ancienne des lagunes et lacs du sud du Bénin.\n\n### Filets, nasses et pirogues\nLes pêcheurs fabriquent et réparent eux-mêmes leurs filets et leurs nasses. Les pirogues, creusées dans un tronc ou assemblées en planches, sont menées à la perche ou à la pagaie.\n\n### Le fumage du poisson\nLes femmes transforment le poisson par fumage, sur des fours traditionnels, ce qui permet de le conserver et de le vendre sur les marchés de la région.",
+    communities: "Pêcheurs et transformatrices de poisson des villages du lac (Pédah, Ayizo), communauté de Possotomè.",
     langues: "Fon, xwla, français",
     personnalites: "—",
-    infos_pratiques: "Balades en pirogue et visites de villages organisées localement. Se renseigner auprès des structures d'écotourisme de Possotomè.",
-    sources: ["Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"],
+    infos_pratiques: "Balades en pirogue et visites de villages organisées localement : se renseigner auprès des structures d'écotourisme de Possotomè. Prévoir chapeau et eau. Respecter les acadjas et les filets (ne pas les toucher) et demander avant de photographier. Possotomè est à environ 1 h 30 de Cotonou par la route.",
+    chronologie: [
+      ["Temps anciens", "Installation des communautés de pêcheurs sur les rives du lac."],
+      ["XXe siècle", "Mise en bouteille et commercialisation de l'eau minérale de Possotomè."],
+      ["2000", "La zone humide du lac Ahémé et de la basse vallée du Couffo est reconnue site Ramsar."],
+      ["Aujourd'hui", "Développement de l'écotourisme et initiatives de gestion durable de la pêche."]
+    ],
+    a_voir: [
+      ["Les acadjas", "Ces parcs à poissons en branchages, vus depuis une pirogue."],
+      ["La source chaude", "L'eau qui a fait la réputation de Possotomè."],
+      ["Le retour des pêcheurs", "En matinée, l'arrivée des pirogues et la vente du poisson."],
+      ["Les fours à fumer le poisson", "Le travail des transformatrices, maillon essentiel de l'économie du lac."]
+    ],
+    saviez_vous: ["Pour beaucoup de Béninois, « Possotomè » est devenu un mot pour dire « eau minérale », tant la marque est connue.", "Le lac Ahémé communique avec la mer par le chenal de l'Aho : son eau devient plus salée pendant certaines saisons."],
+    sources: ["Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)", "Convention de Ramsar — Basse vallée du Couffo, lagune côtière, chenal Aho, lac Ahémé"],
     recits: [],
     quiz: [
-      { question: "Pour quelle ressource Possotomè est-elle célèbre ?", choices: ["Son or", "Son eau minérale", "Son pétrole"], answer: 1, explanation: "La source de Possotomè fournit une eau minérale connue dans tout le Bénin." }
+      { question: "Pour quelle ressource Possotomè est-elle célèbre ?", choices: ["Son or", "Son eau minérale", "Son coton"], answer: 1, explanation: "La source chaude de Possotomè fournit une eau minérale vendue dans tout le Bénin." },
+      { question: "Qu'est-ce qu'un acadja ?", choices: ["Un parc à poissons fait de branchages", "Une pirogue à moteur", "Un plat à base de maïs"], answer: 0, explanation: "Les branchages plantés dans l'eau attirent les poissons, que l'on récolte ensuite au filet." },
+      { question: "Quel chenal relie le lac Ahémé à la mer ?", choices: ["Le chenal de l'Aho", "Le canal de Suez", "Le chenal de Cotonou"], answer: 0, explanation: "Le chenal de l'Aho relie le lac au système lagunaire côtier." },
+      { question: "Quel fleuve alimente principalement le lac Ahémé ?", choices: ["Le Niger", "Le Couffo", "La Pendjari"], answer: 1, explanation: "Le Couffo se jette dans le lac Ahémé." },
+      { question: "Quelle menace pèse sur le lac ?", choices: ["L'ensablement et la surpêche", "La glace en hiver", "Les éruptions volcaniques"], answer: 0, explanation: "L'ensablement et la surpêche fragilisent le lac ; des initiatives locales cherchent à y remédier." }
     ]
   },
   {
@@ -577,19 +690,34 @@ module.exports = [
     longitude: 2.433,
     radius: 700,
     themes: ["marches", "gastronomie", "artisanat"],
-    description: "Au bord de la lagune de Cotonou, Dantokpa (« Tokpa ») est l'un des plus grands marchés à ciel ouvert d'Afrique de l'Ouest. On y trouve de tout : tissus, épices, produits vivriers, artisanat, objets de culte.",
-    histoire: "Le marché s'est développé au XXe siècle au bord de la lagune, qui facilitait l'arrivée des marchandises par pirogue. Il est devenu un carrefour commercial pour le Bénin et les pays voisins, notamment le Nigéria.",
-    culture: "Dantokpa est un monde en soi, animé en grande partie par des commerçantes. C'est le meilleur endroit pour découvrir les produits de la cuisine béninoise et les pagnes.",
-    savoirs: "Savoir-faire commerciaux des « bonnes dames » du marché, circuits d'approvisionnement, produits de la pharmacopée traditionnelle.",
-    communities: "Commerçantes et commerçants de Dantokpa.",
+    description: "Au bord de la lagune de Cotonou, Dantokpa — que tout le monde appelle « Tokpa » — est l'un des plus grands marchés à ciel ouvert d'Afrique de l'Ouest. On y trouve de tout : pagnes, épices, céréales, poissons, ustensiles, pièces détachées, artisanat, plantes médicinales et objets de culte.\n\nPlus qu'un marché, c'est une ville dans la ville, qui fait vivre des dizaines de milliers de personnes et relie l'économie du Bénin à celle de ses voisins.",
+    histoire: "### Un marché né de la lagune\nLe marché s'est développé au XXe siècle au bord de la lagune de Cotonou, qui facilitait l'arrivée des marchandises par pirogue. Selon une explication courante, son nom viendrait de « tokpa », « au bord de l'eau », associé à Dan, divinité du serpent et de l'arc-en-ciel. Il a été réorganisé et agrandi après l'indépendance, à mesure que Cotonou devenait la capitale économique du pays.\n\n### Un carrefour régional\nGrâce au port de Cotonou et à la proximité du Nigéria, Dantokpa est devenu un carrefour commercial pour toute la sous-région. Des commerçants du Togo, du Niger, du Burkina Faso et du Nigéria viennent s'y approvisionner. Les échanges avec le Nigéria voisin, notamment, y sont intenses.\n\n### Un marché en mutation\nComme beaucoup de grands marchés africains, Dantokpa fait face à des défis : congestion, risques d'incendie, assainissement. Des projets de modernisation et de réorganisation ont été engagés par les autorités, qui cherchent à préserver son rôle tout en améliorant les conditions de travail.",
+    culture: "Dantokpa est animé en grande partie par des femmes. Certaines grandes commerçantes, spécialisées dans le pagne ou les produits vivriers, ont bâti de véritables entreprises et sont des figures respectées de l'économie béninoise.\n\nLe marché est organisé en secteurs : tissus, alimentation, quincaillerie, friperie… Un secteur est consacré aux plantes médicinales et aux objets du vodun, où l'on trouve ingrédients et objets rituels.\n\nC'est aussi le meilleur endroit pour découvrir la cuisine béninoise : piment, gombo, crevettes séchées, akassa, gari, farine de maïs pour la pâte, et tous les ingrédients des sauces du pays.",
+    savoirs: "### L'art du commerce\nMarchandage, fidélisation des clients, crédit entre commerçants, tontines pour épargner : les savoir-faire commerciaux du marché se transmettent souvent de mère en fille.\n\n### La pharmacopée\nLes vendeuses de plantes médicinales connaissent les usages de centaines de feuilles, racines et écorces. Ce savoir, transmis oralement, fait partie du patrimoine immatériel du pays.\n\n### Les circuits d'approvisionnement\nLes produits arrivent de tout le pays et de l'étranger, par la route, le port et la lagune : un réseau complexe qui fait de Dantokpa le cœur logistique du commerce béninois.",
+    communities: "Commerçantes et commerçants de Dantokpa, porteurs, transporteurs, habitants de Cotonou.",
     langues: "Fon, goun, yoruba, mina, français",
     personnalites: "—",
-    infos_pratiques: "Très grande affluence : venir accompagné, surveiller ses affaires, demander avant de photographier. Plus calme tôt le matin.",
-    sources: ["Mairie de Cotonou"],
+    infos_pratiques: "Très grande affluence : venir accompagné, idéalement avec une personne qui connaît le marché. Surveiller ses affaires et ne pas porter d'objets de valeur. Demander avant de photographier les personnes et les étals. Plus calme tôt le matin. Négocier les prix fait partie de l'usage.",
+    chronologie: [
+      ["XXe siècle", "Développement du marché au bord de la lagune de Cotonou."],
+      ["Après 1960", "Réorganisation et essor du marché avec la croissance de Cotonou."],
+      ["Aujourd'hui", "L'un des plus grands marchés d'Afrique de l'Ouest ; projets de modernisation."]
+    ],
+    a_voir: [
+      ["Le secteur des pagnes", "Des montagnes de tissus wax et de pagnes aux motifs innombrables."],
+      ["Les épices et produits vivriers", "Piments, gombo, crevettes séchées, farines : la cuisine béninoise en vrac."],
+      ["Le secteur des plantes et objets du vodun", "Un univers à découvrir avec respect et, de préférence, avec un guide."],
+      ["La lagune", "Les pirogues chargées de marchandises qui accostent au bord du marché."]
+    ],
+    saviez_vous: ["Tout le monde dit « Tokpa » : le nom complet, Dantokpa, est rarement utilisé au quotidien.", "Dantokpa ne dort presque jamais : certaines activités commencent avant l'aube, avec l'arrivée des produits frais."],
+    sources: ["Mairie de Cotonou", "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"],
     recits: [],
     quiz: [
-      { question: "Au bord de quelle étendue d'eau se trouve le marché Dantokpa ?", choices: ["Le lac Ahémé", "La lagune de Cotonou", "Le fleuve Niger"], answer: 1, explanation: "Dantokpa borde la lagune de Cotonou, qui facilitait autrefois l'arrivée des marchandises." },
-      { question: "Quel accompagnement à base de farine de maïs est courant dans la cuisine béninoise ?", choices: ["La pâte (wɔ̌)", "Le couscous de blé", "Les pâtes italiennes"], answer: 0, explanation: "La pâte de maïs (wɔ̌ en fon) accompagne de nombreuses sauces." }
+      { question: "Au bord de quelle étendue d'eau se trouve le marché Dantokpa ?", choices: ["Le lac Nokoué", "La lagune de Cotonou", "Le fleuve Niger"], answer: 1, explanation: "Dantokpa borde la lagune de Cotonou, qui relie le lac Nokoué à la mer." },
+      { question: "Quel accompagnement à base de farine de maïs est courant dans la cuisine béninoise ?", choices: ["La pâte (wo)", "Le couscous de blé", "Le riz basmati"], answer: 0, explanation: "La pâte de maïs, servie avec des sauces, est un plat de base au Bénin." },
+      { question: "Comment les Béninois appellent-ils familièrement Dantokpa ?", choices: ["Tokpa", "Grand marché", "Cotonou-Centre"], answer: 0, explanation: "Tout le monde dit « Tokpa »." },
+      { question: "Avec quel pays voisin les échanges commerciaux de Dantokpa sont-ils particulièrement intenses ?", choices: ["Le Nigéria", "Le Maroc", "L'Afrique du Sud"], answer: 0, explanation: "La proximité du Nigéria fait de Dantokpa un carrefour du commerce régional." },
+      { question: "Que faut-il faire avant de photographier une commerçante ?", choices: ["Rien, c'est un lieu public", "Lui demander son accord", "Payer le chef du marché"], answer: 1, explanation: "On demande toujours l'autorisation avant de photographier quelqu'un." }
     ]
   },
   {
@@ -604,19 +732,34 @@ module.exports = [
     longitude: 3.21,
     radius: 3000,
     themes: ["festivals", "royaumes", "musiques-danses"],
-    description: "La Gaani est la grande fête annuelle des Baatonu (Bariba). À Nikki, siège historique du royaume, cavaliers en tenue d'apparat, musiciens et dignitaires célèbrent l'unité et l'identité du peuple.",
-    histoire: "Nikki est le centre historique du royaume baatonu. La Gaani y rassemble chaque année le roi (Sina Boko), les princes et les communautés venues de tout le Borgou et au-delà. Sa date est fixée selon le calendrier lunaire.",
-    culture: "Les chevaux, richement harnachés, sont au cœur de la fête : ils rappellent la tradition guerrière et cavalière des Baatonu. Tambours, trompes et chants de griots accompagnent les défilés.",
-    savoirs: "Art équestre, confection des harnachements, musique de cour et généalogies chantées par les griots.",
-    communities: "Royauté de Nikki, communautés baatonu du Borgou.",
+    description: "La Gaani est la grande fête annuelle des Baatonu (Bariba), peuple du nord du Bénin. À Nikki, siège historique de leur royaume, cavaliers en tenue d'apparat, musiciens, griots et dignitaires se rassemblent autour du roi pour célébrer l'unité et l'identité du peuple.\n\nLes chevaux richement harnachés, les courses et les salutations au galop en font l'une des fêtes les plus spectaculaires du Bénin, qui attire chaque année des milliers de personnes venues de tout le Borgou, du pays et des pays voisins.",
+    histoire: "### Le royaume de Nikki\nNikki est le centre historique du royaume baatonu. La tradition rattache les dynasties princières, les Wasangari, à un ancêtre venu de l'est, souvent nommé Kisra, et à des migrations en provenance de la région de Bussa, dans l'actuel Nigéria. Le roi de Nikki porte le titre de Sina Boko.\n\n### Une société de cavaliers\nLes Wasangari formaient une aristocratie de guerriers à cheval, qui dominait militairement la région. Le cheval était le symbole de leur pouvoir et de leur prestige. Cette tradition cavalière est au cœur de la Gaani.\n\n### La fête de la Gaani\nLa Gaani est célébrée chaque année à une date fixée selon le calendrier lunaire ; elle coïncide avec la période du Maouloud, la fête de la naissance du Prophète. Elle associe ainsi des traditions royales anciennes et l'islam, largement présent dans la région. Le mot « gaani » est souvent traduit par « fête » ou « victoire ». Elle marque un moment de renouvellement des liens entre le roi, les princes et les communautés.",
+    culture: "Pendant plusieurs jours, Nikki vit au rythme de la fête. Les cavaliers, parés de boubous brodés, de turbans et de talismans, montent des chevaux aux harnachements colorés, ornés de pompons, de cuir travaillé et de clochettes.\n\nLe moment fort est la sortie du roi et les salutations des cavaliers, qui s'élancent au galop et s'arrêtent net devant lui en signe d'allégeance. Tambours, longues trompettes et chants de griots accompagnent les défilés.\n\nLa Gaani est aussi une grande fête de retrouvailles : les ressortissants du Borgou vivant ailleurs au Bénin ou à l'étranger reviennent à Nikki pour l'occasion. On y porte ses plus beaux habits et on y partage les repas en famille.",
+    savoirs: "### L'art équestre\nL'élevage, le dressage et la monte des chevaux se transmettent dans les familles wasangari. Les figures de salutation exigent une grande maîtrise.\n\n### Les harnachements\nSelliers, cordonniers et brodeurs fabriquent selles, brides et parures, dans un artisanat du cuir et du textile très réputé.\n\n### La parole des griots\nLes griots récitent les généalogies des princes et les louanges des ancêtres, au son des tambours. Ils sont les gardiens de la mémoire du royaume.",
+    communities: "Royauté de Nikki, princes wasangari, communautés baatonu du Borgou, griots et musiciens.",
     langues: "Baatonum, dendi, peul, français",
-    personnalites: "—",
-    infos_pratiques: "Date variable chaque année (calendrier lunaire) : se renseigner à l'avance. Forte affluence.",
-    sources: ["Direction du patrimoine culturel du Bénin"],
+    personnalites: "Le Sina Boko, roi de Nikki ; Kisra, ancêtre légendaire des dynasties wasangari selon la tradition.",
+    infos_pratiques: "Date variable chaque année (calendrier lunaire, période du Maouloud) : se renseigner à l'avance auprès de la mairie de Nikki ou des structures touristiques. Forte affluence : réserver son hébergement tôt. Garder ses distances avec les chevaux lors des galops. Demander avant de photographier les dignitaires. Nikki est à environ 2 h de route de Parakou.",
+    chronologie: [
+      ["Temps anciens", "Selon la tradition, arrivée des ancêtres des dynasties wasangari, rattachés à Kisra."],
+      ["Siècles suivants", "Nikki s'affirme comme centre du royaume baatonu."],
+      ["Chaque année", "Célébration de la Gaani, à une date fixée selon le calendrier lunaire."]
+    ],
+    a_voir: [
+      ["La sortie du roi", "Le Sina Boko apparaît entouré de sa cour : le temps fort de la fête."],
+      ["Les salutations au galop", "Les cavaliers s'élancent et s'arrêtent net devant le roi."],
+      ["Les harnachements", "Selles, brides et parures, véritables œuvres d'artisanat."],
+      ["Le palais royal de Nikki", "Cœur de la royauté baatonu."]
+    ],
+    saviez_vous: ["La Gaani a lieu pendant la période du Maouloud : elle associe traditions royales et calendrier musulman.", "Le roi de Nikki porte le titre de Sina Boko."],
+    sources: ["Direction du patrimoine culturel du Bénin", "Jacques Lombard, Structures de type « féodal » en Afrique noire : étude des dynamismes internes et des relations sociales chez les Bariba du Dahomey, 1965"],
     recits: [],
     quiz: [
-      { question: "Quel animal est au cœur de la fête de la Gaani ?", choices: ["Le cheval", "Le chameau", "L'éléphant"], answer: 0, explanation: "Les cavaliers et leurs chevaux harnachés sont au centre de la fête, en souvenir de la tradition cavalière baatonu." },
-      { question: "Quel peuple célèbre la Gaani ?", choices: ["Les Baatonu (Bariba)", "Les Fon", "Les Toffinu"], answer: 0, explanation: "La Gaani est la grande fête des Baatonu, dont Nikki est le centre historique." }
+      { question: "Quel animal est au cœur de la fête de la Gaani ?", choices: ["Le cheval", "Le chameau", "L'éléphant"], answer: 0, explanation: "Les chevaux, richement harnachés, rappellent la tradition cavalière des Baatonu." },
+      { question: "Quel peuple célèbre la Gaani ?", choices: ["Les Baatonu (Bariba)", "Les Fon", "Les Yoruba"], answer: 0, explanation: "La Gaani est la grande fête des Baatonu, peuple du nord du Bénin." },
+      { question: "Quel titre porte le roi de Nikki ?", choices: ["Sina Boko", "Dè", "Almamy"], answer: 0, explanation: "Le roi de Nikki porte le titre de Sina Boko. « Almamy » était le titre des souverains du Fouta-Djallon." },
+      { question: "Avec quelle fête musulmane la Gaani coïncide-t-elle ?", choices: ["Le Maouloud", "La Tabaski", "Le Ramadan"], answer: 0, explanation: "La Gaani se tient pendant la période du Maouloud, qui célèbre la naissance du Prophète." },
+      { question: "Comment appelle-t-on l'aristocratie cavalière du royaume baatonu ?", choices: ["Les Wasangari", "Les Agudas", "Les Agojie"], answer: 0, explanation: "Les Wasangari formaient une aristocratie de guerriers à cheval." }
     ]
   }
 ];
