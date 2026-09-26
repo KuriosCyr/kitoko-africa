@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Kitoko Afrika</string>
+    <string name="title_activity_main">Kitoko Afrika</string>
+    <string name="package_name">org.kitokoafrika.app</string>
+    <string name="custom_url_scheme">org.kitokoafrika.app</string>
+</resources>

@@ -1,0 +1,15 @@
+{
+  "appId": "org.kitokoafrika.app",
+  "appName": "Kitoko Afrika",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#1E1A15"
+  },
+  "ios": {
+    "backgroundColor": "#1E1A15",
+    "contentInset": "never"
+  }
+}

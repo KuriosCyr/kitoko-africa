@@ -68,7 +68,7 @@ Les tests démarrent leur propre serveur sur une base temporaire : inutile de la
 
 ## Contenus
 
-Les fiches du prototype sont rédigées dans `Backend/db/content/benin.js` et `Backend/db/content/guinee.js`, les catégories et thèmes dans `Backend/db/content/themes.js`. La rédaction initiale a été assistée par IA : chaque fiche est publiée avec le statut « à vérifier », affiché aux visiteurs, jusqu'à sa validation par le Pôle Vérification (champ « Vérification » dans l'administration). **Les coordonnées GPS sont approximatives : elles doivent être relevées sur place avant d'imprimer les QR codes.**
+Les fiches du prototype sont rédigées dans `Backend/db/content/benin.js` et `Backend/db/content/guinee.js`, les catégories et thèmes dans `Backend/db/content/themes.js`. Les circuits sont dans `Backend/db/content/itineraires.js`. Si une fiche doit être signalée comme « en cours de vérification » auprès des visiteurs, l'option se trouve dans l'administration (champ « Vérification »). **Les coordonnées GPS sont approximatives : elles doivent être relevées sur place avant d'imprimer les QR codes.**
 
 ## Passeport
 
@@ -77,6 +77,10 @@ Les fiches du prototype sont rédigées dans `Backend/db/content/benin.js` et `B
 - **Tampon « découvert en ligne »** : toutes les questions du quiz du site ont reçu une réponse (juste ou non, l'explication s'affiche).
 - Badges par pays (« Explorateur » sur place, « Connaisseur » en ligne), Afrique de l'Ouest, Afrique, catégories et quiz.
 - `PUBLIC_URL` (dans `.env`) définit l'adresse imprimée dans les QR codes.
+
+## Acteurs locaux (passeport économique)
+
+Guides, artisans, restaurants, hébergements, producteurs et activités communautaires déposent leur candidature depuis l'application (Profil → Devenir partenaire), avec acceptation d'une charte. L'équipe la valide dans l'administration (onglet Partenaires). Chaque partenaire publié reçoit un code passeport à donner aux visiteurs après une visite ou un achat : le visiteur obtient un tampon « économie locale ».
 
 ## Médias
 
@@ -93,6 +97,10 @@ Le frontend appelle l'API sur la même adresse que la page. Pour l'emballer dans
 ```
 
 et ajouter l'origine de l'application dans `CORS_ORIGINS` côté serveur.
+
+## Publication sur les stores
+
+Les projets Android et iOS sont dans `mobile/` (Capacitor) : voir [`mobile/README.md`](mobile/README.md) pour compiler, et [`docs/publication-stores.md`](docs/publication-stores.md) pour les comptes, les fiches (textes prêts), les questionnaires de confidentialité et la liste de vérification. La politique de confidentialité est publiée avec le site : `/confidentialite.html`.
 
 ## Sauvegarde
 

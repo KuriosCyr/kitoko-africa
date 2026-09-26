@@ -1,0 +1,23 @@
+{
+  "name": "kitoko-afrika-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Applications Android et iOS de Kitoko Afrika (Capacitor)",
+  "scripts": {
+    "build": "node scripts/build-www.js",
+    "sync": "npm run build && cap sync",
+    "assets": "capacitor-assets generate --android --ios --iconBackgroundColor \"#1E1A15\" --splashBackgroundColor \"#1E1A15\"",
+    "android": "npm run sync && cap open android",
+    "ios": "npm run sync && cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2"
+  }
+}

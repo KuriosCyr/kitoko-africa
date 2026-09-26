@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Liens universels : les QR codes des sites ouvrent l'application installée.
+	     Le domaine doit servir /.well-known/apple-app-site-association (APPLE_APP_ID côté serveur). -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:kitokoafrika.org</string>
+	</array>
+</dict>
+</plist>

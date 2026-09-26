@@ -573,3 +573,27 @@ async function deleteMyAccount(){
   authToken = null;
   await logout();
 }
+
+// ---------------------------------------------------------------------------
+// Application mobile (Capacitor) : un QR code ou un lien kitokoafrika.org/s/…
+// ouvert sur le téléphone lance l'application et affiche la fiche du site.
+// ---------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  const appPlugin = window.Capacitor?.Plugins?.App;
+  if(!appPlugin) return;
+  appPlugin.addListener('appUrlOpen', async ({ url }) => {
+    const slug = siteSlugFromQr(url);
+    if(!slug) return;
+    if(!SITES.length) await loadKitokoData();
+    const site = SITES.find(item => item.slug === slug);
+    if(!site) return;
+    arrivedFromQr = /\/s\//.test(url) || /[?&]scan=1/.test(url);
+    openDetail(site.id, { tab: arrivedFromQr ? 'passeport' : 'apercu' });
+  });
+  // Bouton « retour » d'Android : revenir à l'écran précédent plutôt que quitter.
+  appPlugin.addListener('backButton', () => {
+    if(document.querySelector('.screen.active')?.id === 'screen-home') appPlugin.exitApp();
+    else goBack();
+  });
+});

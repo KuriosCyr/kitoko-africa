@@ -5,7 +5,7 @@
 // - Les photos et médias publiés sont gardés en cache après consultation.
 // Les requêtes d'écriture (tampons, contributions…) ne sont jamais mises en cache.
 
-const VERSION = "kitoko-v3";
+const VERSION = "kitoko-v4";
 const APP_CACHE = `${VERSION}-app`;
 const DATA_CACHE = `${VERSION}-data`;
 const MEDIA_CACHE = `${VERSION}-media`;
@@ -69,13 +69,14 @@ self.addEventListener("fetch", event => {
   const url = new URL(request.url);
 
   // Données personnelles (passeport, profil, administration) : jamais en cache.
-  if(url.origin === self.location.origin && url.pathname.startsWith("/api/")){
+  // (Dans l'application mobile, l'API est sur un autre domaine que la page.)
+  if(url.pathname.startsWith("/api/")){
     const publicData = /^\/api\/(sites|countries|themes|categories|itineraries|partners)(\/|$)/.test(url.pathname) && !request.headers.has("Authorization");
     if(publicData) event.respondWith(networkFirst(request, DATA_CACHE));
     return;
   }
 
-  if(url.origin === self.location.origin && url.pathname.startsWith("/uploads/")){
+  if(url.pathname.startsWith("/uploads/")){
     event.respondWith(cacheFirst(request, MEDIA_CACHE));
     return;
   }
