@@ -252,12 +252,21 @@ function startFeaturedAutoScroll(){
   featuredAutoScrollFrame = requestAnimationFrame(move);
 }
 
+// Barre de lecture : suit le défilement de la fiche (bloc défilant sur mobile,
+// page entière sur grand écran) et reste vide quand il n'y a rien à faire défiler.
 function updateReadingProgress(){
   const body = document.getElementById('detail-body');
   const bar = document.getElementById('reading-progress-bar');
-  if(!body || !bar) return;
-  const available = body.scrollHeight - body.clientHeight;
-  const progress = available > 0 ? (body.scrollTop / available) * 100 : 100;
+  if(!body || !bar || !document.getElementById('screen-detail').classList.contains('active')) return;
+  let progress = 0;
+  const inner = body.scrollHeight - body.clientHeight;
+  if(inner > 4){
+    progress = body.scrollTop / inner * 100;
+  } else {
+    const rect = body.getBoundingClientRect();
+    const total = rect.height - window.innerHeight + rect.top + window.scrollY;
+    if(total > 4) progress = window.scrollY / total * 100;
+  }
   bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
 }
 
@@ -1361,6 +1370,7 @@ function setTab(pane, el){
   document.getElementById('pane-'+pane).classList.add('active');
   // La galerie accompagne l'aperçu ; les autres onglets vont droit au contenu.
   document.getElementById('detail-media').hidden = pane !== 'apercu';
+  requestAnimationFrame(updateReadingProgress);
   if(pane === 'passeport') renderDetailPassport();
 }
 
@@ -1549,6 +1559,7 @@ async function bootstrap(){
   if(search) search.addEventListener('input', event => { searchTerm = event.target.value; renderList(); });
   ['admin-status-filter','admin-country-filter','admin-from-filter','admin-to-filter'].forEach(id => document.getElementById(id)?.addEventListener('change', loadFilteredAdminContributions));
   document.getElementById('detail-body')?.addEventListener('scroll', updateReadingProgress, { passive: true });
+  window.addEventListener('scroll', updateReadingProgress, { passive: true });
   await loadKitokoData();
   buildAdminCountryFilter();
   await restoreAuthSession();
