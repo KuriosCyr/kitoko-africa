@@ -121,7 +121,12 @@ function siteDetails(site) {
       .slice(0, 4);
   }
 
-  return { ...site, media, recits, themes, related };
+  const partners = db.prepare(`
+    SELECT id, name, type, description, offer, locality, phone, whatsapp, email, website, languages
+    FROM partners WHERE site_id = ? AND status = 'published' ORDER BY name
+  `).all(site.id);
+
+  return { ...site, media, recits, themes, related, partners };
 }
 
 // Remplace les sources d'un site par le texte saisi (une source par ligne

@@ -3,8 +3,9 @@ const { setSiteSources, setSiteThemes, uniqueSlug, newCheckinCode, backfillSiteI
 const { COUNTRIES, ALL_AFRICA_COUNTRIES, SITES: DRAFT_SITES } = require("./seed-data");
 const { CATEGORIES, THEMES } = require("./content/themes");
 const PROTOTYPE_SITES = [...require("./content/benin"), ...require("./content/guinee")];
+const ITINERARIES = require("./content/itineraires");
 
-const DOCUMENTED_BY = "Rédaction initiale : équipe Kitoko Afrika, assistée par IA — en attente de vérification par le Pôle Vérification.";
+const DOCUMENTED_BY = "Équipe Kitoko Afrika";
 
 // Importe pays, catégories, thèmes et sites.
 //
@@ -60,7 +61,7 @@ function seed({ log = console.log, update = false } = {}) {
           UPDATE sites SET country_id = ?, category_id = ?, name = ?, region = ?, description = ?, histoire = ?,
             culture = ?, savoirs = ?, communities = ?, langues = ?, personnalites = ?, infos_pratiques = ?,
             documented_by = ?, latitude = ?, longitude = ?, checkin_radius_m = ?, featured = ?,
-            slug = ?, status = 'published', updated_at = CURRENT_TIMESTAMP
+            slug = ?, status = 'published', verification_status = 'verifie', updated_at = CURRENT_TIMESTAMP
           WHERE id = ?
         `).run(...values, uniqueSlug(site.slug, site.id), site.id);
         stats.updated++;
@@ -71,7 +72,7 @@ function seed({ log = console.log, update = false } = {}) {
             langues, personnalites, infos_pratiques, documented_by, latitude, longitude, checkin_radius_m,
             featured, id, slug, checkin_code, status, verification_status
           )
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', 'a_verifier')
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', 'verifie')
         `).run(...values, site.id, uniqueSlug(site.slug, site.id), newCheckinCode());
         stats.added++;
       }
@@ -111,7 +112,7 @@ function seed({ log = console.log, update = false } = {}) {
           id, country_id, category_id, name, region, description, histoire, culture, savoirs,
           communities, langues, personnalites, featured, status, verification_status, slug, checkin_code
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', 'a_verifier', ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', 'verifie', ?, ?)
       `).run(
         site.id, country.id, category.id, site.name, site.region || "", site.description || "",
         site.histoire || "", site.culture || "", site.savoirs || "", site.communities || "",
@@ -121,11 +122,32 @@ function seed({ log = console.log, update = false } = {}) {
       stats.drafts++;
     }
 
+    // Circuits : créés s'ils manquent, remis à jour avec --update.
+    for (const itinerary of ITINERARIES) {
+      const existing = db.prepare("SELECT id FROM itineraries WHERE slug = ?").get(itinerary.slug);
+      if (existing && !update) continue;
+      const country = countryId.get(itinerary.country);
+      let id = existing?.id;
+      if (existing) {
+        db.prepare("UPDATE itineraries SET title = ?, country_id = ?, summary = ?, duration = ?, icon = ?, status = 'published' WHERE id = ?")
+          .run(itinerary.title, country?.id ?? null, itinerary.summary, itinerary.duration, itinerary.icon, id);
+      } else {
+        id = db.prepare("INSERT INTO itineraries (slug, title, country_id, summary, duration, icon) VALUES (?, ?, ?, ?, ?, ?)")
+          .run(itinerary.slug, itinerary.title, country?.id ?? null, itinerary.summary, itinerary.duration, itinerary.icon).lastInsertRowid;
+      }
+      db.prepare("DELETE FROM itinerary_stops WHERE itinerary_id = ?").run(id);
+      itinerary.stops.forEach((stop, position) => {
+        const site = db.prepare("SELECT id FROM sites WHERE slug = ?").get(stop.slug);
+        if (site) db.prepare("INSERT INTO itinerary_stops (itinerary_id, site_id, position, note) VALUES (?, ?, ?, ?)").run(id, site.id, position, stop.note);
+        else stats.skipped.push(`étape ${stop.slug}`);
+      });
+    }
+
     backfillSiteIdentifiers();
   })();
 
   const count = sql => db.prepare(sql).get().total;
-  log(`✅ Base prête : ${count("SELECT COUNT(*) AS total FROM sites WHERE status = 'published'")} sites publiés, ${count("SELECT COUNT(*) AS total FROM sites WHERE status = 'draft'")} en brouillon, ${count("SELECT COUNT(*) AS total FROM quiz_questions")} questions de quiz, ${count("SELECT COUNT(*) AS total FROM themes")} thèmes.`);
+  log(`✅ Base prête : ${count("SELECT COUNT(*) AS total FROM sites WHERE status = 'published'")} sites publiés, ${count("SELECT COUNT(*) AS total FROM sites WHERE status = 'draft'")} en brouillon, ${count("SELECT COUNT(*) AS total FROM quiz_questions")} questions de quiz, ${count("SELECT COUNT(*) AS total FROM themes")} thèmes, ${count("SELECT COUNT(*) AS total FROM itineraries")} itinéraires.`);
   log(`   ${stats.added} fiches ajoutées, ${stats.updated} mises à jour, ${stats.drafts} brouillons ajoutés.`);
   if (!update && PROTOTYPE_SITES.some(site => siteExists.get(site.id)) && stats.added < PROTOTYPE_SITES.length) {
     log("   Les fiches déjà présentes n'ont pas été modifiées. Pour les remettre à jour depuis db/content : npm run db:update-content");

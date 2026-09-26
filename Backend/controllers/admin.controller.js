@@ -65,7 +65,7 @@ function readSiteInput(body) {
     categoryId: categoryRow.id,
     featured: input.featured === true || input.featured === "true" || input.featured === 1 ? 1 : 0,
     status: input.status === "draft" ? "draft" : "published",
-    verificationStatus: input.verification_status === "verifie" ? "verifie" : "a_verifier",
+    verificationStatus: input.verification_status === "a_verifier" ? "a_verifier" : "verifie",
     latitude,
     longitude,
     radius: Number.isInteger(radius) && radius >= 50 && radius <= 50000 ? radius : 500,
@@ -284,7 +284,7 @@ const applyModeration = db.transaction((contribution, decision, moderatorId, com
   if (decision === "approved" && contribution.type === "new") {
     const siteResult = db.prepare(`
       INSERT INTO sites (country_id, category_id, name, region, description, status, verification_status, slug, checkin_code, owner_user_id)
-      VALUES (?, ?, ?, ?, ?, 'published', 'a_verifier', ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?, 'published', 'verifie', ?, ?, ?)
     `).run(
       contribution.country_id,
       contribution.category_id,

@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS sites (
     slug TEXT,
     infos_pratiques TEXT,
     documented_by TEXT,
-    verification_status TEXT NOT NULL DEFAULT 'a_verifier',
+    verification_status TEXT NOT NULL DEFAULT 'verifie',
     checkin_radius_m INTEGER NOT NULL DEFAULT 500,
     checkin_code TEXT,
     owner_user_id INTEGER,
@@ -253,3 +253,65 @@ CREATE TABLE IF NOT EXISTS user_badges (
 CREATE INDEX IF NOT EXISTS idx_recits_site ON recits(site_id);
 CREATE INDEX IF NOT EXISTS idx_quiz_site ON quiz_questions(site_id);
 CREATE INDEX IF NOT EXISTS idx_stamps_user ON stamps(user_id);
+
+-- Itinéraires (circuits) : suite ordonnée de sites.
+CREATE TABLE IF NOT EXISTS itineraries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    slug TEXT NOT NULL UNIQUE,
+    title TEXT NOT NULL,
+    country_id INTEGER,
+    summary TEXT,
+    duration TEXT,
+    icon TEXT,
+    status TEXT NOT NULL DEFAULT 'published',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (country_id) REFERENCES countries(id)
+);
+
+CREATE TABLE IF NOT EXISTS itinerary_stops (
+    itinerary_id INTEGER NOT NULL,
+    site_id INTEGER NOT NULL,
+    position INTEGER NOT NULL,
+    note TEXT,
+    PRIMARY KEY (itinerary_id, site_id),
+    FOREIGN KEY (itinerary_id) REFERENCES itineraries(id) ON DELETE CASCADE,
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE
+);
+
+-- Passeport économique local : acteurs (guides, artisans, restaurants,
+-- hébergements, producteurs, activités communautaires) liés aux sites.
+CREATE TABLE IF NOT EXISTS partners (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL,
+    description TEXT,
+    site_id INTEGER,
+    country_id INTEGER NOT NULL,
+    locality TEXT,
+    phone TEXT,
+    whatsapp TEXT,
+    email TEXT,
+    website TEXT,
+    languages TEXT,
+    offer TEXT,
+    status TEXT NOT NULL DEFAULT 'pending',
+    checkin_code TEXT,
+    user_id INTEGER,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE SET NULL,
+    FOREIGN KEY (country_id) REFERENCES countries(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS partner_stamps (
+    user_id INTEGER NOT NULL,
+    partner_id INTEGER NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, partner_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (partner_id) REFERENCES partners(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_partners_site ON partners(site_id);
+CREATE INDEX IF NOT EXISTS idx_itinerary_stops_site ON itinerary_stops(site_id);

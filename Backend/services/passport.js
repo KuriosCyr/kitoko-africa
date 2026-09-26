@@ -1,5 +1,6 @@
 const db = require("../config/database");
 const { distanceMeters } = require("./sites");
+const { circuitProgress } = require("./itineraries");
 
 // Tolérance maximale accordée à l'imprécision du GPS (en mètres) : au-delà,
 // une position trop floue ne suffit pas et le code du site est demandé.
@@ -88,6 +89,11 @@ function computeBadges(userId, stamps = userStamps(userId)) {
   for (const badge of CATEGORY_BADGES) {
     badges.push({ ...badge, family: "decouverte", progress: countOn(discoveredSites, stamp => stamp.category === badge.category), target: 3 });
   }
+  for (const circuit of circuitProgress(userId)) {
+    badges.push({ slug: `circuit-${circuit.slug}`, family: "decouverte", name: `Circuit : ${circuit.title}`, icon: circuit.icon || "🗺️", description: `Obtenir un tampon à chaque étape du circuit (${circuit.total} sites).`, progress: circuit.discovered, target: circuit.total });
+  }
+  const partnerStamps = db.prepare("SELECT COUNT(*) AS total FROM partner_stamps WHERE user_id = ?").get(userId).total;
+  badges.push({ slug: "soutien-economie-locale", family: "sur_place", name: "Soutien de l'économie locale", icon: "🤝", description: "Faire tamponner votre passeport chez 3 acteurs locaux (guides, artisans, restaurants…).", progress: partnerStamps, target: 3 });
   badges.push({ slug: "esprit-curieux", family: "decouverte", name: "Esprit curieux", icon: "💡", description: "Donner 10 bonnes réponses aux quiz.", progress: correctAnswers, target: 10 });
 
   const earnedAt = new Map(db.prepare("SELECT badge, earned_at FROM user_badges WHERE user_id = ?").all(userId).map(row => [row.badge, row.earned_at]));
@@ -258,9 +264,17 @@ function passportSummary(userId) {
     return map;
   }, new Map());
 
+  const partnerStamps = db.prepare(`
+    SELECT ps.partner_id, ps.created_at, p.name, p.type, c.name AS country, c.flag AS country_flag
+    FROM partner_stamps ps JOIN partners p ON p.id = ps.partner_id JOIN countries c ON c.id = p.country_id
+    WHERE ps.user_id = ?
+    ORDER BY ps.created_at DESC
+  `).all(userId);
+
   return {
     stamps,
-    totals: { sites: sites.length, discovered: discovered.size, visited: visited.size },
+    partner_stamps: partnerStamps,
+    totals: { sites: sites.length, discovered: discovered.size, visited: visited.size, partners: partnerStamps.length },
     countries,
     categories,
     themes: [...themes.values()].sort((a, b) => a.label.localeCompare(b.label, "fr")),
@@ -268,4 +282,4 @@ function passportSummary(userId) {
   };
 }
 
-module.exports = { checkIn, answerQuiz, publicQuestions, siteStatus, passportSummary, computeBadges };
+module.exports = { checkIn, answerQuiz, publicQuestions, siteStatus, passportSummary, computeBadges, awardNewBadges };

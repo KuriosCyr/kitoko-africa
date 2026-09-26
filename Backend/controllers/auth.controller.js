@@ -150,6 +150,31 @@ function getSession(token) {
 	return publicUser({ id: session.user_id, name: session.name, email: session.email, role: session.role });
 }
 
+// Suppression du compte (exigée par l'App Store et Google Play) : les données
+// personnelles sont effacées ; les contributions publiées restent, sans auteur.
+function deleteAccount(req, res) {
+	const { password } = req.body || {};
+	const user = db.prepare("SELECT * FROM users WHERE id = ?").get(req.user.id);
+	if (typeof password !== "string" || !verifyPassword(password, user.password_hash)) {
+		return res.status(401).json({ success: false, message: "Mot de passe incorrect." });
+	}
+	if (user.role === "admin") {
+		return res.status(400).json({ success: false, message: "Un compte administrateur doit d'abord perdre son rôle avant d'être supprimé." });
+	}
+	if (db.prepare("SELECT 1 FROM moderation WHERE moderator_user_id = ? LIMIT 1").get(user.id)) {
+		return res.status(400).json({ success: false, message: "Ce compte a participé à la modération : contactez l'équipe pour le supprimer." });
+	}
+
+	db.transaction(() => {
+		db.prepare("UPDATE contributions SET user_id = NULL, credit_name = NULL WHERE user_id = ?").run(user.id);
+		db.prepare("UPDATE sites SET owner_user_id = NULL WHERE owner_user_id = ?").run(user.id);
+		db.prepare("UPDATE partners SET user_id = NULL WHERE user_id = ?").run(user.id);
+		db.prepare("DELETE FROM sessions WHERE user_id = ?").run(user.id);
+		db.prepare("DELETE FROM users WHERE id = ?").run(user.id);
+	})();
+	return res.json({ success: true, message: "Votre compte a été supprimé." });
+}
+
 function cleanupExpiredSessions() {
 	db.prepare("DELETE FROM sessions WHERE datetime(expires_at) <= datetime('now')").run();
 }
@@ -164,5 +189,6 @@ module.exports = {
 	verifyPassword,
 	listNotifications,
 	markNotificationsRead,
+	deleteAccount,
 	cleanupExpiredSessions
 };

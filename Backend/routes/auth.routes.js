@@ -1,5 +1,5 @@
 const express = require("express");
-const { signup, login, getProfile, logout, listNotifications, markNotificationsRead } = require("../controllers/auth.controller");
+const { signup, login, getProfile, logout, listNotifications, markNotificationsRead, deleteAccount } = require("../controllers/auth.controller");
 const { requireAuth } = require("../middleware/auth");
 
 const router = express.Router();
@@ -10,5 +10,6 @@ router.get("/me", requireAuth, getProfile);
 router.get("/notifications", requireAuth, listNotifications);
 router.patch("/notifications/read", requireAuth, markNotificationsRead);
 router.post("/logout", requireAuth, logout);
+router.delete("/me", requireAuth, deleteAccount);
 
 module.exports = router;

@@ -13,6 +13,8 @@ const favoritesRoutes = require("./routes/favorites.routes");
 const contributionsRoutes = require("./routes/contributions.routes");
 const adminRoutes = require("./routes/admin.routes");
 const passportRoutes = require("./routes/passport.routes");
+const partnersRoutes = require("./routes/partners.routes");
+const { getItineraries } = require("./controllers/itineraries.controller");
 const { getThemes, getCategories } = require("./controllers/sites.controller");
 const { backfillSiteIdentifiers } = require("./services/sites");
 
@@ -46,6 +48,20 @@ const frontendDirectory = path.join(__dirname, "..", "Frontend");
 app.use(express.static(frontendDirectory));
 app.use("/uploads", express.static(publicDir, { dotfiles: "deny", index: false }));
 
+// Associations d'application (Android App Links, iOS Universal Links) :
+// actives dès que les identifiants des applications sont renseignés dans .env.
+app.get("/.well-known/assetlinks.json", (req, res) => {
+  if (!config.androidPackage || !config.androidSha256.length) return res.status(404).json([]);
+  res.json([{
+    relation: ["delegate_permission/common.handle_all_urls"],
+    target: { namespace: "android_app", package_name: config.androidPackage, sha256_cert_fingerprints: config.androidSha256 }
+  }]);
+});
+app.get("/.well-known/apple-app-site-association", (req, res) => {
+  if (!config.appleAppId) return res.status(404).json({});
+  res.json({ applinks: { details: [{ appIDs: [config.appleAppId], components: [{ "/": "/s/*" }, { "?": { site: "*" } }] }] } });
+});
+
 app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "Kitoko Afrika API fonctionne", version: "1.1.0" });
 });
@@ -57,6 +73,8 @@ app.use("/api/favorites", favoritesRoutes);
 app.use("/api/contributions", contributionsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/passport", passportRoutes);
+app.use("/api/partners", partnersRoutes);
+app.get("/api/itineraries", getItineraries);
 app.get("/api/themes", getThemes);
 app.get("/api/categories", getCategories);
 

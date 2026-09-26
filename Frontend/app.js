@@ -971,7 +971,7 @@ async function openSiteForm(mode, siteId){
   document.getElementById('sf-country').value = site?.country || COUNTRIES[0]?.name || "";
   document.getElementById('sf-cat').value = site?.cat || "historique";
   document.getElementById('sf-status').value = site?.status || "published";
-  document.getElementById('sf-verification').value = site?.verification_status || "a_verifier";
+  document.getElementById('sf-verification').value = site?.verification_status || "verifie";
   document.getElementById('sf-sources').value = (site?.sources || "").split(" ; ").join("\n");
   document.getElementById('sf-featured').checked = Boolean(site?.featured);
   document.querySelectorAll('#sf-themes input').forEach(input => { input.checked = Boolean(site?.themes?.some(theme => (theme.slug || theme) === input.value)); });

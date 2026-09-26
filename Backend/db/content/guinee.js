@@ -1,6 +1,4 @@
 // Contenus du prototype — Guinée.
-// Rédaction initiale assistée par IA : tout est publié avec le statut
-// « à vérifier » tant que le Pôle Vérification ne l'a pas validé.
 // Les coordonnées GPS sont approximatives et doivent être relevées sur place
 // avant l'impression des QR codes.
 

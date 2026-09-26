@@ -112,7 +112,7 @@ test("une fiche s'ouvre par son slug (lien des QR codes) avec thèmes, récits e
   assert.ok(data.data.themes.some(theme => theme.slug === "memoire-traite"));
   assert.ok(data.data.recits.length >= 1);
   assert.ok(data.data.related.some(site => site.slug === "route-des-esclaves-ouidah"));
-  assert.equal(data.data.verification_status, "a_verifier");
+  assert.equal(data.data.verification_status, "verifie");
 });
 
 test("le lien court d'un QR code redirige vers la fiche", async () => {
@@ -465,11 +465,11 @@ test("l'admin ajoute une photo à la galerie et enregistre les coordonnées", as
   const site = (await api("/api/admin/sites/tata-somba-boukoumbe", { token: admin.token })).data.data;
   const saved = await api(`/api/admin/sites/${site.id}`, {
     token: admin.token, method: "PATCH",
-    json: { ...site, cat: site.category, latitude: "10.2", longitude: "1.12", checkin_radius_m: 800, themes: ["architecture"], verification_status: "verifie" }
+    json: { ...site, cat: site.category, latitude: "10.2", longitude: "1.12", checkin_radius_m: 800, themes: ["architecture"], verification_status: "a_verifier" }
   });
   assert.equal(saved.status, 200);
   assert.equal(saved.data.data.latitude, 10.2);
-  assert.equal(saved.data.data.verification_status, "verifie");
+  assert.equal(saved.data.data.verification_status, "a_verifier");
   assert.deepEqual(saved.data.data.themes, ["architecture"]);
 
   const bad = await api(`/api/admin/sites/${site.id}`, { token: admin.token, method: "PATCH", json: { ...site, cat: site.category, latitude: "abc", longitude: "1" } });
@@ -536,4 +536,87 @@ test("un faux fichier audio est refusé", async () => {
   form.append("description", "Texte");
   form.append("media", new Blob(["pas du son"], { type: "audio/mpeg" }), "faux.mp3");
   assert.equal((await api("/api/contributions", { token: user.token, form })).status, 422);
+});
+
+// ---------------------------------------------------------------------------
+// Itinéraires, partenaires, compte
+// ---------------------------------------------------------------------------
+
+test("les circuits sont listés avec leurs étapes ordonnées et leur distance", async () => {
+  const { data } = await api("/api/itineraries");
+  assert.equal(data.data.length, 7);
+  const ouidah = data.data.find(item => item.slug === "ouidah-route-de-la-memoire");
+  assert.deepEqual(ouidah.stops.map(stop => stop.slug), ["fort-portugais-ouidah", "temple-des-pythons-ouidah", "foret-sacree-kpasse", "route-des-esclaves-ouidah", "porte-du-non-retour"]);
+  assert.ok(ouidah.distance_km >= 1 && ouidah.distance_km < 20);
+});
+
+test("compléter les étapes d'un circuit donne le badge du circuit", async () => {
+  const user = await signup();
+  const admin = await adminLogin();
+  const circuit = (await api("/api/itineraries")).data.data.find(item => item.slug === "atacora-nature-et-architecture");
+  for (const stop of circuit.stops) {
+    const code = (await api(`/api/admin/sites/${stop.slug}`, { token: admin.token })).data.data.checkin_code;
+    await api(`/api/passport/sites/${stop.slug}/checkin`, { token: user.token, json: { code } });
+  }
+  const badge = (await api("/api/passport", { token: user.token })).data.data.badges.find(item => item.slug === `circuit-${circuit.slug}`);
+  assert.equal(badge.earned, true);
+});
+
+test("partenaires : candidature, validation, affichage sur la fiche, tampon économique", async () => {
+  const guide = await signup("Kossi le guide");
+  const visitor = await signup("Visiteuse");
+  const admin = await adminLogin();
+
+  const noCharter = await api("/api/partners", { token: guide.token, json: { name: "Guides de Ouidah", type: "guide", country: "Bénin", phone: "+229 00 00 00 00" } });
+  assert.equal(noCharter.status, 400);
+  const noContact = await api("/api/partners", { token: guide.token, json: { name: "X", type: "guide", country: "Bénin", charter: true } });
+  assert.equal(noContact.status, 400);
+
+  const applied = await api("/api/partners", { token: guide.token, json: { name: "Guides de Ouidah", type: "guide", country: "Bénin", site_id: 102, phone: "+229 00 00 00 00", website: "exemple.org", charter: true } });
+  assert.equal(applied.status, 201);
+  assert.equal((await api("/api/partners")).data.data.length, 0, "une candidature n'est pas publique avant validation");
+  assert.ok((await api("/api/auth/notifications", { token: admin.token })).data.data.some(item => /partenariat/.test(item.message)));
+
+  const pending = (await api("/api/admin/partners", { token: admin.token })).data.data.find(item => item.id === applied.data.data.id);
+  assert.equal(pending.status, "pending");
+  const approved = await api(`/api/admin/partners/${pending.id}`, { token: admin.token, method: "PATCH", json: { ...pending, status: "published" } });
+  assert.equal(approved.status, 200);
+
+  const mine = (await api("/api/partners/mine", { token: guide.token })).data.data[0];
+  assert.equal(mine.status, "published");
+  assert.equal(mine.checkin_code, pending.checkin_code);
+
+  const publicList = (await api("/api/partners?country=Bénin")).data.data;
+  assert.equal(publicList.length, 1);
+  assert.equal(publicList[0].website, "https://exemple.org");
+  assert.ok(!("checkin_code" in publicList[0]), "le code du partenaire n'est jamais public");
+  assert.equal((await api("/api/sites/route-des-esclaves-ouidah")).data.data.partners.length, 1);
+
+  const wrong = await api(`/api/passport/partners/${pending.id}/checkin`, { token: visitor.token, json: { code: "NOPE" } });
+  assert.equal(wrong.status, 400);
+  const stamp = await api(`/api/passport/partners/${pending.id}/checkin`, { token: visitor.token, json: { code: pending.checkin_code } });
+  assert.equal(stamp.status, 201);
+  const passport = (await api("/api/passport", { token: visitor.token })).data.data;
+  assert.equal(passport.totals.partners, 1);
+  assert.equal(passport.badges.find(item => item.slug === "soutien-economie-locale").progress, 1);
+});
+
+test("un utilisateur peut supprimer son compte (exigence des stores)", async () => {
+  const user = await signup();
+  await api("/api/favorites/1", { token: user.token, method: "POST" });
+  const wrong = await api("/api/auth/me", { token: user.token, method: "DELETE", json: { password: "faux-mot-de-passe" } });
+  assert.equal(wrong.status, 401);
+  const deleted = await api("/api/auth/me", { token: user.token, method: "DELETE", json: { password: "motdepasse-solide" } });
+  assert.equal(deleted.status, 200);
+  assert.equal((await api("/api/auth/me", { token: user.token })).status, 401);
+});
+
+test("un administrateur ne peut pas supprimer son compte directement", async () => {
+  const admin = await adminLogin();
+  const response = await api("/api/auth/me", { token: admin.token, method: "DELETE", json: { password: "un-mot-de-passe-de-test" } });
+  assert.equal(response.status, 400);
+});
+
+test("les fichiers de liens profonds répondent 404 tant qu'ils ne sont pas configurés", async () => {
+  assert.equal((await fetch(`${baseUrl}/.well-known/assetlinks.json`)).status, 404);
 });

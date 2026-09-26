@@ -28,5 +28,9 @@ module.exports = {
     .filter(Boolean),
   trustProxy: process.env.TRUST_PROXY || "",
   // Adresse publique du site, utilisée dans les QR codes (ex. https://kitokoafrika.org).
-  publicUrl: (process.env.PUBLIC_URL || "").trim().replace(/\/$/, "")
+  publicUrl: (process.env.PUBLIC_URL || "").trim().replace(/\/$/, ""),
+  // Liens profonds : un QR code scanné ouvre directement l'application installée.
+  androidPackage: (process.env.ANDROID_PACKAGE || "").trim(),
+  androidSha256: (process.env.ANDROID_SHA256_FINGERPRINTS || "").split(",").map(value => value.trim()).filter(Boolean),
+  appleAppId: (process.env.APPLE_APP_ID || "").trim()
 };

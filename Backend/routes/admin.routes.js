@@ -2,6 +2,7 @@ const express = require("express");
 const { requireAdmin } = require("../middleware/admin");
 const upload = require("../middleware/upload");
 const admin = require("../controllers/admin.controller");
+const partners = require("../controllers/partners.controller");
 
 const router = express.Router();
 
@@ -22,6 +23,10 @@ router.post("/sites/:id/recits", admin.createRecit);
 router.delete("/recits/:recitId", admin.deleteRecit);
 router.post("/sites/:id/checkin-code", admin.regenerateCheckinCode);
 router.get("/sites/:id/qr.svg", admin.siteQrCode);
+router.get("/partners", partners.adminListPartners);
+router.post("/partners", partners.adminCreatePartner);
+router.patch("/partners/:partnerId", partners.adminUpdatePartner);
+router.delete("/partners/:partnerId", partners.adminDeletePartner);
 router.get("/users", admin.listUsers);
 router.patch("/users/:id/role", admin.updateUserRole);
 router.get("/moderation/history", admin.listModerationHistory);
