@@ -23,7 +23,7 @@ Copy-Item Backend/.env.example Backend/.env
 
 Ouvrir ensuite `Backend/.env` et renseigner au minimum `ADMIN_EMAIL` et `ADMIN_PASSWORD` : le compte administrateur est créé au premier démarrage. Il n'y a plus d'identifiants par défaut.
 
-Puis importer les contenus (54 pays, 31 fiches Bénin et Guinée avec leurs quiz, 30 fiches d'autres pays en brouillon) :
+Puis importer les contenus (54 pays, 88 fiches publiées dans 12 pays avec leurs quiz, un fichier par pays dans `Backend/db/content/`) :
 
 ```powershell
 npm run db:seed

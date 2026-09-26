@@ -353,7 +353,8 @@
         "File:Image plante Agou 20.jpg",
         "File:Carrefour Texaco Kpalime (Togo).jpg",
         "File:Carrefour Texaco Kpalime.jpg",
-        "File:A Kpalime.jpg"
+        "File:A Kpalime.jpg",
+        "File:Cascade de Womé au togo13.jpg"
       ]
     },
     {
@@ -556,7 +557,8 @@
       "exclude": [
         "File:Village of Information Technology and Biotechnology, conference room, Grand Bassam, Ivory Coast.jpg",
         "File:Grand-Bassam banner.jpg",
-        "File:Grand Bassam - Rue de France (Collection L. Meteyer, a Grand-Bassam).jpg"
+        "File:Grand Bassam - Rue de France (Collection L. Meteyer, a Grand-Bassam).jpg",
+        "File:Musée National du costume de Grand Bassam 1.jpg"
       ]
     },
     {
@@ -654,6 +656,9 @@
       "queries": [
         "Aït Benhaddou",
         "Ait Ben Haddou"
+      ],
+      "exclude": [
+        "File:Camels at Aït Benhaddou, Saharan caravan route, Morocco (آيت بن حدّو, ⴰⵢⵜ ⵃⴰⴷⴷⵓ).jpg"
       ]
     },
     {
@@ -668,6 +673,9 @@
       "queries": [
         "Jemaa el-Fnaa",
         "Djemaa el Fna"
+      ],
+      "exclude": [
+        "File:Drawing a henna, Jemaa el-Fnaa, Marrakesh (وشم الحناء، جامع الفنا، مراكش).jpg"
       ]
     },
     {
@@ -683,6 +691,9 @@
         "Giza pyramid complex",
         "Great Sphinx of Giza",
         "Pyramids of Giza"
+      ],
+      "exclude": [
+        "File:Giza Pyramids during \"Forever is Now\" exhibition.jpg"
       ]
     },
     {
@@ -691,6 +702,9 @@
         "Valley of the Kings",
         "KV62",
         "Tomb of Ramesses VI"
+      ],
+      "exclude": [
+        "File:Valley of the Kings model 01.jpg"
       ]
     },
     {
@@ -706,6 +720,9 @@
         "Al-Azhar Mosque",
         "Khan el-Khalili",
         "Al-Muizz Street"
+      ],
+      "exclude": [
+        "File:Masjid Al-Azhar UNP Padang 2019.jpg"
       ]
     },
     {
@@ -714,6 +731,9 @@
         "Nubian village Aswan",
         "Nubian Museum Aswan",
         "Gharb Soheil"
+      ],
+      "exclude": [
+        "File:Delcious Egyptian breakfast at nubian village Gharb Soheil, Arti ka Hotel & Restaurant, Aswan at 7 September 2021.jpg"
       ]
     },
     {
@@ -753,6 +773,9 @@
         "Kaya Kinondo",
         "Mijikenda Kaya forests",
         "Kaya forest Kenya"
+      ],
+      "exclude": [
+        "File:Kaya Kinondo, Sacred Forest, Kenya - 51988955636.jpg"
       ]
     },
     {
@@ -768,6 +791,9 @@
       "queries": [
         "Table Mountain",
         "Table Mountain Cape Town"
+      ],
+      "exclude": [
+        "File:Cape Town (ZA), Table Mountain, Seilbahn, Gedenkplatte -- 2024 -- 2870.jpg"
       ]
     },
     {
@@ -784,6 +810,9 @@
         "Mapungubwe",
         "Mapungubwe National Park",
         "Mapungubwe Hill"
+      ],
+      "exclude": [
+        "File:Mapungubwe Cultural Landscape-114911.jpg"
       ]
     },
     {

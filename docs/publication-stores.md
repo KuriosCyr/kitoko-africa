@@ -51,7 +51,7 @@ Découvrez les patrimoines du Bénin et de la Guinée et remplissez votre passep
 
 > Kitoko Afrika — « Notre Afrique, nos histoires, nos savoirs. »
 >
-> Partez à la découverte des patrimoines, des histoires, des mémoires, des cultures et des savoirs africains, racontés en donnant une place centrale aux voix, aux sources et aux communautés africaines. Premier parcours : le Bénin et la Guinée.
+> Partez à la découverte des patrimoines, des histoires, des mémoires, des cultures et des savoirs africains, racontés en donnant une place centrale aux voix, aux sources et aux communautés africaines. Premiers parcours : 12 pays, du Bénin au Kenya, de la Guinée à l'Afrique du Sud.
 >
 > DÉCOUVRIR
 > • Une carte interactive de l'Afrique et des sites de chaque pays

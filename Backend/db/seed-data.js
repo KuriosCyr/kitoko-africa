@@ -32,9 +32,9 @@ const ALL_AFRICA_COUNTRIES = [
   ["Togo","768"],["Tunisie","788"],["Zambie","894"],["Zimbabwe","716"],["Afrique du Sud","710"]
 ];
 
-// Fiches des autres pays, issues du premier prototype. Elles sont importées
-// en brouillon (non visibles du public) : le prototype se concentre sur le
-// Bénin et la Guinée (voir db/content/). Un administrateur peut les publier.
+// Ébauches issues du premier prototype. Elles ne sont importées (en brouillon)
+// que pour les pays qui n'ont pas encore de fichier rédigé dans db/content/ ;
+// aujourd'hui, les 12 pays concernés sont tous rédigés.
 const SITES = [
   {id:7,country:"Sénégal",cat:"historique",name:"Île de Gorée",region:"Dakar",featured:true,
    description:"Petite île au large de Dakar, lieu de mémoire majeur de la traite négrière transatlantique.",

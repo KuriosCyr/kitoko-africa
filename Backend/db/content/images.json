@@ -987,16 +987,6 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "Cascade de Womé au togo"
-    },
-    {
-      "file": "mont-agou-kpalime-3.webp",
-      "title": "File:Cascade de Womé au togo13.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Cascade_de_Wom%C3%A9_au_togo13.jpg/1280px-Cascade_de_Wom%C3%A9_au_togo13.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Cascade_de_Wom%C3%A9_au_togo13.jpg",
-      "author": "Ubkoumbogny",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Cascade de Womé au togo"
     }
   ],
   "epe-ekpe-glidji": [],
@@ -1644,16 +1634,6 @@
       "description": "C’est le tout premier palais présidentiel au temps colonial du gouverneur Binger, qui est aujourd’hui le musée des Costumes de la ville de Grand Bassam."
     },
     {
-      "file": "grand-bassam-2.webp",
-      "title": "File:Musée National du costume de Grand Bassam 1.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Mus%C3%A9e_National_du_costume_de_Grand_Bassam_1.jpg/1280px-Mus%C3%A9e_National_du_costume_de_Grand_Bassam_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Mus%C3%A9e_National_du_costume_de_Grand_Bassam_1.jpg",
-      "author": "Modjou",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "C’est le tout premier palais présidentiel au temps colonial du gouverneur Binger, qui est aujourd’hui le musée des Costumes de la ville de Grand Bassam."
-    },
-    {
       "file": "grand-bassam-3.webp",
       "title": "File:Musée National du costume de Grand Bassam 3.jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Mus%C3%A9e_National_du_costume_de_Grand_Bassam_3.jpg/1280px-Mus%C3%A9e_National_du_costume_de_Grand_Bassam_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -1894,14 +1874,14 @@
   ],
   "medina-de-fes": [
     {
-      "file": "medina-de-fes-1.webp",
-      "title": "File:Fes el Bali from nord(js).jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Fes_el_Bali_from_nord%28js%29.jpg/1280px-Fes_el_Bali_from_nord%28js%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Fes_el_Bali_from_nord(js).jpg",
-      "author": "Jerzystrzelecki",
-      "license": "CC BY 3.0",
-      "license_url": "https://creativecommons.org/licenses/by/3.0",
-      "description": "Fez. Widok na Medinę Fas al Bali"
+      "file": "medina-de-fes-3.webp",
+      "title": "File:Looking Upon The Medina in Fes, Morocco.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Looking_Upon_The_Medina_in_Fes%2C_Morocco.jpg/1280px-Looking_Upon_The_Medina_in_Fes%2C_Morocco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Looking_Upon_The_Medina_in_Fes,_Morocco.jpg",
+      "author": "Sim Br",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "description": "Fez, Morocco shared with pixbuf.com"
     },
     {
       "file": "medina-de-fes-2.webp",
@@ -1914,14 +1894,14 @@
       "description": "Fez. Widok na Starą Medinę(Fes el Bali) z czwartego piętra karawanseraju"
     },
     {
-      "file": "medina-de-fes-3.webp",
-      "title": "File:Looking Upon The Medina in Fes, Morocco.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Looking_Upon_The_Medina_in_Fes%2C_Morocco.jpg/1280px-Looking_Upon_The_Medina_in_Fes%2C_Morocco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Looking_Upon_The_Medina_in_Fes,_Morocco.jpg",
-      "author": "Sim Br",
-      "license": "CC BY-SA 2.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
-      "description": "Fez, Morocco shared with pixbuf.com"
+      "file": "medina-de-fes-1.webp",
+      "title": "File:Fes el Bali from nord(js).jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Fes_el_Bali_from_nord%28js%29.jpg/1280px-Fes_el_Bali_from_nord%28js%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Fes_el_Bali_from_nord(js).jpg",
+      "author": "Jerzystrzelecki",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "description": "Fez. Widok na Medinę Fas al Bali"
     }
   ],
   "ait-ben-haddou": [
@@ -1934,16 +1914,6 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "Ksar Aït Benhaddou, Marocco Aït Benhaddou (Arabic: آيت بن حدّو) is a historic ighrem or ksar (fortified village) along the former caravan route between the Sahara and Marrakesh in Morocco. It is consi"
-    },
-    {
-      "file": "ait-ben-haddou-2.webp",
-      "title": "File:Camels at Aït Benhaddou, Saharan caravan route, Morocco (آيت بن حدّو, ⴰⵢⵜ ⵃⴰⴷⴷⵓ).jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Camels_at_A%C3%AFt_Benhaddou%2C_Saharan_caravan_route%2C_Morocco_%28%D8%A2%D9%8A%D8%AA_%D8%A8%D9%86_%D8%AD%D8%AF%D9%91%D9%88%2C_%E2%B4%B0%E2%B5%A2%E2%B5%9C_%E2%B5%83%E2%B4%B0%E2%B4%B7%E2%B4%B7%E2%B5%93%29.jpg/1280px-Camels_at_A%C3%AFt_Benhaddou%2C_Saharan_caravan_route%2C_Morocco_%28%D8%A2%D9%8A%D8%AA_%D8%A8%D9%86_%D8%AD%D8%AF%D9%91%D9%88%2C_%E2%B4%B0%E2%B5%A2%E2%B5%9C_%E2%B5%83%E2%B4%B0%E2%B4%B7%E2%B4%B7%E2%B5%93%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Camels_at_A%C3%AFt_Benhaddou,_Saharan_caravan_route,_Morocco_(%D8%A2%D9%8A%D8%AA_%D8%A8%D9%86_%D8%AD%D8%AF%D9%91%D9%88,_%E2%B4%B0%E2%B5%A2%E2%B5%9C_%E2%B5%83%E2%B4%B0%E2%B4%B7%E2%B4%B7%E2%B5%93).jpg",
-      "author": "Petar Milošević",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Camels at Aït Benhaddou, Saharan caravan route, Marocco Aït Benhaddou (Arabic: آيت بن حدّو) is a historic ighrem or ksar (fortified village) along the former caravan route between the Sahara and Marra"
     },
     {
       "file": "ait-ben-haddou-3.webp",
@@ -1968,16 +1938,6 @@
       "description": "Street and typical houses in Chefchaouen, the blue city of Morocco."
     },
     {
-      "file": "chefchaouen-2.webp",
-      "title": "File:Chefchaouen - blue city in Morocco.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Chefchaouen_-_blue_city_in_Morocco.jpg/1280px-Chefchaouen_-_blue_city_in_Morocco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Chefchaouen_-_blue_city_in_Morocco.jpg",
-      "author": "Ekaterina Kvelidze",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "This photo has been taken in the country: Morocco"
-    },
-    {
       "file": "chefchaouen-3.webp",
       "title": "File:Chefchaouen-blue-city-during-thesunset.jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Chefchaouen-blue-city-during-thesunset.jpg/1280px-Chefchaouen-blue-city-during-thesunset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -1986,18 +1946,28 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "View of Chefchaouen and the Rif Mountains at sunset, photographed from the Spanish Mosque (Mosque Bouzaafer) overlooking the blue medina, northern Morocco. March 2025."
+    },
+    {
+      "file": "chefchaouen-2.webp",
+      "title": "File:Chefchaouen - blue city in Morocco.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Chefchaouen_-_blue_city_in_Morocco.jpg/1280px-Chefchaouen_-_blue_city_in_Morocco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Chefchaouen_-_blue_city_in_Morocco.jpg",
+      "author": "Ekaterina Kvelidze",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "description": "This photo has been taken in the country: Morocco"
     }
   ],
   "place-jemaa-el-fna": [
     {
-      "file": "place-jemaa-el-fna-1.webp",
-      "title": "File:Drawing a henna, Jemaa el-Fnaa, Marrakesh (وشم الحناء، جامع الفنا، مراكش).jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Drawing_a_henna%2C_Jemaa_el-Fnaa%2C_Marrakesh_%28%D9%88%D8%B4%D9%85_%D8%A7%D9%84%D8%AD%D9%86%D8%A7%D8%A1%D8%8C_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%8C_%D9%85%D8%B1%D8%A7%D9%83%D8%B4%29.jpg/1280px-Drawing_a_henna%2C_Jemaa_el-Fnaa%2C_Marrakesh_%28%D9%88%D8%B4%D9%85_%D8%A7%D9%84%D8%AD%D9%86%D8%A7%D8%A1%D8%8C_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%8C_%D9%85%D8%B1%D8%A7%D9%83%D8%B4%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Drawing_a_henna,_Jemaa_el-Fnaa,_Marrakesh_(%D9%88%D8%B4%D9%85_%D8%A7%D9%84%D8%AD%D9%86%D8%A7%D8%A1%D8%8C_%D8%AC%D8%A7%D9%85%D8%B9_%D8%A7%D9%84%D9%81%D9%86%D8%A7%D8%8C_%D9%85%D8%B1%D8%A7%D9%83%D8%B4).jpg",
-      "author": "Petar Milošević",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Drawing a henna, Jemaa el-Fnaa, Marrakesh, Morocco"
+      "file": "place-jemaa-el-fna-3.webp",
+      "title": "File:Jemaa el-Fnaa at night.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Jemaa_el-Fnaa_at_night.jpg/1280px-Jemaa_el-Fnaa_at_night.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Jemaa_el-Fnaa_at_night.jpg",
+      "author": "procsilas",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "description": "The Jemaa el-Fnaa market square in Marrakech at night."
     },
     {
       "file": "place-jemaa-el-fna-2.webp",
@@ -2008,16 +1978,6 @@
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0",
       "description": "Jemaa el-Fnaa square in Marrakesh, Morocco"
-    },
-    {
-      "file": "place-jemaa-el-fna-3.webp",
-      "title": "File:Jemaa el-Fnaa at night.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Jemaa_el-Fnaa_at_night.jpg/1280px-Jemaa_el-Fnaa_at_night.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Jemaa_el-Fnaa_at_night.jpg",
-      "author": "procsilas",
-      "license": "CC BY 2.0",
-      "license_url": "https://creativecommons.org/licenses/by/2.0",
-      "description": "The Jemaa el-Fnaa market square in Marrakech at night."
     }
   ],
   "volubilis": [
@@ -2064,16 +2024,6 @@
       "description": "All Giza Pyramids in one shot."
     },
     {
-      "file": "pyramides-de-gizeh-2.webp",
-      "title": "File:Giza Pyramids during \"Forever is Now\" exhibition.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Giza_Pyramids_during_%22Forever_is_Now%22_exhibition.jpg/1280px-Giza_Pyramids_during_%22Forever_is_Now%22_exhibition.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Giza_Pyramids_during_%22Forever_is_Now%22_exhibition.jpg",
-      "author": "Mona Hassan Abo-Abda",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Giza Pyramids during \"Forever is Now\" exhibition"
-    },
-    {
       "file": "pyramides-de-gizeh-3.webp",
       "title": "File:Spelterini Pyramids.jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Spelterini_Pyramids.jpg/1280px-Spelterini_Pyramids.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -2104,19 +2054,19 @@
       "license": "CC BY 4.0",
       "license_url": "https://creativecommons.org/licenses/by/4.0",
       "description": "Valley of the the Kings, a valley in Egypt where, for a period of 500+ years from the 16th to 11th century BC, rock cut tombs were excavated for the Pharaohs and powerful nobles of the New Kingdom of "
-    },
-    {
-      "file": "vallee-des-rois-3.webp",
-      "title": "File:Valley of the Kings model 01.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Valley_of_the_Kings_model_01.jpg/1280px-Valley_of_the_Kings_model_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Valley_of_the_Kings_model_01.jpg",
-      "author": "Nabbegat",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Krallar Vadisi'nin minyatür modeli"
     }
   ],
   "abou-simbel": [
+    {
+      "file": "abou-simbel-3.webp",
+      "title": "File:Templo de Nefertari, Abu Simbel, Egipto, 2022-04-02, DD 153.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Templo_de_Nefertari%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_153.jpg/1280px-Templo_de_Nefertari%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_153.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Templo_de_Nefertari,_Abu_Simbel,_Egipto,_2022-04-02,_DD_153.jpg",
+      "author": "Diego Delso",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "description": "Temple of Nefertari , Abu Simbel , Egypt. The temple, also called Small Temple of Abu Simbel, was built about 100 m (330 ft) northeast of the temple of Ramesses II and was dedicated to the goddess Hat"
+    },
     {
       "file": "abou-simbel-1.webp",
       "title": "File:Templo de Ramsés II, Abu Simbel, Egipto, 2022-04-02, DD 26-28 HDR.jpg",
@@ -2136,16 +2086,6 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "Bas-relief of Ramesses II on his chariot during the Battle of Kadesh against the Hittite Empire under Muwatalli II , south wall in the Hypostyle Hall of the Great Temple of Abu Simbel , Egypt. The Gre"
-    },
-    {
-      "file": "abou-simbel-3.webp",
-      "title": "File:Templo de Nefertari, Abu Simbel, Egipto, 2022-04-02, DD 153.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Templo_de_Nefertari%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_153.jpg/1280px-Templo_de_Nefertari%2C_Abu_Simbel%2C_Egipto%2C_2022-04-02%2C_DD_153.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Templo_de_Nefertari,_Abu_Simbel,_Egipto,_2022-04-02,_DD_153.jpg",
-      "author": "Diego Delso",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Temple of Nefertari , Abu Simbel , Egypt. The temple, also called Small Temple of Abu Simbel, was built about 100 m (330 ft) northeast of the temple of Ramesses II and was dedicated to the goddess Hat"
     }
   ],
   "le-caire-historique": [
@@ -2168,29 +2108,9 @@
       "license": "CC BY 2.0",
       "license_url": "https://creativecommons.org/licenses/by/2.0",
       "description": "Wooden mihrab with dedicatory inscription and inset carved wooden panels, 1125, al-Azhar Mosque, Cairo, Egypt"
-    },
-    {
-      "file": "le-caire-historique-3.webp",
-      "title": "File:Masjid Al-Azhar UNP Padang 2019.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Masjid_Al-Azhar_UNP_Padang_2019.jpg/1280px-Masjid_Al-Azhar_UNP_Padang_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Masjid_Al-Azhar_UNP_Padang_2019.jpg",
-      "author": "Rahmat Irfan Denas",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Masjid Al-Azhar UNP Padang 2019"
     }
   ],
   "nubie-assouan": [
-    {
-      "file": "nubie-assouan-1.webp",
-      "title": "File:Mosque in the Nubian Village at Aswan - panoramio.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Mosque_in_the_Nubian_Village_at_Aswan_-_panoramio.jpg/1280px-Mosque_in_the_Nubian_Village_at_Aswan_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Mosque_in_the_Nubian_Village_at_Aswan_-_panoramio.jpg",
-      "author": "David Broad",
-      "license": "CC BY 3.0",
-      "license_url": "https://creativecommons.org/licenses/by/3.0",
-      "description": "Mosque in the Nubian Village at Aswan"
-    },
     {
       "file": "nubie-assouan-2.webp",
       "title": "File:Nubian Village at Aswan - panoramio.jpg",
@@ -2202,14 +2122,14 @@
       "description": "Nubian Village at Aswan"
     },
     {
-      "file": "nubie-assouan-3.webp",
-      "title": "File:Delcious Egyptian breakfast at nubian village Gharb Soheil, Arti ka Hotel & Restaurant, Aswan at 7 September 2021.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Delcious_Egyptian_breakfast_at_nubian_village_Gharb_Soheil%2C_Arti_ka_Hotel_%26_Restaurant%2C_Aswan_at_7_September_2021.jpg/1280px-Delcious_Egyptian_breakfast_at_nubian_village_Gharb_Soheil%2C_Arti_ka_Hotel_%26_Restaurant%2C_Aswan_at_7_September_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Delcious_Egyptian_breakfast_at_nubian_village_Gharb_Soheil,_Arti_ka_Hotel_%26_Restaurant,_Aswan_at_7_September_2021.jpg",
-      "author": "Same7.sabry",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Delcious Egyptian breakfast at nubian village Gharb Soheil, Arti ka Hotel &amp; Restaurant, Aswan at 7 September 2021"
+      "file": "nubie-assouan-1.webp",
+      "title": "File:Mosque in the Nubian Village at Aswan - panoramio.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Mosque_in_the_Nubian_Village_at_Aswan_-_panoramio.jpg/1280px-Mosque_in_the_Nubian_Village_at_Aswan_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Mosque_in_the_Nubian_Village_at_Aswan_-_panoramio.jpg",
+      "author": "David Broad",
+      "license": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "description": "Mosque in the Nubian Village at Aswan"
     }
   ],
   "maasai-mara": [
@@ -2310,16 +2230,6 @@
   ],
   "vieille-ville-lamu": [
     {
-      "file": "vieille-ville-lamu-1.webp",
-      "title": "File:Lamu old town street.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Lamu_old_town_street.jpg/1280px-Lamu_old_town_street.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Lamu_old_town_street.jpg",
-      "author": "Mzein04",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Lamu old town street is the business street in Lamu old town"
-    },
-    {
       "file": "vieille-ville-lamu-2.webp",
       "title": "File:Lamu Old Town.jpg",
       "url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Lamu_Old_Town.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
@@ -2338,6 +2248,16 @@
       "license": "CC BY-SA 3.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
       "description": "Lamu viewed from the sea"
+    },
+    {
+      "file": "vieille-ville-lamu-1.webp",
+      "title": "File:Lamu old town street.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Lamu_old_town_street.jpg/1280px-Lamu_old_town_street.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Lamu_old_town_street.jpg",
+      "author": "Mzein04",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "description": "Lamu old town street is the business street in Lamu old town"
     }
   ],
   "forets-sacrees-kaya": [
@@ -2346,16 +2266,6 @@
       "title": "File:Kaya Kinondo, Sacred Forest, Kenya.jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Kaya_Kinondo%2C_Sacred_Forest%2C_Kenya.jpg/1280px-Kaya_Kinondo%2C_Sacred_Forest%2C_Kenya.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "source": "https://commons.wikimedia.org/wiki/File:Kaya_Kinondo,_Sacred_Forest,_Kenya.jpg",
-      "author": "Ninara",
-      "license": "CC BY 2.0",
-      "license_url": "https://creativecommons.org/licenses/by/2.0",
-      "description": "The Mijikenda Kaya Forests consist of 10 separate forest sites spread over some 200 km along the coast containing the remains of numerous fortified villages, known as kayas, of the Mijikenda people. T"
-    },
-    {
-      "file": "forets-sacrees-kaya-2.webp",
-      "title": "File:Kaya Kinondo, Sacred Forest, Kenya - 51988955636.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Kaya_Kinondo%2C_Sacred_Forest%2C_Kenya_-_51988955636.jpg/1280px-Kaya_Kinondo%2C_Sacred_Forest%2C_Kenya_-_51988955636.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Kaya_Kinondo,_Sacred_Forest,_Kenya_-_51988955636.jpg",
       "author": "Ninara",
       "license": "CC BY 2.0",
       "license_url": "https://creativecommons.org/licenses/by/2.0",
@@ -2374,16 +2284,6 @@
   ],
   "robben-island": [
     {
-      "file": "robben-island-1.webp",
-      "title": "File:B-Section courtyard, Maximum Security Prison, Robben Island (01).jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/B-Section_courtyard%2C_Maximum_Security_Prison%2C_Robben_Island_%2801%29.jpg/1280px-B-Section_courtyard%2C_Maximum_Security_Prison%2C_Robben_Island_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:B-Section_courtyard,_Maximum_Security_Prison,_Robben_Island_(01).jpg",
-      "author": "Moheen Reeyad",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "The courtyard of Section B in Maximum Security Prison, Robben Island, where Nelson Mandela was housed, is where he and fellow prisoners would eat breakfast, exercise and do manual labour tasks, such a"
-    },
-    {
       "file": "robben-island-2.webp",
       "title": "File:B-Section, Maximum Security Prison, Robben Island (01).jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/B-Section%2C_Maximum_Security_Prison%2C_Robben_Island_%2801%29.jpg/1280px-B-Section%2C_Maximum_Security_Prison%2C_Robben_Island_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -2392,6 +2292,16 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "View from the middle of the Section B courtyard, Maximum Security Prison, Robben Island."
+    },
+    {
+      "file": "robben-island-1.webp",
+      "title": "File:B-Section courtyard, Maximum Security Prison, Robben Island (01).jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/B-Section_courtyard%2C_Maximum_Security_Prison%2C_Robben_Island_%2801%29.jpg/1280px-B-Section_courtyard%2C_Maximum_Security_Prison%2C_Robben_Island_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:B-Section_courtyard,_Maximum_Security_Prison,_Robben_Island_(01).jpg",
+      "author": "Moheen Reeyad",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "description": "The courtyard of Section B in Maximum Security Prison, Robben Island, where Nelson Mandela was housed, is where he and fellow prisoners would eat breakfast, exercise and do manual labour tasks, such a"
     },
     {
       "file": "robben-island-3.webp",
@@ -2406,26 +2316,6 @@
   ],
   "montagne-de-la-table": [
     {
-      "file": "montagne-de-la-table-1.webp",
-      "title": "File:Cape Town (ZA), Table Mountain -- 2024 -- 2825.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Cape_Town_%28ZA%29%2C_Table_Mountain_--_2024_--_2825.jpg/1280px-Cape_Town_%28ZA%29%2C_Table_Mountain_--_2024_--_2825.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Cape_Town_(ZA),_Table_Mountain_--_2024_--_2825.jpg",
-      "author": "Dietmar Rabich",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Rocks on Table Mountain , Table Mountain Nature Reserve , Cape Town , Western Cape , South Africa"
-    },
-    {
-      "file": "montagne-de-la-table-2.webp",
-      "title": "File:Cape Town (ZA), Table Mountain, Seilbahn, Gedenkplatte -- 2024 -- 2870.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/Cape_Town_%28ZA%29%2C_Table_Mountain%2C_Seilbahn%2C_Gedenkplatte_--_2024_--_2870.jpg/1280px-Cape_Town_%28ZA%29%2C_Table_Mountain%2C_Seilbahn%2C_Gedenkplatte_--_2024_--_2870.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Cape_Town_(ZA),_Table_Mountain,_Seilbahn,_Gedenkplatte_--_2024_--_2870.jpg",
-      "author": "Dietmar Rabich",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "Table Mountain memorial plaque on Table Mountain, Table Mountain Nature Reserve , Cape Town , Western Cape , South Africa"
-    },
-    {
       "file": "montagne-de-la-table-3.webp",
       "title": "File:Cape Town (ZA), Table Mountain -- 2024 -- 2794+96+98+2800+01.jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Cape_Town_%28ZA%29%2C_Table_Mountain_--_2024_--_2794%2B96%2B98%2B2800%2B01.jpg/1280px-Cape_Town_%28ZA%29%2C_Table_Mountain_--_2024_--_2794%2B96%2B98%2B2800%2B01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -2434,6 +2324,16 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "Table Mountain , Cape Town , Western Cape , South Africa"
+    },
+    {
+      "file": "montagne-de-la-table-1.webp",
+      "title": "File:Cape Town (ZA), Table Mountain -- 2024 -- 2825.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Cape_Town_%28ZA%29%2C_Table_Mountain_--_2024_--_2825.jpg/1280px-Cape_Town_%28ZA%29%2C_Table_Mountain_--_2024_--_2825.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Cape_Town_(ZA),_Table_Mountain_--_2024_--_2825.jpg",
+      "author": "Dietmar Rabich",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "description": "Rocks on Table Mountain , Table Mountain Nature Reserve , Cape Town , Western Cape , South Africa"
     }
   ],
   "berceau-de-l-humanite": [
@@ -2448,16 +2348,6 @@
       "description": "In the Sterkfontein caves."
     },
     {
-      "file": "berceau-de-l-humanite-2.webp",
-      "title": "File:Sterfonteingrotte naambord.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Sterfonteingrotte_naambord.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "source": "https://commons.wikimedia.org/wiki/File:Sterfonteingrotte_naambord.jpg",
-      "author": "Anrie",
-      "license": "CC BY-SA 3.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
-      "description": "Sign at the Sterkfontein Caves."
-    },
-    {
       "file": "berceau-de-l-humanite-3.webp",
       "title": "File:Sterkfontein stalactite.jpg",
       "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Sterkfontein_stalactite.jpg/1280px-Sterkfontein_stalactite.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -2466,29 +2356,19 @@
       "license": "CC BY-SA 3.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
       "description": "Sterkfontein stalactite"
+    },
+    {
+      "file": "berceau-de-l-humanite-2.webp",
+      "title": "File:Sterfonteingrotte naambord.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Sterfonteingrotte_naambord.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "source": "https://commons.wikimedia.org/wiki/File:Sterfonteingrotte_naambord.jpg",
+      "author": "Anrie",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "description": "Sign at the Sterkfontein Caves."
     }
   ],
   "mapungubwe": [
-    {
-      "file": "mapungubwe-1.webp",
-      "title": "File:Mapungubwe Cultural Landscape-114922.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Mapungubwe_Cultural_Landscape-114922.jpg/1280px-Mapungubwe_Cultural_Landscape-114922.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Mapungubwe_Cultural_Landscape-114922.jpg",
-      "author": "Francesco Bandarin",
-      "license": "CC BY-SA 3.0 igo",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
-      "description": "Mapungubwe Cultural Landscape (South Africa)"
-    },
-    {
-      "file": "mapungubwe-2.webp",
-      "title": "File:Mapungubwe Cultural Landscape-114911.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Mapungubwe_Cultural_Landscape-114911.jpg/1280px-Mapungubwe_Cultural_Landscape-114911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Mapungubwe_Cultural_Landscape-114911.jpg",
-      "author": "Francesco Bandarin",
-      "license": "CC BY-SA 3.0 igo",
-      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
-      "description": "Mapungubwe Cultural Landscape (South Africa)"
-    },
     {
       "file": "mapungubwe-3.webp",
       "title": "File:Mapungubwe Cultural Landscape-114913.jpg",
@@ -2498,19 +2378,19 @@
       "license": "CC BY-SA 3.0 igo",
       "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
       "description": "Mapungubwe Cultural Landscape (South Africa)"
+    },
+    {
+      "file": "mapungubwe-1.webp",
+      "title": "File:Mapungubwe Cultural Landscape-114922.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4d/Mapungubwe_Cultural_Landscape-114922.jpg/1280px-Mapungubwe_Cultural_Landscape-114922.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Mapungubwe_Cultural_Landscape-114922.jpg",
+      "author": "Francesco Bandarin",
+      "license": "CC BY-SA 3.0 igo",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en",
+      "description": "Mapungubwe Cultural Landscape (South Africa)"
     }
   ],
   "soweto-hector-pieterson": [
-    {
-      "file": "soweto-hector-pieterson-1.webp",
-      "title": "File:Hector Pieterson shooting site, cnr Vilakazi & Moema Streets, Soweto.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Hector_Pieterson_shooting_site%2C_cnr_Vilakazi_%26_Moema_Streets%2C_Soweto.jpg/1280px-Hector_Pieterson_shooting_site%2C_cnr_Vilakazi_%26_Moema_Streets%2C_Soweto.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "source": "https://commons.wikimedia.org/wiki/File:Hector_Pieterson_shooting_site,_cnr_Vilakazi_%26_Moema_Streets,_Soweto.jpg",
-      "author": "Andrew Hall",
-      "license": "CC BY-SA 4.0",
-      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-      "description": "The site where Hector Pieterson is reputed to have been shot by Police. It now has a memorial to his memory."
-    },
     {
       "file": "soweto-hector-pieterson-2.webp",
       "title": "File:The Hector Pieterson Memorial (4611836835).jpg",
@@ -2530,6 +2410,16 @@
       "license": "CC BY-SA 4.0",
       "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
       "description": "Plaque explaining hector Peterson Memorial Site, Soweto attached to stone."
+    },
+    {
+      "file": "soweto-hector-pieterson-1.webp",
+      "title": "File:Hector Pieterson shooting site, cnr Vilakazi & Moema Streets, Soweto.jpg",
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Hector_Pieterson_shooting_site%2C_cnr_Vilakazi_%26_Moema_Streets%2C_Soweto.jpg/1280px-Hector_Pieterson_shooting_site%2C_cnr_Vilakazi_%26_Moema_Streets%2C_Soweto.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "source": "https://commons.wikimedia.org/wiki/File:Hector_Pieterson_shooting_site,_cnr_Vilakazi_%26_Moema_Streets,_Soweto.jpg",
+      "author": "Andrew Hall",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "description": "The site where Hector Pieterson is reputed to have been shot by Police. It now has a memorial to his memory."
     }
   ]
 }
