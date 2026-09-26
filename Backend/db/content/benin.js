@@ -11,8 +11,8 @@ module.exports = [
     name: "Palais royaux d'Abomey",
     region: "Zou, Abomey",
     featured: true,
-    latitude: 7.1830,
-    longitude: 1.9910,
+    latitude: 7.183,
+    longitude: 1.991,
     radius: 400,
     themes: ["royaumes", "architecture", "artisanat", "resistances"],
     description: "Pendant près de trois siècles, Abomey fut la capitale du Danxomè, l'un des royaumes les plus puissants et les mieux organisés d'Afrique de l'Ouest. Au cœur de la ville, une vaste enceinte de murs de terre rouge abrite les palais que les rois ont fait bâtir les uns à côté des autres, chacun marquant son règne par son propre palais.\n\nClassés au patrimoine mondial de l'UNESCO, les palais racontent, à travers leurs bas-reliefs, leurs trônes, leurs tentures et leurs récits, l'histoire d'un État africain souverain, de sa puissance militaire, de ses arts de cour et de sa résistance à la conquête coloniale.",
@@ -43,27 +43,11 @@ module.exports = [
       ["Les ateliers d'appliqués", "En ville, des artisans perpétuent l'art des tentures appliquées : un bon moyen de soutenir l'économie locale."],
       ["La place Goho", "À l'entrée de la ville, la statue de Béhanzin rappelle le roi résistant."]
     ],
-    saviez_vous: [
-      "Un roi a été effacé de la liste officielle : Adandozan, renversé en 1818 par Ghézo. Pendant longtemps, son nom n'était pas prononcé dans les récits de la cour.",
-      "Chaque roi choisissait un « nom fort », une sorte de devise imagée. Celui de Béhanzin évoque le requin qui trouble la barre, face aux ennemis venus de la mer."
-    ],
-    sources: [
-      "UNESCO — Centre du patrimoine mondial, « Palais royaux d'Abomey » (inscription 1985)",
-      "Maurice Ahanhanzo Glèlè, Le Danxomè. Du pouvoir aja à la nation fon, 1974",
-      "Musée historique d'Abomey",
-      "Restitution de 26 œuvres du trésor royal d'Abomey (novembre 2021)"
-    ],
+    saviez_vous: ["Un roi a été effacé de la liste officielle : Adandozan, renversé en 1818 par Ghézo. Pendant longtemps, son nom n'était pas prononcé dans les récits de la cour.", "Chaque roi choisissait un « nom fort », une sorte de devise imagée. Celui de Béhanzin évoque le requin qui trouble la barre, face aux ennemis venus de la mer."],
+    sources: ["UNESCO — Centre du patrimoine mondial, « Palais royaux d'Abomey » (inscription 1985)", "Maurice Ahanhanzo Glèlè, Le Danxomè. Du pouvoir aja à la nation fon, 1974", "Musée historique d'Abomey", "Restitution de 26 œuvres du trésor royal d'Abomey (novembre 2021)"],
     recits: [
-      {
-        title: "Les emblèmes des rois",
-        nature: "tradition_orale",
-        body: "La tradition rapporte que chaque roi, à son intronisation, choisissait un « nom fort » et un emblème qui résumaient sa devise. Houégbadja est associé au poisson qui a échappé à la nasse, Ghézo au buffle, Glèlè au lion et Béhanzin au requin, qui trouble les eaux et défie ceux qui viennent de la mer. Ces symboles se retrouvent sur les bas-reliefs, les tentures et les récades (sceptres) royales."
-      },
-      {
-        title: "Danxomè, « dans le ventre de Dan »",
-        nature: "tradition_orale",
-        body: "Une tradition célèbre explique le nom du royaume. Un chef local, Dan, se serait moqué des ambitions du nouveau venu en lui demandant s'il comptait bâtir sa maison sur son ventre. Vaincu, Dan aurait été enseveli sous les fondations du palais, qui prit le nom de Danxomè : « dans le ventre de Dan ». Comme tous les récits de fondation, il existe plusieurs versions de cette histoire, transmises par les familles et les héraldistes de la cour."
-      }
+      { title: "Les emblèmes des rois", nature: "tradition_orale", body: "La tradition rapporte que chaque roi, à son intronisation, choisissait un « nom fort » et un emblème qui résumaient sa devise. Houégbadja est associé au poisson qui a échappé à la nasse, Ghézo au buffle, Glèlè au lion et Béhanzin au requin, qui trouble les eaux et défie ceux qui viennent de la mer. Ces symboles se retrouvent sur les bas-reliefs, les tentures et les récades (sceptres) royales." },
+      { title: "Danxomè, « dans le ventre de Dan »", nature: "tradition_orale", body: "Une tradition célèbre explique le nom du royaume. Un chef local, Dan, se serait moqué des ambitions du nouveau venu en lui demandant s'il comptait bâtir sa maison sur son ventre. Vaincu, Dan aurait été enseveli sous les fondations du palais, qui prit le nom de Danxomè : « dans le ventre de Dan ». Comme tous les récits de fondation, il existe plusieurs versions de cette histoire, transmises par les familles et les héraldistes de la cour." }
     ],
     quiz: [
       { question: "En quelle année les palais royaux d'Abomey ont-ils été inscrits au patrimoine mondial de l'UNESCO ?", choices: ["1960", "1985", "2005"], answer: 1, explanation: "Les palais royaux d'Abomey sont inscrits sur la liste du patrimoine mondial depuis 1985." },
@@ -81,8 +65,8 @@ module.exports = [
     name: "Cité lacustre de Ganvié",
     region: "Atlantique, Sô-Ava, lac Nokoué",
     featured: true,
-    latitude: 6.4660,
-    longitude: 2.4180,
+    latitude: 6.466,
+    longitude: 2.418,
     radius: 1500,
     themes: ["eaux", "memoire-traite", "marches", "gastronomie"],
     description: "Au nord de Cotonou, au milieu du lac Nokoué, des milliers de maisons sur pilotis forment l'une des plus grandes cités lacustres d'Afrique : Ganvié. On y circule en pirogue, on y fait son marché sur l'eau, on y va à l'école, à l'église ou à la mosquée sans jamais toucher la terre ferme.\n\nSurnommée la « Venise de l'Afrique », Ganvié est d'abord une histoire de refuge et d'adaptation : celle du peuple toffin, qui a fait de l'eau son rempart, puis son monde.",
@@ -105,26 +89,11 @@ module.exports = [
       ["Les maisons sur pilotis", "Observer la diversité des constructions, des plus anciennes aux plus récentes."],
       ["Les ateliers de pirogues", "Rencontrer les artisans qui fabriquent et réparent les embarcations."]
     ],
-    saviez_vous: [
-      "À Ganvié, on se rend à l'école, au marché ou à la prière en pirogue : l'eau remplace les rues.",
-      "La jacinthe d'eau, une plante invasive, envahit parfois le lac : certaines initiatives locales la transforment en compost ou en objets artisanaux."
-    ],
-    sources: [
-      "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)",
-      "UNESCO — Liste indicative du Bénin, Cité lacustre de Ganvié",
-      "Commune de Sô-Ava"
-    ],
+    saviez_vous: ["À Ganvié, on se rend à l'école, au marché ou à la prière en pirogue : l'eau remplace les rues.", "La jacinthe d'eau, une plante invasive, envahit parfois le lac : certaines initiatives locales la transforment en compost ou en objets artisanaux."],
+    sources: ["Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)", "UNESCO — Liste indicative du Bénin, Cité lacustre de Ganvié", "Commune de Sô-Ava"],
     recits: [
-      {
-        title: "Pourquoi sur l'eau ?",
-        nature: "tradition_orale",
-        body: "On raconte que les ancêtres des Toffinu, poursuivis par les guerriers du Danxomè, trouvèrent refuge sur les eaux du lac Nokoué. Les guerriers, liés par un interdit religieux, ne pouvaient pas entrer dans l'eau. Les réfugiés y bâtirent leurs maisons et donnèrent au lieu un nom qui célèbre la paix retrouvée. Cette histoire rappelle que la traite a transformé les paysages et les modes de vie jusqu'à l'intérieur des terres."
-      },
-      {
-        title: "La pagaie avant la marche",
-        nature: "recit_communautaire",
-        body: "À Ganvié, on aime dire que les enfants savent tenir une pagaie presque avant de savoir marcher. Dès le plus jeune âge, ils se déplacent seuls en petite pirogue pour aller à l'école ou rendre visite à leurs voisins : une autonomie qui étonne souvent les visiteurs."
-      }
+      { title: "Pourquoi sur l'eau ?", nature: "tradition_orale", body: "On raconte que les ancêtres des Toffinu, poursuivis par les guerriers du Danxomè, trouvèrent refuge sur les eaux du lac Nokoué. Les guerriers, liés par un interdit religieux, ne pouvaient pas entrer dans l'eau. Les réfugiés y bâtirent leurs maisons et donnèrent au lieu un nom qui célèbre la paix retrouvée. Cette histoire rappelle que la traite a transformé les paysages et les modes de vie jusqu'à l'intérieur des terres." },
+      { title: "La pagaie avant la marche", nature: "recit_communautaire", body: "À Ganvié, on aime dire que les enfants savent tenir une pagaie presque avant de savoir marcher. Dès le plus jeune âge, ils se déplacent seuls en petite pirogue pour aller à l'école ou rendre visite à leurs voisins : une autonomie qui étonne souvent les visiteurs." }
     ],
     quiz: [
       { question: "Sur quel lac la cité de Ganvié est-elle construite ?", choices: ["Le lac Ahémé", "Le lac Nokoué", "Le lac Tchad"], answer: 1, explanation: "Ganvié est bâtie sur pilotis au milieu du lac Nokoué, au nord de Cotonou." },
@@ -146,28 +115,36 @@ module.exports = [
     longitude: 2.0822,
     radius: 300,
     themes: ["spiritualites", "faune-flore", "royaumes"],
-    description: "Au cœur de Ouidah, la forêt sacrée de Kpassè est un lieu de culte vodun et un îlot de nature préservé, lié à la mémoire du roi Kpassè, fondateur de la ville.",
-    histoire: "Kpassè était un roi du royaume Xwéda (Houéda), dont Ouidah était la ville principale avant sa conquête par le Danxomè en 1727. La forêt qui porte son nom est considérée comme sacrée depuis des siècles. Lors du festival Ouidah 92, des sculptures représentant les divinités du vodun y ont été installées par des artistes béninois.",
-    culture: "La forêt est un lieu de prière et de cérémonies. Elle illustre le lien entre spiritualité vodun et protection de la nature : parce qu'elle est sacrée, elle a été préservée de l'urbanisation.",
-    savoirs: "Connaissance des arbres et des plantes médicinales, rites de protection de la forêt, symbolique des divinités vodun représentées par les sculptures.",
-    communities: "Prêtres et dignitaires vodun de Ouidah, habitants du quartier.",
+    description: "En plein cœur de Ouidah, à quelques minutes du temple des Pythons, s'étend un îlot de grands arbres : la forêt sacrée de Kpassè. On y entre par un portail gardé par une statue de Legba, et l'on découvre, à l'ombre des irokos, un lieu de culte vodun peuplé de sculptures représentant les divinités.\n\nLa forêt porte le nom du roi Kpassè, considéré comme le fondateur de la ville. Elle rappelle que, dans la culture vodun, certains lieux naturels sont sacrés — et que ce caractère sacré les a protégés jusqu'à aujourd'hui.",
+    histoire: "### Le roi Kpassè et la fondation de Ouidah\nAvant de devenir le port du Danxomè, Ouidah (Glexwe) appartenait au royaume Xwéda (Houéda), dont la capitale était Savi, un peu plus au nord. La tradition présente Kpassè comme le fondateur de la ville, au XVIIe siècle. Il y aurait installé sa résidence, et la forêt qui porte son nom serait liée à son histoire et à sa disparition.\n\n### Une forêt préservée par le sacré\nAu fil des siècles, alors que la ville grandissait autour d'elle, la forêt a été préservée grâce aux interdits religieux : on n'y coupe pas les arbres, on n'y chasse pas, on y entre avec respect. Elle est l'un de ces nombreux bois sacrés qui, au Bénin comme ailleurs en Afrique de l'Ouest, ont servi de conservatoires naturels.\n\n### Ouidah 92 et les sculptures\nAu début des années 1990, lors du festival international des cultures vodun « Ouidah 92 », la forêt est aménagée pour accueillir les visiteurs. Des sculptures représentant les divinités du vodun et des scènes de l'histoire de la ville y sont installées par des artistes béninois. Elles font aujourd'hui partie du paysage de la forêt et aident à comprendre le panthéon vodun.",
+    culture: "La forêt reste avant tout un lieu de culte. Les prêtres et adeptes du vodun y célèbrent des cérémonies, notamment en l'honneur de Loko, la divinité associée à l'iroko, l'arbre sacré. Certaines parties de la forêt ne sont pas accessibles aux visiteurs.\n\nElle illustre un lien fort entre spiritualité et nature : le vodun n'est pas seulement une religion de temples, c'est aussi un rapport au monde qui reconnaît une présence sacrée dans les arbres, les eaux et les animaux. Protéger la forêt, c'est respecter les ancêtres.\n\nPour les habitants de Ouidah, la forêt de Kpassè est aussi un lieu de mémoire de la ville, antérieur à l'arrivée du Danxomè et à la traite.",
+    savoirs: "### Le savoir des plantes\nLes bois sacrés sont des réservoirs de plantes utilisées dans la pharmacopée traditionnelle. Les tradipraticiens connaissent leurs usages, les moments et les manières de les cueillir, et les règles qui encadrent leur utilisation.\n\n### Les règles du lieu\nInterdits de coupe, de chasse ou de certains comportements, tenues et attitudes attendues : ces règles, transmises oralement, sont un véritable système de gestion d'un espace naturel.\n\n### Lire les sculptures\nLes statues de la forêt représentent des divinités — Legba, gardien des passages ; Hevioso, divinité de la foudre ; Sakpata, liée à la terre ; Dan, le serpent… Un guide aide à reconnaître leurs attributs et leurs symboles.",
+    communities: "Prêtres et dignitaires vodun de Ouidah, habitants du quartier, guides de la ville.",
     langues: "Fon, xwéla, français",
-    personnalites: "Roi Kpassè",
-    infos_pratiques: "Visite accompagnée d'un guide sur place. Respecter les interdits signalés et demander avant de photographier les autels.",
-    sources: [
-      "Direction du patrimoine culturel du Bénin",
-      "Office du tourisme de Ouidah"
+    personnalites: "Roi Kpassè, fondateur de Ouidah selon la tradition.",
+    infos_pratiques: "Visite accompagnée d'un guide à l'entrée (contribution à prévoir). Respecter les interdits signalés et les zones fermées aux visiteurs, demander avant de photographier les autels. Se combine facilement avec le temple des Pythons et le musée d'histoire, tout proches.",
+    chronologie: [
+      ["XVIIe siècle", "Selon la tradition, le roi Kpassè fonde Ouidah, dans le royaume Xwéda."],
+      ["1727", "Conquête de Ouidah par le Danxomè ; la forêt reste un lieu sacré de la ville."],
+      ["Début des années 1990", "Aménagement pour le festival « Ouidah 92 » et installation de sculptures."],
+      ["Aujourd'hui", "Lieu de culte vodun et site de visite parmi les plus fréquentés de Ouidah."]
     ],
+    a_voir: [
+      ["L'iroko du roi", "Le grand arbre associé au roi Kpassè, cœur de la forêt."],
+      ["Les sculptures des divinités", "Legba, Hevioso, Sakpata, Dan… Un guide explique leurs symboles."],
+      ["L'entrée et sa statue de Legba", "Gardien des passages, Legba accueille ceux qui entrent."]
+    ],
+    saviez_vous: ["Les bois sacrés comme celui de Kpassè comptent parmi les derniers îlots de forêt ancienne dans le sud du Bénin : le sacré y a joué le rôle d'une réserve naturelle.", "Loko, la divinité de l'iroko, est honorée dans de nombreux lieux du Bénin : les grands irokos sont souvent entourés d'offrandes et de pagnes."],
+    sources: ["Direction du patrimoine culturel du Bénin", "Office du tourisme de Ouidah", "Festival international des cultures vodun « Ouidah 92 »"],
     recits: [
-      {
-        title: "Le roi devenu arbre",
-        nature: "tradition_orale",
-        body: "La tradition raconte que le roi Kpassè, poursuivi par ses ennemis, disparut dans la forêt et se transforma en un grand iroko pour leur échapper. L'arbre est depuis vénéré comme la présence du roi. Ce récit explique pourquoi on ne coupe pas les arbres de la forêt."
-      }
+      { title: "Le roi devenu arbre", nature: "tradition_orale", body: "La tradition raconte que le roi Kpassè, poursuivi par ses ennemis, disparut dans la forêt et se transforma en un grand iroko pour leur échapper. L'arbre est depuis vénéré comme la présence du roi. Ce récit explique pourquoi on ne coupe pas les arbres de la forêt." }
     ],
     quiz: [
       { question: "Selon la tradition, en quoi le roi Kpassè s'est-il transformé ?", choices: ["En python", "En iroko", "En rivière"], answer: 1, explanation: "Le roi Kpassè se serait transformé en iroko, un grand arbre, pour échapper à ses ennemis." },
-      { question: "Pourquoi la forêt de Kpassè a-t-elle été préservée au milieu de la ville ?", choices: ["C'est un parc national", "Elle est sacrée", "Elle est privée"], answer: 1, explanation: "Son caractère sacré l'a protégée : les interdits religieux jouent ici un rôle de conservation de la nature." }
+      { question: "Pourquoi la forêt de Kpassè a-t-elle été préservée au milieu de la ville ?", choices: ["C'est un parc national", "Elle est sacrée", "Elle est privée"], answer: 1, explanation: "Son caractère sacré l'a protégée : les interdits religieux jouent ici un rôle de conservation de la nature." },
+      { question: "À quel royaume appartenait Ouidah avant la conquête du Danxomè ?", choices: ["Le royaume Xwéda (Houéda)", "Le royaume d'Oyo", "L'empire du Mali"], answer: 0, explanation: "Ouidah faisait partie du royaume Xwéda, dont la capitale était Savi, avant sa conquête en 1727." },
+      { question: "Quelle divinité garde les passages et accueille les visiteurs à l'entrée ?", choices: ["Legba", "Hevioso", "Mami Wata"], answer: 0, explanation: "Legba est le gardien des passages et des carrefours ; sa statue se trouve souvent à l'entrée des lieux de culte." },
+      { question: "Lors de quel événement des sculptures ont-elles été installées dans la forêt ?", choices: ["Le festival Ouidah 92", "L'indépendance de 1960", "La Coupe d'Afrique des nations"], answer: 0, explanation: "Les sculptures ont été installées au début des années 1990, à l'occasion du festival des cultures vodun « Ouidah 92 »." }
     ]
   },
   {
@@ -190,10 +167,7 @@ module.exports = [
     langues: "Fon, français",
     personnalites: "Les Agojie ; roi Ghézo (qui aurait renforcé le corps), roi Béhanzin.",
     infos_pratiques: "Accès libre, en plein air. Particulièrement animé en fin de journée.",
-    sources: [
-      "Présidence de la République du Bénin — inauguration du monument (2022)",
-      "Maurice Ahanhanzo Glèlè, Le Danxomè, 1974"
-    ],
+    sources: ["Présidence de la République du Bénin — inauguration du monument (2022)", "Maurice Ahanhanzo Glèlè, Le Danxomè, 1974"],
     recits: [],
     quiz: [
       { question: "Comment appelait-on les guerrières du Danxomè en fon ?", choices: ["Les Agojie (ou Minon)", "Les Kandakes", "Les Sofas"], answer: 0, explanation: "Les Agojie, ou Minon (« nos mères »). Les Kandakes étaient des reines de Koush ; les sofas, des soldats de l'armée de Samory Touré." },
@@ -236,21 +210,10 @@ module.exports = [
       ["La Route des Esclaves", "Les 4 km qui mènent du centre de Ouidah à la plage, jalonnés de monuments."],
       ["La Porte illuminée", "À la nuit tombée, l'arche éclairée offre une atmosphère de recueillement particulière."]
     ],
-    saviez_vous: [
-      "Ouidah n'avait pas de port : les navires négriers restaient au large, et les captifs étaient conduits jusqu'à eux en pirogue, à travers les rouleaux de la barre.",
-      "C'est à Ouidah, en 1994, que l'UNESCO a lancé le projet international « La Route de l'esclave », devenu depuis « Routes des personnes mises en esclavage »."
-    ],
-    sources: [
-      "UNESCO — Projet « La Route de l'esclave » (lancé à Ouidah en 1994)",
-      "Musée d'histoire de Ouidah",
-      "Base de données Slave Voyages (estimations des départs depuis Ouidah)"
-    ],
+    saviez_vous: ["Ouidah n'avait pas de port : les navires négriers restaient au large, et les captifs étaient conduits jusqu'à eux en pirogue, à travers les rouleaux de la barre.", "C'est à Ouidah, en 1994, que l'UNESCO a lancé le projet international « La Route de l'esclave », devenu depuis « Routes des personnes mises en esclavage »."],
+    sources: ["UNESCO — Projet « La Route de l'esclave » (lancé à Ouidah en 1994)", "Musée d'histoire de Ouidah", "Base de données Slave Voyages (estimations des départs depuis Ouidah)"],
     recits: [
-      {
-        title: "La dernière vue de la terre natale",
-        nature: "recit_communautaire",
-        body: "À Ouidah, on dit que la plage fut pour beaucoup la dernière image de l'Afrique. Le nom de « Porte du Non-Retour » exprime cette rupture. Mais les cérémonies qui s'y tiennent aujourd'hui, en présence de descendants venus d'outre-Atlantique, en ont aussi fait un lieu de retour symbolique et de réconciliation avec l'histoire."
-      }
+      { title: "La dernière vue de la terre natale", nature: "recit_communautaire", body: "À Ouidah, on dit que la plage fut pour beaucoup la dernière image de l'Afrique. Le nom de « Porte du Non-Retour » exprime cette rupture. Mais les cérémonies qui s'y tiennent aujourd'hui, en présence de descendants venus d'outre-Atlantique, en ont aussi fait un lieu de retour symbolique et de réconciliation avec l'histoire." }
     ],
     quiz: [
       { question: "Quel projet l'UNESCO a-t-il lancé à Ouidah en 1994 ?", choices: ["La Route de la soie", "La Route de l'esclave", "Les Villes créatives"], answer: 1, explanation: "Le projet « La Route de l'esclave » a été lancé à Ouidah en 1994 pour étudier et transmettre l'histoire de la traite." },
@@ -268,33 +231,43 @@ module.exports = [
     name: "Route des Esclaves de Ouidah",
     region: "Atlantique, Ouidah",
     featured: true,
-    latitude: 6.3440,
+    latitude: 6.344,
     longitude: 2.0875,
     radius: 2500,
     themes: ["memoire-traite", "spiritualites"],
-    description: "Une piste d'environ 4 km relie le centre de Ouidah à la plage. Jalonnée de monuments, elle retrace les étapes que les captifs étaient forcés de parcourir avant l'embarquement.",
-    histoire: "La route part de l'ancienne place des enchères (place Chacha), où les captifs étaient vendus. Elle passe par l'Arbre de l'Oubli, la case Zomaï où ils étaient enfermés dans l'obscurité, le mémorial de Zoungbodji (fosse commune où furent enterrés ceux qui mouraient en chemin) et l'Arbre du Retour, avant d'atteindre la Porte du Non-Retour sur la plage. Les monuments actuels ont été installés à partir des années 1990, dans le cadre du projet de l'UNESCO « La Route de l'esclave ».",
-    culture: "Parcourir la route à pied est une expérience de mémoire. Chaque étape est accompagnée d'une explication par les guides de Ouidah, qui transmettent aussi les traditions orales liées à ces lieux.",
-    savoirs: "Mémoire orale des étapes de la déportation ; rites associés aux arbres de l'Oubli et du Retour.",
-    communities: "Guides de Ouidah, familles de la ville, dignitaires vodun.",
+    description: "Une piste d'environ quatre kilomètres relie le centre de Ouidah à l'océan. C'est la Route des Esclaves : le chemin que des centaines de milliers de captifs ont été forcés de parcourir, de la place des enchères jusqu'aux navires.\n\nJalonnée de monuments, d'arbres symboliques et de sculptures, elle se parcourt aujourd'hui à pied, étape par étape, comme un chemin de mémoire. C'est l'un des parcours les plus émouvants d'Afrique de l'Ouest.",
+    histoire: "### Un parcours de la traite\nAux XVIIIe et XIXe siècles, Ouidah est le principal port du royaume du Danxomè et l'un des grands ports de la traite atlantique. Les captifs, souvent faits prisonniers lors de guerres et de razzias à l'intérieur des terres, sont amenés en ville, vendus, puis conduits vers la plage pour être embarqués.\n\n### Les étapes\nLe parcours commence sur l'ancienne place des enchères, aujourd'hui place Chacha, du nom de Francisco Félix de Souza, négrier d'origine brésilienne devenu l'un des hommes les plus puissants de Ouidah au XIXe siècle. Il passe par l'Arbre de l'Oubli, puis par la case Zomaï, où les captifs étaient enfermés dans l'obscurité en attendant le départ. Plus loin, le mémorial de Zoungbodji rappelle ceux qui mouraient en chemin et étaient enterrés dans une fosse commune. L'Arbre du Retour précède enfin l'arrivée sur la plage, où se dresse la Porte du Non-Retour.\n\n### Un chemin de mémoire\nAu début des années 1990, le Bénin et l'UNESCO font de Ouidah un lieu central de la mémoire de la traite. Le projet « La Route de l'esclave », lancé à Ouidah en 1994, s'accompagne de l'aménagement du parcours : monuments, sculptures et panneaux explicatifs sont installés, souvent œuvres d'artistes béninois. Des travaux récents ont rénové la route et ses abords.",
+    culture: "Parcourir la Route des Esclaves, c'est mettre ses pas dans ceux des déportés. Les guides de Ouidah y racontent l'histoire, mais aussi les traditions orales liées à chaque étape.\n\nLa route pose aussi des questions difficiles : celle du rôle des négriers européens et brésiliens, mais également celle de la participation de royaumes africains à ce commerce. Ouidah en fait un lieu de réflexion, de recueillement et de réconciliation, notamment avec les descendants de la diaspora qui viennent y marcher.",
+    savoirs: "### La mémoire orale\nLes récits de l'Arbre de l'Oubli et de l'Arbre du Retour, transmis oralement, disent la violence de l'arrachement mais aussi la croyance dans le retour des âmes. Ils sont une clé pour comprendre comment les populations ont pensé et raconté la traite.\n\n### Les monuments\nLes sculptures et monuments du parcours, souvent réalisés par des artistes béninois, utilisent les symboles du vodun et de la culture fon pour raconter l'histoire : ils sont une forme de transmission par l'image.",
+    communities: "Guides de Ouidah, familles de la ville, dignitaires vodun, associations mémorielles.",
     langues: "Fon, français",
-    personnalites: "Francisco Félix de Souza, dit « Chacha », négrier installé à Ouidah au XIXe siècle (la place porte son nom).",
-    infos_pratiques: "Parcours de 4 km à pied, à vélo ou en taxi-moto, idéalement avec un guide. Prévoir de l'eau et une protection contre le soleil.",
-    sources: [
-      "UNESCO — Projet « La Route de l'esclave »",
-      "Musée d'histoire de Ouidah"
+    personnalites: "Francisco Félix de Souza, dit « Chacha », négrier installé à Ouidah au XIXe siècle, allié du roi Ghézo (la place porte son nom).",
+    infos_pratiques: "Parcours de 4 km, à faire à pied, à vélo ou en taxi-moto, idéalement avec un guide pour comprendre chaque étape. Prévoir 2 à 3 heures, de l'eau et une protection contre le soleil ; éviter les heures les plus chaudes. Finir à la Porte du Non-Retour, sur la plage.",
+    chronologie: [
+      ["1727", "Ouidah passe sous le contrôle du Danxomè et devient son port de traite."],
+      ["XVIIIe - XIXe siècles", "Des centaines de milliers de captifs empruntent le chemin vers la plage."],
+      ["1818", "Francisco Félix de Souza aide Ghézo à prendre le pouvoir et devient le « Chacha » de Ouidah."],
+      ["1994", "Lancement à Ouidah du projet de l'UNESCO « La Route de l'esclave »."],
+      ["1995", "Inauguration de la Porte du Non-Retour, au bout de la route."]
     ],
+    a_voir: [
+      ["La place Chacha", "L'ancienne place des enchères, point de départ du parcours."],
+      ["L'Arbre de l'Oubli", "Lieu de l'un des rituels les plus marquants de la tradition orale."],
+      ["La case Zomaï", "L'emplacement où les captifs étaient enfermés dans l'obscurité avant le départ."],
+      ["Le mémorial de Zoungbodji", "Hommage à ceux qui moururent avant l'embarquement."],
+      ["L'Arbre du Retour", "Dernière étape avant la plage, symbole de l'espoir du retour des âmes."]
+    ],
+    saviez_vous: ["« Zomaï » signifierait « là où la lumière ne pénètre pas » : les captifs y étaient enfermés dans le noir pour les désorienter avant le voyage.", "Le titre de « Chacha » donné à Francisco Félix de Souza est resté dans sa famille, dont les descendants vivent toujours à Ouidah."],
+    sources: ["UNESCO — Projet « La Route de l'esclave »", "Musée d'histoire de Ouidah", "Office du tourisme de Ouidah"],
     recits: [
-      {
-        title: "L'Arbre de l'Oubli et l'Arbre du Retour",
-        nature: "tradition_orale",
-        body: "Selon la tradition, les captifs devaient tourner autour de l'Arbre de l'Oubli — neuf fois pour les hommes, sept fois pour les femmes — afin d'oublier leur nom, leur famille et leur terre. Plus loin, on les faisait tourner trois fois autour de l'Arbre du Retour, pour que leur âme revienne un jour au pays de leurs ancêtres. Ces gestes disent la violence de l'arrachement, mais aussi l'espoir d'un retour."
-      }
+      { title: "L'Arbre de l'Oubli et l'Arbre du Retour", nature: "tradition_orale", body: "Selon la tradition, les captifs devaient tourner autour de l'Arbre de l'Oubli — neuf fois pour les hommes, sept fois pour les femmes — afin d'oublier leur nom, leur famille et leur terre. Plus loin, on les faisait tourner trois fois autour de l'Arbre du Retour, pour que leur âme revienne un jour au pays de leurs ancêtres. Ces gestes disent la violence de l'arrachement, mais aussi l'espoir d'un retour." }
     ],
     quiz: [
       { question: "Combien de fois, selon la tradition, les hommes devaient-ils tourner autour de l'Arbre de l'Oubli ?", choices: ["3 fois", "7 fois", "9 fois"], answer: 2, explanation: "Neuf fois pour les hommes, sept fois pour les femmes, selon la tradition rapportée à Ouidah." },
       { question: "Quelle est la longueur approximative de la Route des Esclaves ?", choices: ["400 mètres", "4 kilomètres", "40 kilomètres"], answer: 1, explanation: "La route relie le centre de Ouidah à la plage sur environ 4 km." },
-      { question: "Que rappelle le mémorial de Zoungbodji ?", choices: ["Une victoire militaire", "Une fosse commune de captifs morts en chemin", "La fondation de la ville"], answer: 1, explanation: "Zoungbodji rappelle les captifs morts avant l'embarquement, enterrés dans une fosse commune." }
+      { question: "Que rappelle le mémorial de Zoungbodji ?", choices: ["Une victoire militaire", "Une fosse commune de captifs morts en chemin", "La fondation de la ville"], answer: 1, explanation: "Zoungbodji rappelle les captifs morts avant l'embarquement, enterrés dans une fosse commune." },
+      { question: "Où commence la Route des Esclaves ?", choices: ["À la place Chacha, ancienne place des enchères", "Au palais d'Abomey", "Au port de Cotonou"], answer: 0, explanation: "Le parcours part de l'ancienne place des enchères, aujourd'hui place Chacha, au centre de Ouidah." },
+      { question: "Que signifierait « Zomaï », le nom de la case où les captifs étaient enfermés ?", choices: ["La maison du roi", "Là où la lumière ne pénètre pas", "Le chemin de la mer"], answer: 1, explanation: "Les captifs y étaient enfermés dans l'obscurité, « là où la lumière ne pénètre pas »." }
     ]
   },
   {
@@ -305,26 +278,41 @@ module.exports = [
     name: "Fort portugais — Musée d'histoire de Ouidah",
     region: "Atlantique, Ouidah",
     featured: false,
-    latitude: 6.3610,
-    longitude: 2.0880,
+    latitude: 6.361,
+    longitude: 2.088,
     radius: 250,
     themes: ["memoire-traite", "architecture", "resistances"],
-    description: "L'ancien fort portugais São João Baptista de Ajudá abrite le Musée d'histoire de Ouidah, consacré à la traite, aux liens entre le Bénin et le Brésil et à l'histoire de la ville.",
-    histoire: "Construit en 1721 par les Portugais, le fort servait de comptoir pour la traite. Il resta une enclave portugaise bien après l'indépendance du Dahomey : en 1961, le gouvernement dahoméen en reprit possession, et ses derniers occupants y mirent le feu avant de partir. Restauré, il accueille le musée depuis 1967.",
-    culture: "Le musée présente l'histoire de la traite, mais aussi celle des « Agudas », descendants d'Africains revenus du Brésil au XIXe siècle, qui ont marqué l'architecture, la cuisine et les fêtes de la côte béninoise.",
-    savoirs: "Architecture coloniale et afro-brésilienne ; collections d'objets, de cartes et de documents sur le commerce atlantique.",
-    communities: "Musée d'histoire de Ouidah, communauté aguda.",
+    description: "Au centre de Ouidah, derrière des murs blancs, l'ancien fort portugais São João Baptista de Ajudá abrite le Musée d'histoire de Ouidah. On y découvre l'histoire de la ville, de la traite atlantique et des liens profonds qui unissent le Bénin au Brésil.\n\nC'est souvent la première étape conseillée d'une visite de Ouidah : pour comprendre le contexte avant de parcourir la Route des Esclaves.",
+    histoire: "### Les forts européens de Ouidah\nAu XVIIIe siècle, plusieurs puissances européennes possèdent des forts à Ouidah, alors principal port du commerce avec l'intérieur du pays. Les Français, les Anglais et les Portugais y ont chacun leur établissement. Ces forts servent de comptoirs : on y stocke les marchandises et l'on y organise la traite.\n\n### Le fort São João Baptista de Ajudá\nLe fort portugais est construit en 1721. « Ajudá » est le nom portugais de Ouidah. Il reste lié au commerce avec le Brésil, et en particulier avec Salvador de Bahia, d'où venaient le tabac et l'eau-de-vie échangés contre des captifs.\n\n### Une enclave jusqu'en 1961\nFait étonnant, le Portugal conserve le fort bien après la fin de la traite et même après l'indépendance du Dahomey en 1960 : c'est alors une minuscule enclave portugaise en territoire dahoméen. En 1961, le gouvernement dahoméen en reprend possession ; les derniers occupants portugais y mettent le feu avant de partir.\n\n### Le musée\nRestauré, le fort accueille depuis 1967 le Musée d'histoire de Ouidah. Il présente l'histoire du royaume Xwéda, de la conquête par le Danxomè, de la traite, des cultes vodun et des échanges culturels entre les deux rives de l'Atlantique.",
+    culture: "Le musée met en lumière une histoire souvent méconnue : celle des Agudas, Africains et descendants d'Africains revenus du Brésil au XIXe siècle, après l'abolition de l'esclavage ou après avoir racheté leur liberté. Installés sur la côte du Bénin, du Togo et du Nigéria, ils ont apporté une architecture, une cuisine, des fêtes et des noms de famille portugais que l'on retrouve encore aujourd'hui (de Souza, da Silva, d'Almeida…).\n\nLe musée montre aussi comment les cultes vodun ont traversé l'Atlantique : ils ont nourri le candomblé au Brésil, le vaudou en Haïti ou la santería à Cuba. Ouidah est ainsi un point de départ d'une culture afro-atlantique.",
+    savoirs: "### Architecture\nLe fort témoigne de l'architecture coloniale portugaise adaptée au climat : murs épais, cour intérieure, bâtiments bas. En ville, les maisons afro-brésiliennes des Agudas, à étage et aux façades décorées, en sont une autre facette.\n\n### Les collections\nCartes anciennes, objets de traite, documents, objets de culte et photographies permettent de comprendre les circuits du commerce atlantique et leurs conséquences.",
+    communities: "Musée d'histoire de Ouidah, communauté aguda de Ouidah, historiens béninois.",
     langues: "Fon, français, portugais",
     personnalites: "—",
-    infos_pratiques: "Musée ouvert au public, visites guidées. Horaires et tarifs à confirmer sur place.",
-    sources: [
-      "Musée d'histoire de Ouidah",
-      "Direction du patrimoine culturel du Bénin"
+    infos_pratiques: "Musée ouvert au public, avec visites guidées (horaires et tarifs à confirmer sur place). Prévoir environ 1 heure. Idéal en début de visite de Ouidah, avant la Route des Esclaves.",
+    chronologie: [
+      ["1721", "Construction du fort portugais São João Baptista de Ajudá."],
+      ["1727", "Conquête de Ouidah par le Danxomè ; les forts européens restent en place."],
+      ["XIXe siècle", "Retour de familles afro-brésiliennes, les Agudas, sur la côte."],
+      ["1960", "Indépendance du Dahomey ; le fort reste portugais."],
+      ["1961", "Le Dahomey reprend possession du fort ; ses occupants y mettent le feu."],
+      ["1967", "Ouverture du Musée d'histoire de Ouidah dans le fort restauré."]
     ],
+    a_voir: [
+      ["Les salles du musée", "L'histoire de Ouidah, de la traite et des liens avec le Brésil."],
+      ["La chapelle", "Petit édifice blanc de l'ancien fort, dans la cour."],
+      ["La résidence du gouverneur", "L'ancien logement du représentant portugais."],
+      ["Les maisons afro-brésiliennes", "En ville, les façades décorées des familles agudas."]
+    ],
+    saviez_vous: ["Pendant un an après l'indépendance du Dahomey, le fort de Ouidah est resté une minuscule enclave portugaise, l'une des plus petites « colonies » du monde.", "Des noms de famille comme de Souza, da Silva ou d'Almeida, courants sur la côte béninoise, rappellent l'histoire des Agudas revenus du Brésil."],
+    sources: ["Musée d'histoire de Ouidah", "Direction du patrimoine culturel du Bénin"],
     recits: [],
     quiz: [
       { question: "En quelle année le fort portugais de Ouidah a-t-il été construit ?", choices: ["1492", "1721", "1894"], answer: 1, explanation: "Le fort São João Baptista de Ajudá a été construit en 1721." },
-      { question: "Qui sont les « Agudas » ?", choices: ["Des descendants d'Africains revenus du Brésil", "Des soldats portugais", "Une dynastie royale d'Abomey"], answer: 0, explanation: "Les Agudas descendent d'Africains revenus du Brésil au XIXe siècle ; ils ont marqué la culture de la côte." }
+      { question: "Qui sont les « Agudas » ?", choices: ["Des descendants d'Africains revenus du Brésil", "Des soldats portugais", "Une dynastie royale d'Abomey"], answer: 0, explanation: "Les Agudas descendent d'Africains revenus du Brésil au XIXe siècle ; ils ont marqué la culture de la côte." },
+      { question: "En quelle année le Dahomey a-t-il repris possession du fort ?", choices: ["1894", "1961", "1990"], answer: 1, explanation: "Le fort est resté portugais jusqu'en 1961, un an après l'indépendance du Dahomey." },
+      { question: "Que signifie « Ajudá » en portugais ?", choices: ["Ouidah", "Aide", "Forteresse"], answer: 0, explanation: "Ajudá est le nom portugais de la ville de Ouidah." },
+      { question: "Quel pays d'Amérique est particulièrement lié à Ouidah par l'histoire de la traite et des retours ?", choices: ["Le Brésil", "Le Canada", "Le Chili"], answer: 0, explanation: "Ouidah entretenait des liens étroits avec le Brésil, notamment Salvador de Bahia ; des Afro-Brésiliens y sont revenus au XIXe siècle." }
     ]
   },
   {
@@ -339,25 +327,36 @@ module.exports = [
     longitude: 2.0859,
     radius: 200,
     themes: ["spiritualites", "faune-flore"],
-    description: "Face à la basilique de Ouidah, le temple des Pythons est consacré à Dangbé, divinité protectrice représentée par le python royal. Des dizaines de pythons y vivent en liberté.",
-    histoire: "Le culte de Dangbé remonte au royaume Xwéda : la tradition raconte qu'un python aurait protégé le roi et son armée lors d'une guerre. Le serpent devint alors sacré. Le temple se trouve aujourd'hui face à la basilique de l'Immaculée-Conception, construite au début du XXe siècle.",
-    culture: "Le python royal est respecté dans la ville : on ne le tue pas, et s'il entre dans une maison, on appelle les prêtres du temple pour le ramener. Le face-à-face du temple et de la basilique illustre la coexistence des religions à Ouidah.",
-    savoirs: "Connaissance du python royal (Python regius), serpent non venimeux ; rites et interdits liés à Dangbé.",
-    communities: "Prêtres et adeptes de Dangbé.",
+    description: "Au cœur de Ouidah, un petit temple abrite des dizaines de pythons royaux, libres et respectés : c'est le temple de Dangbé, divinité protectrice de la ville. Juste en face se dresse la basilique de l'Immaculée-Conception.\n\nCe face-à-face résume Ouidah : une ville où le vodun et le christianisme se côtoient, et où les pythons sont traités comme des êtres sacrés.",
+    histoire: "### Le culte de Dangbé\nLe culte du python remonte au royaume Xwéda, avant la conquête de Ouidah par le Danxomè en 1727. Le python royal y était honoré comme une divinité protectrice. La tradition raconte qu'un python aurait sauvé le roi et son armée lors d'une guerre, ce qui lui valut d'être vénéré.\n\n### Un culte qui survit aux conquêtes\nAprès la conquête, le Danxomè ne supprime pas le culte : il l'intègre, comme il le fait souvent avec les divinités des peuples conquis. Dangbé reste l'une des grandes divinités de Ouidah.\n\n### Le temple et la basilique\nLe temple actuel se trouve sur une place du centre-ville. En face, la basilique de l'Immaculée-Conception, construite au début du XXe siècle, témoigne de la présence de l'Église catholique. Cette proximité est souvent citée comme un symbole de la coexistence religieuse au Bénin.",
+    culture: "À Ouidah, le python royal est respecté : on ne le tue pas. Autrefois, tuer un python pouvait être puni très sévèrement. S'il entre dans une maison, on prévient les prêtres du temple, qui viennent le récupérer.\n\nLe temple est aussi un lieu d'initiation et de cérémonies pour les adeptes de Dangbé. Pour les visiteurs, il est l'occasion de comprendre que le vodun n'est pas « de la magie » comme on le présente souvent, mais une religion à part entière, avec ses divinités, ses prêtres, ses règles et ses fêtes.",
+    savoirs: "### Le python royal\nLe python royal (Python regius) est un serpent non venimeux, calme, qui se roule en boule lorsqu'il est inquiet. Les gardiens du temple savent le manipuler et le soigner.\n\n### Les rites\nLes prêtres de Dangbé connaissent les chants, les offrandes et les interdits liés à la divinité. Ce savoir se transmet dans le cadre de l'initiation.",
+    communities: "Prêtres et adeptes de Dangbé, habitants de Ouidah.",
     langues: "Fon, xwéla, français",
     personnalites: "—",
-    infos_pratiques: "Visite guidée sur place. Les guides proposent parfois de porter un python : c'est facultatif.",
-    sources: ["Office du tourisme de Ouidah"],
+    infos_pratiques: "Visite guidée sur place (contribution à prévoir). Les guides proposent parfois de porter un python autour du cou : c'est facultatif. Se combine avec la basilique d'en face, la forêt de Kpassè et le musée d'histoire.",
+    chronologie: [
+      ["Avant 1727", "Le culte de Dangbé est déjà bien établi dans le royaume Xwéda."],
+      ["1727", "Conquête de Ouidah par le Danxomè, qui maintient le culte."],
+      ["Début du XXe siècle", "Construction de la basilique de l'Immaculée-Conception, face au temple."],
+      ["Aujourd'hui", "Le temple est l'un des lieux les plus visités de Ouidah."]
+    ],
+    a_voir: [
+      ["La case des pythons", "Des dizaines de pythons royaux y vivent librement."],
+      ["L'arbre sacré de la cour", "Au cœur de l'enclos, un arbre ancien entouré d'offrandes."],
+      ["La basilique en face", "Pour saisir le face-à-face entre vodun et christianisme."]
+    ],
+    saviez_vous: ["Le python royal se roule en boule quand il a peur, d'où son surnom de « python boule ».", "On dit à Ouidah que les pythons sortent parfois la nuit se promener en ville, et que les habitants les ramènent au temple."],
+    sources: ["Office du tourisme de Ouidah", "Direction du patrimoine culturel du Bénin"],
     recits: [
-      {
-        title: "Le python qui sauva le roi",
-        nature: "tradition_orale",
-        body: "On raconte qu'au temps du royaume Xwéda, un python surgit pour protéger le roi et ses hommes, ou pour les guider vers la victoire selon d'autres versions. Depuis, le python royal est honoré comme Dangbé, et le tuer est un interdit grave."
-      }
+      { title: "Le python qui sauva le roi", nature: "tradition_orale", body: "On raconte qu'au temps du royaume Xwéda, un python surgit pour protéger le roi et ses hommes, ou pour les guider vers la victoire selon d'autres versions. Depuis, le python royal est honoré comme Dangbé, et le tuer est un interdit grave." }
     ],
     quiz: [
       { question: "Quelle divinité est honorée au temple des Pythons ?", choices: ["Dangbé", "Shango", "Mami Wata"], answer: 0, explanation: "Dangbé est la divinité représentée par le python royal, protecteur de Ouidah." },
-      { question: "Quel édifice fait face au temple des Pythons ?", choices: ["Le fort portugais", "La basilique de l'Immaculée-Conception", "Le palais royal"], answer: 1, explanation: "Le temple et la basilique se font face, symbole de la coexistence religieuse à Ouidah." }
+      { question: "Quel édifice fait face au temple des Pythons ?", choices: ["Le fort portugais", "La basilique de l'Immaculée-Conception", "Le palais royal"], answer: 1, explanation: "Le temple et la basilique se font face, symbole de la coexistence religieuse à Ouidah." },
+      { question: "Le python royal est-il venimeux ?", choices: ["Oui, très", "Non", "Seulement la nuit"], answer: 1, explanation: "Le python royal n'est pas venimeux ; il est calme et se roule en boule lorsqu'il a peur." },
+      { question: "Que font les habitants si un python entre dans leur maison ?", choices: ["Ils le tuent", "Ils préviennent les prêtres du temple", "Ils le relâchent en forêt"], answer: 1, explanation: "Les prêtres du temple viennent récupérer le python : le tuer est un interdit grave." },
+      { question: "De quel royaume vient le culte de Dangbé ?", choices: ["Le royaume Xwéda", "L'empire du Ghana", "Le royaume du Kongo"], answer: 0, explanation: "Le culte de Dangbé remonte au royaume Xwéda, avant la conquête du Danxomè." }
     ]
   },
   {
@@ -368,23 +367,41 @@ module.exports = [
     name: "Fête du Vodun de Ouidah",
     region: "Atlantique, Ouidah (plage)",
     featured: true,
-    latitude: 6.3250,
-    longitude: 2.0880,
+    latitude: 6.325,
+    longitude: 2.088,
     radius: 1500,
     themes: ["festivals", "spiritualites", "musiques-danses"],
-    description: "Chaque 10 janvier, le Bénin célèbre la fête nationale des religions endogènes. À Ouidah, des milliers de personnes se rassemblent sur la plage pour des cérémonies, des danses et des sorties de masques.",
-    histoire: "Le vodun, ensemble de croyances et de pratiques né dans l'aire culturelle aja-fon, a longtemps été dénigré pendant la période coloniale. Le Bénin en fait officiellement une fête nationale, célébrée chaque 10 janvier depuis la fin des années 1990. Depuis 2024, l'événement s'étend sur plusieurs jours sous le nom de « Vodun Days ».",
-    culture: "La fête rassemble prêtres, adeptes, familles et visiteurs. On y voit les Zangbéto, gardiens de la nuit couverts de raphia, et les Egungun, qui incarnent les ancêtres revenus parmi les vivants. C'est un moment de fierté culturelle et de rencontre avec la diaspora.",
-    savoirs: "Rythmes et danses rituelles, fabrication des costumes de masques, savoirs liés aux divinités et aux plantes.",
-    communities: "Dignitaires et adeptes du vodun, ville de Ouidah.",
+    description: "Chaque année, autour du 10 janvier, Ouidah devient la capitale mondiale du vodun. Sur la plage, près de la Porte du Non-Retour, des milliers de personnes se rassemblent : dignitaires en tenue d'apparat, adeptes, familles, visiteurs du monde entier et descendants de la diaspora.\n\nTambours, chants, danses et sorties de masques rythment la fête nationale des religions endogènes, devenue aussi l'un des plus grands événements culturels d'Afrique de l'Ouest.",
+    histoire: "### Une religion longtemps dénigrée\nLe vodun est un ensemble de croyances et de pratiques né dans l'aire culturelle adja-fon, entre l'actuel Togo, le Bénin et le Nigéria. Il reconnaît un Dieu suprême et une multitude de divinités (les vodun) liées aux forces de la nature, aux ancêtres et à la vie sociale. Pendant la période coloniale, il a été combattu et caricaturé, souvent réduit à de la « sorcellerie ».\n\n### La reconnaissance\nAprès des années de répression, notamment sous le régime révolutionnaire des années 1970-1980, le Bénin reconnaît officiellement la place du vodun. Le festival « Ouidah 92 », au début des années 1990, marque un tournant. Le 10 janvier devient la journée nationale des religions endogènes, jour férié célébré chaque année depuis la fin des années 1990.\n\n### Les Vodun Days\nDepuis 2024, l'État béninois organise les « Vodun Days » : plusieurs jours de célébrations, de spectacles et de rencontres autour du 10 janvier à Ouidah, pour faire connaître le vodun et attirer visiteurs et descendants de la diaspora.",
+    culture: "La fête rassemble les grandes figures du vodun, comme le Daagbo Hounon, dignitaire de premier rang à Ouidah, les prêtres et adeptes des différentes divinités, et un public immense.\n\nOn y voit les Zangbéto, gardiens de la nuit couverts de raphia, qui tournoient sans que l'on sache qui se cache dessous ; les Egungun, qui incarnent les ancêtres revenus parmi les vivants, drapés de tissus somptueux ; et de nombreux groupes de musique et de danse.\n\nPour beaucoup de Béninois, c'est une fête de fierté : celle d'une spiritualité africaine reconnue et célébrée. Pour les descendants d'Africains déportés, c'est aussi l'occasion de retrouver des racines dont le candomblé brésilien, le vaudou haïtien ou la santería cubaine sont les héritiers.",
+    savoirs: "### Les rythmes et les danses\nChaque divinité a ses rythmes, ses chants et ses pas de danse. Les tambourinaires et les chanteurs sont les dépositaires de ce répertoire, appris de longues années.\n\n### Les masques et costumes\nLa confection des costumes de Zangbéto (raphia) et d'Egungun (tissus, broderies, perles) relève de savoir-faire spécialisés, souvent tenus secrets.\n\n### Les divinités\nLegba (gardien des passages), Hevioso (foudre), Sakpata (terre), Dan (serpent arc-en-ciel), Mami Wata (eaux)… Chaque vodun a ses couleurs, ses interdits et ses adeptes.",
+    communities: "Dignitaires et adeptes du vodun, collectivités familiales, ville de Ouidah, ministère du Tourisme et de la Culture.",
     langues: "Fon, yoruba, français",
-    personnalites: "—",
-    infos_pratiques: "Chaque année autour du 10 janvier. Forte affluence : réserver l'hébergement à l'avance. Certaines cérémonies ne se photographient pas.",
-    sources: ["Gouvernement du Bénin — Vodun Days", "Office du tourisme de Ouidah"],
-    recits: [],
+    personnalites: "Le Daagbo Hounon, dignitaire vodun de premier rang à Ouidah.",
+    infos_pratiques: "Chaque année autour du 10 janvier (programme des Vodun Days à consulter à l'avance). Forte affluence : réserver l'hébergement tôt et prévoir un transport. Certaines cérémonies ne se photographient pas : demander et respecter les consignes des organisateurs et des dignitaires.",
+    chronologie: [
+      ["Époque coloniale", "Le vodun est combattu et caricaturé par l'administration et les missions."],
+      ["Années 1970-1980", "Les pratiques vodun sont encore réprimées sous le régime révolutionnaire."],
+      ["Début des années 1990", "Festival international des cultures vodun « Ouidah 92 »."],
+      ["Fin des années 1990", "Le 10 janvier devient journée nationale des religions endogènes."],
+      ["2024", "Première édition des « Vodun Days » à Ouidah."]
+    ],
+    a_voir: [
+      ["Les Zangbéto", "Les gardiens de la nuit, grands masques de raphia qui tournoient."],
+      ["Les Egungun", "Les revenants, drapés de tissus brodés, incarnant les ancêtres."],
+      ["La cérémonie sur la plage", "Autour de la Porte du Non-Retour, le cœur des célébrations."]
+    ],
+    saviez_vous: ["Le Bénin est l'un des rares pays au monde à avoir fait d'une fête des religions traditionnelles un jour férié national.", "Le mot « vodun » désigne à la fois la religion et chacune de ses divinités : on parle des vodun au pluriel."],
+    sources: ["Gouvernement du Bénin — Vodun Days", "Office du tourisme de Ouidah", "Festival international des cultures vodun « Ouidah 92 »"],
+    recits: [
+      { title: "Qui se cache sous le Zangbéto ?", nature: "tradition_orale", body: "On dit que personne ne se cache sous le Zangbéto : ce sont des esprits qui l'animent. Pour prouver qu'il est vide, ses gardiens le soulèvent parfois devant la foule. Gardiens de la nuit, les Zangbéto veillaient autrefois sur la sécurité des villages et faisaient respecter l'ordre." }
+    ],
     quiz: [
       { question: "Quelle est la date de la fête nationale du Vodun au Bénin ?", choices: ["1er août", "10 janvier", "25 décembre"], answer: 1, explanation: "Le 10 janvier est la journée nationale des religions endogènes au Bénin." },
-      { question: "Quel est le rôle traditionnel des Zangbéto ?", choices: ["Gardiens de la nuit", "Musiciens de cour", "Chasseurs"], answer: 0, explanation: "Les Zangbéto sont les gardiens de la nuit, chargés de veiller sur la communauté." }
+      { question: "Quel est le rôle traditionnel des Zangbéto ?", choices: ["Gardiens de la nuit", "Musiciens de cour", "Chasseurs"], answer: 0, explanation: "Les Zangbéto sont les gardiens de la nuit, chargés de veiller sur la communauté." },
+      { question: "Que représentent les Egungun ?", choices: ["Les ancêtres revenus parmi les vivants", "Les rois d'Abomey", "Les esprits de la forêt"], answer: 0, explanation: "Les Egungun incarnent les ancêtres qui reviennent visiter les vivants." },
+      { question: "Depuis quelle année l'État organise-t-il les « Vodun Days » ?", choices: ["1960", "1998", "2024"], answer: 2, explanation: "Les Vodun Days, plusieurs jours de célébrations autour du 10 janvier, existent depuis 2024." },
+      { question: "Quel culte brésilien est un héritier des religions vodun et yoruba ?", choices: ["Le candomblé", "Le carnaval", "La capoeira"], answer: 0, explanation: "Le candomblé, pratiqué notamment à Bahia, est né des religions emportées par les déportés d'Afrique de l'Ouest." }
     ]
   },
   {
@@ -395,8 +412,8 @@ module.exports = [
     name: "Parc national de la Pendjari",
     region: "Atacora, Tanguiéta",
     featured: true,
-    latitude: 11.2500,
-    longitude: 1.5500,
+    latitude: 11.25,
+    longitude: 1.55,
     radius: 40000,
     themes: ["faune-flore", "eaux"],
     description: "Dans le nord-ouest du Bénin, la Pendjari est l'un des derniers grands refuges de la faune sauvage en Afrique de l'Ouest : lions, éléphants, buffles, hippopotames et antilopes.",
@@ -407,10 +424,7 @@ module.exports = [
     langues: "Waama, berba, gourmantché, bariba, français",
     personnalites: "—",
     infos_pratiques: "Visite uniquement dans le cadre prévu par la direction du parc (entrées, guides et règles de sécurité à vérifier avant le départ). Saison sèche (décembre à mai) plus favorable à l'observation des animaux.",
-    sources: [
-      "UNESCO — Complexe W-Arly-Pendjari (extension 2017)",
-      "African Parks — Parc national de la Pendjari"
-    ],
+    sources: ["UNESCO — Complexe W-Arly-Pendjari (extension 2017)", "African Parks — Parc national de la Pendjari"],
     recits: [],
     quiz: [
       { question: "Avec quels pays le Bénin partage-t-il le complexe W-Arly-Pendjari ?", choices: ["Togo et Ghana", "Burkina Faso et Niger", "Nigéria et Cameroun"], answer: 1, explanation: "Le complexe WAP s'étend sur le Bénin, le Burkina Faso et le Niger." },
@@ -426,8 +440,8 @@ module.exports = [
     name: "Tata somba de Boukoumbé",
     region: "Atacora, Boukoumbé",
     featured: false,
-    latitude: 10.1800,
-    longitude: 1.1100,
+    latitude: 10.18,
+    longitude: 1.11,
     radius: 5000,
     themes: ["architecture", "artisanat", "langues"],
     description: "Dans la région de Boukoumbé, les Otammari (Batammariba) construisent les « takienta » ou tata somba : de petites maisons-forteresses en terre à étage, véritables chefs-d'œuvre d'architecture.",
@@ -438,10 +452,7 @@ module.exports = [
     langues: "Ditammari, français",
     personnalites: "—",
     infos_pratiques: "Visite de tata avec un guide local et l'accord des familles qui y vivent. Une contribution est souvent demandée : se renseigner auprès du guide.",
-    sources: [
-      "UNESCO — Koutammakou, le pays des Batammariba (Togo, 2004)",
-      "Direction du patrimoine culturel du Bénin"
-    ],
+    sources: ["UNESCO — Koutammakou, le pays des Batammariba (Togo, 2004)", "Direction du patrimoine culturel du Bénin"],
     recits: [],
     quiz: [
       { question: "Quel peuple construit les takienta (tata somba) ?", choices: ["Les Otammari", "Les Toffinu", "Les Yoruba"], answer: 0, explanation: "Les Otammari (Batammariba) de l'Atacora construisent ces maisons-forteresses." },
@@ -457,7 +468,7 @@ module.exports = [
     region: "Ouémé, Porto-Novo",
     featured: false,
     latitude: 6.4975,
-    longitude: 2.6150,
+    longitude: 2.615,
     radius: 300,
     themes: ["royaumes", "architecture"],
     description: "Ancien palais des rois de Porto-Novo, le palais Honmè est aujourd'hui un musée qui fait découvrir l'organisation de la cour et la vie du royaume.",
@@ -484,7 +495,7 @@ module.exports = [
     region: "Ouémé, Porto-Novo",
     featured: false,
     latitude: 6.4969,
-    longitude: 2.6280,
+    longitude: 2.628,
     radius: 400,
     themes: ["architecture", "spiritualites", "memoire-traite"],
     description: "Avec sa façade colorée, la Grande Mosquée de Porto-Novo est un exemple remarquable d'architecture afro-brésilienne, inspirée des églises baroques de Bahia.",
@@ -509,8 +520,8 @@ module.exports = [
     name: "Chutes de Kota",
     region: "Atacora, Natitingou",
     featured: false,
-    latitude: 10.2870,
-    longitude: 1.4520,
+    latitude: 10.287,
+    longitude: 1.452,
     radius: 1500,
     themes: ["eaux", "faune-flore"],
     description: "Près de Natitingou, les chutes de Kota tombent dans un bassin naturel au milieu de la végétation de l'Atacora. Un lieu de fraîcheur et de baignade apprécié.",
@@ -536,8 +547,8 @@ module.exports = [
     name: "Lac Ahémé et Possotomè",
     region: "Mono, Possotomè",
     featured: false,
-    latitude: 6.4700,
-    longitude: 1.9700,
+    latitude: 6.47,
+    longitude: 1.97,
     radius: 5000,
     themes: ["eaux", "gastronomie", "marches"],
     description: "Au bord du lac Ahémé, le village de Possotomè est connu pour sa source d'eau minérale et pour la vie des pêcheurs, qui pratiquent encore des techniques traditionnelles.",
@@ -562,8 +573,8 @@ module.exports = [
     name: "Marché Dantokpa",
     region: "Littoral, Cotonou",
     featured: false,
-    latitude: 6.3700,
-    longitude: 2.4330,
+    latitude: 6.37,
+    longitude: 2.433,
     radius: 700,
     themes: ["marches", "gastronomie", "artisanat"],
     description: "Au bord de la lagune de Cotonou, Dantokpa (« Tokpa ») est l'un des plus grands marchés à ciel ouvert d'Afrique de l'Ouest. On y trouve de tout : tissus, épices, produits vivriers, artisanat, objets de culte.",
@@ -589,8 +600,8 @@ module.exports = [
     name: "Fête de la Gaani à Nikki",
     region: "Borgou, Nikki",
     featured: false,
-    latitude: 9.9400,
-    longitude: 3.2100,
+    latitude: 9.94,
+    longitude: 3.21,
     radius: 3000,
     themes: ["festivals", "royaumes", "musiques-danses"],
     description: "La Gaani est la grande fête annuelle des Baatonu (Bariba). À Nikki, siège historique du royaume, cavaliers en tenue d'apparat, musiciens et dignitaires célèbrent l'unité et l'identité du peuple.",
