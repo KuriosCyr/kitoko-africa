@@ -104,7 +104,6 @@
       <div id="detail-media" class="detail-media" aria-live="polite"></div>
       <div class="dpane active" id="pane-apercu">
         <div class="dblock"><h3>Description</h3><p id="detail-description">—</p></div>
-        <div class="audio-mock"><div class="play-btn">▶</div><div class="audio-track"><p class="tt">Témoignage local (audio)</p><p class="ts">Langue locale</p><div class="audio-bar"><span></span></div></div></div>
         <div class="dblock"><h3>Communautés / structures associées</h3><p id="detail-communities">—</p></div>
       </div>
       <div class="dpane" id="pane-histoire">
@@ -159,7 +158,7 @@
         <div class="error-text">Merci d'ajouter une photo ou une vidéo du site.</div>
       </div>
       <div class="field" id="f-contrib"><label>Votre nom</label><input type="text" id="in-contrib" placeholder="Facultatif"></div>
-      <button class="submit-btn" onclick="submitContribution()">Envoyer pour vérification</button>
+      <button class="submit-btn" id="contribute-submit" onclick="submitContribution()">Envoyer pour vérification</button>
       <p class="form-note">Les contenus proposés sont examinés avant publication afin d'éviter les erreurs et les informations inexactes.</p>
     </div>
     <div class="bottomnav" id="nav-contribute"></div>
@@ -187,7 +186,7 @@
       <div class="stat-row">
         <div class="stat-card"><div class="num" id="stat-fav">0</div><div class="lbl">Favoris</div></div>
         <div class="stat-card"><div class="num" id="stat-contrib">0</div><div class="lbl">Contributions</div></div>
-        <div class="stat-card"><div class="num" id="stat-countries">12</div><div class="lbl">Pays couverts</div></div>
+        <div class="stat-card"><div class="num" id="stat-countries">0</div><div class="lbl">Pays couverts</div></div>
       </div>
       <div class="section-pad" style="padding-top:6px;">
         <p class="section-title">Mes contributions</p>
@@ -199,11 +198,11 @@
       </div>
       <div class="settings-list">
         <div class="setting-row"><span>Langue</span><span class="sv">Français</span></div>
-        <div class="setting-row"><span>Notifications</span><div class="switch on" id="notif-switch" onclick="toggleNotif()"><div class="knob"></div></div></div>
-        <div class="setting-row"><span>Mode hors connexion</span><div class="switch" id="offline-switch" onclick="toggleOffline()"><div class="knob"></div></div></div>
+        <div class="setting-row"><span>Notifications push</span><span class="sv">Bientôt disponible</span></div>
+        <div class="setting-row"><span>Mode hors connexion</span><span class="sv">Bientôt disponible</span></div>
         <div class="setting-row" onclick="showScreen('screen-about')"><span>À propos de Kitoko Afrika</span><span class="sv">›</span></div>
         <div class="setting-row" onclick="showScreen('screen-contact')"><span>Contact</span><span class="sv">›</span></div>
-        <div class="setting-row admin-entry" onclick="showScreen('screen-admin')"><span>Espace modération (démo)</span><span class="sv">›</span></div>
+        <div class="setting-row admin-entry" onclick="showScreen('screen-admin')"><span>Espace modération</span><span class="sv">›</span></div>
         <div class="setting-row logout-row" onclick="logout()"><span>Se déconnecter</span><span class="sv">›</span></div>
       </div>
     </div>
@@ -253,15 +252,16 @@
         <div class="contact-card"><div class="cicon">✉</div><div><p class="ct">contact@kitokoafrika.org</p><p class="cs">Adresse à confirmer</p></div></div>
         <div class="contact-card"><div class="cicon">☎</div><div><p class="ct">Numéro à venir</p><p class="cs">Bénin</p></div></div>
       </div>
-      <div class="field"><label>Votre message</label><textarea placeholder="Écrivez-nous..."></textarea></div>
-      <button class="submit-btn" onclick="this.textContent='Message envoyé'">Envoyer</button>
+      <div class="field"><label for="contact-message">Votre message</label><textarea id="contact-message" placeholder="Écrivez-nous..."></textarea></div>
+      <button class="submit-btn" onclick="sendContactMessage()">Écrire par e-mail</button>
+      <p class="form-note">Le bouton ouvre votre messagerie avec le message prérempli.</p>
     </div>
   </div>
 
   <!-- ADMIN -->
   <div class="screen" id="screen-admin">
     <div class="statusbar"></div>
-    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Modération</h1><p>Accès administrateur (démo).</p></div><span style="width:32px"></span></div>
+    <div class="subheader"><button class="icon-btn" onclick="goBack()">‹</button><div class="stxt"><h1>Modération</h1><p>Accès administrateur.</p></div><span style="width:32px"></span></div>
     <div class="auth-tabs">
       <div class="auth-tab active" id="admin-tab-pending" onclick="switchAdminTab('pending')">En attente</div>
       <div class="auth-tab" id="admin-tab-sites" onclick="switchAdminTab('sites')">Sites publiés</div>
@@ -299,7 +299,8 @@
       <div class="field"><label>Communautés / structures associées</label><input type="text" id="sf-communities"></div>
       <div class="field"><label>Langue(s) disponible(s)</label><input type="text" id="sf-langues"></div>
       <div class="field"><label>Personnalités associées</label><input type="text" id="sf-personnalites"></div>
-      <div class="field"><label>Sources et références</label><input type="text" id="sf-sources"></div>
+      <div class="field"><label>Sources et références</label><textarea id="sf-sources" placeholder="Une source par ligne"></textarea></div>
+      <div class="field"><label class="checkbox-label"><input type="checkbox" id="sf-featured"> Mettre en avant sur l'accueil</label></div>
       <button class="submit-btn" onclick="saveSiteForm()">Enregistrer</button>
     </div>
   </div>
@@ -333,7 +334,7 @@
     <div class="menu-item" onclick="menuGo('screen-profile')">Profil</div>
     <div class="menu-item" onclick="menuGo('screen-about')">À propos</div>
     <div class="menu-item" onclick="menuGo('screen-contact')">Contact</div>
-    <div class="menu-item menu-admin admin-entry" onclick="menuGo('screen-admin')">Espace modération (démo)</div>
+    <div class="menu-item menu-admin admin-entry" onclick="menuGo('screen-admin')">Espace modération</div>
   </div>
 
 </div>

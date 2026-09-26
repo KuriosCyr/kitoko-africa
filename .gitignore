@@ -1,0 +1,18 @@
+# Dépendances (à réinstaller avec npm install)
+node_modules/
+
+# Secrets et configuration locale
+.env
+.env.*
+!.env.example
+
+# Données locales : base SQLite, fichiers envoyés, sauvegardes
+Backend/data/
+Backend/uploads/
+Backend/backups/
+
+# Divers
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/

@@ -1,11 +1,11 @@
+const config = require("./config/env");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const crypto = require("crypto");
-require("dotenv").config();
 
-const db = require("./config/database");
-const { hashPassword } = require("./controllers/auth.controller");
+const { cleanupExpiredSessions } = require("./controllers/auth.controller");
+const { ensureAdminAccount } = require("./services/admin-bootstrap");
+const { publicDir } = require("./services/media");
 const siteRoutes = require("./routes/site.routes");
 const countryRoutes = require("./routes/countries.routes");
 const authRoutes = require("./routes/auth.routes");
@@ -14,42 +14,39 @@ const contributionsRoutes = require("./routes/contributions.routes");
 const adminRoutes = require("./routes/admin.routes");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-const ensureDefaultAdmin = () => {
-  const email = process.env.ADMIN_EMAIL || "admin@kitokoafrika.org";
-  const password = process.env.ADMIN_PASSWORD || "admin123";
-  const existing = db.prepare("SELECT id FROM users WHERE email = ?").get(email);
-  if (!existing) {
-    db.prepare(`
-      INSERT INTO users (name, email, password_hash, role)
-      VALUES (?, ?, ?, ?)
-    `).run("Administrateur", email, hashPassword(password), "admin");
-    console.log("✅ Compte admin de démonstration prêt : admin@kitokoafrika.org / admin123");
-  }
-};
+app.disable("x-powered-by");
+if (config.trustProxy) {
+  // Derrière un reverse proxy (Nginx…), nécessaire pour connaître la vraie IP
+  // des visiteurs (limitation des tentatives de connexion).
+  app.set("trust proxy", /^\d+$/.test(config.trustProxy) ? Number(config.trustProxy) : config.trustProxy);
+}
 
-app.use(cors());
+app.use((req, res, next) => {
+  res.set({
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  });
+  next();
+});
+
+// CORS : les origines autorisées sont listées dans CORS_ORIGINS (ex. le site
+// web et l'application mobile). Sans liste, tout est accepté en développement
+// et seul le site lui-même (même origine) fonctionne en production.
+app.use("/api", cors({
+  origin: config.corsOrigins.length ? config.corsOrigins : !config.isProduction
+}));
 app.use(express.json({ limit: "2mb" }));
 
 const frontendDirectory = path.join(__dirname, "..", "Frontend");
 app.use(express.static(frontendDirectory));
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(publicDir, { dotfiles: "deny", index: false }));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(frontendDirectory, "index.html"));
-});
-
-// Route de santé
 app.get("/api/health", (req, res) => {
-  res.json({
-    success: true,
-    message: "Kitoko Afrika API fonctionne",
-    version: "1.0.0"
-  });
+  res.json({ success: true, message: "Kitoko Afrika API fonctionne", version: "1.1.0" });
 });
 
-// Routes principales
 app.use("/api/sites", siteRoutes);
 app.use("/api/countries", countryRoutes);
 app.use("/api/auth", authRoutes);
@@ -57,27 +54,50 @@ app.use("/api/favorites", favoritesRoutes);
 app.use("/api/contributions", contributionsRoutes);
 app.use("/api/admin", adminRoutes);
 
-// Route inconnue
 app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    message: "Route API introuvable."
+  res.status(404).json({ success: false, message: "Route introuvable." });
+});
+
+// Toutes les erreurs sont renvoyées en JSON (et jamais la trace technique).
+app.use((error, req, res, next) => {
+  if (res.headersSent) return next(error);
+
+  if (error.code === "LIMIT_FILE_SIZE") {
+    return res.status(413).json({ success: false, message: "Fichier trop volumineux (20 Mo maximum)." });
+  }
+  if (error.name === "MulterError") {
+    return res.status(400).json({ success: false, message: "Envoi de fichier invalide." });
+  }
+  if (error.type === "entity.parse.failed") {
+    return res.status(400).json({ success: false, message: "Requête JSON invalide." });
+  }
+  if (error.type === "entity.too.large") {
+    return res.status(413).json({ success: false, message: "Requête trop volumineuse." });
+  }
+  if (error.status && error.status < 500) {
+    return res.status(error.status).json({ success: false, message: error.message });
+  }
+
+  console.error(error);
+  return res.status(500).json({ success: false, message: "Erreur interne du serveur." });
+});
+
+function start(port = config.port) {
+  ensureAdminAccount();
+  cleanupExpiredSessions();
+  const sessionCleanupTimer = setInterval(cleanupExpiredSessions, 60 * 60 * 1000);
+  sessionCleanupTimer.unref();
+
+  return app.listen(port, () => {
+    console.log("");
+    console.log("🌍 KITOKO AFRIKA API");
+    console.log(`🚀 Serveur démarré sur http://localhost:${port}`);
+    console.log("");
   });
-});
+}
 
-// Démarrage du serveur
-ensureDefaultAdmin();
+if (require.main === module) {
+  start();
+}
 
-const cleanupExpiredSessions = () => {
-  db.prepare("DELETE FROM sessions WHERE expires_at <= CURRENT_TIMESTAMP").run();
-};
-cleanupExpiredSessions();
-const sessionCleanupTimer = setInterval(cleanupExpiredSessions, 60 * 60 * 1000);
-sessionCleanupTimer.unref();
-
-app.listen(PORT, () => {
-  console.log("");
-  console.log("🌍 KITOKO AFRIKA API");
-  console.log(`🚀 Serveur démarré sur http://localhost:${PORT}`);
-  console.log("");
-});
+module.exports = { app, start };

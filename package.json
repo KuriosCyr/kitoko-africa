@@ -1,15 +1,17 @@
 {
-  "name": "kotoko-africa",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "kitoko-afrika",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Kitoko Afrika : découverte et contribution autour des patrimoines africains",
+  "engines": {
+    "node": ">=20"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "express": "^5.2.1"
+  "scripts": {
+    "postinstall": "npm --prefix Backend install",
+    "start": "npm --prefix Backend start",
+    "dev": "npm --prefix Backend run dev",
+    "test": "npm --prefix Backend test",
+    "db:seed": "npm --prefix Backend run db:seed",
+    "db:backup": "npm --prefix Backend run db:backup"
   }
 }

@@ -50,13 +50,14 @@ CREATE TABLE IF NOT EXISTS sites (
     latitude REAL,
     longitude REAL,
     status TEXT NOT NULL DEFAULT 'published',
+    featured INTEGER NOT NULL DEFAULT 0,
     owner_user_id INTEGER,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (country_id) REFERENCES countries(id),
     FOREIGN KEY (category_id) REFERENCES categories(id),
-    FOREIGN KEY (owner_user_id) REFERENCES users(id)
+    FOREIGN KEY (owner_user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS sources (
@@ -102,12 +103,14 @@ CREATE TABLE IF NOT EXISTS contributions (
     name TEXT,
     country_id INTEGER,
     category_id INTEGER,
+    region TEXT,
+    credit_name TEXT,
     description TEXT,
     status TEXT NOT NULL DEFAULT 'pending',
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (site_id) REFERENCES sites(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE SET NULL,
     FOREIGN KEY (country_id) REFERENCES countries(id),
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
@@ -149,3 +152,15 @@ CREATE TABLE IF NOT EXISTS notifications (
 
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS login_attempts (
+    attempt_key TEXT NOT NULL,
+    attempted_at INTEGER NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_login_attempts_key ON login_attempts(attempt_key, attempted_at);
+CREATE INDEX IF NOT EXISTS idx_sites_country ON sites(country_id);
+CREATE INDEX IF NOT EXISTS idx_media_site ON media(site_id);
+CREATE INDEX IF NOT EXISTS idx_media_contribution ON media(contribution_id);
+CREATE INDEX IF NOT EXISTS idx_contributions_user ON contributions(user_id);
+CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);

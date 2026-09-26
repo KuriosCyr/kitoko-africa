@@ -1,26 +1,32 @@
-const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 const multer = require("multer");
+const { privateDir } = require("../services/media");
 
-const uploadDirectory = path.join(__dirname, "..", "uploads");
-fs.mkdirSync(uploadDirectory, { recursive: true });
+const ALLOWED_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".tif", ".tiff", ".mp4", ".m4v", ".mov", ".webm", ".mkv"]);
 
+// Tout fichier reçu est d'abord privé : il ne devient public qu'à la
+// publication du site par un administrateur.
 const storage = multer.diskStorage({
-  destination: uploadDirectory,
+  destination: privateDir,
   filename: (req, file, callback) => {
     const extension = path.extname(file.originalname).toLowerCase();
-    callback(null, `${Date.now()}-${Math.random().toString(16).slice(2)}${extension}`);
+    callback(null, `${Date.now()}-${crypto.randomBytes(8).toString("hex")}${extension}`);
   }
 });
 
 const upload = multer({
   storage,
-  limits: { fileSize: 20 * 1024 * 1024 },
+  limits: { fileSize: 20 * 1024 * 1024, files: 1 },
   fileFilter: (req, file, callback) => {
-    if (file.mimetype.startsWith("image/") || file.mimetype.startsWith("video/")) {
+    const extension = path.extname(file.originalname).toLowerCase();
+    const isMedia = file.mimetype.startsWith("image/") || file.mimetype.startsWith("video/");
+    if (isMedia && ALLOWED_EXTENSIONS.has(extension)) {
       return callback(null, true);
     }
-    return callback(new Error("Seuls les fichiers image ou vidéo sont acceptés."));
+    const error = new Error("Seuls les fichiers image (JPG, PNG, WebP…) ou vidéo (MP4, MOV, WebM) sont acceptés.");
+    error.status = 400;
+    return callback(error);
   }
 });
 
