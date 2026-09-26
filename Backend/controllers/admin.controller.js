@@ -213,9 +213,11 @@ function listContributions(req, res) {
 
 function listUsers(req, res) {
   const users = db.prepare(`
-    SELECT id, name, email, role, created_at
-    FROM users
-    ORDER BY created_at DESC
+    SELECT u.id, u.name, u.email, u.role, u.created_at,
+           (SELECT COUNT(*) FROM contributions c WHERE c.user_id = u.id) AS contributions,
+           (SELECT COUNT(DISTINCT site_id) FROM stamps s WHERE s.user_id = u.id) AS stamps
+    FROM users u
+    ORDER BY CASE u.role WHEN 'admin' THEN 0 ELSE 1 END, u.created_at DESC
   `).all();
   return res.json({ success: true, data: users });
 }

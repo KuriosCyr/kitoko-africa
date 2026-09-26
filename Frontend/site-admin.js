@@ -223,3 +223,65 @@ async function deleteRecit(recitId, siteId){
     await refreshSiteTools(siteId);
   } catch(error) { alert(error.message); }
 }
+
+// ---------------------------------------------------------------------------
+// Membres : donner ou retirer les droits d'administration
+// ---------------------------------------------------------------------------
+
+let adminUsers = [];
+
+async function loadAdminUsers(){
+  const list = document.getElementById('admin-users-list');
+  list.innerHTML = '<p class="pane-empty">Chargement…</p>';
+  try {
+    adminUsers = (await adminRequest('/admin/users')).data;
+    renderAdminUsers();
+  } catch(error) {
+    list.innerHTML = `<p class="pane-empty">${esc(error.message)}</p>`;
+  }
+}
+
+function renderAdminUsers(){
+  const list = document.getElementById('admin-users-list');
+  const term = document.getElementById('admin-users-search').value.trim().toLowerCase();
+  const users = adminUsers.filter(user => !term || `${user.name} ${user.email}`.toLowerCase().includes(term));
+  const admins = adminUsers.filter(user => user.role === 'admin').length;
+  list.innerHTML = users.length ? "" : '<p class="pane-empty">Aucun membre ne correspond.</p>';
+  users.forEach(user => {
+    const isSelf = user.id === currentUser?.id;
+    const item = document.createElement('div');
+    item.className = "admin-item";
+    item.innerHTML = `
+      <div class="admin-head">
+        <div><p class="an">${esc(user.name)}${isSelf ? " (vous)" : ""}</p><p class="ac">${esc(user.email)} · inscrit le ${esc(formatDate(user.created_at))} · ${user.contributions} contribution${user.contributions > 1 ? "s" : ""} · ${user.stamps} tampon${user.stamps > 1 ? "s" : ""}</p></div>
+        ${user.role === 'admin' ? '<span class="admin-badge badge-approved">Administrateur</span>' : '<span class="admin-badge badge-pending">Membre</span>'}
+      </div>
+      <div class="admin-actions"></div>`;
+    const actions = item.querySelector('.admin-actions');
+    const button = document.createElement('button');
+    if(user.role === 'admin'){
+      button.className = "admin-btn reject";
+      button.textContent = "Retirer les droits d'administration";
+      button.disabled = isSelf || admins <= 1;
+      if(isSelf) button.title = "Un autre administrateur doit le faire.";
+      button.onclick = () => setUserRole(user, 'user');
+    } else {
+      button.className = "admin-btn approve";
+      button.textContent = "Nommer administrateur";
+      button.onclick = () => setUserRole(user, 'admin');
+    }
+    actions.appendChild(button);
+    list.appendChild(item);
+  });
+}
+
+async function setUserRole(user, role){
+  const message = role === 'admin'
+    ? `Donner les droits d'administration à ${user.name} ? Cette personne pourra modérer, modifier et supprimer des contenus.`
+    : `Retirer les droits d'administration de ${user.name} ?`;
+  if(!confirm(message)) return;
+  try {
+    await adminRequest(`/admin/users/${user.id}/role`, { method: "PATCH", json: { role } });
+    await loadAdminUsers();
+  } catch(error) { alert(error.message); }
+}

@@ -800,13 +800,14 @@ async function setFavorite(siteId, shouldAdd){
 
 function switchAdminTab(tab){
   adminTab = tab;
-  ['pending', 'sites', 'partners'].forEach(name => {
+  ['pending', 'sites', 'partners', 'users'].forEach(name => {
     document.getElementById(`admin-tab-${name}`).classList.toggle('active', tab === name);
     document.getElementById(`admin-${name}-pane`).style.display = tab === name ? 'flex' : 'none';
   });
   document.querySelector('.admin-filters').hidden = tab !== 'pending';
   if(tab==='sites') loadAdminSites();
   if(tab==='partners') loadAdminPartners();
+  if(tab==='users') loadAdminUsers();
 }
 
 // Les médias des contributions non publiées sont privés : on les récupère

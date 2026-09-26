@@ -15,11 +15,22 @@ Le dépôt contient déjà la configuration (`render.yaml`). Compter une dizaine
 2. Dans le tableau de bord : **New → Blueprint**.
 3. Autoriser Render à accéder au dépôt `kitoko-africa`, puis le sélectionner.
 4. **Branche** : choisir `claude/eloquent-heisenberg-shvzcw` (ou `main`, une fois le travail fusionné).
-5. Render lit `render.yaml` et affiche le service **kitoko-afrika** (offre *Free*). Il demande une valeur pour **ADMIN_EMAIL** : saisir l'adresse e-mail du compte administrateur (ex. votre adresse).
-6. Cliquer sur **Apply**. Le premier déploiement prend 3 à 5 minutes.
-7. L'adresse du site s'affiche en haut de la page du service, par exemple `https://kitoko-afrika.onrender.com`. C'est le lien à partager.
+5. **Blueprint Name** : un simple nom dans votre tableau de bord Render (ex. `kitoko-afrika`) ; il n'apparaît nulle part ailleurs. L'adresse du site vient du nom du service (`kitoko-afrika`, fixé dans `render.yaml`).
+6. Render affiche le service **kitoko-afrika** (offre *Free*) et demande **ADMIN_EMAIL** : c'est l'identifiant du compte administrateur. L'application n'envoie jamais d'e-mail, une adresse fictive convient (ex. `admin@kitokoafrika.org`), ce qui évite d'exposer une adresse personnelle.
+7. Cliquer sur **Deploy Blueprint** (ou **Apply**). Le premier déploiement prend 3 à 5 minutes.
+8. L'adresse du site s'affiche en haut de la page du service, par exemple `https://kitoko-afrika.onrender.com`. C'est le lien à partager.
 
-**Mot de passe administrateur** : Render en génère un automatiquement. Pour le voir : service **kitoko-afrika → Environment → ADMIN_PASSWORD** (icône œil). Se connecter ensuite sur le site avec ADMIN_EMAIL et ce mot de passe, puis Profil → Espace modération.
+**Mot de passe administrateur** : Render en génère un automatiquement. Pour le voir : service **kitoko-afrika → Environment → ADMIN_PASSWORD** (icône œil). On peut le remplacer par un mot de passe choisi (12 caractères minimum) ; le service redémarre tout seul. Se connecter ensuite sur le site avec ADMIN_EMAIL et ce mot de passe, puis Profil → Espace modération.
+
+### Qui a quel compte ?
+
+| Qui | Compte | Comment |
+|---|---|---|
+| Vous (et 1 ou 2 personnes de confiance) | **Administrateur** | Identifiants ADMIN_EMAIL / ADMIN_PASSWORD, à ne pas diffuser : ce compte peut supprimer des contenus. |
+| Équipe, jury, testeurs | **Compte normal** | On leur envoie seulement le lien du site ou l'APK ; chacun crée son compte (Profil → Créer un compte). |
+| Un membre qui doit aussi gérer la démo | Compte normal **nommé administrateur** | Il crée son compte, puis un administrateur le nomme dans Espace modération → **Membres**. |
+
+Sur l'offre gratuite, les comptes créés dans l'application sont effacés à chaque réinitialisation du serveur (voir ci-dessous) ; seul le compte ADMIN_EMAIL est recréé automatiquement. Pour la démo, partager le compte administrateur avec 1 ou 2 personnes reste le plus simple.
 
 ### Ce qu'il faut savoir sur l'offre gratuite
 

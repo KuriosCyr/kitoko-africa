@@ -498,6 +498,7 @@
       <div class="auth-tab active" id="admin-tab-pending" onclick="switchAdminTab('pending')">En attente</div>
       <div class="auth-tab" id="admin-tab-sites" onclick="switchAdminTab('sites')">Sites</div>
       <div class="auth-tab" id="admin-tab-partners" onclick="switchAdminTab('partners')">Partenaires</div>
+      <div class="auth-tab" id="admin-tab-users" onclick="switchAdminTab('users')">Membres</div>
     </div>
     <div class="admin-filters" aria-label="Filtres de modération">
       <label class="sr-only" for="admin-status-filter">Statut</label>
@@ -510,6 +511,12 @@
       <input id="admin-to-filter" type="date">
     </div>
     <div class="admin-body" id="admin-pending-pane"><div id="admin-list"></div></div>
+    <div class="admin-body" id="admin-users-pane" style="display:none;">
+      <p class="form-note">Chaque membre de l'équipe crée son compte dans l'application (Profil → Créer un compte), puis un administrateur lui donne ici les droits d'administration.</p>
+      <label class="sr-only" for="admin-users-search">Rechercher un membre</label>
+      <input id="admin-users-search" class="admin-search" type="search" placeholder="Rechercher par nom ou e-mail" oninput="renderAdminUsers()">
+      <div id="admin-users-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
     <div class="admin-body" id="admin-partners-pane" style="display:none;">
       <button class="submit-btn" style="margin-bottom:2px;" onclick="openPartnerForm()">+ Ajouter un partenaire</button>
       <div id="admin-partners-list" style="display:flex;flex-direction:column;gap:10px;margin-top:4px;"></div>

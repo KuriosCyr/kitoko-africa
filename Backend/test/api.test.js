@@ -636,3 +636,18 @@ test("le mode démonstration est désactivé par défaut", async () => {
   const user = await signup();
   assert.ok(!("demo_code" in (await api("/api/passport/sites/ganvie", { token: user.token })).data.data));
 });
+
+test("un administrateur peut nommer un autre administrateur, puis lui retirer ce rôle", async () => {
+  const admin = await adminLogin();
+  const member = await signup("Membre de l'équipe");
+  const list = (await api("/api/admin/users", { token: admin.token })).data.data;
+  assert.ok(list.some(user => user.id === member.user.id && user.role === "user" && "stamps" in user));
+
+  assert.equal((await api(`/api/admin/users/${member.user.id}/role`, { token: admin.token, method: "PATCH", json: { role: "admin" } })).status, 200);
+  assert.equal((await api("/api/admin/contributions", { token: member.token })).status, 200, "le nouveau rôle s'applique immédiatement");
+
+  // Le nouvel administrateur peut retirer le rôle d'un autre, mais pas le sien.
+  assert.equal((await api(`/api/admin/users/${member.user.id}/role`, { token: member.token, method: "PATCH", json: { role: "user" } })).status, 400);
+  assert.equal((await api(`/api/admin/users/${member.user.id}/role`, { token: admin.token, method: "PATCH", json: { role: "user" } })).status, 200);
+  assert.equal((await api("/api/admin/contributions", { token: member.token })).status, 403);
+});
