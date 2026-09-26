@@ -21,7 +21,9 @@ const PARTNER_ICONS = { guide: "compass", artisan: "palette", restaurant: "utens
 const ITINERARY_ICONS = {
   "ouidah-route-de-la-memoire": "link", "royaumes-du-sud-benin": "crown", "lacs-et-marches-du-sud-benin": "waves",
   "atacora-nature-et-architecture": "paw-print", "conakry-memoire-et-vie": "landmark",
-  "fouta-djallon-cascades-et-plateaux": "mountain", "sur-les-traces-du-manding": "drum"
+  "fouta-djallon-cascades-et-plateaux": "mountain", "sur-les-traces-du-manding": "drum",
+  "cote-des-forts-ghana": "castle", "royaumes-et-independance-ghana": "crown", "sud-togo-lac-et-traditions": "waves",
+  "togo-montagnes-et-nord": "mountain", "pays-yoruba-nigeria": "drum", "memoire-golfe-de-guinee": "link"
 };
 function themeIcon(slug){ return ico(THEME_ICONS[slug] || "sparkle"); }
 function catIcon(cat){ return ico(CAT_META[cat]?.icon || "sparkle"); }
@@ -115,7 +117,13 @@ function catClass(cat){ return "cat-" + cat; }
 // pays utilisent flagcdn.com.
 const EMBEDDED_FLAGS = {
   bj: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#e8112d"/><rect width="3" height="1" fill="#fcd116"/><rect width="1.2" height="2" fill="#008751"/></svg>',
-  gn: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#ce1126"/><rect x="1" width="1" height="2" fill="#fcd116"/><rect x="2" width="1" height="2" fill="#009460"/></svg>'
+  gn: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#ce1126"/><rect x="1" width="1" height="2" fill="#fcd116"/><rect x="2" width="1" height="2" fill="#009460"/></svg>',
+  tg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 9"><rect y="0.0" width="15" height="1.8" fill="#006a4e"/><rect y="1.8" width="15" height="1.8" fill="#ffce00"/><rect y="3.6" width="15" height="1.8" fill="#006a4e"/><rect y="5.4" width="15" height="1.8" fill="#ffce00"/><rect y="7.2" width="15" height="1.8" fill="#006a4e"/><rect width="5.4" height="5.4" fill="#d21034"/><polygon fill="#fff" points="2.700,0.950 3.104,2.194 4.412,2.194 3.354,2.962 3.758,4.206 2.700,3.438 1.642,4.206 2.046,2.962 0.988,2.194 2.296,2.194"/></svg>',
+  gh: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#006b3f"/><rect width="3" height="1.333" fill="#fcd116"/><rect width="3" height="0.667" fill="#ce1126"/><polygon fill="#000" points="1.500,0.690 1.574,0.918 1.814,0.918 1.620,1.059 1.694,1.287 1.500,1.146 1.306,1.287 1.380,1.059 1.186,0.918 1.426,0.918"/></svg>',
+  ng: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#008751"/><rect x="1" width="1" height="2" fill="#fff"/></svg>',
+  sn: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#00853f"/><rect x="1" width="1" height="2" fill="#fdef42"/><rect x="2" width="1" height="2" fill="#e31b23"/><polygon fill="#00853f" points="1.500,0.700 1.574,0.928 1.814,0.928 1.620,1.069 1.694,1.297 1.500,1.156 1.306,1.297 1.380,1.069 1.186,0.928 1.426,0.928"/></svg>',
+  ci: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#f77f00"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#009e60"/></svg>',
+  ml: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#14b53a"/><rect x="1" width="1" height="2" fill="#fcd116"/><rect x="2" width="1" height="2" fill="#ce1126"/></svg>'
 };
 
 function flagImage(flag, className, alt = "Drapeau"){

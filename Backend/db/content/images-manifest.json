@@ -307,6 +307,153 @@
       "exclude": [
         "File:Madina marché 6.jpg"
       ]
+    },
+    {
+      "slug": "koutammakou",
+      "queries": [
+        "Koutammakou",
+        "Batammariba Togo",
+        "Takienta Togo"
+      ]
+    },
+    {
+      "slug": "lac-togo-togoville",
+      "queries": [
+        "Togoville",
+        "Lake Togo",
+        "Lac Togo"
+      ]
+    },
+    {
+      "slug": "marche-akodessewa",
+      "queries": [
+        "Akodessewa",
+        "Lomé fetish market",
+        "Marché des féticheurs Lomé"
+      ]
+    },
+    {
+      "slug": "palais-de-lome",
+      "queries": [
+        "Palais de Lomé",
+        "Palais des gouverneurs Lomé"
+      ]
+    },
+    {
+      "slug": "mont-agou-kpalime",
+      "queries": [
+        "Mont Agou",
+        "Kpalimé",
+        "Kpalime Togo"
+      ]
+    },
+    {
+      "slug": "epe-ekpe-glidji",
+      "queries": [
+        "Epe Ekpe",
+        "Glidji",
+        "Aného"
+      ]
+    },
+    {
+      "slug": "chateau-cape-coast",
+      "queries": [
+        "Cape Coast Castle",
+        "Cape Coast Castle Ghana"
+      ]
+    },
+    {
+      "slug": "chateau-elmina",
+      "queries": [
+        "Elmina Castle",
+        "St. George's Castle Elmina",
+        "Elmina Ghana"
+      ]
+    },
+    {
+      "slug": "lac-volta",
+      "queries": [
+        "Akosombo Dam",
+        "Lake Volta",
+        "Volta Lake Ghana"
+      ]
+    },
+    {
+      "slug": "kumasi-palais-manhyia",
+      "queries": [
+        "Manhyia Palace",
+        "Manhyia Palace Museum",
+        "Kente weaving Bonwire",
+        "Kumasi"
+      ]
+    },
+    {
+      "slug": "parc-national-kakum",
+      "queries": [
+        "Kakum National Park",
+        "Kakum canopy walkway"
+      ]
+    },
+    {
+      "slug": "mosquee-larabanga",
+      "queries": [
+        "Larabanga Mosque",
+        "Larabanga"
+      ]
+    },
+    {
+      "slug": "memorial-kwame-nkrumah",
+      "queries": [
+        "Kwame Nkrumah Mausoleum",
+        "Kwame Nkrumah Memorial Park"
+      ]
+    },
+    {
+      "slug": "benin-city-royaume-edo",
+      "queries": [
+        "Benin Bronzes",
+        "Benin City Oba palace",
+        "Igun Street Benin City",
+        "Benin City"
+      ]
+    },
+    {
+      "slug": "collines-idanre",
+      "queries": [
+        "Idanre Hill",
+        "Idanre"
+      ]
+    },
+    {
+      "slug": "bois-sacre-osun-osogbo",
+      "queries": [
+        "Osun-Osogbo Sacred Grove",
+        "Osun Osogbo",
+        "Osogbo sacred grove"
+      ]
+    },
+    {
+      "slug": "vieille-ville-kano",
+      "queries": [
+        "Kofar Mata dye pits",
+        "Kano dye pits",
+        "Kano city walls",
+        "Kurmi market"
+      ]
+    },
+    {
+      "slug": "rocher-olumo-abeokuta",
+      "queries": [
+        "Olumo Rock",
+        "Abeokuta"
+      ]
+    },
+    {
+      "slug": "festival-peche-argungu",
+      "queries": [
+        "Argungu Fishing Festival",
+        "Argungu"
+      ]
     }
   ]
 }

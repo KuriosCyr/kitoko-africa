@@ -98,5 +98,85 @@ module.exports = [
       { slug: "mosquee-dinguiraye", note: "La mosquée au grand toit de chaume d'El Hadj Oumar Tall." },
       { slug: "sosso-bala-niagassola", note: "Préparer la visite à l'avance avec la famille Kouyaté." }
     ]
+  },
+  {
+    slug: "cote-des-forts-ghana",
+    title: "La côte des forts et des châteaux",
+    country: "Ghana",
+    icon: "🏰",
+    duration: "2 jours",
+    summary: "D'Elmina à Cape Coast, les plus anciens forts européens d'Afrique subsaharienne et leurs cachots, avec une respiration dans la forêt de Kakum.",
+    stops: [
+      { slug: "chateau-elmina", note: "Commencer par le plus ancien : São Jorge da Mina, bâti en 1482. Monter ensuite au fort Saint-Jacques." },
+      { slug: "chateau-cape-coast", note: "À 15 km : les cachots, la Porte du Non-Retour et le musée. Prévoir 2 heures." },
+      { slug: "parc-national-kakum", note: "Le lendemain matin, tôt : la passerelle de la canopée." }
+    ]
+  },
+  {
+    slug: "royaumes-et-independance-ghana",
+    title: "Du royaume ashanti à l'indépendance",
+    country: "Ghana",
+    icon: "👑",
+    duration: "3 à 4 jours",
+    summary: "D'Accra à Kumasi puis vers le nord : l'indépendance de 1957, l'empire ashanti et ses artisans, jusqu'à la plus ancienne mosquée du pays.",
+    stops: [
+      { slug: "memorial-kwame-nkrumah", note: "À Accra, là où l'indépendance fut proclamée le 6 mars 1957." },
+      { slug: "lac-volta", note: "En option, un détour par Akosombo, grand projet de l'indépendance." },
+      { slug: "kumasi-palais-manhyia", note: "Le palais Manhyia, puis les tisserands de kente de Bonwire." },
+      { slug: "mosquee-larabanga", note: "Plus au nord, avec une nuit au parc national de Mole." }
+    ]
+  },
+  {
+    slug: "sud-togo-lac-et-traditions",
+    title: "Sud-Togo : lac, vodun et traditions",
+    country: "Togo",
+    icon: "🌊",
+    duration: "2 jours",
+    summary: "De Lomé à Aného, le Togo côtier : son histoire coloniale, le lac qui a donné son nom au pays et les grandes traditions religieuses.",
+    stops: [
+      { slug: "palais-de-lome", note: "Commencer par l'histoire du pays et les jardins du palais." },
+      { slug: "marche-akodessewa", note: "Le marché des féticheurs, avec un guide et beaucoup de respect." },
+      { slug: "lac-togo-togoville", note: "La traversée en pirogue depuis Agbodrafo et la Wood Home." },
+      { slug: "epe-ekpe-glidji", note: "Jusqu'à Aného et Glidji ; en septembre, la fête Epe-Ekpe." }
+    ]
+  },
+  {
+    slug: "togo-montagnes-et-nord",
+    title: "Des monts du Togo au Koutammakou",
+    country: "Togo",
+    icon: "⛰️",
+    duration: "4 à 5 jours",
+    summary: "De la région verdoyante de Kpalimé jusqu'au pays des Batammariba, dans le nord, en remontant les monts du Togo.",
+    stops: [
+      { slug: "mont-agou-kpalime", note: "Randonnée au mont Agou et visite des artisans de Kpalimé." },
+      { slug: "koutammakou", note: "Plus au nord, les takienta du Koutammakou avec un guide de Nadoba." }
+    ]
+  },
+  {
+    slug: "pays-yoruba-nigeria",
+    title: "Au cœur du pays yoruba",
+    country: "Nigéria",
+    icon: "🥁",
+    duration: "3 jours",
+    summary: "Forêt sacrée, collines refuges et teintures à l'indigo : trois lieux pour comprendre l'histoire et la spiritualité yoruba.",
+    stops: [
+      { slug: "rocher-olumo-abeokuta", note: "Le rocher refuge des Egba, puis les tissus adire du marché d'Itoku." },
+      { slug: "bois-sacre-osun-osogbo", note: "La forêt d'Osun et ses sculptures ; en août, la grande fête." },
+      { slug: "collines-idanre", note: "La montée des 600 marches jusqu'à l'ancienne ville." }
+    ]
+  },
+  {
+    slug: "memoire-golfe-de-guinee",
+    title: "La route de la mémoire du golfe de Guinée",
+    country: null,
+    icon: "⛓️",
+    duration: "5 à 7 jours",
+    summary: "De Ouidah à Cape Coast, en traversant le Togo : les grands lieux de mémoire de la traite atlantique sur la « Côte des esclaves » et la « Côte-de-l'Or ».",
+    stops: [
+      { slug: "porte-du-non-retour", note: "Au Bénin, la fin de la Route des Esclaves de Ouidah." },
+      { slug: "lac-togo-togoville", note: "Au Togo, la Wood Home d'Agbodrafo et la traite clandestine du XIXe siècle." },
+      { slug: "chateau-elmina", note: "Au Ghana, le plus ancien fort européen d'Afrique subsaharienne." },
+      { slug: "chateau-cape-coast", note: "Terminer par les cachots de Cape Coast et un temps de recueillement." }
+    ]
   }
 ];

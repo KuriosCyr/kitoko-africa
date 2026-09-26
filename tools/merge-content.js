@@ -1,7 +1,7 @@
 // Intègre des fiches enrichies (textes, frise, points à voir, anecdotes,
 // récits, quiz, sources) dans Backend/db/content/<pays>.js, en conservant
 // l'identité de chaque site (id, slug, coordonnées, thèmes…).
-//   node tools/merge-content.js <benin|guinee> <fichier-enrichi.js>
+//   node tools/merge-content.js <pays : benin, guinee, togo…> <fichier-enrichi.js>
 const fs = require("fs");
 const path = require("path");
 

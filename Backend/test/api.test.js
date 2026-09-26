@@ -18,6 +18,16 @@ const sharp = require("sharp");
 const { start } = require("../server");
 const { seed } = require("../db/seed");
 
+// Contenus rédigés (un fichier par pays dans db/content) : les tests suivent
+// automatiquement les pays ajoutés.
+const CONTENT_DIR = path.join(__dirname, "..", "db", "content");
+const EXCLUDED_CONTENT = new Set(["themes.js", "itineraires.js"]);
+const PUBLISHED = fs.readdirSync(CONTENT_DIR)
+  .filter(file => file.endsWith(".js") && !EXCLUDED_CONTENT.has(file))
+  .flatMap(file => require(path.join(CONTENT_DIR, file)));
+const PUBLISHED_COUNTRIES = new Set(PUBLISHED.map(site => site.country));
+const ITINERARIES = require(path.join(CONTENT_DIR, "itineraires.js"));
+
 let server;
 let baseUrl;
 
@@ -95,8 +105,8 @@ test("le frontend est servi à la racine", async () => {
 test("les sites publiés sont listés sans doublon, avec sources et mise en avant", async () => {
   const { status, data } = await api("/api/sites");
   assert.equal(status, 200);
-  assert.equal(data.data.length, 31);
-  assert.ok(data.data.every(site => ["Bénin", "Guinée"].includes(site.country)));
+  assert.equal(data.data.length, PUBLISHED.length);
+  assert.ok(data.data.every(site => PUBLISHED_COUNTRIES.has(site.country)));
   const ids = data.data.map(site => site.id);
   assert.equal(new Set(ids).size, ids.length);
   assert.ok(data.data.some(site => site.featured === true));
@@ -393,11 +403,11 @@ test("le résumé du passeport compte les pays, catégories, thèmes et badges",
   await api("/api/passport/sites/porte-du-non-retour/checkin", { token: user.token, json: { ...PORTE } });
   const passport = (await api("/api/passport", { token: user.token })).data.data;
 
-  assert.equal(passport.totals.sites, 31);
+  assert.equal(passport.totals.sites, PUBLISHED.length);
   assert.equal(passport.totals.visited, 1);
   const benin = passport.countries.find(country => country.label === "Bénin");
   assert.equal(benin.visited, 1);
-  assert.equal(benin.total, 17);
+  assert.equal(benin.total, PUBLISHED.filter(site => site.country === "Bénin").length);
   assert.equal(passport.categories.find(category => category.key === "memoire").discovered, 1);
   assert.equal(passport.themes.find(theme => theme.key === "memoire-traite").discovered, 1);
 
@@ -547,7 +557,7 @@ test("un faux fichier audio est refusé", async () => {
 
 test("les circuits sont listés avec leurs étapes ordonnées et leur distance", async () => {
   const { data } = await api("/api/itineraries");
-  assert.equal(data.data.length, 7);
+  assert.equal(data.data.length, ITINERARIES.length);
   const ouidah = data.data.find(item => item.slug === "ouidah-route-de-la-memoire");
   assert.deepEqual(ouidah.stops.map(stop => stop.slug), ["fort-portugais-ouidah", "temple-des-pythons-ouidah", "foret-sacree-kpasse", "route-des-esclaves-ouidah", "porte-du-non-retour"]);
   assert.ok(ouidah.distance_km >= 1 && ouidah.distance_km < 20);

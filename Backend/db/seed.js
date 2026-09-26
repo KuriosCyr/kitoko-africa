@@ -1,11 +1,18 @@
-const db = require("../config/database");
-const { setSiteSources, setSiteThemes, setSiteExtras, uniqueSlug, newCheckinCode, backfillSiteIdentifiers } = require("../services/sites");
-const { COUNTRIES, ALL_AFRICA_COUNTRIES, SITES: DRAFT_SITES } = require("./seed-data");
-const { CATEGORIES, THEMES } = require("./content/themes");
-const PROTOTYPE_SITES = [...require("./content/benin"), ...require("./content/guinee")];
-const ITINERARIES = require("./content/itineraires");
 const fs = require("fs");
 const path = require("path");
+const db = require("../config/database");
+const { setSiteSources, setSiteThemes, setSiteExtras, uniqueSlug, newCheckinCode, backfillSiteIdentifiers } = require("../services/sites");
+const { COUNTRIES, ALL_AFRICA_COUNTRIES, SITES: ALL_DRAFT_SITES } = require("./seed-data");
+const { CATEGORIES, THEMES } = require("./content/themes");
+// Pays publiés : un fichier de contenu par pays dans db/content/.
+const PUBLISHED_COUNTRY_FILES = ["benin", "guinee", "togo", "ghana", "nigeria", "senegal", "cote-divoire", "mali", "maroc", "egypte", "kenya", "afrique-du-sud"];
+const PROTOTYPE_SITES = PUBLISHED_COUNTRY_FILES
+  .filter(file => fs.existsSync(path.join(__dirname, "content", `${file}.js`)))
+  .flatMap(file => require(`./content/${file}`));
+// Les anciennes ébauches d'un pays désormais rédigé ne sont plus importées.
+const PUBLISHED_COUNTRIES = new Set(PROTOTYPE_SITES.map(site => site.country));
+const DRAFT_SITES = ALL_DRAFT_SITES.filter(site => !PUBLISHED_COUNTRIES.has(site.country));
+const ITINERARIES = require("./content/itineraires");
 const { publicDir } = require("../services/media");
 const IMAGES_DIR = path.join(__dirname, "content", "images");
 const IMAGE_CREDITS = fs.existsSync(path.join(__dirname, "content", "images.json")) ? require("./content/images.json") : {};
@@ -63,7 +70,7 @@ function seed({ log = console.log, update = false } = {}) {
     const flags = new Map(COUNTRIES.map(country => [country.name, country.flag]));
     ALL_AFRICA_COUNTRIES.forEach(([name, mapId]) => upsertCountry.run(name, mapId, flags.get(name) || null));
 
-    // Sites du prototype : Bénin et Guinée, publiés avec le statut « à vérifier ».
+    // Sites rédigés (db/content/<pays>.js) : publiés.
     for (const site of PROTOTYPE_SITES) {
       const country = countryId.get(site.country);
       const category = categoryId.get(site.cat);

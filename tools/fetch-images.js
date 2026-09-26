@@ -33,8 +33,16 @@ async function search(query) {
 
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  // Les photos déjà choisies (et vérifiées à la main) sont conservées ; seuls
+  // les sites sans photos sont cherchés. REFRESH=slug1,slug2 pour en refaire.
+  const existing = fs.existsSync(path.join(CONTENT, "images.json")) ? JSON.parse(fs.readFileSync(path.join(CONTENT, "images.json"), "utf8")) : {};
+  const refresh = new Set((process.env.REFRESH || "").split(",").map(item => item.trim()).filter(Boolean));
   const credits = {};
   for (const site of manifest.sites) {
+    if (existing[site.slug] && !refresh.has(site.slug)) {
+      credits[site.slug] = existing[site.slug];
+      continue;
+    }
     const exclude = new Set(site.exclude || []);
     const chosen = [];
     for (const query of site.queries) {
