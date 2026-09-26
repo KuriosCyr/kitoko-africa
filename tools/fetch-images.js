@@ -14,7 +14,7 @@ const API = "https://commons.wikimedia.org/w/api.php";
 const HEADERS = { "User-Agent": "KitokoAfrika/1.0 (https://github.com/kurioscyr/kitoko-africa; contact@kitokoafrika.org)" };
 const SKIP_TITLE = /\b(map|carte|chart|flag|drapeau|logo|coat|blason|stamp|timbre|locator|diagram|plan|svg|satellite|MNHN|chantier|Ambassador|Udoh)\b/i;
 // Cartes postales et photos de l'époque coloniale : écartées (esprit décolonial du projet).
-const SKIP_COLONIAL = /(Guinée française|Afrique occidentale française|Dahomey \(colonie\)|carte postale|postcard|Fortier)/i;
+const SKIP_COLONIAL = /(Guinée française|Afrique occidentale française|Dahomey \(colonie\)|carte postale|postcard|Fortier|Collection|Afrique Occidentale)/i;
 const OK_LICENSE = /^(cc[ -]by(-sa)?[ -]?[0-9.]*( igo)?|cc0|public domain|pd|cc-by-sa-.*|cc-by-.*)$/i;
 
 const stripHtml = html => String(html || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();

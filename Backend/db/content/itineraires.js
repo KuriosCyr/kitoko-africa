@@ -245,5 +245,65 @@ module.exports = [
       { slug: "tombouctou", note: "La cité des 333 saints et ses manuscrits." },
       { slug: "tombeau-askia-gao", note: "La capitale de l'empire songhaï." }
     ]
+  },
+  {
+    slug: "villes-imperiales-maroc",
+    title: "Médinas et villes impériales du Maroc",
+    country: "Maroc",
+    icon: "👑",
+    duration: "5 à 7 jours",
+    summary: "De Fès à Marrakech, en passant par Volubilis et Chefchaouen : médinas, savoir-faire et places vivantes, puis les ksour du sud.",
+    stops: [
+      { slug: "chefchaouen", note: "Commencer dans le Rif par la ville bleue." },
+      { slug: "medina-de-fes", note: "Deux jours dans la médina, avec un guide officiel." },
+      { slug: "volubilis", note: "Sur la route de Meknès, les ruines romaines et Moulay Idriss." },
+      { slug: "place-jemaa-el-fna", note: "À Marrakech, la place au coucher du soleil." },
+      { slug: "ait-ben-haddou", note: "Par le col du Tizi n'Tichka, vers les ksour du sud." }
+    ]
+  },
+  {
+    slug: "egypte-au-fil-du-nil",
+    title: "L'Égypte au fil du Nil",
+    country: "Égypte",
+    icon: "🌊",
+    duration: "7 à 10 jours",
+    summary: "Du Caire à Abou Simbel, en remontant le Nil : les pyramides, la ville islamique, Thèbes et la Nubie.",
+    stops: [
+      { slug: "pyramides-de-gizeh", note: "Tôt le matin, avant la chaleur." },
+      { slug: "le-caire-historique", note: "Al-Azhar et le bazar de Khan el-Khalili." },
+      { slug: "vallee-des-rois", note: "Louxor, rive ouest." },
+      { slug: "nubie-assouan", note: "Le Musée nubien et une felouque sur le Nil." },
+      { slug: "abou-simbel", note: "Au bout du voyage, les temples sauvés des eaux." }
+    ]
+  },
+  {
+    slug: "kenya-savane-et-cote-swahilie",
+    title: "Kenya : de la savane à la côte swahilie",
+    country: "Kenya",
+    icon: "🦁",
+    duration: "7 à 10 jours",
+    summary: "Les grands animaux du Rift et du Mara, puis la culture swahilie de Mombasa et de Lamu, sans oublier les forêts sacrées de la côte.",
+    stops: [
+      { slug: "lac-nakuru", note: "Flamants et rhinocéros dans la vallée du Grand Rift." },
+      { slug: "maasai-mara", note: "Idéalement de juillet à octobre, pour la Grande Migration." },
+      { slug: "fort-jesus-mombasa", note: "Le fort et la vieille ville de Mombasa." },
+      { slug: "forets-sacrees-kaya", note: "Kaya Kinondo, avec un guide de la communauté." },
+      { slug: "vieille-ville-lamu", note: "Terminer par Lamu, sans voitures." }
+    ]
+  },
+  {
+    slug: "afrique-du-sud-liberte",
+    title: "Afrique du Sud : les chemins de la liberté",
+    country: "Afrique du Sud",
+    icon: "⛓️",
+    duration: "5 à 7 jours",
+    summary: "Des origines de l'humanité à la fin de l'apartheid : le Berceau de l'humanité, Soweto, Mapungubwe, puis Le Cap et Robben Island.",
+    stops: [
+      { slug: "berceau-de-l-humanite", note: "Les grottes de Sterkfontein et Maropeng." },
+      { slug: "soweto-hector-pieterson", note: "Le musée Hector Pieterson et la rue Vilakazi." },
+      { slug: "mapungubwe", note: "Au nord, le premier grand royaume d'Afrique australe." },
+      { slug: "montagne-de-la-table", note: "Au Cap, la montagne et le fynbos." },
+      { slug: "robben-island", note: "Réserver le ferry longtemps à l'avance." }
+    ]
   }
 ];

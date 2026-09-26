@@ -342,15 +342,18 @@
     {
       "slug": "mont-agou-kpalime",
       "queries": [
-        "Kpalimé",
-        "Kpalime Togo",
-        "Plateau de Dayes",
-        "Mont Agou Togo"
+        "Cascade de Womé",
+        "Womé Togo",
+        "Kpimé",
+        "Pic d'Agou"
       ],
       "exclude": [
         "File:Image plante Agou 09.jpg",
         "File:Image plante Agou 11.jpg",
-        "File:Image plante Agou 20.jpg"
+        "File:Image plante Agou 20.jpg",
+        "File:Carrefour Texaco Kpalime (Togo).jpg",
+        "File:Carrefour Texaco Kpalime.jpg",
+        "File:A Kpalime.jpg"
       ]
     },
     {
@@ -364,7 +367,10 @@
       "exclude": [
         "File:Ekpe Festival in Abia State, Nigeria.jpg",
         "File:Ekpe Udoh.jpg",
-        "File:Ekpe cultural festival outing 09.jpg"
+        "File:Ekpe cultural festival outing 09.jpg",
+        "File:Prison civile de Glidji 07.jpg",
+        "File:Prison civile de Glidji 12.jpg",
+        "File:Prison civile de Glidji 09.jpg"
       ]
     },
     {
@@ -402,7 +408,8 @@
       "exclude": [
         "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 1.jpg",
         "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 4.jpg",
-        "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 5.jpg"
+        "File:Manhyia Palace Ambassador Sullivan Kumasi Tour 5.jpg",
+        "File:Kente weaving 02.jpg"
       ]
     },
     {
@@ -495,6 +502,10 @@
         "Saint-Louis Sénégal",
         "Pont Faidherbe",
         "Saint-Louis Senegal island"
+      ],
+      "exclude": [
+        "File:In Saint-Louis, Senegal.jpg",
+        "File:Saint-Louis, Senegal (89148).jpg"
       ]
     },
     {
@@ -538,9 +549,14 @@
     {
       "slug": "grand-bassam",
       "queries": [
-        "Grand-Bassam",
-        "Musée national du costume Grand-Bassam",
-        "Grand Bassam"
+        "Musée national du costume de Grand-Bassam",
+        "Grand-Bassam patrimoine mondial",
+        "Grand-Bassam quartier France"
+      ],
+      "exclude": [
+        "File:Village of Information Technology and Biotechnology, conference room, Grand Bassam, Ivory Coast.jpg",
+        "File:Grand-Bassam banner.jpg",
+        "File:Grand Bassam - Rue de France (Collection L. Meteyer, a Grand-Bassam).jpg"
       ]
     },
     {
@@ -556,6 +572,10 @@
         "Mosquée de Kong",
         "Kong mosque Côte d'Ivoire",
         "Mosquée de Kaouara"
+      ],
+      "exclude": [
+        "File:Mosquée Samory Touré.JPG",
+        "File:Pg313 Une Mosquée de Kong.jpg"
       ]
     },
     {
@@ -595,6 +615,9 @@
         "Tomb of Askia",
         "Tombeau des Askia",
         "Askia Tomb Gao"
+      ],
+      "exclude": [
+        "File:Tombeau askia de loin.jpg"
       ]
     },
     {
@@ -602,6 +625,10 @@
       "queries": [
         "Kamablon",
         "Kangaba"
+      ],
+      "exclude": [
+        "File:Le Campement, Kangaba, Mali.png",
+        "File:Road in Kangaba.jpg"
       ]
     },
     {
@@ -609,6 +636,162 @@
       "queries": [
         "Musée national du Mali",
         "National Museum of Mali Bamako"
+      ],
+      "exclude": [
+        "File:Insigne de chevalier de l'ordre national du Mali-Musée de la Légion d'honneur (2).jpg"
+      ]
+    },
+    {
+      "slug": "medina-de-fes",
+      "queries": [
+        "Fes el Bali",
+        "Chouara Tannery",
+        "Bou Inania Madrasa Fes"
+      ]
+    },
+    {
+      "slug": "ait-ben-haddou",
+      "queries": [
+        "Aït Benhaddou",
+        "Ait Ben Haddou"
+      ]
+    },
+    {
+      "slug": "chefchaouen",
+      "queries": [
+        "Chefchaouen",
+        "Chefchaouen medina"
+      ]
+    },
+    {
+      "slug": "place-jemaa-el-fna",
+      "queries": [
+        "Jemaa el-Fnaa",
+        "Djemaa el Fna"
+      ]
+    },
+    {
+      "slug": "volubilis",
+      "queries": [
+        "Volubilis",
+        "Volubilis mosaic"
+      ]
+    },
+    {
+      "slug": "pyramides-de-gizeh",
+      "queries": [
+        "Giza pyramid complex",
+        "Great Sphinx of Giza",
+        "Pyramids of Giza"
+      ]
+    },
+    {
+      "slug": "vallee-des-rois",
+      "queries": [
+        "Valley of the Kings",
+        "KV62",
+        "Tomb of Ramesses VI"
+      ]
+    },
+    {
+      "slug": "abou-simbel",
+      "queries": [
+        "Abu Simbel temples",
+        "Great Temple of Abu Simbel"
+      ]
+    },
+    {
+      "slug": "le-caire-historique",
+      "queries": [
+        "Al-Azhar Mosque",
+        "Khan el-Khalili",
+        "Al-Muizz Street"
+      ]
+    },
+    {
+      "slug": "nubie-assouan",
+      "queries": [
+        "Nubian village Aswan",
+        "Nubian Museum Aswan",
+        "Gharb Soheil"
+      ]
+    },
+    {
+      "slug": "maasai-mara",
+      "queries": [
+        "Maasai Mara",
+        "Masai Mara wildebeest migration",
+        "Mara River crossing"
+      ]
+    },
+    {
+      "slug": "fort-jesus-mombasa",
+      "queries": [
+        "Fort Jesus Mombasa",
+        "Fort Jesus"
+      ]
+    },
+    {
+      "slug": "lac-nakuru",
+      "queries": [
+        "Lake Nakuru",
+        "Lake Nakuru flamingos",
+        "Lake Nakuru rhino"
+      ]
+    },
+    {
+      "slug": "vieille-ville-lamu",
+      "queries": [
+        "Lamu Old Town",
+        "Lamu dhow",
+        "Lamu Kenya"
+      ]
+    },
+    {
+      "slug": "forets-sacrees-kaya",
+      "queries": [
+        "Kaya Kinondo",
+        "Mijikenda Kaya forests",
+        "Kaya forest Kenya"
+      ]
+    },
+    {
+      "slug": "robben-island",
+      "queries": [
+        "Robben Island",
+        "Robben Island prison",
+        "Nelson Mandela cell Robben Island"
+      ]
+    },
+    {
+      "slug": "montagne-de-la-table",
+      "queries": [
+        "Table Mountain",
+        "Table Mountain Cape Town"
+      ]
+    },
+    {
+      "slug": "berceau-de-l-humanite",
+      "queries": [
+        "Sterkfontein",
+        "Maropeng",
+        "Cradle of Humankind"
+      ]
+    },
+    {
+      "slug": "mapungubwe",
+      "queries": [
+        "Mapungubwe",
+        "Mapungubwe National Park",
+        "Mapungubwe Hill"
+      ]
+    },
+    {
+      "slug": "soweto-hector-pieterson",
+      "queries": [
+        "Hector Pieterson Memorial",
+        "Hector Pieterson Museum",
+        "Vilakazi Street Soweto"
       ]
     }
   ]
