@@ -90,7 +90,7 @@ async function renderPassport(){
       <h3>Collections</h3>
       ${data.categories.map(category => `
         <div class="collection-row">
-          <span class="collection-label">${esc(CAT_META[category.key]?.icon || "")} ${esc(category.label)}</span>
+          <span class="collection-label">${catIcon(category.key)} ${esc(category.label)}</span>
           <span class="collection-count">${category.discovered}/${category.total}</span>
           ${progressBar(category.discovered, category.total, category.visited)}
         </div>`).join("")}

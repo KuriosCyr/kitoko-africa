@@ -192,10 +192,20 @@ function renderHome(){
     const c = document.createElement('div');
     c.className = "feat-card";
     c.onclick = ()=>openDetail(s.id);
-    c.innerHTML = `<div class="feat-visual ${catClass(s.cat)}">${esc(s.country)}</div><div class="feat-body"><p class="fn">${esc(s.name)}</p><p class="fc">${esc(s.region)}</p></div>`;
+    const cover = s.media_type === "image" && s.media_url ? ` style="background-image:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.55)),url('${esc(mediaSrc(s.media_url))}')"` : "";
+    c.innerHTML = `<div class="feat-visual ${catClass(s.cat)}"${cover}>${esc(s.country)}</div><div class="feat-body"><p class="fn">${esc(s.name)}</p><p class="fc">${esc(s.region)}</p></div>`;
     feat.appendChild(c);
   });
   startFeaturedAutoScroll();
+  setHeroImage();
+}
+
+// Image de l'accueil : photo d'un site emblématique (sinon, motif du thème).
+function setHeroImage(){
+  const preferred = ["porte-du-non-retour", "palais-royaux-abomey", "ganvie", "chutes-de-ditinn"];
+  const site = preferred.map(slug => SITES.find(item => item.slug === slug)).find(item => item?.media_type === "image")
+    || SITES.find(item => item.featured && item.media_type === "image");
+  if(site) document.documentElement.style.setProperty('--hero-image', `url("${mediaSrc(site.media_url)}")`);
 }
 
 function stopFeaturedAutoScroll(){
@@ -253,6 +263,16 @@ function renderFlagMarquee(){
 
 async function loadKitokoData(){
   document.getElementById('device')?.classList.add('is-loading');
+  // Hébergement gratuit : le serveur s'endort après une période d'inactivité.
+  const wakeUpTimer = setTimeout(() => {
+    if(document.getElementById('wake-up-note')) return;
+    const note = document.createElement('div');
+    note.id = 'wake-up-note';
+    note.className = 'wake-up-note';
+    note.setAttribute('role', 'status');
+    note.textContent = "Le serveur de démonstration se réveille… cela peut prendre jusqu'à une minute.";
+    document.body.appendChild(note);
+  }, 3500);
   try {
     const [countriesResponse, sitesResponse, themesResponse] = await Promise.all([
       fetch(`${API_BASE}/countries`),
@@ -296,6 +316,8 @@ async function loadKitokoData(){
     console.error("Impossible de charger les données Kitoko Afrika :", error);
     dataLoadError = "Impossible de charger les sites. Vérifiez votre connexion puis rechargez la page.";
   } finally {
+    clearTimeout(wakeUpTimer);
+    document.getElementById('wake-up-note')?.remove();
     document.getElementById('device')?.classList.remove('is-loading');
   }
 }
@@ -1233,7 +1255,7 @@ function renderDetailExtras(site){
   document.getElementById('detail-media').innerHTML = visuals.length || sounds.length ? `
     ${visuals.length ? `<div class="gallery">${visuals.map(item => `
       <figure class="gallery-item">${mediaElement(item, item.title || `Média — ${site.name}`)}
-        ${item.title || item.author ? `<figcaption>${esc(item.title || "")}${item.author ? ` · © ${esc(item.author)}` : ""}</figcaption>` : ""}
+        ${item.author || item.rights ? `<figcaption>${item.title ? `${esc(item.title)}<br>` : ""}Photo : ${esc(item.author || "—")}${item.rights ? ` · ${esc(item.rights)}` : ""}${item.source_url ? ` · <a href="${esc(item.source_url)}" target="_blank" rel="noopener">source</a>` : ""}</figcaption>` : ""}
       </figure>`).join("")}</div>` : ""}
     ${sounds.map(item => `<div class="audio-item"><span>${ico("headphones")} ${esc(item.title || "Écouter")}${item.author ? ` · ${esc(item.author)}` : ""}</span>${mediaElement(item, item.title || "Audio")}</div>`).join("")}
   ` : "";
@@ -1298,7 +1320,9 @@ function setTab(pane, el){
   document.querySelectorAll('.dtab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.dpane').forEach(p=>p.classList.remove('active'));
   el?.classList.add('active');
-  el?.scrollIntoView?.({ block: "nearest", inline: "center" });
+  // Centre l'onglet dans sa barre sans faire défiler la page.
+  const tabs = el?.parentElement;
+  if(tabs) tabs.scrollLeft = el.offsetLeft - (tabs.clientWidth - el.offsetWidth) / 2;
   document.getElementById('pane-'+pane).classList.add('active');
   if(pane === 'passeport') renderDetailPassport();
 }

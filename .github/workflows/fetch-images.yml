@@ -1,14 +1,14 @@
 name: Photos Wikimedia
 
 # Télécharge les photos libres de droits des sites (avec leurs crédits) et
-# les enregistre dans le dépôt. Se relance quand la liste des recherches change.
+# les enregistre dans le dépôt. Lancement volontaire uniquement (onglet Actions,
+# ou modification de tools/fetch-images.js) : les photos ont été vérifiées à la main,
+# un nouveau passage peut en changer. Vérifier le résultat après chaque passage.
 on:
   workflow_dispatch:
   push:
     paths:
-      - Backend/db/content/images-manifest.json
       - tools/fetch-images.js
-      - .github/workflows/fetch-images.yml
 
 permissions:
   contents: write

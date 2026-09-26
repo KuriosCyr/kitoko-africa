@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build-www.js",
     "sync": "npm run build && cap sync",
-    "assets": "capacitor-assets generate --android --ios --iconBackgroundColor \"#1E1A15\" --splashBackgroundColor \"#1E1A15\"",
+    "assets": "capacitor-assets generate --android --ios --iconBackgroundColor \"#141D3D\" --splashBackgroundColor \"#141D3D\"",
     "android": "npm run sync && cap open android",
     "ios": "npm run sync && cap open ios"
   },

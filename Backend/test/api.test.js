@@ -450,6 +450,7 @@ test("l'admin gère les questions de quiz et les récits d'un site", async () =>
 
 test("l'admin ajoute une photo à la galerie et enregistre les coordonnées", async () => {
   const admin = await adminLogin();
+  const before = (await api("/api/sites/tata-somba-boukoumbe")).data.data.media.length;
   const form = new FormData();
   form.append("media", await pngBlob(), "galerie.png");
   form.append("title", "Vue du site");
@@ -458,9 +459,10 @@ test("l'admin ajoute une photo à la galerie et enregistre les coordonnées", as
   assert.equal(upload.status, 201);
 
   const detail = (await api("/api/sites/tata-somba-boukoumbe")).data.data;
-  assert.equal(detail.media.length, 1);
-  assert.equal(detail.media[0].author, "Pôle Documentation");
-  assert.equal((await fetch(`${baseUrl}${detail.media[0].url}`)).status, 200);
+  assert.equal(detail.media.length, before + 1);
+  const added = detail.media.find(item => item.author === "Pôle Documentation");
+  assert.ok(added);
+  assert.equal((await fetch(`${baseUrl}${added.url}`)).status, 200);
 
   const site = (await api("/api/admin/sites/tata-somba-boukoumbe", { token: admin.token })).data.data;
   const saved = await api(`/api/admin/sites/${site.id}`, {
@@ -517,14 +519,15 @@ test("une photo proposée pour un site rejoint sa galerie après validation", as
   form.append("site_id", "3");
   form.append("credit_name", "Kossi");
   form.append("media", await pngBlob(), "foret.png");
+  const before = (await api("/api/sites/3")).data.data.media.length;
   const sent = await api("/api/contributions", { token: user.token, form });
   assert.equal(sent.status, 201);
-  assert.equal((await api("/api/sites/3")).data.data.media.length, 0);
+  assert.equal((await api("/api/sites/3")).data.data.media.length, before);
 
   await api(`/api/admin/contributions/${sent.data.data.id}`, { token: admin.token, method: "PATCH", json: { decision: "approved" } });
   const media = (await api("/api/sites/3")).data.data.media;
-  assert.equal(media.length, 1);
-  assert.equal(media[0].author, "Kossi");
+  assert.equal(media.length, before + 1);
+  assert.ok(media.some(item => item.author === "Kossi"));
 });
 
 test("un faux fichier audio est refusé", async () => {
@@ -619,4 +622,17 @@ test("un administrateur ne peut pas supprimer son compte directement", async () 
 
 test("les fichiers de liens profonds répondent 404 tant qu'ils ne sont pas configurés", async () => {
   assert.equal((await fetch(`${baseUrl}/.well-known/assetlinks.json`)).status, 404);
+});
+
+test("les photos libres de droits sont importées avec leurs crédits", async () => {
+  const site = (await api("/api/sites/porte-du-non-retour")).data.data;
+  assert.ok(site.media.length >= 1);
+  assert.ok(site.media.every(item => item.author && item.rights && /^https:\/\/commons\.wikimedia\.org\//.test(item.source_url)));
+  assert.equal((await fetch(`${baseUrl}${site.media_url}`)).status, 200);
+});
+
+test("le mode démonstration est désactivé par défaut", async () => {
+  assert.equal((await api("/api/health")).data.demo, false);
+  const user = await signup();
+  assert.ok(!("demo_code" in (await api("/api/passport/sites/ganvie", { token: user.token })).data.data));
 });

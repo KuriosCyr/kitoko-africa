@@ -1,0 +1,99 @@
+/* =====================================================================
+   Thème « Indigo du Fouta + appliqués d'Abomey » (thème par défaut)
+   Indigo et motifs de teinture à réserve (leppi, Guinée) comme base ;
+   couleurs vives des tentures appliquées d'Abomey (Bénin) pour les
+   badges, tampons et catégories.
+   Pour revenir au style « Terre et banco » : dans index.html, remplacer
+   themes/indigo.css par themes/terre.css.
+   ===================================================================== */
+
+@font-face{font-family:"Cormorant Garamond";font-weight:600;font-display:swap;src:url(../fonts/cormorant-garamond-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Cormorant Garamond";font-weight:600;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-600-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Cormorant Garamond";font-weight:700;font-display:swap;src:url(../fonts/cormorant-garamond-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Cormorant Garamond";font-weight:700;font-display:swap;src:url(../fonts/cormorant-garamond-latin-ext-700-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Source Sans 3";font-weight:400;font-display:swap;src:url(../fonts/source-sans-3-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Source Sans 3";font-weight:400;font-display:swap;src:url(../fonts/source-sans-3-latin-ext-400-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Source Sans 3";font-style:italic;font-weight:400;font-display:swap;src:url(../fonts/source-sans-3-latin-400-italic.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Source Sans 3";font-weight:600;font-display:swap;src:url(../fonts/source-sans-3-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Source Sans 3";font-weight:600;font-display:swap;src:url(../fonts/source-sans-3-latin-ext-600-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Source Sans 3";font-weight:700;font-display:swap;src:url(../fonts/source-sans-3-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Source Sans 3";font-weight:700;font-display:swap;src:url(../fonts/source-sans-3-latin-ext-700-normal.woff2) format("woff2");unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+
+:root{
+  --font-display:"Cormorant Garamond", Georgia, serif;
+  --font-body:"Source Sans 3", "Segoe UI", Arial, sans-serif;
+
+  /* Base indigo */
+  --ink:#141D3D; --ink-soft:#2A3558;
+  --indigo:#2B3F7A; --indigo-dark:#141D3D;
+  --paper:#F6F3EC; --sand:#ECE7DC; --sand-dim:#DCD5C6; --muted:#6B7390;
+  --gold:#D9B25F; --gold-dark:#9A7A2E;
+
+  /* Touches des appliqués d'Abomey */
+  --clay:#D7263D; --clay-dark:#A31A2C;       /* rouge appliqué */
+  --forest:#1B998B; --forest-dark:#12695F;   /* vert-bleu appliqué */
+  --plum:#6B3A5B; --plum-dark:#3D1F36;
+  --sun:#F2B705;                             /* jaune appliqué */
+  --leppi:radial-gradient(circle, rgba(255,255,255,.2) 1.4px, transparent 2.2px) 0 0/16px 16px,
+          repeating-radial-gradient(circle at 85% 15%, transparent 0 10px, rgba(255,255,255,.1) 10px 12px);
+}
+
+.ico{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;flex:0 0 auto;}
+.glyph .ico{width:34px;height:34px;stroke-width:1.6;}
+.qicon .ico{width:24px;height:24px;}
+
+/* Titres un peu plus grands : Cormorant est plus fin que Fraunces */
+h1,h2,h3{letter-spacing:.005em;}
+.subheader h1{font-size:25px;font-weight:700;}
+.detail-hero h2{font-size:30px;font-weight:700;}
+.home-hero-content h1{font-weight:700;}
+.passport-cover h2{font-size:30px;}
+
+/* Bandeaux indigo avec motif de teinture à réserve */
+body{background:#0c1128;}
+.culture-pattern,.topbar,.subheader{background:var(--leppi),linear-gradient(170deg,var(--indigo),var(--ink) 80%) !important;}
+.subheader,.topbar{border-bottom:4px solid var(--sun);}
+.stats-strip{background:var(--sun);}
+.stats-strip .num{color:var(--ink);}
+
+/* Boutons : indigo, action principale en rouge appliqué */
+.cta-btn,.submit-btn{background:var(--ink);color:#fff;}
+.submit-btn:hover,.cta-btn:hover{background:var(--clay);}
+.persistent-nav-item:hover,.persistent-nav-item.active{background:var(--ink);color:var(--sun);}
+
+/* Cartes à la manière des appliqués : liseré et ombre franche */
+.card,.feat-card{border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink) !important;border-radius:14px;}
+.card-stamp{background:var(--sun);color:var(--ink);}
+.card-fav.is-fav{color:var(--clay);}
+.card-fav.is-fav .ico{fill:currentColor;}
+.fav-btn.active .ico{fill:currentColor;}
+
+/* Passeport : couverture indigo, tampons et badges en couleurs vives */
+.passport-cover{background:var(--leppi),linear-gradient(160deg,var(--indigo),var(--ink));}
+.passport-kicker{color:var(--sun);}
+.passport-teaser{background:var(--leppi),linear-gradient(135deg,var(--indigo),var(--ink));}
+.passport-teaser-stamp{border-color:var(--sun);color:var(--sun);}
+.stamp-onsite .stamp-ring{background:var(--clay);box-shadow:0 0 0 3px #fff,0 0 0 5px var(--clay);}
+.stamp-online .stamp-ring{border-color:var(--indigo);}
+.stamp-status.is-done .stamp-status-icon{background:var(--clay);}
+.stamp-status.is-done{border-color:var(--clay);background:#fdf1f2;}
+.badge.is-earned{background:var(--sun);box-shadow:3px 3px 0 var(--ink);border:1.5px solid var(--ink);}
+.badge.is-earned .badge-desc{color:#3d3000;}
+.badge-icon .ico{width:30px;height:30px;}
+.badge-share{background:var(--ink);}
+.progress-fill{background:var(--sun);}
+.progress-fill.progress-onsite{background:var(--clay);}
+.legend-onsite{background:var(--clay);} .legend-online{background:var(--sun);}
+.celebration{background:var(--ink);}
+.celebration-stamp{background:var(--sun);}
+.celebration-badge{color:var(--sun);}
+.theme-progress.has-progress{background:#fff4cc;}
+.stop-number{background:var(--ink);}
+.stop.is-stamped .stop-number{background:var(--clay);}
+.route-line{stroke:var(--clay);}
+.scan-banner{background:var(--forest);}
+.dtab.active{border-bottom-color:var(--clay);}
+.dtab-passport{color:var(--clay-dark);}
+.ctype.active{border-color:var(--ink);box-shadow:3px 3px 0 var(--ink);background:#fff;}
+.partner-cta{background:var(--leppi),linear-gradient(160deg,var(--indigo),var(--ink));}
+.recit{border-left-color:var(--sun);}

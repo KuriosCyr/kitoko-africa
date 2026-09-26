@@ -7,8 +7,9 @@ android {
         applicationId "org.kitokoafrika.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        // Numéro de version fourni par le build automatique (GitHub Actions), sinon 1.
+        versionCode ((System.getenv("APP_VERSION_CODE") ?: "1") as Integer)
+        versionName System.getenv("APP_VERSION_NAME") ?: "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -16,7 +17,21 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    // Clé de démonstration : uniquement pour l'APK de test partagé avec l'équipe
+    // (les mises à jour s'installent par-dessus). La version Google Play sera
+    // signée avec une clé privée, jamais versionnée.
+    signingConfigs {
+        demo {
+            storeFile file("../demo.keystore")
+            storePassword "kitoko-demo"
+            keyAlias "kitoko-demo"
+            keyPassword "kitoko-demo"
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.demo
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

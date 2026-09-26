@@ -23,7 +23,8 @@
         "Kpassè Ouidah"
       ],
       "exclude": [
-        "File:Les champions blancs à la Forêt Sacrée de Kpassè.jpg"
+        "File:Les champions blancs à la Forêt Sacrée de Kpassè.jpg",
+        "File:Manifestation du vodoun Atchinan à la forêt Sacrée de Kpassè 28.jpg"
       ]
     },
     {
@@ -139,6 +140,7 @@
         "Possotomè lac"
       ],
       "exclude": [
+        "File:Pirogue sur le lac Ahémé à Possotomé 2.jpg",
         "File:Pirogue sur le lac Ahémé à Possotomé.jpg"
       ]
     },
@@ -150,7 +152,8 @@
         "Dantokpa"
       ],
       "exclude": [
-        "File:Marché Dantokpa 1.jpg"
+        "File:Marché Dantokpa 1.jpg",
+        "File:Marché de Dantokpa.jpg"
       ]
     },
     {
@@ -184,8 +187,10 @@
         "Kassa island Guinea"
       ],
       "exclude": [
+        "File:2011 - El Golfo - Charco de los Clicos -Lanzarote - G07.jpg",
         "File:Admiralty Chart No 600 Cacheo River to Iles de Los, Published 1899.jpg",
         "File:Admiralty Chart No 601 Iles de Los to Sherbro Island, Published 1881.jpg",
+        "File:Catedral de San Luis de los Inválidos, París, Francia, 2022-10-30, DD 113-115 HDR.jpg",
         "File:Los Islands, Guinea.jpg"
       ]
     },
@@ -207,7 +212,10 @@
       "exclude": [
         "File:Almamy de Timba et ses femmes (Guinée).jpg",
         "File:Guinée française-Attelage de boeufs-Timbo.jpg",
-        "File:Jeunes filles de la région de Timbo (Guinée).jpg"
+        "File:Jeunes filles de la région de Timbo (Guinée).jpg",
+        "File:Le Tour du monde-03-p392.jpg",
+        "File:Timbo vs. Puchol (13).jpg",
+        "File:Timbo vs. Puchol (3).jpg"
       ]
     },
     {
@@ -245,7 +253,8 @@
         "Grand Mosque Conakry"
       ],
       "exclude": [
-        "File:Grande Mosquée Fayçal de Conakry 2.jpg"
+        "File:Grande Mosquée Fayçal de Conakry 2.jpg",
+        "File:Over conakry (3326330634).jpg"
       ]
     },
     {
@@ -256,6 +265,11 @@
         "Dinguiraye",
         "Mosquée Dinguiraye Guinée",
         "Dinguiraye mosque Guinea"
+      ],
+      "exclude": [
+        "File:DINGUIRAYE.jpg",
+        "File:ONG IBDDG.jpg",
+        "File:Villatoro-escudo ayuntamiento.JPG"
       ]
     },
     {
@@ -265,7 +279,8 @@
         "Niagassola"
       ],
       "exclude": [
-        "File:Balafon (Aly Keita) Unterfahrt 2010-03-11-001.jpg"
+        "File:Balafon (Aly Keita) Unterfahrt 2010-03-11-001.jpg",
+        "File:Balafon-Bamougoum (2).jpg"
       ]
     },
     {

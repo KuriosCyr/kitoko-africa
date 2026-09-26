@@ -4,6 +4,31 @@ const { COUNTRIES, ALL_AFRICA_COUNTRIES, SITES: DRAFT_SITES } = require("./seed-
 const { CATEGORIES, THEMES } = require("./content/themes");
 const PROTOTYPE_SITES = [...require("./content/benin"), ...require("./content/guinee")];
 const ITINERARIES = require("./content/itineraires");
+const fs = require("fs");
+const path = require("path");
+const { publicDir } = require("../services/media");
+const IMAGES_DIR = path.join(__dirname, "content", "images");
+const IMAGE_CREDITS = fs.existsSync(path.join(__dirname, "content", "images.json")) ? require("./content/images.json") : {};
+
+// Photos libres de droits (Wikimedia Commons) : copiées dans uploads/public et
+// rattachées au site avec leurs crédits. Les médias ajoutés par l'équipe ou
+// les contributeurs ne sont jamais touchés (seuls les fichiers « seed-… »).
+function seedSitePhotos(siteId, slug) {
+  const photos = IMAGE_CREDITS[slug] || [];
+  db.prepare("DELETE FROM media WHERE site_id = ? AND file_path LIKE 'seed-%' AND contribution_id IS NULL").run(siteId);
+  // Insérées de la dernière à la première : la première devient la photo de couverture.
+  for (const photo of photos.slice().reverse()) {
+    const source = path.join(IMAGES_DIR, photo.file);
+    if (!fs.existsSync(source)) continue;
+    const fileName = `seed-${photo.file}`;
+    fs.copyFileSync(source, path.join(publicDir, fileName));
+    db.prepare(`
+      INSERT INTO media (site_id, type, file_path, title, author, rights, source_url)
+      VALUES (?, 'image', ?, ?, ?, ?, ?)
+    `).run(siteId, fileName, (photo.description || "").slice(0, 160) || null, photo.author, photo.license, photo.source);
+  }
+  return photos.length;
+}
 
 const DOCUMENTED_BY = "Équipe Kitoko Afrika";
 
@@ -21,7 +46,7 @@ function seed({ log = console.log, update = false } = {}) {
   const categoryId = db.prepare("SELECT id FROM categories WHERE slug = ?");
   const siteExists = db.prepare("SELECT 1 FROM sites WHERE id = ?");
 
-  const stats = { added: 0, updated: 0, drafts: 0, questions: 0, skipped: [] };
+  const stats = { added: 0, updated: 0, drafts: 0, questions: 0, photos: 0, skipped: [] };
 
   db.transaction(() => {
     const upsertCategory = db.prepare("INSERT INTO categories (slug, name) VALUES (?, ?) ON CONFLICT(slug) DO UPDATE SET name = excluded.name");
@@ -48,7 +73,12 @@ function seed({ log = console.log, update = false } = {}) {
       }
 
       const exists = Boolean(siteExists.get(site.id));
-      if (exists && !update) continue;
+      if (exists && !update) {
+        // Site déjà présent : on ajoute seulement ses photos si elles manquent.
+        const hasPhotos = db.prepare("SELECT 1 FROM media WHERE site_id = ? AND file_path LIKE 'seed-%' LIMIT 1").get(site.id);
+        if (!hasPhotos) stats.photos += seedSitePhotos(site.id, site.slug);
+        continue;
+      }
 
       const values = [
         country.id, category.id, site.name, site.region, site.description, site.histoire, site.culture,
@@ -79,6 +109,7 @@ function seed({ log = console.log, update = false } = {}) {
 
       setSiteSources(site.id, site.sources.join("\n"));
       setSiteThemes(site.id, site.themes);
+      stats.photos += seedSitePhotos(site.id, site.slug);
 
       // Quiz et récits d'origine (les récits issus de contributions sont conservés).
       db.prepare("DELETE FROM quiz_questions WHERE site_id = ?").run(site.id);
@@ -148,7 +179,7 @@ function seed({ log = console.log, update = false } = {}) {
 
   const count = sql => db.prepare(sql).get().total;
   log(`✅ Base prête : ${count("SELECT COUNT(*) AS total FROM sites WHERE status = 'published'")} sites publiés, ${count("SELECT COUNT(*) AS total FROM sites WHERE status = 'draft'")} en brouillon, ${count("SELECT COUNT(*) AS total FROM quiz_questions")} questions de quiz, ${count("SELECT COUNT(*) AS total FROM themes")} thèmes, ${count("SELECT COUNT(*) AS total FROM itineraries")} itinéraires.`);
-  log(`   ${stats.added} fiches ajoutées, ${stats.updated} mises à jour, ${stats.drafts} brouillons ajoutés.`);
+  log(`   ${stats.added} fiches ajoutées, ${stats.updated} mises à jour, ${stats.drafts} brouillons ajoutés, ${stats.photos} photos importées.`);
   if (!update && PROTOTYPE_SITES.some(site => siteExists.get(site.id)) && stats.added < PROTOTYPE_SITES.length) {
     log("   Les fiches déjà présentes n'ont pas été modifiées. Pour les remettre à jour depuis db/content : npm run db:update-content");
   }

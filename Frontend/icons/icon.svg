@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#1E1A15"/>
-  <circle cx="256" cy="256" r="170" fill="none" stroke="#C89A3C" stroke-width="14" stroke-dasharray="26 16"/>
-  <circle cx="256" cy="256" r="132" fill="#B5502E"/>
-  <text x="256" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="700" fill="#F3ECDD">K</text>
-  <text x="256" y="356" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" letter-spacing="8" fill="#F3ECDD">AFRIKA</text>
+  <defs>
+    <pattern id="leppi" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="14" cy="14" r="2.4" fill="#ffffff" opacity=".18"/></pattern>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="#141D3D"/>
+  <rect width="512" height="512" rx="96" fill="url(#leppi)"/>
+  <circle cx="256" cy="256" r="172" fill="none" stroke="#F2B705" stroke-width="14" stroke-dasharray="26 16"/>
+  <circle cx="256" cy="256" r="134" fill="#D7263D"/>
+  <text x="256" y="300" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="700" fill="#F6F3EC">K</text>
+  <text x="256" y="356" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" letter-spacing="8" fill="#F6F3EC">AFRIKA</text>
 </svg>

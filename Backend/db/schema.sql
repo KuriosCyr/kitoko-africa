@@ -131,6 +131,7 @@ CREATE TABLE IF NOT EXISTS media (
     title TEXT,
     author TEXT,
     rights TEXT,
+    source_url TEXT,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE,

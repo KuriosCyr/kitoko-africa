@@ -37,6 +37,10 @@ npm run db:update-content
 
 Cette commande remet à jour les fiches du Bénin et de la Guinée (textes, thèmes, sources, quiz, récits d'origine) et repasse les autres pays en brouillon. Les comptes, favoris, tampons, contributions et médias ne sont jamais touchés.
 
+## Mettre la démo en ligne gratuitement
+
+Site sur Render (offre gratuite, `render.yaml`) et APK Android compilé par GitHub Actions : voir [`docs/deploiement-gratuit.md`](docs/deploiement-gratuit.md).
+
 ## Démarrage
 
 ```powershell
@@ -69,6 +73,19 @@ Les tests démarrent leur propre serveur sur une base temporaire : inutile de la
 ## Contenus
 
 Les fiches du prototype sont rédigées dans `Backend/db/content/benin.js` et `Backend/db/content/guinee.js`, les catégories et thèmes dans `Backend/db/content/themes.js`. Les circuits sont dans `Backend/db/content/itineraires.js`. Si une fiche doit être signalée comme « en cours de vérification » auprès des visiteurs, l'option se trouve dans l'administration (champ « Vérification »). **Les coordonnées GPS sont approximatives : elles doivent être relevées sur place avant d'imprimer les QR codes.**
+
+## Style visuel
+
+Le thème est choisi par une seule ligne dans `Frontend/index.html` :
+
+- `themes/indigo.css` (par défaut) : indigo du Fouta et couleurs des appliqués d'Abomey, polices Cormorant Garamond et Source Sans 3 ;
+- `themes/terre.css` : style « Terre et banco » d'origine, polices Fraunces et Work Sans.
+
+Les polices sont hébergées avec l'application (`Frontend/fonts/`) et les icônes (Lucide) sont intégrées à `index.html`.
+
+## Photos
+
+Les photos des sites proviennent de Wikimedia Commons, sous licences libres (CC BY, CC BY-SA, CC0, domaine public). Chaque photo affiche son auteur, sa licence et un lien vers sa source. Elles sont dans `Backend/db/content/images/` (crédits dans `images.json`) et importées par le seed. L'outil `tools/fetch-images.js` (workflow GitHub « Photos Wikimedia ») peut en chercher de nouvelles : vérifier le résultat, et exclure les photos hors sujet dans `images-manifest.json`.
 
 ## Passeport
 

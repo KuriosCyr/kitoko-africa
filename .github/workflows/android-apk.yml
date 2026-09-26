@@ -1,0 +1,67 @@
+name: APK Android (démo)
+
+# Compile l'application Android de démonstration et la publie dans la
+# release « apk-demo » du dépôt (fichier kitoko-afrika-demo.apk à partager).
+on:
+  workflow_dispatch:
+    inputs:
+      api_origin:
+        description: "Adresse du serveur (ex. https://kitoko-afrika.onrender.com)"
+        required: false
+  push:
+    paths:
+      - Frontend/**
+      - mobile/**
+      - .github/workflows/android-apk.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    env:
+      KITOKO_API_ORIGIN: ${{ inputs.api_origin || vars.KITOKO_API_ORIGIN || 'https://kitoko-afrika.onrender.com' }}
+      APP_VERSION_CODE: ${{ github.run_number }}
+      APP_VERSION_NAME: 1.0.${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Préparer l'application web
+        working-directory: mobile
+        run: |
+          npm ci
+          npm run build
+          npx cap sync android
+      - name: Compiler l'APK
+        working-directory: mobile/android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+          cp app/build/outputs/apk/debug/app-debug.apk ../../kitoko-afrika-demo.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kitoko-afrika-demo-apk
+          path: kitoko-afrika-demo.apk
+      - name: Publier dans la release « apk-demo »
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apk-demo
+          name: Kitoko Afrika — APK de démonstration
+          prerelease: true
+          target_commitish: ${{ github.sha }}
+          body: |
+            Application Android de démonstration (version 1.0.${{ github.run_number }}).
+            Serveur : ${{ env.KITOKO_API_ORIGIN }}
+            Installation : télécharger kitoko-afrika-demo.apk sur le téléphone, l'ouvrir et autoriser l'installation depuis cette source.
+          files: kitoko-afrika-demo.apk

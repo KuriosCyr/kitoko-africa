@@ -5,7 +5,7 @@
 // - Les photos et médias publiés sont gardés en cache après consultation.
 // Les requêtes d'écriture (tampons, contributions…) ne sont jamais mises en cache.
 
-const VERSION = "kitoko-v4";
+const VERSION = "kitoko-v5";
 const APP_CACHE = `${VERSION}-app`;
 const DATA_CACHE = `${VERSION}-data`;
 const MEDIA_CACHE = `${VERSION}-media`;
@@ -14,6 +14,12 @@ const APP_SHELL = [
   "./",
   "index.html",
   "style.css",
+  "themes/indigo.css",
+  "fonts/cormorant-garamond-latin-600-normal.woff2",
+  "fonts/cormorant-garamond-latin-700-normal.woff2",
+  "fonts/source-sans-3-latin-400-normal.woff2",
+  "fonts/source-sans-3-latin-600-normal.woff2",
+  "fonts/source-sans-3-latin-700-normal.woff2",
   "app.js",
   "passport.js",
   "site-admin.js",
@@ -92,8 +98,8 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // Polices et drapeaux externes : conservés après le premier chargement.
-  if(/fonts\.(googleapis|gstatic)\.com|flagcdn\.com/.test(url.hostname)){
+  // Drapeaux externes : conservés après le premier chargement.
+  if(/flagcdn\.com/.test(url.hostname)){
     event.respondWith(cacheFirst(request, MEDIA_CACHE));
   }
 });

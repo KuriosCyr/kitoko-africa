@@ -32,6 +32,7 @@ addColumnIfMissing("sites", "documented_by", "TEXT");
 addColumnIfMissing("sites", "verification_status", "TEXT NOT NULL DEFAULT 'verifie'");
 addColumnIfMissing("sites", "checkin_radius_m", "INTEGER NOT NULL DEFAULT 500");
 addColumnIfMissing("sites", "checkin_code", "TEXT");
+addColumnIfMissing("media", "source_url", "TEXT");
 
 // Index dépendant de colonnes ajoutées par migration.
 db.exec("CREATE UNIQUE INDEX IF NOT EXISTS idx_sites_slug ON sites(slug)");

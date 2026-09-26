@@ -85,10 +85,10 @@ function distanceMeters(lat1, lon1, lat2, lon2) {
 // Fiche complète : galerie, récits, thèmes et lieux associés (les plus proches).
 function siteDetails(site) {
   const media = db.prepare(`
-    SELECT id, type, file_path, title, author, rights
+    SELECT id, type, file_path, title, author, rights, source_url
     FROM media
     WHERE site_id = ?
-    ORDER BY id ASC
+    ORDER BY id DESC
   `).all(site.id).map(({ file_path: filePath, ...item }) => ({ ...item, url: publicMediaUrl(filePath) }));
 
   const recits = db.prepare(`

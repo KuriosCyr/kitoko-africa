@@ -1,0 +1,25 @@
+/* =====================================================================
+   Thème « Terre et banco » (style d'origine du prototype)
+   Pour l'activer : dans index.html, remplacer themes/indigo.css par
+   themes/terre.css.
+   ===================================================================== */
+
+@font-face{font-family:"Fraunces";font-weight:500;font-display:swap;src:url(../fonts/fraunces-latin-500-normal.woff2) format("woff2");}
+@font-face{font-family:"Fraunces";font-weight:600;font-display:swap;src:url(../fonts/fraunces-latin-600-normal.woff2) format("woff2");}
+@font-face{font-family:"Fraunces";font-weight:700;font-display:swap;src:url(../fonts/fraunces-latin-700-normal.woff2) format("woff2");}
+@font-face{font-family:"Work Sans";font-weight:400;font-display:swap;src:url(../fonts/work-sans-latin-400-normal.woff2) format("woff2");}
+@font-face{font-family:"Work Sans";font-weight:500;font-display:swap;src:url(../fonts/work-sans-latin-500-normal.woff2) format("woff2");}
+@font-face{font-family:"Work Sans";font-weight:600;font-display:swap;src:url(../fonts/work-sans-latin-600-normal.woff2) format("woff2");}
+
+:root{
+  --font-display:"Fraunces", Georgia, serif;
+  --font-body:"Work Sans", "Segoe UI", Arial, sans-serif;
+  --sun:#C89A3C;
+}
+
+.ico{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em;flex:0 0 auto;}
+.glyph .ico{width:34px;height:34px;stroke-width:1.6;}
+.qicon .ico{width:24px;height:24px;}
+.badge-icon .ico{width:30px;height:30px;}
+.card-fav.is-fav{color:var(--clay);}
+.card-fav.is-fav .ico,.fav-btn.active .ico{fill:currentColor;}
