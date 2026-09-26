@@ -1324,6 +1324,8 @@ function setTab(pane, el){
   const tabs = el?.parentElement;
   if(tabs) tabs.scrollLeft = el.offsetLeft - (tabs.clientWidth - el.offsetWidth) / 2;
   document.getElementById('pane-'+pane).classList.add('active');
+  // La galerie accompagne l'aperçu ; les autres onglets vont droit au contenu.
+  document.getElementById('detail-media').hidden = pane !== 'apercu';
   if(pane === 'passeport') renderDetailPassport();
 }
 
