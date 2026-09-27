@@ -704,7 +704,7 @@ async function groupRequest(path, options){
 }
 function createGroup(name){ groupRequest('/quiz/groups', { method: "POST", body: JSON.stringify({ name }) }); }
 function joinGroup(code){ groupRequest('/quiz/groups/join', { method: "POST", body: JSON.stringify({ code }) }); }
-function leaveGroup(id){ if(confirm("Quitter ce groupe ?")) groupRequest(`/quiz/groups/${id}`, { method: "DELETE" }); }
+async function leaveGroup(id){ if(await askConfirm("Quitter ce groupe ?", { confirmLabel: "Quitter" })) groupRequest(`/quiz/groups/${id}`, { method: "DELETE" }); }
 function inviteToGroup(code, name){
   shareText(`Rejoins mon groupe « ${name} » sur Kitoko Afrika pour la question du jour ! Dans l'application : Question du jour → Rejoindre, avec le code ${code}.`, publicOrigin());
 }
@@ -917,3 +917,139 @@ function renderClassroom(){
 }
 
 function closeClassroom(){ document.getElementById('classroom').hidden = true; }
+
+// ---------------------------------------------------------------------------
+// Accueil : diaporama de sites emblématiques de tout le continent
+// ---------------------------------------------------------------------------
+
+const HERO_SLIDES = [
+  "grande-mosquee-djenne", "pyramides-de-gizeh", "koutammakou", "vieille-ville-lamu", "chateau-elmina",
+  "montagne-de-la-table", "ganvie", "medina-de-fes", "chutes-de-ditinn", "bois-sacre-osun-osogbo",
+  "palais-royaux-abomey", "ile-de-goree", "porte-du-non-retour"
+];
+const hero = { sites: [], index: 0, timer: null };
+
+function startHeroSlideshow(){
+  const box = document.getElementById('hero-slides');
+  if(!box) return;
+  hero.sites = HERO_SLIDES.map(siteBySlug).filter(site => site && site.media_type === "image" && site.media_url);
+  if(!hero.sites.length) return;
+  box.innerHTML = hero.sites.map((site, index) => `<div class="hero-slide${index === 0 ? " is-active" : ""}" data-index="${index}"></div>`).join("");
+  hero.index = 0;
+  showHeroSlide(0);
+  clearInterval(hero.timer);
+  if(hero.sites.length > 1) hero.timer = setInterval(nextHeroSlide, 6000);
+}
+
+function showHeroSlide(index){
+  const slides = document.querySelectorAll('#hero-slides .hero-slide');
+  if(!slides.length) return;
+  // Chargement progressif : l'image n'est demandée qu'au moment d'être affichée (et la suivante préparée).
+  [index, (index + 1) % hero.sites.length].forEach(position => {
+    const slide = slides[position];
+    if(slide && !slide.style.backgroundImage) slide.style.backgroundImage = `url("${mediaSrc(hero.sites[position].media_url)}")`;
+  });
+  slides.forEach((slide, position) => slide.classList.toggle('is-active', position === index));
+  const site = hero.sites[index];
+  const caption = document.getElementById('hero-caption');
+  caption.hidden = false;
+  caption.innerHTML = `${flagImage(site.country_flag, "mini-flag", site.country)} <span>${esc(site.name)}</span>`;
+  caption.onclick = () => openDetail(site.id);
+}
+
+function nextHeroSlide(){
+  // Pas d'animation inutile quand l'accueil n'est pas affiché ou l'appli en arrière-plan.
+  if(document.hidden || !document.getElementById('screen-home')?.classList.contains('active')) return;
+  hero.index = (hero.index + 1) % hero.sites.length;
+  showHeroSlide(hero.index);
+}
+
+// ---------------------------------------------------------------------------
+// Accueil : recherche instantanée (sites, pays, circuits, fêtes)
+// ---------------------------------------------------------------------------
+
+function homeSearchResults(query){
+  const term = normalizeText(query.trim());
+  if(term.length < 2) return [];
+  const score = (text, extra = "") => {
+    const value = normalizeText(text);
+    if(value.startsWith(term)) return 3;
+    if(value.split(/[\s'’-]+/).some(word => word.startsWith(term))) return 2;
+    if(value.includes(term)) return 1.5;
+    return normalizeText(extra).includes(term) ? 1 : 0;
+  };
+  const results = [];
+  COUNTRIES.forEach(country => {
+    const value = score(country.name);
+    if(value) results.push({ type: "Pays", score: value + 0.5, label: country.name, sub: `${SITES.filter(site => site.country === country.name).length} sites`, flag: country.flag, action: () => { setCountry(country.name); showScreen('screen-discover'); } });
+  });
+  SITES.forEach(site => {
+    const value = score(site.name, [site.region, site.country, CAT_LABELS[site.cat]].join(" "));
+    if(value) results.push({ type: "Site", score: value, label: site.name, sub: [site.region, site.country].filter(Boolean).join(" · "), flag: site.country_flag, action: () => openDetail(site.id) });
+  });
+  (typeof ITINERARIES !== "undefined" ? ITINERARIES : []).forEach(itinerary => {
+    const value = score(itinerary.title, itinerary.summary);
+    if(value) results.push({ type: "Circuit", score: value - 0.2, label: itinerary.title, sub: itinerary.duration || "", action: () => openItinerary(itinerary.slug) });
+  });
+  FESTIVALS.forEach(festival => {
+    const value = score(festival.name);
+    if(value && siteBySlug(festival.slug)) results.push({ type: "Fête", score: value - 0.1, label: festival.name, sub: countdownLabel(festival, nextOccurrence(festival.rule)), action: () => openSiteBySlug(festival.slug) });
+  });
+  const seen = new Set();
+  return results.sort((a, b) => b.score - a.score || a.label.localeCompare(b.label, "fr"))
+    .filter(result => { const key = result.type + result.label; if(seen.has(key)) return false; seen.add(key); return true; })
+    .slice(0, 8);
+}
+
+let homeSearchItems = [];
+function renderHomeSearch(){
+  const input = document.getElementById('home-search');
+  const box = document.getElementById('home-search-results');
+  if(!input || !box) return;
+  const query = input.value;
+  homeSearchItems = homeSearchResults(query);
+  if(query.trim().length < 2){ box.hidden = true; box.innerHTML = ""; return; }
+  box.hidden = false;
+  box.innerHTML = (homeSearchItems.length
+    ? homeSearchItems.map((item, index) => `
+      <button type="button" class="home-result" data-index="${index}">
+        <span class="home-result-type">${esc(item.type)}</span>
+        <span class="home-result-main"><strong>${item.flag ? flagImage(item.flag, "mini-flag", "") + " " : ""}${esc(item.label)}</strong>${item.sub ? `<span>${esc(item.sub)}</span>` : ""}</span>
+      </button>`).join("")
+    : `<p class="home-result-empty">Aucun résultat pour « ${esc(query.trim())} ».</p>`) +
+    `<button type="button" class="home-result-all" data-all="1">${ico("search")} Chercher dans tous les sites</button>`;
+}
+
+function openHomeSearchAll(){
+  const query = document.getElementById('home-search').value;
+  const discover = document.getElementById('site-search');
+  if(discover) discover.value = query;
+  searchTerm = query;
+  renderList();
+  showScreen('screen-discover');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('home-search');
+  const box = document.getElementById('home-search-results');
+  if(!input || !box) return;
+  input.addEventListener('input', () => {
+    renderHomeSearch();
+    if(typeof loadItineraries === "function" && (typeof ITINERARIES === "undefined" || !ITINERARIES.length)) loadItineraries().then(renderHomeSearch);
+  });
+  input.addEventListener('keydown', event => {
+    if(event.key === "Enter"){
+      event.preventDefault();
+      if(homeSearchItems[0]) homeSearchItems[0].action(); else openHomeSearchAll();
+      input.blur();
+    }
+  });
+  box.addEventListener('click', event => {
+    const button = event.target.closest('button');
+    if(!button) return;
+    if(button.dataset.all) openHomeSearchAll();
+    else homeSearchItems[Number(button.dataset.index)]?.action();
+    input.value = "";
+    renderHomeSearch();
+  });
+});

@@ -146,7 +146,7 @@ async function refreshSiteTools(siteId){
 }
 
 async function regenerateCheckinCode(siteId){
-  if(!confirm("Générer un nouveau code ? L'ancien ne fonctionnera plus : pensez à réimprimer l'affiche.")) return;
+  if(!(await askConfirm("Générer un nouveau code ? L'ancien ne fonctionnera plus : pensez à réimprimer l'affiche."))) return;
   try {
     await adminRequest(`/admin/sites/${siteId}/checkin-code`, { method: "POST" });
     await refreshSiteTools(siteId);
@@ -168,7 +168,7 @@ async function uploadSiteMedia(siteId, form){
 }
 
 async function deleteSiteMedia(mediaId, siteId){
-  if(!confirm("Retirer ce média de la galerie ?")) return;
+  if(!(await askConfirm("Retirer ce média de la galerie ?"))) return;
   try {
     await adminRequest(`/admin/media/${mediaId}`, { method: "DELETE" });
     await loadKitokoData();
@@ -199,7 +199,7 @@ async function addQuizQuestion(siteId, form){
 }
 
 async function deleteQuizQuestion(questionId, siteId){
-  if(!confirm("Supprimer cette question ?")) return;
+  if(!(await askConfirm("Supprimer cette question ?"))) return;
   try {
     await adminRequest(`/admin/quiz/${questionId}`, { method: "DELETE" });
     await refreshSiteTools(siteId);
@@ -217,7 +217,7 @@ async function addRecit(siteId, form){
 }
 
 async function deleteRecit(recitId, siteId){
-  if(!confirm("Supprimer ce récit ?")) return;
+  if(!(await askConfirm("Supprimer ce récit ?"))) return;
   try {
     await adminRequest(`/admin/recits/${recitId}`, { method: "DELETE" });
     await refreshSiteTools(siteId);
@@ -279,7 +279,7 @@ async function setUserRole(user, role){
   const message = role === 'admin'
     ? `Donner les droits d'administration à ${user.name} ? Cette personne pourra modérer, modifier et supprimer des contenus.`
     : `Retirer les droits d'administration de ${user.name} ?`;
-  if(!confirm(message)) return;
+  if(!(await askConfirm(message))) return;
   try {
     await adminRequest(`/admin/users/${user.id}/role`, { method: "PATCH", json: { role } });
     await loadAdminUsers();

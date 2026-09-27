@@ -127,7 +127,11 @@ const EMBEDDED_FLAGS = {
   ng: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#008751"/><rect x="1" width="1" height="2" fill="#fff"/></svg>',
   sn: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#00853f"/><rect x="1" width="1" height="2" fill="#fdef42"/><rect x="2" width="1" height="2" fill="#e31b23"/><polygon fill="#00853f" points="1.500,0.700 1.574,0.928 1.814,0.928 1.620,1.069 1.694,1.297 1.500,1.156 1.306,1.297 1.380,1.069 1.186,0.928 1.426,0.928"/></svg>',
   ci: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#f77f00"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#009e60"/></svg>',
-  ml: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#14b53a"/><rect x="1" width="1" height="2" fill="#fcd116"/><rect x="2" width="1" height="2" fill="#ce1126"/></svg>'
+  ml: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="1" height="2" fill="#14b53a"/><rect x="1" width="1" height="2" fill="#fcd116"/><rect x="2" width="1" height="2" fill="#ce1126"/></svg>',
+  eg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#000"/><rect width="3" height="1.333" fill="#fff"/><rect width="3" height="0.667" fill="#ce1126"/><circle cx="1.5" cy="1" r="0.22" fill="#c09300"/></svg>',
+  ma: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#c1272d"/><polygon points="1.500,0.600 1.594,0.890 1.899,0.890 1.653,1.070 1.747,1.360 1.500,1.180 1.253,1.360 1.347,1.070 1.101,0.890 1.406,0.890" fill="none" stroke="#006233" stroke-width="0.07" stroke-linejoin="round"/></svg>',
+  ke: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"><rect width="3" height="2" fill="#006600"/><rect width="3" height="1.2" fill="#fff"/><rect width="3" height="0.6" fill="#000"/><rect y="0.8" width="3" height="0.4" fill="#bb0000"/><ellipse cx="1.5" cy="1" rx="0.28" ry="0.55" fill="#bb0000" stroke="#000" stroke-width="0.06"/></svg>',
+  za: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 60"><rect width="90" height="60" fill="#002395"/><rect width="90" height="30" fill="#de3831"/><path d="M0 0 L45 30 L0 60 Z" fill="#fff"/><path d="M0 0 H15 L50 22 H90 V38 H50 L15 60 H0 Z" fill="#fff"/><path d="M0 7 L38 30 L0 53 Z" fill="#ffb612"/><path d="M0 0 H10 L46 25 H90 V35 H46 L10 60 H0 L0 51 L34 30 L0 9 Z" fill="#007a4d"/><path d="M0 11 L31 30 L0 49 Z" fill="#000"/></svg>'
 };
 
 function flagImage(flag, className, alt = "Drapeau"){
@@ -249,6 +253,7 @@ function setHeroImage(){
   const site = preferred.map(slug => SITES.find(item => item.slug === slug)).find(item => item?.media_type === "image")
     || SITES.find(item => item.featured && item.media_type === "image");
   if(site) document.documentElement.style.setProperty('--hero-image', `url("${mediaSrc(site.media_url)}")`);
+  if(typeof startHeroSlideshow === "function") startHeroSlideshow();
 }
 
 function stopFeaturedAutoScroll(){
@@ -590,14 +595,19 @@ function siteCard(s){
   return card;
 }
 
+// Recherche insensible aux majuscules et aux accents (« ganvie » trouve « Ganvié »).
+function normalizeText(value){
+  return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
 function renderList(){
   const list = document.getElementById('site-list');
   list.innerHTML = "";
-  const term = searchTerm.trim().toLowerCase();
+  const term = normalizeText(searchTerm.trim());
   const globalSearch = term.length > 0;
   SITES.filter(s => {
     const themeNames = (s.themes || []).map(slug => THEMES.find(theme => theme.slug === slug)?.name);
-    const searchable = [s.name, s.country, s.region, s.cat, CAT_LABELS[s.cat], ...themeNames].filter(Boolean).join(" ").toLowerCase();
+    const searchable = normalizeText([s.name, s.country, s.region, s.cat, CAT_LABELS[s.cat], ...themeNames].filter(Boolean).join(" "));
     const matchesCountry = globalSearch || s.country === currentCountry;
     const matchesCategory = globalSearch || currentCat === "toutes" || s.cat === currentCat;
     return matchesCountry && matchesCategory && (!term || searchable.includes(term));
@@ -1010,6 +1020,16 @@ async function loadAdminSites(){
   }
 }
 
+// Erreur affichée dans le formulaire de connexion / inscription (et non dans
+// une fenêtre d'alerte), avec les champs concernés encadrés.
+function showAuthError(message, fields = []){
+  const box = document.getElementById('auth-error');
+  if(!box) return;
+  box.hidden = !message;
+  box.textContent = message || "";
+  ["af-name", "af-email", "af-pass"].forEach(id => document.getElementById(id)?.classList.toggle('is-wrong', fields.includes(id)));
+}
+
 async function moderateContribution(item, decision){
   if(!authToken || currentUser?.role !== "admin") return;
   const response = await fetch(`${API_BASE}/admin/contributions/${item.id}`, {
@@ -1058,7 +1078,7 @@ function renderAdminSites(){
 }
 
 async function deleteSite(id){
-  if(!confirm("Supprimer définitivement ce site ?")) return;
+  if(!(await askConfirm("Supprimer définitivement ce site ?"))) return;
   const response = await fetch(`${API_BASE}/admin/sites/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${authToken}` }
@@ -1544,6 +1564,7 @@ async function submitContribution(){
 function openAuth(mode){ switchAuthTab(mode); showScreen('screen-auth'); }
 
 function switchAuthTab(mode){
+  showAuthError("");
   authMode = mode;
   document.getElementById('tab-signup').classList.toggle('active', mode==='signup');
   document.getElementById('tab-login').classList.toggle('active', mode==='login');
@@ -1562,6 +1583,7 @@ async function submitAuth(){
     if(!input.value.trim()){ wrap.classList.add('invalid'); err.classList.add('show'); valid=false; }
     else { wrap.classList.remove('invalid'); err.classList.remove('show'); }
   });
+  showAuthError("");
   if(!valid) return;
   const payload = {
     email: document.getElementById('auth-email').value.trim(),
@@ -1575,8 +1597,12 @@ async function submitAuth(){
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
-    const result = await response.json();
-    if(!response.ok || !result.success) throw new Error(result.message || "Authentification impossible.");
+    const result = await response.json().catch(() => ({}));
+    if(!response.ok || !result.success){
+      const error = new Error(result.message || "Authentification impossible.");
+      error.status = response.status;
+      throw error;
+    }
     authToken = result.token;
     currentUser = result.user;
     isLoggedIn = true;
@@ -1591,7 +1617,9 @@ async function submitAuth(){
       showScreen('screen-profile');
     }
   } catch(error) {
-    alert(error.message);
+    const offline = error instanceof TypeError;
+    showAuthError(offline ? "Connexion au serveur impossible. Vérifiez votre connexion internet et réessayez." : error.message,
+      error.status === 401 ? ["af-email", "af-pass"] : error.status === 409 ? ["af-email"] : []);
   }
 }
 
@@ -1631,6 +1659,7 @@ function sendContactMessage(){
 }
 
 async function bootstrap(){
+  ['auth-name', 'auth-email', 'auth-pass'].forEach(id => document.getElementById(id)?.addEventListener('input', () => showAuthError("")));
   const search = document.getElementById('site-search');
   if(search) search.addEventListener('input', event => { searchTerm = event.target.value; renderList(); });
   ['admin-status-filter','admin-country-filter','admin-from-filter','admin-to-filter'].forEach(id => document.getElementById(id)?.addEventListener('change', loadFilteredAdminContributions));

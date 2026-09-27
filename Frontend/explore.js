@@ -420,7 +420,7 @@ async function setPartnerStatus(partner, status){
 }
 
 async function deletePartner(id){
-  if(!confirm("Supprimer définitivement ce partenaire ?")) return;
+  if(!(await askConfirm("Supprimer définitivement ce partenaire ?"))) return;
   try {
     await fetchJson(`/admin/partners/${id}`, { method: "DELETE", headers: { Authorization: `Bearer ${authToken}` } });
     loadAdminPartners();
@@ -554,7 +554,7 @@ async function renderPrivacy(){
 }
 
 async function deleteMyAccount(){
-  if(!confirm("Supprimer définitivement votre compte ? Vos favoris, votre passeport, vos tampons et vos badges seront effacés. Les contributions déjà publiées restent sur les fiches, sans votre nom.")) return;
+  if(!(await askConfirm("Supprimer définitivement votre compte ? Vos favoris, votre passeport, vos tampons et vos badges seront effacés. Les contributions déjà publiées restent sur les fiches, sans votre nom."))) return;
   const password = prompt("Pour confirmer, saisissez votre mot de passe :");
   if(!password) return;
   try {
