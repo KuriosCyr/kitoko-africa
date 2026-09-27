@@ -830,6 +830,10 @@
         "Dassa-Zoume hills",
         "Notre-Dame d'Arigbo",
         "Dassa Benin"
+      ],
+      "exclude": [
+        "File:Crotalaria leprieurii-NMNH-13303750.jpg",
+        "File:Millettia warneckei-NMNH-13370216.jpg"
       ]
     },
     {
@@ -847,6 +851,9 @@
         "Daanon-Kpota",
         "Djidja Bénin",
         "Djidja"
+      ],
+      "exclude": [
+        "File:Bureau de l'Arrondissement de Setto.jpg"
       ]
     },
     {
@@ -855,6 +862,9 @@
         "Rivière Noire Adjarra",
         "Adjarra",
         "Adjarra Bénin"
+      ],
+      "exclude": [
+        "File:Rivière noire à Adjarra au Bénin.jpg"
       ]
     },
     {
