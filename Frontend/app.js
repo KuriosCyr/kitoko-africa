@@ -27,7 +27,7 @@ const ITINERARY_ICONS = {
   "dakar-goree-lac-rose": "link", "nord-senegal-fleuve": "waves", "cote-divoire-du-sud": "landmark",
   "nord-ivoirien-savane": "paw-print", "empires-du-sahel": "crown",
   "villes-imperiales-maroc": "castle", "egypte-au-fil-du-nil": "waves", "kenya-savane-et-cote-swahilie": "paw-print",
-  "afrique-du-sud-liberte": "link"
+  "afrique-du-sud-liberte": "link", "coeur-du-benin": "mountain"
 };
 function themeIcon(slug){ return ico(THEME_ICONS[slug] || "sparkle"); }
 function catIcon(cat){ return ico(CAT_META[cat]?.icon || "sparkle"); }

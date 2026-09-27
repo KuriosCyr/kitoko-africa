@@ -12,7 +12,7 @@ const overrides = require(path.resolve(overridesFile));
 
 const KEY_ORDER = ["id", "slug", "country", "cat", "name", "region", "featured", "latitude", "longitude", "radius", "themes",
   "description", "histoire", "culture", "savoirs", "communities", "langues", "personnalites", "infos_pratiques",
-  "chronologie", "a_voir", "saviez_vous", "sources", "recits", "quiz"];
+  "chronologie", "a_voir", "saviez_vous", "sources", "documented_by", "recits", "quiz"];
 
 for (const [slug, data] of Object.entries(overrides)) {
   const site = sites.find(item => item.slug === slug);

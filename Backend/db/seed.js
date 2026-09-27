@@ -89,7 +89,7 @@ function seed({ log = console.log, update = false } = {}) {
 
       const values = [
         country.id, category.id, site.name, site.region, site.description, site.histoire, site.culture,
-        site.savoirs, site.communities, site.langues, site.personnalites, site.infos_pratiques, DOCUMENTED_BY,
+        site.savoirs, site.communities, site.langues, site.personnalites, site.infos_pratiques, site.documented_by || DOCUMENTED_BY,
         site.latitude, site.longitude, site.radius, site.featured ? 1 : 0
       ];
 

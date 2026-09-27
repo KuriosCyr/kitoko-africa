@@ -28,7 +28,8 @@ module.exports = [
       { slug: "palais-royaux-abomey", note: "Prévoir une demi-journée pour le musée et les bas-reliefs." },
       { slug: "monument-amazones-cotonou", note: "Sur la route du retour vers la côte, l'hommage aux Agojie." },
       { slug: "musee-honme-porto-novo", note: "Le palais des rois de Porto-Novo." },
-      { slug: "grande-mosquee-porto-novo", note: "L'architecture afro-brésilienne des Agudas, à quelques minutes du palais." }
+      { slug: "grande-mosquee-porto-novo", note: "L'architecture afro-brésilienne des Agudas, à quelques minutes du palais." },
+      { slug: "riviere-noire-adjarra", note: "Près de Porto-Novo, la Rivière Noire en pirogue et les tambours d'Adjarra." }
     ]
   },
   {
@@ -41,7 +42,9 @@ module.exports = [
     stops: [
       { slug: "marche-dantokpa", note: "Tôt le matin, pour découvrir les produits de la cuisine béninoise." },
       { slug: "ganvie", note: "Embarquer à Abomey-Calavi pour rejoindre la cité sur pilotis." },
-      { slug: "lac-aheme-possotome", note: "Une balade en pirogue et la source de Possotomè." }
+      { slug: "lac-aheme-possotome", note: "Une balade en pirogue et la source de Possotomè." },
+      { slug: "village-des-potieres-se", note: "Tout près, les potières de Sè et leurs jarres en terre cuite." },
+      { slug: "bouche-du-roy", note: "Pour finir, l'embouchure du Mono en pirogue ou en kayak, depuis Grand-Popo." }
     ]
   },
   {
@@ -304,6 +307,19 @@ module.exports = [
       { slug: "mapungubwe", note: "Au nord, le premier grand royaume d'Afrique australe." },
       { slug: "montagne-de-la-table", note: "Au Cap, la montagne et le fynbos." },
       { slug: "robben-island", note: "Réserver le ferry longtemps à l'avance." }
+    ]
+  },
+  {
+    slug: "coeur-du-benin",
+    title: "Au cœur du Bénin : d'Abomey aux collines de Dassa",
+    country: "Bénin",
+    icon: "⛰️",
+    duration: "2 à 3 jours",
+    summary: "Des palais royaux d'Abomey aux massifs de granite du centre du pays : histoire du Danxomè, villages accueillants et panoramas sur la savane.",
+    stops: [
+      { slug: "palais-royaux-abomey", note: "Commencer par les palais royaux et le musée d'Abomey." },
+      { slug: "daanon-kpota", note: "Au nord d'Abomey, le massif rocheux de Daanon-Kpota et son village." },
+      { slug: "collines-de-dassa-zoume", note: "Terminer à Dassa : randonnée dans les collines et Notre-Dame d'Arigbo." }
     ]
   }
 ];

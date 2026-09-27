@@ -822,6 +822,49 @@
         "Hector Pieterson Museum",
         "Vilakazi Street Soweto"
       ]
+    },
+    {
+      "slug": "collines-de-dassa-zoume",
+      "queries": [
+        "Dassa-Zoumè",
+        "Dassa-Zoume hills",
+        "Notre-Dame d'Arigbo",
+        "Dassa Benin"
+      ]
+    },
+    {
+      "slug": "bouche-du-roy",
+      "queries": [
+        "Bouche du Roy",
+        "Bouche du Roy Grand-Popo",
+        "Mono river mouth Benin",
+        "Grand-Popo"
+      ]
+    },
+    {
+      "slug": "daanon-kpota",
+      "queries": [
+        "Daanon-Kpota",
+        "Djidja Bénin",
+        "Djidja"
+      ]
+    },
+    {
+      "slug": "riviere-noire-adjarra",
+      "queries": [
+        "Rivière Noire Adjarra",
+        "Adjarra",
+        "Adjarra Bénin"
+      ]
+    },
+    {
+      "slug": "village-des-potieres-se",
+      "queries": [
+        "Poterie de Sè",
+        "Sè Bénin poterie",
+        "Poterie Bénin",
+        "Houéyogbé"
+      ]
     }
   ]
 }

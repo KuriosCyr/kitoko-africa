@@ -761,5 +761,249 @@ module.exports = [
       { question: "Avec quelle fête musulmane la Gaani coïncide-t-elle ?", choices: ["Le Maouloud", "La Tabaski", "Le Ramadan"], answer: 0, explanation: "La Gaani se tient pendant la période du Maouloud, qui célèbre la naissance du Prophète." },
       { question: "Comment appelle-t-on l'aristocratie cavalière du royaume baatonu ?", choices: ["Les Wasangari", "Les Agudas", "Les Agojie"], answer: 0, explanation: "Les Wasangari formaient une aristocratie de guerriers à cheval." }
     ]
+  },
+  {
+    id: 114,
+    slug: "collines-de-dassa-zoume",
+    country: "Bénin",
+    cat: "naturel",
+    name: "Collines de Dassa-Zoumè",
+    region: "Collines, Dassa-Zoumè",
+    featured: true,
+    latitude: 7.755,
+    longitude: 2.185,
+    radius: 3000,
+    themes: ["spiritualites", "royaumes", "festivals"],
+    documented_by: "Premice MANA avec l'équipe Kitoko Afrika",
+    description: "Au centre du Bénin, Dassa-Zoumè est surnommée la « ville aux 41 collines ». Des massifs de granite arrondis surgissent de la savane tout autour de la ville, formant l'un des paysages les plus spectaculaires du pays.\n\nCes collines sont à la fois un lieu de nature, de spiritualité et de mémoire : elles abritent des sanctuaires du peuple idaasha, la grotte mariale de Notre-Dame d'Arigbo, l'un des grands lieux de pèlerinage catholique d'Afrique de l'Ouest, et offrent de belles randonnées avec des vues sur toute la région.",
+    histoire: "### Un royaume idaasha\nDassa est le pays des Idaasha, un peuple de langue yoruba. Selon la tradition, le royaume de Dassa aurait été fondé au XVIIe siècle par un prince venu du pays yoruba, souvent nommé Olofin. Les collines offraient une protection naturelle contre les razzias et les guerres qui agitaient la région, notamment face au royaume du Danxomè voisin. Le roi de Dassa reste aujourd'hui une autorité coutumière respectée.\n\n### Des collines habitées et sacrées\nLes collines ont longtemps servi de refuges et de lieux d'habitation. Certaines portent des sanctuaires et des lieux de culte des divinités et des ancêtres, entretenus par les familles et les prêtres traditionnels.\n\n### Notre-Dame d'Arigbo\nAu milieu du XXe siècle, l'Église catholique installe sur l'une des collines une grotte dédiée à la Vierge Marie, à l'image de celle de Lourdes. Depuis, un grand pèlerinage national a lieu chaque année à la fin du mois d'août, et rassemble des dizaines de milliers de fidèles venus de tout le Bénin et des pays voisins.",
+    culture: "Dassa-Zoumè est un bel exemple de la cohabitation des religions au Bénin : sanctuaires traditionnels idaasha, églises et mosquées se partagent la ville et ses collines. Pendant le pèlerinage d'Arigbo, la ville entière vit au rythme des processions, des chants et de l'accueil des pèlerins.\n\nLes collines ont aussi une place dans la vie quotidienne : on y cultive, on y fait paître les troupeaux, on y ramasse du bois, et certaines portent des noms et des récits transmis dans les familles.\n\nPlacée au croisement des grandes routes du pays, Dassa est une étape naturelle entre le sud et le nord du Bénin.",
+    savoirs: "### Connaître les collines\nLes habitants connaissent les chemins, les sources et les lieux sacrés des collines, et les règles à respecter pour les visiter.\n\n### Le granite\nLes collines de Dassa sont des inselbergs : des reliefs de granite très anciens, dégagés par l'érosion, qui dominent la plaine. On y observe des blocs arrondis, des dalles et des chaos rocheux.\n\n### Le pèlerinage\nL'organisation du pèlerinage d'Arigbo mobilise chaque année paroisses, bénévoles et habitants pour accueillir, loger et nourrir les pèlerins.",
+    communities: "Communauté idaasha et royauté de Dassa, sanctuaire marial Notre-Dame d'Arigbo, habitants de Dassa-Zoumè, guides locaux.",
+    langues: "Idaasha (yoruba), fon, français",
+    personnalites: "—",
+    infos_pratiques: "Dassa-Zoumè est à environ 200 km au nord de Cotonou, sur la route principale vers le nord. Randonnée dans les collines avec un guide local, de préférence tôt le matin (chaleur). Respecter les sanctuaires : demander avant d'approcher ou de photographier. Pèlerinage d'Arigbo à la fin du mois d'août : très forte affluence, réserver son hébergement tôt.",
+    chronologie: [
+      ["XVIIe siècle", "Selon la tradition, fondation du royaume de Dassa par un prince venu du pays yoruba."],
+      ["XVIIIe - XIXe siècles", "Les collines servent de refuge face aux guerres et aux razzias."],
+      ["Milieu du XXe siècle", "Installation de la grotte mariale de Notre-Dame d'Arigbo."],
+      ["Chaque année, fin août", "Pèlerinage national à Notre-Dame d'Arigbo."]
+    ],
+    a_voir: [
+      ["La grotte de Notre-Dame d'Arigbo", "Le sanctuaire marial et son chemin de croix dans les rochers."],
+      ["Les points de vue", "Depuis le sommet des collines, la savane et les 41 massifs à perte de vue."],
+      ["Les chaos de granite", "Blocs arrondis et dalles polies par l'érosion."],
+      ["Le palais du roi de Dassa", "Avec l'accord des autorités coutumières."]
+    ],
+    saviez_vous: [
+      "Dassa-Zoumè est surnommée la « ville aux 41 collines ».",
+      "Le pèlerinage de Notre-Dame d'Arigbo est l'un des plus grands rassemblements catholiques d'Afrique de l'Ouest."
+    ],
+    sources: [
+      "Contribution de Premice MANA",
+      "Mairie de Dassa-Zoumè",
+      "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"
+    ],
+    recits: [],
+    quiz: [
+      { question: "Quel surnom donne-t-on à Dassa-Zoumè ?", choices: ["La ville aux 41 collines", "La Venise de l'Afrique", "La ville rouge"], answer: 0, explanation: "Dassa-Zoumè est entourée de 41 collines de granite." },
+      { question: "Quel peuple vit traditionnellement à Dassa ?", choices: ["Les Idaasha", "Les Baatonu", "Les Batammariba"], answer: 0, explanation: "Les Idaasha sont un peuple de langue yoruba." },
+      { question: "Quel sanctuaire catholique se trouve dans les collines ?", choices: ["Notre-Dame d'Arigbo", "La basilique de Ouidah", "Notre-Dame du Lac Togo"], answer: 0, explanation: "La grotte mariale d'Arigbo accueille un grand pèlerinage chaque année." },
+      { question: "À quelle période a lieu le pèlerinage d'Arigbo ?", choices: ["À la fin du mois d'août", "En janvier", "À Pâques uniquement"], answer: 0, explanation: "Le pèlerinage national se tient chaque année à la fin du mois d'août." },
+      { question: "En quelle roche sont les collines de Dassa ?", choices: ["En granite", "En calcaire", "En sable"], answer: 0, explanation: "Ce sont des inselbergs de granite très anciens." }
+    ]
+  },
+  {
+    id: 115,
+    slug: "bouche-du-roy",
+    country: "Bénin",
+    cat: "naturel",
+    name: "La Bouche du Roy",
+    region: "Mono, Grand-Popo",
+    featured: false,
+    latitude: 6.27,
+    longitude: 1.92,
+    radius: 3000,
+    themes: ["eaux", "faune-flore", "artisanat"],
+    documented_by: "Premice MANA avec l'équipe Kitoko Afrika",
+    description: "Près de Grand-Popo, le fleuve Mono rejoint l'océan Atlantique dans un paysage de lagunes, de mangroves, d'îlots et de bancs de sable : c'est la Bouche du Roy. Son nom viendrait du portugais « a boca do rio », l'embouchure du fleuve.\n\nCe sanctuaire naturel fait partie de la réserve de biosphère transfrontière du delta du Mono, partagée entre le Bénin et le Togo. Lamantins, oiseaux migrateurs et tortues marines y trouvent refuge, et les communautés locales y perpétuent des savoir-faire comme la fabrication traditionnelle du sel.",
+    histoire: "### Le delta du Mono\nLe Mono, qui prend sa source au Togo, marque une partie de la frontière entre le Togo et le Bénin avant de rejoindre la mer. Son embouchure se déplace au fil des années, au gré des courants, des crues et des bancs de sable.\n\n### Un milieu transformé\nLa construction du barrage de Nangbéto, au Togo, dans les années 1980, a modifié le régime du fleuve : moins de crues, plus d'eau salée qui remonte dans le delta. Les mangroves et les pratiques des communautés s'en trouvent transformées.\n\n### Une réserve de biosphère\nEn 2017, l'UNESCO reconnaît la réserve de biosphère transfrontière du delta du Mono, qui associe le Bénin et le Togo. La Bouche du Roy en est l'un des cœurs. L'objectif est de protéger la nature tout en soutenant les activités des habitants : pêche, sel, écotourisme.",
+    culture: "Les villages du delta vivent de la pêche, du fumage du poisson, de l'agriculture et du sel. Les liens avec l'eau sont aussi spirituels : le fleuve, la mer et certains lieux de la mangrove sont associés à des divinités vodun, honorées lors de cérémonies.\n\nGrand-Popo, ancienne ville côtière, garde des traces de son histoire commerciale et coloniale, et accueille chaque année des visiteurs venus pour ses plages et ses festivals.\n\nL'écotourisme, en pirogue ou en kayak, permet aux habitants de faire découvrir leur milieu et d'en tirer des revenus.",
+    savoirs: "### Le sel du delta\nLes femmes récoltent une terre chargée de sel dans les zones de mangrove, la lavent pour obtenir une saumure, puis la font bouillir longuement pour obtenir un sel très apprécié. C'est un savoir-faire ancien de la côte du Bénin, qui demande beaucoup de bois et de travail.\n\n### La pêche\nPirogues, filets, nasses et acadjas : les pêcheurs connaissent les marées, les courants et les saisons du poisson.\n\n### La faune\nLes guides savent où observer oiseaux, singes et, avec beaucoup de chance, le lamantin d'Afrique de l'Ouest, espèce menacée.",
+    communities: "Villages du delta du Mono (Avlo, Grand-Popo…), pêcheurs, productrices de sel, associations d'écotourisme.",
+    langues: "Xwla, mina, fon, français",
+    personnalites: "—",
+    infos_pratiques: "Accès depuis Grand-Popo, à environ 80 km de Cotonou. Balades en pirogue ou en kayak avec des guides locaux, de préférence en saison sèche (novembre à avril). Prévoir chapeau, eau et protection contre les moustiques. Ne pas se baigner à l'embouchure : courants très dangereux. Respecter les lieux sacrés et demander avant de photographier.",
+    chronologie: [
+      ["Époque de la traite", "Les navigateurs portugais fréquentent la côte ; le nom « Bouche du Roy » viendrait de « a boca do rio »."],
+      ["Années 1980", "Construction du barrage de Nangbéto sur le Mono, au Togo."],
+      ["2017", "Reconnaissance par l'UNESCO de la réserve de biosphère transfrontière du delta du Mono."]
+    ],
+    a_voir: [
+      ["L'embouchure", "Là où le Mono rejoint l'océan, entre bancs de sable et vagues."],
+      ["Les mangroves", "En pirogue ou en kayak, au plus près des oiseaux."],
+      ["La fabrication du sel", "Avec l'accord des productrices."],
+      ["Les plages de Grand-Popo", "Où les tortues marines viennent pondre certaines saisons."]
+    ],
+    saviez_vous: [
+      "Le nom « Bouche du Roy » viendrait du portugais « a boca do rio », l'embouchure du fleuve.",
+      "L'embouchure du Mono se déplace au fil des années, au gré des courants et des bancs de sable."
+    ],
+    sources: [
+      "Contribution de Premice MANA",
+      "UNESCO — Réserve de biosphère transfrontière du delta du Mono (Bénin-Togo, 2017)",
+      "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"
+    ],
+    recits: [],
+    quiz: [
+      { question: "Quel fleuve se jette dans l'océan à la Bouche du Roy ?", choices: ["Le Mono", "L'Ouémé", "Le Niger"], answer: 0, explanation: "La Bouche du Roy est l'embouchure du Mono, près de Grand-Popo." },
+      { question: "D'où viendrait le nom « Bouche du Roy » ?", choices: ["Du portugais « a boca do rio », l'embouchure du fleuve", "D'un roi de Grand-Popo", "D'un poisson"], answer: 0, explanation: "L'expression portugaise signifie « l'embouchure du fleuve »." },
+      { question: "Avec quel pays le Bénin partage-t-il la réserve de biosphère du delta du Mono ?", choices: ["Le Togo", "Le Nigéria", "Le Niger"], answer: 0, explanation: "La réserve, reconnue en 2017, est transfrontière entre le Bénin et le Togo." },
+      { question: "Quel grand mammifère aquatique menacé vit dans le delta ?", choices: ["Le lamantin d'Afrique de l'Ouest", "Le dauphin rose", "L'hippopotame pygmée"], answer: 0, explanation: "Le lamantin fréquente les eaux calmes du delta." },
+      { question: "Comment les femmes du delta fabriquent-elles le sel ?", choices: ["En faisant bouillir une saumure tirée de terres salées", "En le ramassant dans le désert", "En l'achetant en ville"], answer: 0, explanation: "La terre salée est lavée, puis la saumure est longuement bouillie." }
+    ]
+  },
+  {
+    id: 116,
+    slug: "daanon-kpota",
+    country: "Bénin",
+    cat: "naturel",
+    name: "Village de Daanon-Kpota",
+    region: "Zou, Djidja",
+    featured: false,
+    latitude: 7.344,
+    longitude: 1.935,
+    radius: 8000,
+    themes: ["faune-flore"],
+    documented_by: "Premice MANA avec l'équipe Kitoko Afrika",
+    description: "Dans la commune de Djidja, au nord d'Abomey, le village de Daanon-Kpota est une perle encore peu connue du Bénin. Il est dominé par un imposant massif rocheux, belvédère naturel d'où l'on découvre un vaste panorama sur la savane environnante.\n\nAu-delà du paysage, Daanon-Kpota offre une expérience humaine : la communauté accueille les visiteurs pour partager ses traditions, son quotidien et l'énergie qui anime la vie du village.",
+    histoire: "### Au nord de l'ancien royaume d'Abomey\nDjidja se trouve dans le département du Zou, au nord d'Abomey, l'ancienne capitale du royaume du Danxomè. La région a longtemps été liée à l'histoire de ce royaume et de ses voisins.\n\n### Un paysage de rochers\nComme d'autres régions du centre du Bénin, le territoire de Djidja est ponctué de massifs rocheux très anciens, dégagés par l'érosion, qui dominent la savane. Celui de Daanon-Kpota en est un exemple remarquable.\n\n### Un site à faire connaître\nDaanon-Kpota commence à être découvert par les amoureux de nature et de randonnée. Son histoire locale, transmise par les anciens du village, mérite d'être recueillie et partagée.",
+    culture: "La vie du village s'organise autour de l'agriculture, des marchés et des traditions familiales et religieuses. Les visiteurs sont invités à découvrir le quotidien des habitants avec respect.\n\nLe massif rocheux fait partie de l'identité du village : il sert de repère, de lieu de promenade et, parfois, de lieu chargé de sens pour la communauté.",
+    savoirs: "### Lire le paysage\nLes habitants connaissent les sentiers qui mènent au sommet, les points d'eau et les plantes utiles de la savane.\n\n### La géologie\nLe massif est un bon terrain d'observation pour comprendre la formation des reliefs de granite du centre du Bénin : blocs arrondis, fissures, dalles.",
+    communities: "Communauté de Daanon-Kpota, commune de Djidja.",
+    langues: "Fon, français",
+    personnalites: "—",
+    infos_pratiques: "Visite à organiser avec les habitants ou un guide local, depuis Djidja ou Abomey. Chaussures de marche conseillées pour monter au sommet ; partir tôt le matin pour éviter la chaleur. Demander l'accord de la communauté avant de photographier les personnes et les lieux de culte. Informations à compléter sur place.",
+    chronologie: [
+      ["Aujourd'hui", "Site naturel et village à découvrir, encore peu connu du grand public."]
+    ],
+    a_voir: [
+      ["Le massif rocheux", "Belvédère naturel sur la savane."],
+      ["La vie du village", "Avec l'accueil de la communauté."],
+      ["Abomey", "À proximité, les palais royaux du Danxomè."]
+    ],
+    saviez_vous: [
+      "Djidja se trouve au nord d'Abomey, l'ancienne capitale du royaume du Danxomè.",
+      "Les massifs de granite du centre du Bénin sont parmi les roches les plus anciennes du pays."
+    ],
+    sources: [
+      "Contribution de Premice MANA",
+      "Mairie de Djidja"
+    ],
+    recits: [],
+    quiz: [
+      { question: "Dans quelle commune se trouve Daanon-Kpota ?", choices: ["Djidja", "Grand-Popo", "Natitingou"], answer: 0, explanation: "Daanon-Kpota se trouve dans la commune de Djidja, département du Zou." },
+      { question: "Dans quel département se trouve Djidja ?", choices: ["Le Zou", "L'Atacora", "Le Littoral"], answer: 0, explanation: "Djidja est dans le Zou, au nord d'Abomey." },
+      { question: "Qu'est-ce qui domine le village de Daanon-Kpota ?", choices: ["Un massif rocheux", "Un lac", "Une cascade"], answer: 0, explanation: "Un imposant massif rocheux offre un panorama sur la savane." },
+      { question: "Quelle ancienne capitale royale se trouve près de Djidja ?", choices: ["Abomey", "Nikki", "Porto-Novo"], answer: 0, explanation: "Abomey était la capitale du royaume du Danxomè." },
+      { question: "À quel moment vaut-il mieux monter au sommet ?", choices: ["Tôt le matin", "En plein midi", "La nuit sans lampe"], answer: 0, explanation: "Le matin, il fait plus frais et la lumière est belle." }
+    ]
+  },
+  {
+    id: 117,
+    slug: "riviere-noire-adjarra",
+    country: "Bénin",
+    cat: "naturel",
+    name: "La Rivière Noire",
+    region: "Ouémé, Adjarra",
+    featured: false,
+    latitude: 6.545,
+    longitude: 2.668,
+    radius: 1500,
+    themes: ["eaux", "spiritualites", "artisanat"],
+    documented_by: "Premice MANA avec l'équipe Kitoko Afrika",
+    description: "Entre Adjarra et Avrankou, près de Porto-Novo, la Rivière Noire (souvent appelée « lac Noir ») serpente sous une voûte de palmiers raphia. Malgré son nom, son eau est transparente : c'est la végétation dense et les sédiments de son lit qui lui donnent cette couleur sombre.\n\nLieu sacré ancré dans la tradition vodun, la rivière est devenue un joyau de l'écotourisme : on la parcourt en pirogue dans un silence impressionnant, avant de découvrir l'artisanat d'Adjarra, célèbre pour ses tambours.",
+    histoire: "### Une rivière de la vallée de l'Ouémé\nLa Rivière Noire traverse une zone humide d'eau douce, couverte de forêts marécageuses à palmiers raphia, qui rejoint les lagunes de la région de Porto-Novo.\n\n### Un sanctuaire naturel\nPour les communautés riveraines, la rivière est habitée par des esprits et des divinités. Des interdits la protègent depuis longtemps, comme la pêche au filet, ce qui a contribué à préserver ses eaux et sa végétation.\n\n### L'écotourisme\nCes dernières années, les communautés et des associations locales ont aménagé le site pour les visiteurs : balades en pirogue, sentiers et accueil, avec le souci de respecter le caractère sacré des lieux.",
+    culture: "La Rivière Noire illustre le lien entre la nature et le vodun : la protection de la rivière repose autant sur les interdits sacrés que sur les efforts de conservation.\n\nAdjarra est connue dans tout le Bénin pour ses fabricants de tam-tams et de tambours, utilisés dans les cérémonies, les fêtes et la musique. Leurs ateliers se visitent.\n\nLa région de Porto-Novo, toute proche, ajoute à la visite la richesse de ses musées et de son histoire royale.",
+    savoirs: "### La forêt de raphia\nLe palmier raphia fournit des fibres, des nervures pour construire et du vin de palme. Sa connaissance fait partie des savoirs des communautés de la vallée.\n\n### La fabrication des tambours\nLes artisans d'Adjarra creusent le bois, tendent les peaux et accordent les tambours selon des techniques transmises de génération en génération.\n\n### Les interdits\nLes règles coutumières (pêche, coupe, comportements) sont transmises par les prêtres et les anciens.",
+    communities: "Communautés riveraines d'Adjarra et d'Avrankou, prêtres vodun, artisans tambourinaires, guides d'écotourisme.",
+    langues: "Gun, fon, français",
+    personnalites: "—",
+    infos_pratiques: "À une quinzaine de kilomètres de Porto-Novo. Balade en pirogue avec les guides du site (droit d'entrée et contribution). Respecter les interdits indiqués par les guides : c'est un lieu sacré. Prévoir une protection contre les moustiques. Compléter la visite par les ateliers de tambours d'Adjarra.",
+    chronologie: [
+      ["Temps anciens", "La rivière est considérée comme sacrée par les communautés riveraines."],
+      ["Aujourd'hui", "Site d'écotourisme aménagé avec les communautés locales."]
+    ],
+    a_voir: [
+      ["La balade en pirogue", "Sous la voûte des palmiers raphia, dans un grand silence."],
+      ["La couleur de l'eau", "Sombre en apparence, transparente dans la main."],
+      ["Les ateliers de tambours d'Adjarra", "La fabrication des tam-tams."]
+    ],
+    saviez_vous: [
+      "L'eau de la Rivière Noire est transparente : sa couleur sombre vient de la végétation et des sédiments.",
+      "La pêche au filet y est interdite par la tradition, ce qui a aidé à préserver la rivière."
+    ],
+    sources: [
+      "Contribution de Premice MANA",
+      "Mairie d'Adjarra",
+      "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"
+    ],
+    recits: [],
+    quiz: [
+      { question: "Pourquoi la Rivière Noire paraît-elle sombre ?", choices: ["À cause de la végétation et des sédiments", "Parce que son eau est polluée", "À cause du pétrole"], answer: 0, explanation: "L'eau est transparente ; la végétation dense et le lit sombre lui donnent sa couleur." },
+      { question: "Quel palmier forme la voûte au-dessus de la rivière ?", choices: ["Le palmier raphia", "Le cocotier", "Le palmier dattier"], answer: 0, explanation: "La rivière traverse une forêt marécageuse à palmiers raphia." },
+      { question: "Quelle pratique la tradition interdit-elle sur la rivière ?", choices: ["La pêche au filet", "La prière", "La promenade en pirogue"], answer: 0, explanation: "L'interdit de la pêche au filet protège la rivière." },
+      { question: "Pour quel artisanat Adjarra est-elle célèbre ?", choices: ["Les tambours", "La poterie", "Le tissage de kente"], answer: 0, explanation: "Les artisans d'Adjarra fabriquent des tam-tams réputés." },
+      { question: "Près de quelle grande ville se trouve la Rivière Noire ?", choices: ["Porto-Novo", "Parakou", "Natitingou"], answer: 0, explanation: "Adjarra est tout près de Porto-Novo." }
+    ]
+  },
+  {
+    id: 118,
+    slug: "village-des-potieres-se",
+    country: "Bénin",
+    cat: "culturel",
+    name: "Sè, le village des potières",
+    region: "Mono, Houéyogbé (Sè)",
+    featured: false,
+    latitude: 6.47,
+    longitude: 1.85,
+    radius: 2000,
+    themes: ["artisanat", "marches"],
+    documented_by: "Premice MANA avec l'équipe Kitoko Afrika",
+    description: "Dans le sud-ouest du Bénin, à une centaine de kilomètres de Cotonou, le village de Sè est célèbre pour sa poterie en terre cuite. Ici, ce sont les femmes qui façonnent entièrement à la main jarres, canaris, marmites et objets rituels, selon un savoir-faire transmis de mère en fille.\n\nLe marché de Sè, véritable vitrine à ciel ouvert, attire des acheteurs de toute la région, à la recherche de jarres qui gardent l'eau fraîche et de marmites qui subliment la cuisson des plats.",
+    histoire: "### Un savoir-faire ancien\nLa poterie de Sè est pratiquée depuis des générations. Elle s'est développée grâce à l'argile des bas-fonds marécageux de la région et à la demande en récipients pour l'eau, la cuisine, les cérémonies et le commerce.\n\n### Un métier de femmes\nÀ Sè, la poterie est un métier féminin : les jeunes filles apprennent auprès de leurs mères et de leurs grands-mères, en observant puis en façonnant leurs premières pièces.\n\n### Entre tradition et changement\nL'arrivée des récipients en plastique et en métal a réduit la demande pour certains objets. Mais les jarres de Sè restent recherchées pour leur capacité à rafraîchir l'eau, et de nouvelles pièces décoratives trouvent leur public.",
+    culture: "La poterie accompagne toute la vie : jarres pour conserver l'eau fraîche, marmites pour la cuisine, braseros, pots pour les cérémonies et les autels vodun.\n\nLe marché de Sè est un moment fort de la vie du village : potières, acheteuses et revendeuses s'y retrouvent, et les objets partent ensuite vers les marchés de tout le sud du Bénin et au-delà.\n\nLa visite des ateliers permet de rencontrer les potières et de comprendre la place de leur travail dans la société.",
+    savoirs: "### Préparer l'argile\nL'argile est extraite des bas-fonds, nettoyée, mélangée et pétrie longuement pour obtenir une pâte homogène.\n\n### Façonner sans tour\nLes potières montent les pièces entièrement à la main, sans tour, en tournant autour de l'objet ou en le faisant pivoter sur un support. Elles lissent, décorent et laissent sécher les pièces à l'ombre.\n\n### La cuisson\nLa cuisson se fait à ciel ouvert, sous un feu de bois et de paille. Elle demande une grande maîtrise pour éviter que les pièces ne se fendent.",
+    communities: "Potières et commerçantes de Sè, commune de Houéyogbé.",
+    langues: "Fon, sahouè, français",
+    personnalites: "—",
+    infos_pratiques: "Sè est à environ 90 à 100 km de Cotonou, sur l'axe entre Comè et Lokossa. Visite des ateliers avec l'accord des potières (petite contribution ou achat apprécié). Le marché se tient selon un cycle traditionnel de quelques jours : se renseigner sur le prochain jour de marché. Transport des achats fragiles : prévoir de quoi les emballer.",
+    chronologie: [
+      ["Depuis des générations", "La poterie de Sè est transmise de mère en fille."],
+      ["XXe siècle", "Concurrence des récipients en plastique et en métal."],
+      ["Aujourd'hui", "Les jarres de Sè restent recherchées ; développement de pièces décoratives."]
+    ],
+    a_voir: [
+      ["Les potières au travail", "Le façonnage à la main, sans tour."],
+      ["La cuisson à ciel ouvert", "Un moment spectaculaire, selon les jours."],
+      ["Le marché de Sè", "Des montagnes de jarres et de marmites."]
+    ],
+    saviez_vous: [
+      "Les jarres en terre cuite de Sè gardent l'eau fraîche grâce à l'évaporation à travers leurs parois.",
+      "À Sè, la poterie est un savoir-faire exclusivement féminin, transmis de mère en fille."
+    ],
+    sources: [
+      "Contribution de Premice MANA",
+      "Mairie de Houéyogbé",
+      "Agence nationale de promotion des patrimoines et de développement du tourisme (ANPT, Bénin)"
+    ],
+    recits: [],
+    quiz: [
+      { question: "Pour quel artisanat Sè est-il célèbre ?", choices: ["La poterie", "Le tissage", "La sculpture sur bois"], answer: 0, explanation: "Sè est connu pour ses poteries en terre cuite." },
+      { question: "Qui fabrique les poteries à Sè ?", choices: ["Les femmes", "Les hommes", "Une usine"], answer: 0, explanation: "La poterie de Sè est un savoir-faire féminin, transmis de mère en fille." },
+      { question: "Pourquoi les jarres de Sè gardent-elles l'eau fraîche ?", choices: ["Grâce à l'évaporation à travers leurs parois", "Grâce à un moteur", "Parce qu'elles sont peintes en blanc"], answer: 0, explanation: "L'eau qui s'évapore à travers la terre cuite rafraîchit le contenu." },
+      { question: "Où les potières trouvent-elles leur argile ?", choices: ["Dans les bas-fonds marécageux", "Sur la plage", "Dans les montagnes de l'Atacora"], answer: 0, explanation: "L'argile est extraite des bas-fonds de la région." },
+      { question: "Comment les pièces sont-elles façonnées ?", choices: ["À la main, sans tour", "Avec un tour électrique", "Dans des moules en métal"], answer: 0, explanation: "Les potières montent les pièces entièrement à la main." }
+    ]
   }
 ];
