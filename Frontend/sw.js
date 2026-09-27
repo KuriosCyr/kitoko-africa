@@ -5,7 +5,7 @@
 // - Les photos et médias publiés sont gardés en cache après consultation.
 // Les requêtes d'écriture (tampons, contributions…) ne sont jamais mises en cache.
 
-const VERSION = "kitoko-v9";
+const VERSION = "kitoko-v10";
 const APP_CACHE = `${VERSION}-app`;
 const DATA_CACHE = `${VERSION}-data`;
 const MEDIA_CACHE = `${VERSION}-media`;

@@ -1011,3 +1011,24 @@
 .auth-error::before{content:"!";flex:none;width:20px;height:20px;border-radius:50%;background:var(--clay);color:#fff;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;}
 .auth-error[hidden]{display:none;}
 .field.is-wrong input{border-color:var(--clay) !important;background:#FFF7F8;}
+
+/* Accueil allégé : un seul « Kitoko Afrika » (le grand logo), une phrase qui
+   dit ce qu'on trouve, et la recherche visible dès l'ouverture. */
+.home-topbar .logo-row{visibility:hidden;}
+.demo-banner{display:flex;align-items:flex-start;gap:8px;padding:8px 12px 8px 16px;}
+.demo-banner details{flex:1;min-width:0;}
+.demo-banner summary{cursor:pointer;list-style:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.demo-banner summary::-webkit-details-marker{display:none;}
+.demo-banner details[open] summary{white-space:normal;}
+.demo-banner details p{margin:6px 0 2px;}
+.demo-banner-close{flex:none;border:0;background:none;color:#5c4400;font-size:20px;line-height:1;cursor:pointer;padding:0 4px;}
+@media (max-width:700px){
+  .culture-pattern{min-height:0;}
+  .home-hero-content{padding:8px 24px 150px;}
+  .home-hero-content h1{font-size:27px;line-height:1.15;margin:0 0 8px;}
+  .home-hero-content .tagline{font-size:13px;}
+  .home-logo-big{margin-bottom:10px;}
+  .culture-pattern::after, .culture-pattern > .hero-slides{inset:40% 0 0;}
+  .culture-pattern::after{background:linear-gradient(180deg,var(--ink) 0%,rgba(20,29,61,.55) 32%,rgba(20,29,61,.08) 62%,rgba(20,29,61,.35) 100%);}
+  .home-hero-content h1, .home-hero-content .tagline{text-shadow:0 2px 10px rgba(10,14,30,.55);}
+}

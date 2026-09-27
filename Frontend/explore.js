@@ -606,9 +606,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     const health = await (await fetch(`${API_BASE}/health`)).json();
     if(!health.demo) return;
+    try { if(sessionStorage.getItem('kitoko_demo_banner_closed')) return; } catch(error) { /* rien */ }
+    // Bandeau d'une ligne : un appui affiche le détail, la croix le ferme.
     const banner = document.createElement('div');
     banner.className = "demo-banner";
-    banner.innerHTML = "<strong>Version de démonstration.</strong> Créez un compte pour essayer le passeport : sur chaque fiche, un code de démonstration permet de valider une visite sans vous déplacer. Les comptes peuvent être réinitialisés.";
+    banner.innerHTML = `
+      <details>
+        <summary><strong>Version de démonstration</strong> · Code de test sur chaque fiche</summary>
+        <p>Créez un compte pour essayer le passeport : sur chaque fiche, un code de démonstration permet de valider une visite sans vous déplacer. Les comptes peuvent être réinitialisés.</p>
+      </details>
+      <button type="button" class="demo-banner-close" aria-label="Fermer le bandeau">×</button>`;
+    banner.querySelector('.demo-banner-close').onclick = () => {
+      banner.remove();
+      try { sessionStorage.setItem('kitoko_demo_banner_closed', '1'); } catch(error) { /* rien */ }
+    };
     document.getElementById('screen-home')?.prepend(banner);
   } catch(error) { /* hors connexion */ }
 });
