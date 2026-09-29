@@ -23,6 +23,7 @@
   let bundleMedia = new Set();
   let offline = false;
   let retryTimer = null;
+  let lastLateRefresh = 0;
   const listeners = [];
 
   const bundleReady = nativeFetch("offline/data.json")
@@ -103,8 +104,13 @@
       setOffline(false);
       return result;
     }
-    network.catch(() => {});
     setOffline(true);
+    // Le serveur répond finalement (réveil de l'hébergement gratuit) : on
+    // recharge l'écran avec les données à jour.
+    network.then(response => {
+      // Au plus une fois par minute, pour ne pas recharger en boucle sur un réseau lent.
+      if(response.ok && offline && Date.now() - lastLateRefresh > 60000){ lastLateRefresh = Date.now(); reconnected(); }
+    }).catch(() => {});
     return cachedResponse(key, path);
   };
 
@@ -136,6 +142,10 @@
       const response = await nativeFetch(`${apiBase}/health`, { cache: "no-store" });
       if(!response.ok) return;
     } catch(error) { return; }
+    reconnected();
+  }
+
+  function reconnected(){
     setOffline(false);
     listeners.forEach(listener => { try { listener(); } catch(error) { console.warn(error); } });
   }

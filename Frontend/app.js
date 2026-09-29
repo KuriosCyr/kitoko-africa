@@ -1669,6 +1669,7 @@ async function bootstrap(){
     await window.KitokoOffline.ready;
     window.KitokoOffline.onReconnect(refreshAfterReconnect);
   }
+  watchAppResume();
   await loadKitokoData();
   buildAdminCountryFilter();
   await restoreAuthSession();
@@ -1690,7 +1691,13 @@ async function bootstrap(){
 
 // Retour du réseau : on recharge les données et l'écran affiché, sans avoir
 // à fermer l'application.
-async function refreshAfterReconnect(){
+let refreshing = null;
+function refreshAfterReconnect(){
+  // Un seul rafraîchissement à la fois (retour du réseau et retour dans l'application).
+  if(!refreshing) refreshing = doRefresh().finally(() => { refreshing = null; });
+  return refreshing;
+}
+async function doRefresh(){
   await loadKitokoData();
   await restoreAuthSession();
   buildMapAndCountryChips();
@@ -1702,10 +1709,23 @@ async function refreshAfterReconnect(){
   const active = document.querySelector('.screen.active')?.id;
   if(active === 'screen-detail' && currentSiteId){
     const tab = document.querySelector('.dtab.active')?.dataset.pane || 'apercu';
+    // Onglet Passeport : on ne recharge pas la fiche pour ne pas interrompre un quiz en cours.
+    if(tab === 'passeport') return;
     openDetail(currentSiteId, { tab, updateUrl: false, keepScroll: true });
   } else if(active && active !== 'screen-home'){
     showScreen(active, { skipHistory: true });
   }
+}
+
+// Retour dans l'application (téléphone) ou dans l'onglet (navigateur) après
+// une absence : on recharge les données du compte (tampons, favoris, question
+// du jour…) pour voir ce qui a été fait entre-temps sur un autre appareil.
+function watchAppResume(){
+  let hiddenAt = 0;
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden){ hiddenAt = Date.now(); return; }
+    if(hiddenAt && Date.now() - hiddenAt > 20000 && navigator.onLine !== false) refreshAfterReconnect();
+  });
 }
 
 // Ouvre la fiche demandée dans l'adresse : lien partagé (?site=slug) ou
